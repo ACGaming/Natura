@@ -65,8 +65,8 @@ public class ItemNaturaDoor extends ItemMetaDynamic
                 if (player.canPlayerEdit(pos, facing, itemstack) && this.states.get(meta).getBlock().canPlaceBlockAt(worldIn, pos))
                 {
                     EnumFacing enumfacing = EnumFacing.fromAngle(player.rotationYaw);
-                    int i = enumfacing.getFrontOffsetX();
-                    int j = enumfacing.getFrontOffsetZ();
+                    int i = enumfacing.getXOffset();
+                    int j = enumfacing.getZOffset();
                     boolean flag = i < 0 && hitZ < 0.5F || i > 0 && hitZ > 0.5F || j < 0 && hitX > 0.5F || j > 0 && hitX < 0.5F;
                     placeDoor(worldIn, pos, enumfacing, this.states.get(meta), flag);
                     SoundType soundtype = worldIn.getBlockState(pos).getBlock().getSoundType(worldIn.getBlockState(pos), worldIn, pos, player);

@@ -83,13 +83,13 @@ public class ItemSaguaroFruit extends ItemSeedFood
 
     public static void addOptionalTooltip(ItemStack stack, List<String> tooltip)
     {
-        if (I18n.canTranslate(stack.getUnlocalizedName() + ".tooltip"))
+        if (I18n.canTranslate(stack.getTranslationKey() + ".tooltip"))
         {
-            tooltip.addAll(LocUtils.getTooltips(TextFormatting.GRAY.toString() + LocUtils.translateRecursive(stack.getUnlocalizedName() + ".tooltip")));
+            tooltip.addAll(LocUtils.getTooltips(TextFormatting.GRAY.toString() + LocUtils.translateRecursive(stack.getTranslationKey() + ".tooltip")));
         }
-        else if (I18n.canTranslate(stack.getUnlocalizedName() + ".tooltip"))
+        else if (I18n.canTranslate(stack.getTranslationKey() + ".tooltip"))
         {
-            tooltip.addAll(LocUtils.getTooltips(TextFormatting.GRAY.toString() + LocUtils.translateRecursive(stack.getUnlocalizedName() + ".tooltip")));
+            tooltip.addAll(LocUtils.getTooltips(TextFormatting.GRAY.toString() + LocUtils.translateRecursive(stack.getTranslationKey() + ".tooltip")));
         }
     }
 

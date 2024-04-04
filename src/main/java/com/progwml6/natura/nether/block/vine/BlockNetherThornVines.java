@@ -25,7 +25,7 @@ public class BlockNetherThornVines extends BlockVine
     }
 
     @Override
-    public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
+    public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
     {
         Random random = new Random();
         random.setSeed(2 ^ 16 + 2 ^ 8 + (4 * 3 * 271));

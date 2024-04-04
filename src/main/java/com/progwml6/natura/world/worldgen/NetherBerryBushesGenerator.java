@@ -41,7 +41,7 @@ public class NetherBerryBushesGenerator implements IWorldGenerator
     {
         this.generateNether(random, chunkX, chunkZ, world);
 
-        world.getChunkFromChunkCoords(chunkX, chunkZ).markDirty();
+        world.getChunk(chunkX, chunkZ).markDirty();
     }
 
     public void generateNether(Random random, int chunkX, int chunkZ, World world)

@@ -130,7 +130,7 @@ public class BlockSaguaroBaby extends Block implements IPlantable
     }
 
     @Override
-    public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
+    public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
     {
         if (!(entityIn instanceof EntityItem))
         {

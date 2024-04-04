@@ -82,7 +82,7 @@ public class OverworldTreesGenerator implements IWorldGenerator
     {
         this.generateOverworld(random, chunkX, chunkZ, world, true);
 
-        world.getChunkFromChunkCoords(chunkX, chunkZ).markDirty();
+        world.getChunk(chunkX, chunkZ).markDirty();
     }
 
     public void generateOverworld(Random random, int chunkX, int chunkZ, World world, boolean retroGen)
@@ -96,7 +96,7 @@ public class OverworldTreesGenerator implements IWorldGenerator
 
         BlockPos position;
 
-        Biome biome = world.getChunkFromBlockCoords(chunkPos).getBiome(chunkPos, world.getBiomeProvider());
+        Biome biome = world.getChunk(chunkPos).getBiome(chunkPos, world.getBiomeProvider());
 
         if (biome == null)
         {

@@ -211,7 +211,7 @@ public class BlockSaguaro extends Block implements IPlantable
         IBlockState iblockstate = worldIn.getBlockState(pos);
         Block block = iblockstate.getBlock();
 
-        return block == Blocks.BARRIER ? false : ((!(block instanceof BlockSaguaro) || iblockstate.getMaterial() != this.blockMaterial) ? (iblockstate.getMaterial().isOpaque() && iblockstate.isFullCube() ? iblockstate.getMaterial() != Material.GOURD : false) : true);
+        return block == Blocks.BARRIER ? false : ((!(block instanceof BlockSaguaro) || iblockstate.getMaterial() != this.material) ? (iblockstate.getMaterial().isOpaque() && iblockstate.isFullCube() ? iblockstate.getMaterial() != Material.GOURD : false) : true);
     }
 
     @Override
@@ -342,7 +342,7 @@ public class BlockSaguaro extends Block implements IPlantable
     }
 
     @Override
-    public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
+    public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
     {
         if (!(entityIn instanceof EntityItem))
         {

@@ -73,7 +73,7 @@ public class BlockNetherGlass extends EnumBlock<BlockNetherGlass.GlassType>
 
     @Override
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer()
+    public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.TRANSLUCENT;
     }
@@ -103,7 +103,7 @@ public class BlockNetherGlass extends EnumBlock<BlockNetherGlass.GlassType>
     }
 
     @Override
-    public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
+    public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
     {
         if (entityIn instanceof EntityLivingBase)
         {
@@ -113,7 +113,7 @@ public class BlockNetherGlass extends EnumBlock<BlockNetherGlass.GlassType>
             }
             else if (state.getValue(TYPE) == GlassType.HEAT)
             {
-                NaturaNether.netherHeatSand.onEntityCollidedWithBlock(worldIn, pos, state, entityIn);
+                NaturaNether.netherHeatSand.onEntityCollision(worldIn, pos, state, entityIn);
             }
         }
     }

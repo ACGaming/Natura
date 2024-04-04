@@ -160,7 +160,7 @@ public class BlockEnumBerryBush extends Block implements IPlantable, IGrowable
 
     @Override
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer()
+    public BlockRenderLayer getRenderLayer()
     {
         return NaturaOverworld.proxy.fancyGraphicsEnabled() ? BlockRenderLayer.CUTOUT_MIPPED : BlockRenderLayer.SOLID;
     }

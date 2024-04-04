@@ -57,7 +57,7 @@ public class NetherTreesGenerator implements IWorldGenerator
     {
         this.generateNether(random, chunkX, chunkZ, world);
 
-        world.getChunkFromChunkCoords(chunkX, chunkZ).markDirty();
+        world.getChunk(chunkX, chunkZ).markDirty();
     }
 
     public void generateNether(Random random, int chunkX, int chunkZ, World world)
@@ -71,7 +71,7 @@ public class NetherTreesGenerator implements IWorldGenerator
 
         BlockPos position;
 
-        Biome biome = world.getChunkFromBlockCoords(chunkPos).getBiome(chunkPos, world.getBiomeProvider());
+        Biome biome = world.getChunk(chunkPos).getBiome(chunkPos, world.getBiomeProvider());
 
         if (biome == null)
         {

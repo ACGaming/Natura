@@ -70,7 +70,7 @@ public abstract class NaturaPulse
         }
 
         String prefixedName = Util.prefix(name);
-        block.setUnlocalizedName(prefixedName);
+        block.setTranslationKey(prefixedName);
 
         register(registry, block, name);
         return block;
@@ -96,7 +96,7 @@ public abstract class NaturaPulse
         ItemBlock itemBlock = new ItemBlockMeta(block);
 
         String prefixedName = Util.prefix(name);
-        itemBlock.setUnlocalizedName(prefixedName);
+        itemBlock.setTranslationKey(prefixedName);
 
         register(registry, itemBlock, name);
         return block;
@@ -112,7 +112,7 @@ public abstract class NaturaPulse
         ItemBlock itemBlock = new ItemBlockMeta(block);
 
         String prefixedName = Util.prefix(name);
-        itemBlock.setUnlocalizedName(prefixedName);
+        itemBlock.setTranslationKey(prefixedName);
 
         register(registry, itemBlock, name);
         ItemBlockMeta.setMappingProperty(block, block.prop);
@@ -128,7 +128,7 @@ public abstract class NaturaPulse
         }
 
         String prefixedName = Util.prefix(name);
-        itemBlock.setUnlocalizedName(prefixedName);
+        itemBlock.setTranslationKey(prefixedName);
 
         register(registry, itemBlock, name);
         ItemBlockMeta.setMappingProperty(itemBlock.getBlock(), property);
@@ -146,7 +146,7 @@ public abstract class NaturaPulse
         ItemBlock itemBlock = new ItemBlockSlab(block);
 
         String prefixedName = Util.prefix(name);
-        itemBlock.setUnlocalizedName(prefixedName);
+        itemBlock.setTranslationKey(prefixedName);
 
         register(registry, itemBlock, name);
         ItemBlockMeta.setMappingProperty(block, block.prop);
@@ -160,7 +160,7 @@ public abstract class NaturaPulse
             throw new IllegalArgumentException(String.format("Unlocalized names need to be all lowercase! Item: %s", name));
         }
 
-        item.setUnlocalizedName(Util.prefix(name));
+        item.setTranslationKey(Util.prefix(name));
         item.setRegistryName(Util.getResource(name));
         registry.register(item);
         return item;

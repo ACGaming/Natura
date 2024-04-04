@@ -42,7 +42,7 @@ public class BlockCloud extends EnumBlock<BlockCloud.CloudType>
     }
 
     @Override
-    public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
+    public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
     {
         if (state.getValue(BlockCloud.TYPE) == BlockCloud.CloudType.SULFUR && entityIn instanceof EntityArrow && !worldIn.isRemote)
         {
@@ -87,7 +87,7 @@ public class BlockCloud extends EnumBlock<BlockCloud.CloudType>
     }
 
     @Override
-    public void onBlockDestroyedByExplosion(World worldIn, BlockPos pos, Explosion explosionIn)
+    public void onExplosionDestroy(World worldIn, BlockPos pos, Explosion explosionIn)
     {
     }
 
@@ -104,7 +104,7 @@ public class BlockCloud extends EnumBlock<BlockCloud.CloudType>
 
     @Override
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer()
+    public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.TRANSLUCENT;
     }
@@ -114,7 +114,7 @@ public class BlockCloud extends EnumBlock<BlockCloud.CloudType>
     @SideOnly(Side.CLIENT)
     public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
     {
-        return blockAccess.getBlockState(pos.offset(side)).getMaterial() == this.blockMaterial ? false : super.shouldSideBeRendered(blockState, blockAccess, pos, side);
+        return blockAccess.getBlockState(pos.offset(side)).getMaterial() == this.material ? false : super.shouldSideBeRendered(blockState, blockAccess, pos, side);
     }
 
     @Override
@@ -134,7 +134,7 @@ public class BlockCloud extends EnumBlock<BlockCloud.CloudType>
     {
         Material material = world.getBlockState(pos).getMaterial();
 
-        return material == this.blockMaterial ? false : super.isNormalCube(state, world, pos);
+        return material == this.material ? false : super.isNormalCube(state, world, pos);
     }
 
     @Override

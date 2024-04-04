@@ -30,7 +30,7 @@ public class CustomStateMap extends StateMapperBase
     protected ModelResourceLocation getModelResourceLocation(@Nonnull IBlockState state)
     {
         LinkedHashMap<IProperty<?>, Comparable<?>> linkedhashmap = Maps.newLinkedHashMap(state.getProperties());
-        ResourceLocation res = new ResourceLocation(Block.REGISTRY.getNameForObject(state.getBlock()).getResourceDomain(), this.customName);
+        ResourceLocation res = new ResourceLocation(Block.REGISTRY.getNameForObject(state.getBlock()).toString(), this.customName);
 
         return new ModelResourceLocation(res, this.getPropertyString(linkedhashmap));
     }
