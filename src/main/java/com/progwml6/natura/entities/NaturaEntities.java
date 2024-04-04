@@ -34,7 +34,7 @@ import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import slimeknights.mantle.pulsar.pulse.Pulse;
 
-@Pulse(id = NaturaEntities.PulseId, description = "The entites added by Natura")
+@Pulse(id = NaturaEntities.PulseId, description = "The entities added by Natura")
 public class NaturaEntities extends NaturaPulse
 {
     public static final String PulseId = "NaturaEntities";
@@ -47,17 +47,17 @@ public class NaturaEntities extends NaturaPulse
     @SubscribeEvent
     public void registerEntities(Register<EntityEntry> event)
     {
-        EntityRegistry.registerModEntity(Util.getResource("imp"), EntityImp.class, "imp", EntityIDs.IMP, Natura.instance, 32, 5, true, 0xF29735, 0x2E1F10);
+        EntityRegistry.registerModEntity(Util.getResource("imp"), EntityImp.class, "imp", EntityIDs.IMP, Natura.instance, 64, 1, true, 0xF29735, 0x2E1F10);
         LootTableList.register(EntityImp.LOOT_TABLE);
 
         if (Config.enableHeatscarSpider)
         {
-            EntityRegistry.registerModEntity(Util.getResource("heatscarspider"), EntityHeatscarSpider.class, "heatscarspider", EntityIDs.HEATSCARSPIDER, Natura.instance, 32, 5, true, 0xE64D10, 0x57B1BD);
-            EntityRegistry.registerModEntity(Util.getResource("babyheatscarspider"), EntityBabyHeatscarSpider.class, "babyheatscarspider", EntityIDs.BABYHEATSCARSPIDER, Natura.instance, 32, 5, true, 0xE64D10, 0x57B1BD);
+            EntityRegistry.registerModEntity(Util.getResource("heatscarspider"), EntityHeatscarSpider.class, "heatscarspider", EntityIDs.HEATSCARSPIDER, Natura.instance, 64, 1, true, 0xE64D10, 0x57B1BD);
+            EntityRegistry.registerModEntity(Util.getResource("babyheatscarspider"), EntityBabyHeatscarSpider.class, "babyheatscarspider", EntityIDs.BABYHEATSCARSPIDER, Natura.instance, 64, 1, true, 0xE64D10, 0x57B1BD);
             LootTableList.register(EntityHeatscarSpider.LOOT_TABLE);
         }
 
-        EntityRegistry.registerModEntity(Util.getResource("nitrocreeper"), EntityNitroCreeper.class, "nitrocreeper", EntityIDs.NITROCREEPER, Natura.instance, 64, 5, true, 0xF73E6C, 0x9B5004);
+        EntityRegistry.registerModEntity(Util.getResource("nitrocreeper"), EntityNitroCreeper.class, "nitrocreeper", EntityIDs.NITROCREEPER, Natura.instance, 64, 1, true, 0xF73E6C, 0x9B5004);
     }
 
     @Subscribe
