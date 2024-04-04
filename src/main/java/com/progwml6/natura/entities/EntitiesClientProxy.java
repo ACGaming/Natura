@@ -19,13 +19,13 @@ public class EntitiesClientProxy extends ClientProxy
     public void preInit()
     {
         // Entities
-        RenderingRegistry.registerEntityRenderingHandler(EntityImp.class, RenderNaturaImp.FACTORY_imp);
+        RenderingRegistry.registerEntityRenderingHandler(EntityImp.class, RenderNaturaImp::new);
         if (Config.enableHeatscarSpider)
         {
-            RenderingRegistry.registerEntityRenderingHandler(EntityHeatscarSpider.class, RenderNautraHeatscarSpider.FACTORY_heatscarSpider);
-            RenderingRegistry.registerEntityRenderingHandler(EntityBabyHeatscarSpider.class, RenderNautraBabyHeatscarSpider.FACTORY_babyHeatscarSpider);
+            RenderingRegistry.registerEntityRenderingHandler(EntityHeatscarSpider.class, RenderNautraHeatscarSpider::new);
+            RenderingRegistry.registerEntityRenderingHandler(EntityBabyHeatscarSpider.class, RenderNautraBabyHeatscarSpider::new);
         }
-        RenderingRegistry.registerEntityRenderingHandler(EntityNitroCreeper.class, RenderNaturaNitroCreeper.FACTORY_nitroCreeper);
+        RenderingRegistry.registerEntityRenderingHandler(EntityNitroCreeper.class, RenderNaturaNitroCreeper::new);
 
         super.preInit();
     }

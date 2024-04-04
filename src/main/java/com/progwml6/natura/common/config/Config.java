@@ -263,7 +263,7 @@ public final class Config
     // Entites Start
     public static int babyHeatscarMinimum = 2;
     public static int babyHeatscarMaximum = 4;
-    public static boolean enableHeatscarSpider = false;
+    public static boolean enableHeatscarSpider = true;
     // Entites End
 
     public static int seaLevel = 64;

@@ -5,18 +5,14 @@ import com.progwml6.natura.library.Util;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
-import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
-import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 public class RenderNaturaImp extends RenderLiving<EntityImp>
 {
-    public static final Factory FACTORY_imp = new Factory();
-
     public static final ResourceLocation impTexture = Util.getResource("textures/entity/imp.png");
 
     public RenderNaturaImp(RenderManager renderManagerIn)
@@ -28,19 +24,6 @@ public class RenderNaturaImp extends RenderLiving<EntityImp>
     protected ResourceLocation getEntityTexture(EntityImp entity)
     {
         return impTexture;
-    }
-
-    private static class Factory implements IRenderFactory<EntityImp>
-    {
-        public Factory()
-        {
-        }
-
-        @Override
-        public Render<? super EntityImp> createRenderFor(RenderManager manager)
-        {
-            return new RenderNaturaImp(manager);
-        }
     }
 
     static class ModelImp extends ModelBase
