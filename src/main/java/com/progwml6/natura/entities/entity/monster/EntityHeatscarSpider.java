@@ -172,8 +172,8 @@ public class EntityHeatscarSpider extends EntitySpider
     {
         if (!this.world.isRemote)
         {
-            int num = Config.babyHeatscarMaximum - Config.babyHeatscarMinimum + 1;
-            int amount = this.rand.nextInt(num) + Config.babyHeatscarMinimum;
+            int num = Config.babyHeatscarSpiderDeathSpawnMaximum - Config.babyHeatscarSpiderDeathSpawnMinimum + 1;
+            int amount = this.rand.nextInt(num) + Config.babyHeatscarSpiderDeathSpawnMinimum;
             for (int i = 0; i < amount; i++)
             {
                 double f = this.rand.nextDouble() * 2;

@@ -1,7 +1,6 @@
 package com.progwml6.natura.entities;
 
 import com.progwml6.natura.common.ClientProxy;
-import com.progwml6.natura.common.config.Config;
 import com.progwml6.natura.entities.entity.monster.EntityBabyHeatscarSpider;
 import com.progwml6.natura.entities.entity.monster.EntityHeatscarSpider;
 import com.progwml6.natura.entities.entity.monster.EntityNitroCreeper;
@@ -20,11 +19,8 @@ public class EntitiesClientProxy extends ClientProxy
     {
         // Entities
         RenderingRegistry.registerEntityRenderingHandler(EntityImp.class, RenderNaturaImp::new);
-        if (Config.enableHeatscarSpider)
-        {
-            RenderingRegistry.registerEntityRenderingHandler(EntityHeatscarSpider.class, RenderNautraHeatscarSpider::new);
-            RenderingRegistry.registerEntityRenderingHandler(EntityBabyHeatscarSpider.class, RenderNautraBabyHeatscarSpider::new);
-        }
+        RenderingRegistry.registerEntityRenderingHandler(EntityHeatscarSpider.class, RenderNautraHeatscarSpider::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityBabyHeatscarSpider.class, RenderNautraBabyHeatscarSpider::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityNitroCreeper.class, RenderNaturaNitroCreeper::new);
 
         super.preInit();

@@ -25,8 +25,6 @@ public final class Config
 
     private static final String ENTITIES = "Entities";
 
-    private static final String MOB_CHANGES = "Mob-Changes";
-
     private Config()
     {
     }
@@ -44,18 +42,55 @@ public final class Config
         // Retrogen Start
         doRetrogen = configFile.get(RETROGEN, "Retroactive Generation", doRetrogen).getBoolean(doRetrogen);
         // Retrogen End
-
-        babyHeatscarMinimum = configFile.get(MOB_CHANGES, "Minimum Baby Heatscar Spiders on Spider Death", babyHeatscarMinimum).getInt(babyHeatscarMinimum);
-        if (babyHeatscarMinimum < 0)
-        {
-            babyHeatscarMinimum = 0;
-        }
-
-        babyHeatscarMaximum = configFile.get(MOB_CHANGES, "Maximum Baby Heatscar Spiders on Spider Death", babyHeatscarMaximum).getInt(babyHeatscarMaximum);
-        if (babyHeatscarMaximum < 0)
-        {
-            babyHeatscarMaximum = 0;
-        }
+        
+        /* Entities */
+        // Baby Heatscar Spider
+        babyHeatscarSpiderDeathSpawnMaximum = configFile.get(ENTITIES, "Maximum Baby Heatscar Spiders on Heatscar Spider Death [default: 4]", babyHeatscarSpiderDeathSpawnMaximum).getInt(babyHeatscarSpiderDeathSpawnMaximum);
+        if (babyHeatscarSpiderDeathSpawnMaximum < 0) babyHeatscarSpiderDeathSpawnMaximum = 0;
+        
+        babyHeatscarSpiderDeathSpawnMinimum = configFile.get(ENTITIES, "Minimum Baby Heatscar Spiders on Heatscar Spider Death [default: 2]", babyHeatscarSpiderDeathSpawnMinimum).getInt(babyHeatscarSpiderDeathSpawnMinimum);
+        if (babyHeatscarSpiderDeathSpawnMinimum < 0) babyHeatscarSpiderDeathSpawnMinimum = 0;
+        
+        babyHeatscarSpiderSpawnMaximum = configFile.get(ENTITIES, "Baby Heatscar Spider Maximum Spawn Count [default: 4]", babyHeatscarSpiderSpawnMaximum).getInt(babyHeatscarSpiderSpawnMaximum);
+        if (babyHeatscarSpiderSpawnMaximum < 0) babyHeatscarSpiderSpawnMaximum = 0;
+        
+        babyHeatscarSpiderSpawnMinimum = configFile.get(ENTITIES, "Baby Heatscar Spider Minimum Spawn Count [default: 4]", babyHeatscarSpiderSpawnMinimum).getInt(babyHeatscarSpiderSpawnMinimum);
+        if (babyHeatscarSpiderSpawnMinimum < 0) babyHeatscarSpiderSpawnMinimum = 0;
+        
+        babyHeatscarSpiderWeight = configFile.get(ENTITIES, "Baby Heatscar Spider Spawn Weight [default: 10]", babyHeatscarSpiderWeight).getInt(babyHeatscarSpiderWeight);
+        if (babyHeatscarSpiderWeight < 0) babyHeatscarSpiderWeight = 0;
+        
+        // Heatscar Spider
+        heatscarSpiderSpawnMaximum = configFile.get(ENTITIES, "Heatscar Spider Maximum Spawn Count [default: 4]", heatscarSpiderSpawnMaximum).getInt(heatscarSpiderSpawnMaximum);
+        if (heatscarSpiderSpawnMaximum < 0) heatscarSpiderSpawnMaximum = 0;
+        
+        heatscarSpiderSpawnMinimum = configFile.get(ENTITIES, "Heatscar Spider Minimum Spawn Count [default: 4]", heatscarSpiderSpawnMinimum).getInt(heatscarSpiderSpawnMinimum);
+        if (heatscarSpiderSpawnMinimum < 0) heatscarSpiderSpawnMinimum = 0;
+        
+        heatscarSpiderWeight = configFile.get(ENTITIES, "Heatscar Spider Spawn Weight [default: 10]", babyHeatscarSpiderWeight).getInt(heatscarSpiderWeight);
+        if (heatscarSpiderWeight < 0) heatscarSpiderWeight = 0;
+        
+        // Imp
+        impSpawnMaximum = configFile.get(ENTITIES, "Imp Maximum Spawn Count [default: 12]", impSpawnMaximum).getInt(impSpawnMaximum);
+        if (impSpawnMaximum < 0) impSpawnMaximum = 0;
+        
+        impSpawnMinimum = configFile.get(ENTITIES, "Imp Minimum Spawn Count [default: 8]", impSpawnMinimum).getInt(impSpawnMinimum);
+        if (impSpawnMinimum < 0) impSpawnMinimum = 0;
+        
+        impWeight = configFile.get(ENTITIES, "Imp Spawn Weight [default: 10]", impWeight).getInt(impWeight);
+        if (impWeight < 0) impWeight = 0;
+        
+        // Nitro Creeper
+        nitroCreeperSpawnMaximum = configFile.get(ENTITIES, "Nitro Creeper Maximum Spawn Count [default: 6]", nitroCreeperSpawnMaximum).getInt(nitroCreeperSpawnMaximum);
+        if (nitroCreeperSpawnMaximum < 0) nitroCreeperSpawnMaximum = 0;
+        
+        nitroCreeperSpawnMinimum = configFile.get(ENTITIES, "Nitro Creeper Minimum Spawn Count [default: 4]", nitroCreeperSpawnMinimum).getInt(nitroCreeperSpawnMinimum);
+        if (nitroCreeperSpawnMinimum < 0) nitroCreeperSpawnMinimum = 0;
+        
+        nitroCreeperWeight = configFile.get(ENTITIES, "Nitro Creeper Spawn Weight [default: 8]", nitroCreeperWeight).getInt(nitroCreeperWeight);
+        if (nitroCreeperWeight < 0) nitroCreeperWeight = 0;
+        
+        // Entities End
 
         canRespawnInNether = configFile.get(ENABLE_DISABLE, "Obelisks let players respawn in the Nether", canRespawnInNether).getBoolean(canRespawnInNether);
 
@@ -209,8 +244,6 @@ public final class Config
 
         thornSpawnRarity = configFile.get(WORLDGEN, "Thornvines Spawn Rarity", thornSpawnRarity).getInt(thornSpawnRarity);
 
-        enableHeatscarSpider = configFile.get(ENTITIES, "Enable Heatscar Spiders", enableHeatscarSpider).getBoolean(enableHeatscarSpider);
-
         overworldWorldGenBlacklist = configFile.get(WORLDGEN, "Overworld World Generation Dimension Blacklist", overworldWorldGenBlacklist).getIntList();
         netherWorldGenBlacklist = configFile.get(WORLDGEN, "Nether World Generation Dimension Blacklist", netherWorldGenBlacklist).getIntList();
 
@@ -261,9 +294,23 @@ public final class Config
     // Retrogen End
 
     // Entites Start
-    public static int babyHeatscarMinimum = 2;
-    public static int babyHeatscarMaximum = 4;
-    public static boolean enableHeatscarSpider = true;
+    public static int babyHeatscarSpiderDeathSpawnMaximum = 4;
+    public static int babyHeatscarSpiderDeathSpawnMinimum = 2;
+    public static int babyHeatscarSpiderSpawnMaximum = 4;
+    public static int babyHeatscarSpiderSpawnMinimum = 4;
+    public static int babyHeatscarSpiderWeight = 10;
+    
+    public static int heatscarSpiderSpawnMaximum = 4;
+    public static int heatscarSpiderSpawnMinimum = 4;
+    public static int heatscarSpiderWeight = 10;
+    
+    public static int impSpawnMaximum = 8;
+    public static int impSpawnMinimum = 12;
+    public static int impWeight = 10;
+    
+    public static int nitroCreeperSpawnMaximum = 4;
+    public static int nitroCreeperSpawnMinimum = 6;
+    public static int nitroCreeperWeight = 8;
     // Entites End
 
     public static int seaLevel = 64;

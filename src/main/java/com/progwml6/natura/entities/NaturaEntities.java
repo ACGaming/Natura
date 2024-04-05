@@ -7,7 +7,6 @@ import org.apache.logging.log4j.Logger;
 import com.google.common.eventbus.Subscribe;
 import com.progwml6.natura.Natura;
 import com.progwml6.natura.common.CommonProxy;
-import com.progwml6.natura.common.EntityIDs;
 import com.progwml6.natura.common.NaturaPulse;
 import com.progwml6.natura.common.config.Config;
 import com.progwml6.natura.entities.entity.monster.EntityBabyHeatscarSpider;
@@ -47,17 +46,16 @@ public class NaturaEntities extends NaturaPulse
     @SubscribeEvent
     public void registerEntities(Register<EntityEntry> event)
     {
-        EntityRegistry.registerModEntity(Util.getResource("imp"), EntityImp.class, "imp", EntityIDs.IMP, Natura.instance, 64, 1, true, 0xF29735, 0x2E1F10);
+    	int id = 0;
+    	
+        EntityRegistry.registerModEntity(Util.getResource("imp"), EntityImp.class, "imp", id++, Natura.instance, 64, 1, true, 0xF29735, 0x2E1F10);
         LootTableList.register(EntityImp.LOOT_TABLE);
-
-        if (Config.enableHeatscarSpider)
-        {
-            EntityRegistry.registerModEntity(Util.getResource("heatscarspider"), EntityHeatscarSpider.class, "heatscarspider", EntityIDs.HEATSCARSPIDER, Natura.instance, 64, 1, true, 0xE64D10, 0x57B1BD);
-            EntityRegistry.registerModEntity(Util.getResource("babyheatscarspider"), EntityBabyHeatscarSpider.class, "babyheatscarspider", EntityIDs.BABYHEATSCARSPIDER, Natura.instance, 64, 1, true, 0xE64D10, 0x57B1BD);
-            LootTableList.register(EntityHeatscarSpider.LOOT_TABLE);
-        }
-
-        EntityRegistry.registerModEntity(Util.getResource("nitrocreeper"), EntityNitroCreeper.class, "nitrocreeper", EntityIDs.NITROCREEPER, Natura.instance, 64, 1, true, 0xF73E6C, 0x9B5004);
+        
+        EntityRegistry.registerModEntity(Util.getResource("heatscarspider"), EntityHeatscarSpider.class, "heatscarspider", id++, Natura.instance, 64, 1, true, 0xE64D10, 0x57B1BD);
+        EntityRegistry.registerModEntity(Util.getResource("babyheatscarspider"), EntityBabyHeatscarSpider.class, "babyheatscarspider", id++, Natura.instance, 64, 1, true, 0xE64D10, 0x57B1BD);
+        LootTableList.register(EntityHeatscarSpider.LOOT_TABLE);
+        
+        EntityRegistry.registerModEntity(Util.getResource("nitrocreeper"), EntityNitroCreeper.class, "nitrocreeper", id++, Natura.instance, 64, 1, true, 0xF73E6C, 0x9B5004);
     }
 
     @Subscribe
@@ -82,17 +80,14 @@ public class NaturaEntities extends NaturaPulse
 
         Biome[] biomes = biomeList.toArray(new Biome[biomeList.size()]);
 
-        EntityRegistry.addSpawn(EntityImp.class, 10, 8, 12, EnumCreatureType.CREATURE, biomes);
+        EntityRegistry.addSpawn(EntityImp.class, Config.impWeight, Config.impSpawnMinimum, Config.impSpawnMaximum, EnumCreatureType.CREATURE, biomes);
 
         EntitySpawnPlacementRegistry.setPlacementType(EntityImp.class, SpawnPlacementType.ON_GROUND);
-
-        if (Config.enableHeatscarSpider)
-        {
-            EntityRegistry.addSpawn(EntityHeatscarSpider.class, 10, 4, 4, EnumCreatureType.MONSTER, biomes);
-            EntityRegistry.addSpawn(EntityBabyHeatscarSpider.class, 10, 4, 4, EnumCreatureType.MONSTER, biomes);
-        }
-
-        EntityRegistry.addSpawn(EntityNitroCreeper.class, 8, 4, 6, EnumCreatureType.MONSTER, biomes);
+        
+        EntityRegistry.addSpawn(EntityHeatscarSpider.class, Config.heatscarSpiderWeight, Config.heatscarSpiderSpawnMinimum, Config.heatscarSpiderSpawnMaximum, EnumCreatureType.MONSTER, biomes);
+        EntityRegistry.addSpawn(EntityBabyHeatscarSpider.class, Config.babyHeatscarSpiderWeight, Config.babyHeatscarSpiderSpawnMinimum, Config.babyHeatscarSpiderSpawnMaximum, EnumCreatureType.MONSTER, biomes);
+        
+        EntityRegistry.addSpawn(EntityNitroCreeper.class, Config.nitroCreeperWeight, Config.nitroCreeperSpawnMinimum, Config.nitroCreeperSpawnMaximum, EnumCreatureType.MONSTER, biomes);
 
         proxy.postInit();
     }
