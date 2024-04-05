@@ -3,7 +3,6 @@ package com.progwml6.natura.library.client.renderer.monster;
 import org.lwjgl.opengl.GL11;
 
 import com.progwml6.natura.entities.entity.monster.EntityBabyHeatscarSpider;
-import com.progwml6.natura.entities.entity.monster.EntityHeatscarSpider;
 import com.progwml6.natura.library.Util;
 
 import net.minecraft.client.model.ModelSpider;
@@ -21,7 +20,7 @@ public class RenderNautraBabyHeatscarSpider extends RenderLiving<EntityBabyHeats
         this.addLayer(new LayerHeatscarSpiderEyes<EntityBabyHeatscarSpider>(this));
     }
     
-    protected float getDeathMaxRotation(EntityHeatscarSpider entity)
+    protected float getDeathMaxRotation(EntityBabyHeatscarSpider entity)
     {
         return 180.0F;
     }
