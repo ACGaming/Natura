@@ -133,4 +133,10 @@ public class EntityBabyHeatscarSpider extends EntitySpider
     {
         return this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.world.checkNoEntityCollision(this.getEntityBoundingBox()) && this.world.getCollisionBoxes(this, this.getEntityBoundingBox()).isEmpty() && !this.world.containsAnyLiquid(this.getEntityBoundingBox());
     }
+    
+    @Override
+    public float getEyeHeight()
+    {
+        return 0.55F;
+    }
 }

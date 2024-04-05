@@ -34,17 +34,16 @@ import net.minecraft.world.World;
 
 public class EntityImp extends EntityAnimal
 {
-    @SuppressWarnings({ "rawtypes", "unchecked" })
     public EntityImp(World par1World)
     {
         super(par1World);
-        this.setSize(0.9F, 0.9F);
+        this.setSize(0.75F, 1.45F);
         this.isImmuneToFire = true;
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(1, new EntityAIPanic(this, 0.38F));
         this.tasks.addTask(2, new EntityAITempt(this, 0.3F, soups, false));
         this.tasks.addTask(3, new EntityAIMate(this, 0.25F));
-        this.tasks.addTask(4, new EntityAIAvoidEntity(this, EntityPlayer.class, 8.0F, 0.25F, 0.3F));
+        this.tasks.addTask(4, new EntityAIAvoidEntity<>(this, EntityPlayer.class, 8.0F, 0.25F, 0.3F));
         this.tasks.addTask(5, new EntityAIFollowParent(this, 0.28F));
         this.tasks.addTask(6, new EntityAIWander(this, 0.25F));
         this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
@@ -156,5 +155,11 @@ public class EntityImp extends EntityAnimal
     public boolean getCanSpawnHere()
     {
         return (this.world.provider.doesWaterVaporize() || this.world.provider.isNether()) && this.world.checkNoEntityCollision(this.getEntityBoundingBox()) && this.world.getCollisionBoxes(this, this.getEntityBoundingBox()).isEmpty() && !this.world.containsAnyLiquid(this.getEntityBoundingBox());
+    }
+    
+    @Override
+    public float getEyeHeight()
+    {
+        return this.height * 0.825F;
     }
 }

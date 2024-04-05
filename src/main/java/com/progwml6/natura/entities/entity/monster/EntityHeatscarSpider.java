@@ -27,7 +27,7 @@ public class EntityHeatscarSpider extends EntitySpider
     public EntityHeatscarSpider(World worldIn)
     {
         super(worldIn);
-        this.setSize(2.7F, 1.9F);
+        this.setSize(2.85F, 1.9F);
         this.isImmuneToFire = true;
         this.experienceValue = 25;
     }
@@ -168,5 +168,11 @@ public class EntityHeatscarSpider extends EntitySpider
         }
 
         super.setDead();
+    }
+    
+    @Override
+    public float getEyeHeight()
+    {
+        return 1.3F;
     }
 }
