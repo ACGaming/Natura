@@ -1,24 +1,18 @@
 package com.progwml6.natura.entities.entity.monster;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import com.progwml6.natura.common.config.Config;
-import com.progwml6.natura.library.Util;
-import com.progwml6.natura.shared.NaturaCommons;
-
+import com.progwml6.natura.entities.NaturaEntities;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntitySpider;
 import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -29,7 +23,6 @@ import net.minecraftforge.common.ForgeHooks;
 
 public class EntityHeatscarSpider extends EntitySpider
 {
-    public static final ResourceLocation LOOT_TABLE = Util.getResource("entities/heatscarspider");
 
     public EntityHeatscarSpider(World worldIn)
     {
@@ -48,22 +41,12 @@ public class EntityHeatscarSpider extends EntitySpider
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.45000001788139344D); // Movespeed
         this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(4.0D); // Base damage
     }
-
-    // we're using this instead of getDropItem because we need the metadata
-    @Nonnull
-    @Override
-    public EntityItem dropItemWithOffset(@Nonnull Item itemIn, int size, float offsetY)
-    {
-        ItemStack stack = NaturaCommons.flameString.copy();
-        stack.setCount(size);
-        return this.entityDropItem(stack, offsetY);
-    }
-
+    
     @Override
     @Nullable
     protected ResourceLocation getLootTable()
     {
-        return LOOT_TABLE;
+        return NaturaEntities.HEATSCAR_SPIDER;
     }
 
     @Override

@@ -1,21 +1,16 @@
 package com.progwml6.natura.entities.entity.monster;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import com.progwml6.natura.shared.NaturaCommons;
-
+import com.progwml6.natura.entities.NaturaEntities;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntitySpider;
 import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -32,22 +27,12 @@ public class EntityBabyHeatscarSpider extends EntitySpider
         this.setSize(1.2F, 0.8F);
         this.isImmuneToFire = true;
     }
-
-    // we're using this instead of getDropItem because we need the metadata
-    @Nonnull
-    @Override
-    public EntityItem dropItemWithOffset(@Nonnull Item itemIn, int size, float offsetY)
-    {
-        ItemStack stack = NaturaCommons.flameString.copy();
-        stack.setCount(size);
-        return this.entityDropItem(stack, offsetY);
-    }
-
+    
     @Override
     @Nullable
     protected ResourceLocation getLootTable()
     {
-        return EntityHeatscarSpider.LOOT_TABLE;
+        return NaturaEntities.BABY_HEATSCAR_SPIDER;
     }
 
     @Override

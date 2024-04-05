@@ -2,15 +2,12 @@ package com.progwml6.natura.entities.entity.monster;
 
 import javax.annotation.Nullable;
 
+import com.progwml6.natura.entities.NaturaEntities;
+
 import net.minecraft.entity.ai.EntityAIAttackMelee;
 import net.minecraft.entity.monster.EntityCreeper;
-import net.minecraft.entity.monster.EntityIronGolem;
-import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.EntityDamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -156,59 +153,6 @@ public class EntityNitroCreeper extends EntityCreeper
     @Nullable
     protected ResourceLocation getLootTable()
     {
-        return null;
-    }
-
-    /**
-     * Called when the entity is attacked.
-     */
-    @Override
-    public boolean attackEntityFrom(DamageSource source, float amount)
-    {
-        if (source instanceof EntityDamageSource && ((EntityDamageSource) source).getTrueSource() instanceof EntityIronGolem)
-        {
-            amount = 1000;
-        }
-
-        return super.attackEntityFrom(source, amount);
-    }
-
-    @Override
-    protected void dropFewItems(boolean wasRecentlyHit, int lootingModifier)
-    {
-        Item dropItem = this.getDropItem();
-
-        if (dropItem != Items.AIR)
-        {
-            int numberOfTimes = this.rand.nextInt(4) + 2;
-
-            if (lootingModifier > 0)
-            {
-                numberOfTimes += this.rand.nextInt(lootingModifier + 1);
-            }
-
-            for (int item = 0; item < numberOfTimes; ++item)
-            {
-                this.dropItem(dropItem, 1);
-            }
-        }
-
-        if (this.getPowered())
-        {
-            if (dropItem != Items.AIR)
-            {
-                int numberOfTimes = this.rand.nextInt(40) + 20;
-
-                if (lootingModifier > 0)
-                {
-                    numberOfTimes += this.rand.nextInt(lootingModifier * 6 + 1);
-                }
-
-                for (int item = 0; item < numberOfTimes; ++item)
-                {
-                    this.dropItem(dropItem, 1);
-                }
-            }
-        }
+        return NaturaEntities.NITRO_CREEPER;
     }
 }

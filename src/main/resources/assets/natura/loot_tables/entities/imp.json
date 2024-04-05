@@ -1,7 +1,7 @@
 {
     "pools": [
         {
-            "name": "imp",
+            "name": "food",
             "rolls": 1,
             "entries": [
                 {
@@ -16,7 +16,7 @@
                         {
                             "function": "set_count",
                             "count": {
-                                "min": 0,
+                                "min": 1,
                                 "max": 2
                             }
                         },
@@ -32,7 +32,7 @@
             ]
         },
         {
-            "name": "imp",
+            "name": "hide",
             "rolls": 1,
             "entries": [
                 {
@@ -48,7 +48,7 @@
                             "function": "set_count",
                             "count": {
                                 "min": 0,
-                                "max": 5
+                                "max": 2
                             }
                         },
                         {

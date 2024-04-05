@@ -5,7 +5,7 @@ import static com.progwml6.natura.shared.NaturaCommons.soups;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import com.progwml6.natura.library.Util;
+import com.progwml6.natura.entities.NaturaEntities;
 import com.progwml6.natura.shared.NaturaCommons;
 
 import net.minecraft.block.Block;
@@ -34,8 +34,6 @@ import net.minecraft.world.World;
 
 public class EntityImp extends EntityAnimal
 {
-    public static final ResourceLocation LOOT_TABLE = Util.getResource("entities/imp");
-
     @SuppressWarnings({ "rawtypes", "unchecked" })
     public EntityImp(World par1World)
     {
@@ -116,7 +114,7 @@ public class EntityImp extends EntityAnimal
     @Nullable
     protected ResourceLocation getLootTable()
     {
-        return LOOT_TABLE;
+        return NaturaEntities.IMP;
     }
 
     /**

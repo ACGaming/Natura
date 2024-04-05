@@ -1,7 +1,7 @@
 {
     "pools": [
         {
-            "name": "heatscarspider",
+            "name": "flamestring",
             "rolls": 1,
             "entries": [
                 {
@@ -16,7 +16,7 @@
                         {
                             "function": "set_count",
                             "count": {
-                                "min": 0,
+                                "min": 2,
                                 "max": 5
                             }
                         },

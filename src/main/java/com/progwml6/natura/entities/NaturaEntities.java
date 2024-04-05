@@ -20,8 +20,8 @@ import net.minecraft.entity.EntityLiving.SpawnPlacementType;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.item.crafting.FurnaceRecipes;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.event.RegistryEvent.Register;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -42,19 +42,21 @@ public class NaturaEntities extends NaturaPulse
 
     @SidedProxy(clientSide = "com.progwml6.natura.entities.EntitiesClientProxy", serverSide = "com.progwml6.natura.common.CommonProxy")
     public static CommonProxy proxy;
+    
+    // Loot Tables
+    public static final ResourceLocation BABY_HEATSCAR_SPIDER = Util.getResource("entities/baby_heatscar_spider");
+    public static final ResourceLocation HEATSCAR_SPIDER = Util.getResource("entities/heatscar_spider");
+    public static final ResourceLocation IMP = Util.getResource("entities/imp");
+    public static final ResourceLocation NITRO_CREEPER = Util.getResource("entities/nitro_creeper");
 
     @SubscribeEvent
     public void registerEntities(Register<EntityEntry> event)
     {
     	int id = 0;
     	
-        EntityRegistry.registerModEntity(Util.getResource("imp"), EntityImp.class, "imp", id++, Natura.instance, 64, 1, true, 0xF29735, 0x2E1F10);
-        LootTableList.register(EntityImp.LOOT_TABLE);
-        
+    	EntityRegistry.registerModEntity(Util.getResource("babyheatscarspider"), EntityBabyHeatscarSpider.class, "babyheatscarspider", id++, Natura.instance, 64, 1, true, 0xE64D10, 0x57B1BD);
         EntityRegistry.registerModEntity(Util.getResource("heatscarspider"), EntityHeatscarSpider.class, "heatscarspider", id++, Natura.instance, 64, 1, true, 0xE64D10, 0x57B1BD);
-        EntityRegistry.registerModEntity(Util.getResource("babyheatscarspider"), EntityBabyHeatscarSpider.class, "babyheatscarspider", id++, Natura.instance, 64, 1, true, 0xE64D10, 0x57B1BD);
-        LootTableList.register(EntityHeatscarSpider.LOOT_TABLE);
-        
+        EntityRegistry.registerModEntity(Util.getResource("imp"), EntityImp.class, "imp", id++, Natura.instance, 64, 1, true, 0xF29735, 0x2E1F10);
         EntityRegistry.registerModEntity(Util.getResource("nitrocreeper"), EntityNitroCreeper.class, "nitrocreeper", id++, Natura.instance, 64, 1, true, 0xF73E6C, 0x9B5004);
     }
 
