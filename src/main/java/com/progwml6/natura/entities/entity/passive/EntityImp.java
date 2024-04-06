@@ -2,12 +2,9 @@ package com.progwml6.natura.entities.entity.passive;
 
 import static com.progwml6.natura.shared.NaturaCommons.soups;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import com.progwml6.natura.entities.NaturaEntities;
-import com.progwml6.natura.shared.NaturaCommons;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -18,13 +15,11 @@ import net.minecraft.entity.ai.EntityAIMate;
 import net.minecraft.entity.ai.EntityAIPanic;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAITempt;
-import net.minecraft.entity.ai.EntityAIWander;
+import net.minecraft.entity.ai.EntityAIWanderAvoidWater;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
@@ -40,12 +35,12 @@ public class EntityImp extends EntityAnimal
         this.setSize(0.75F, 1.45F);
         this.isImmuneToFire = true;
         this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(1, new EntityAIPanic(this, 0.38F));
-        this.tasks.addTask(2, new EntityAITempt(this, 0.3F, soups, false));
-        this.tasks.addTask(3, new EntityAIMate(this, 0.25F));
-        this.tasks.addTask(4, new EntityAIAvoidEntity<>(this, EntityPlayer.class, 8.0F, 0.25F, 0.3F));
-        this.tasks.addTask(5, new EntityAIFollowParent(this, 0.28F));
-        this.tasks.addTask(6, new EntityAIWander(this, 0.25F));
+        this.tasks.addTask(1, new EntityAIPanic(this, 1.75D));
+        this.tasks.addTask(2, new EntityAIMate(this, 1.0D));
+        this.tasks.addTask(3, new EntityAITempt(this, 1.2D, soups, false));
+        this.tasks.addTask(4, new EntityAIAvoidEntity<>(this, EntityPlayer.class, 8.0F, 1.0D, 1.2D));
+        this.tasks.addTask(5, new EntityAIFollowParent(this, 1.1D));
+        this.tasks.addTask(6, new EntityAIWanderAvoidWater(this, 1.0D));
         this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         this.tasks.addTask(8, new EntityAILookIdle(this));
     }
@@ -54,7 +49,8 @@ public class EntityImp extends EntityAnimal
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(40.0D); //Health
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
     }
 
     @Override
@@ -98,17 +94,7 @@ public class EntityImp extends EntityAnimal
     {
         this.playSound(SoundEvents.ENTITY_PIG_STEP, 0.15F, 1.0F);
     }
-
-    // we're using this instead of getDropItem because we need the metadata
-    @Nonnull
-    @Override
-    public EntityItem dropItemWithOffset(@Nonnull Item itemIn, int size, float offsetY)
-    {
-        ItemStack stack = NaturaCommons.impmeatRaw.copy();
-        stack.setCount(size);
-        return this.entityDropItem(stack, offsetY);
-    }
-
+    
     @Override
     @Nullable
     protected ResourceLocation getLootTable()
@@ -160,6 +146,6 @@ public class EntityImp extends EntityAnimal
     @Override
     public float getEyeHeight()
     {
-        return this.height * 0.825F;
+        return this.height * 0.85F;
     }
 }

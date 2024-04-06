@@ -9,7 +9,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class RenderNaturaNitroCreeper extends RenderCreeper
 {
-    public static final ResourceLocation impTexture = Util.getResource("textures/entity/nitrocreeper.png");
+    public static final ResourceLocation texture = Util.getResource("textures/entity/nitrocreeper.png");
 
     public RenderNaturaNitroCreeper(RenderManager renderManagerIn)
     {
@@ -19,6 +19,6 @@ public class RenderNaturaNitroCreeper extends RenderCreeper
     @Override
     protected ResourceLocation getEntityTexture(EntityCreeper entity)
     {
-        return impTexture;
+        return texture;
     }
 }

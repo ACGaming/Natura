@@ -12,7 +12,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class RenderNautraHeatscarSpider extends RenderLiving<EntityHeatscarSpider>
 {
-    public static final ResourceLocation heatscarSpiderTexture = Util.getResource("textures/entity/heatscarspider.png");
+    public static final ResourceLocation texture = Util.getResource("textures/entity/heatscarspider.png");
 
     public RenderNautraHeatscarSpider(RenderManager renderManagerIn)
     {
@@ -28,11 +28,11 @@ public class RenderNautraHeatscarSpider extends RenderLiving<EntityHeatscarSpide
     @Override
     protected ResourceLocation getEntityTexture(EntityHeatscarSpider entity)
     {
-        return heatscarSpiderTexture;
+        return texture;
     }
 
     @Override
-    protected void preRenderCallback(EntityHeatscarSpider par1EntityLivingBase, float par2)
+    protected void preRenderCallback(EntityHeatscarSpider entity, float partialTickTime)
     {
         GL11.glScalef(2.0F, 2.0F, 2.0F);
     }

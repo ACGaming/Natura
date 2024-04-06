@@ -1,5 +1,7 @@
 package com.progwml6.natura.library.client.renderer.passive;
 
+import org.lwjgl.opengl.GL11;
+
 import com.progwml6.natura.entities.entity.passive.EntityImp;
 import com.progwml6.natura.library.client.model.passive.ModelImp;
 import com.progwml6.natura.library.Util;
@@ -10,7 +12,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class RenderNaturaImp extends RenderLiving<EntityImp>
 {
-    public static final ResourceLocation impTexture = Util.getResource("textures/entity/imp.png");
+    public static final ResourceLocation texture = Util.getResource("textures/entity/imp.png");
 
     public RenderNaturaImp(RenderManager renderManagerIn)
     {
@@ -20,6 +22,12 @@ public class RenderNaturaImp extends RenderLiving<EntityImp>
     @Override
     protected ResourceLocation getEntityTexture(EntityImp entity)
     {
-        return impTexture;
+        return texture;
+    }
+    
+    @Override
+    protected void preRenderCallback(EntityImp entity, float partialTickTime)
+    {
+        if (entity.isChild()) GL11.glScalef(0.5F, 0.5F, 0.5F);
     }
 }
