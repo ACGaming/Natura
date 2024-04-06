@@ -11,7 +11,7 @@ import net.minecraft.entity.monster.EntitySpider;
 import net.minecraft.util.ResourceLocation;
 
 public class LayerHeatscarSpiderEyes<T extends EntitySpider> implements LayerRenderer<T> {
-	private static final ResourceLocation SPIDER_EYES = Util.getResource("textures/entity/heatscarspider_eyes.png");
+	private static final ResourceLocation SPIDER_EYES = Util.getResource("textures/entity/heatscar_spider_eyes.png");
     private final RenderLiving<T> spiderRenderer;
     
 	public LayerHeatscarSpiderEyes(RenderLiving<T> renderer) {

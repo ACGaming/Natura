@@ -9,10 +9,19 @@ import com.progwml6.natura.library.Util;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
+@SideOnly(Side.CLIENT)
 public class RenderNaturaImp extends RenderLiving<EntityImp>
 {
-    public static final ResourceLocation texture = Util.getResource("textures/entity/imp.png");
+    private static final ResourceLocation[] texture = new ResourceLocation[] {
+    		Util.getResource("textures/entity/imp_brown.png"),
+    		Util.getResource("textures/entity/imp_red.png"),
+    		Util.getResource("textures/entity/imp_green.png"),
+    		Util.getResource("textures/entity/imp_black.png"),
+    		Util.getResource("textures/entity/imp_yellow_green.png")
+	};
 
     public RenderNaturaImp(RenderManager renderManagerIn)
     {
@@ -22,7 +31,7 @@ public class RenderNaturaImp extends RenderLiving<EntityImp>
     @Override
     protected ResourceLocation getEntityTexture(EntityImp entity)
     {
-        return texture;
+        return texture[entity.getSkin()];
     }
     
     @Override

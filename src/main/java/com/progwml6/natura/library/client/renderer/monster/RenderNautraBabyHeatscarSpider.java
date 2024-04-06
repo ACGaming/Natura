@@ -12,7 +12,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class RenderNautraBabyHeatscarSpider extends RenderLiving<EntityBabyHeatscarSpider>
 {
-	public static final ResourceLocation texture = Util.getResource("textures/entity/heatscarspider.png");
+	public static final ResourceLocation texture = Util.getResource("textures/entity/heatscar_spider.png");
 
     public RenderNautraBabyHeatscarSpider(RenderManager renderManagerIn)
     {

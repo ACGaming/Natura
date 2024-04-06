@@ -21,16 +21,20 @@ import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class EntityImp extends EntityAnimal
-{
-    public EntityImp(World par1World)
-    {
+public class EntityImp extends EntityAnimal {
+    private static final DataParameter<Integer> SKIN_TYPE = EntityDataManager.<Integer>createKey(EntityImp.class, DataSerializers.VARINT);
+
+    public EntityImp(World par1World) {
         super(par1World);
         this.setSize(0.75F, 1.45F);
         this.isImmuneToFire = true;
@@ -46,25 +50,48 @@ public class EntityImp extends EntityAnimal
     }
 
     @Override
-    protected void applyEntityAttributes()
-    {
+    protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
     }
 
     @Override
-    protected void updateAITasks()
-    {
+    protected void entityInit() {
+        super.entityInit();
+        this.getDataManager().register(SKIN_TYPE, Integer.valueOf(this.rand.nextInt(5)));
+    }
+
+    @Override
+    protected void updateAITasks() {
         super.updateAITasks();
+    }
+
+    public int getSkin() {
+        return this.dataManager.get(SKIN_TYPE).intValue();
+    }
+
+    public void setSkin(int skinType) {
+        this.dataManager.set(SKIN_TYPE, Integer.valueOf(skinType));
+    }
+
+    @Override
+    public void writeEntityToNBT(NBTTagCompound nbt) {
+        super.writeEntityToNBT(nbt);
+        nbt.setInteger("Variant", getSkin());
+    }
+
+    @Override
+    public void readEntityFromNBT(NBTTagCompound nbt) {
+        super.readEntityFromNBT(nbt);
+        setSkin(nbt.getInteger("Variant"));
     }
 
     /**
      * Returns the sound this mob makes while it's alive.
      */
     @Override
-    protected SoundEvent getAmbientSound()
-    {
+    protected SoundEvent getAmbientSound() {
         return SoundEvents.ENTITY_PIG_AMBIENT;
     }
 
@@ -72,8 +99,7 @@ public class EntityImp extends EntityAnimal
      * Returns the sound this mob makes when it is hurt.
      */
     @Override
-    protected SoundEvent getHurtSound(DamageSource source)
-    {
+    protected SoundEvent getHurtSound(DamageSource source) {
         return SoundEvents.ENTITY_PIG_HURT;
     }
 
@@ -81,8 +107,7 @@ public class EntityImp extends EntityAnimal
      * Returns the sound this mob makes on death.
      */
     @Override
-    protected SoundEvent getDeathSound()
-    {
+    protected SoundEvent getDeathSound() {
         return SoundEvents.ENTITY_PIG_DEATH;
     }
 
@@ -90,15 +115,13 @@ public class EntityImp extends EntityAnimal
      * Plays step sound at given x, y, z for the entity
      */
     @Override
-    protected void playStepSound(BlockPos pos, Block blockIn)
-    {
+    protected void playStepSound(BlockPos pos, Block blockIn) {
         this.playSound(SoundEvents.ENTITY_PIG_STEP, 0.15F, 1.0F);
     }
-    
+
     @Override
     @Nullable
-    protected ResourceLocation getLootTable()
-    {
+    protected ResourceLocation getLootTable() {
         return NaturaEntities.IMP;
     }
 
@@ -107,45 +130,37 @@ public class EntityImp extends EntityAnimal
      * the animal type)
      */
     @Override
-    public boolean isBreedingItem(ItemStack par1ItemStack)
-    {
+    public boolean isBreedingItem(ItemStack par1ItemStack) {
         return !par1ItemStack.isEmpty() && par1ItemStack.getItem() == soups && par1ItemStack.getItemDamage() >= 4;
     }
 
     @Override
-    protected void consumeItemFromStack(EntityPlayer player, ItemStack stack)
-    {
-        if (stack.getItem() == soups)
-        {
+    protected void consumeItemFromStack(EntityPlayer player, ItemStack stack) {
+        if (stack.getItem() == soups) {
             ItemStack bowl = soups.getBowlType(stack.getItemDamage());
 
-            if (!player.inventory.addItemStackToInventory(bowl))
-            {
+            if (!player.inventory.addItemStackToInventory(bowl)) {
                 player.dropItem(bowl, false, false);
             }
         }
 
-        if (!player.capabilities.isCreativeMode)
-        {
+        if (!player.capabilities.isCreativeMode) {
             stack.shrink(1);
         }
     }
 
     @Override
-    public EntityAgeable createChild(EntityAgeable par1EntityAgeable)
-    {
+    public EntityAgeable createChild(EntityAgeable par1EntityAgeable) {
         return new EntityImp(this.world);
     }
 
     @Override
-    public boolean getCanSpawnHere()
-    {
+    public boolean getCanSpawnHere() {
         return (this.world.provider.doesWaterVaporize() || this.world.provider.isNether()) && this.world.checkNoEntityCollision(this.getEntityBoundingBox()) && this.world.getCollisionBoxes(this, this.getEntityBoundingBox()).isEmpty() && !this.world.containsAnyLiquid(this.getEntityBoundingBox());
     }
-    
+
     @Override
-    public float getEyeHeight()
-    {
+    public float getEyeHeight() {
         return this.height * 0.85F;
     }
 }
