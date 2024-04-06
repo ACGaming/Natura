@@ -16,7 +16,7 @@ public class RenderNautraHeatscarSpider extends RenderLiving<EntityHeatscarSpide
 
     public RenderNautraHeatscarSpider(RenderManager renderManagerIn)
     {
-        super(renderManagerIn, new ModelSpider(), 1.0F);
+        super(renderManagerIn, new ModelSpider(), 2.0F);
         this.addLayer(new LayerHeatscarSpiderEyes<EntityHeatscarSpider>(this));
     }
     
