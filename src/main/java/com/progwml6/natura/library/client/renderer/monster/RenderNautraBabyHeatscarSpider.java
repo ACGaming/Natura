@@ -9,7 +9,10 @@ import net.minecraft.client.model.ModelSpider;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
+@SideOnly(Side.CLIENT)
 public class RenderNautraBabyHeatscarSpider extends RenderLiving<EntityBabyHeatscarSpider>
 {
 	public static final ResourceLocation texture = Util.getResource("textures/entity/heatscar_spider.png");

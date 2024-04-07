@@ -9,7 +9,10 @@ import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.entity.monster.EntitySpider;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
+@SideOnly(Side.CLIENT)
 public class LayerHeatscarSpiderEyes<T extends EntitySpider> implements LayerRenderer<T> {
 	private static final ResourceLocation SPIDER_EYES = Util.getResource("textures/entity/heatscar_spider_eyes.png");
     private final RenderLiving<T> spiderRenderer;
