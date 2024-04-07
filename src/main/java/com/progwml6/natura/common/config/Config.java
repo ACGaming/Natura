@@ -81,6 +81,8 @@ public final class Config
         if (impWeight < 0) impWeight = 0;
         
         // Nitro Creeper
+        nitroCreeperFallExplosion = configFile.get(ENTITIES, "Should Nitro Creepers explode while moderate fall damage is taken? [default: true]", nitroCreeperFallExplosion).getBoolean(nitroCreeperFallExplosion);
+        nitroCreeperInstantChargedExplosion = configFile.get(ENTITIES, "Should Nitro Creepers instantly explode while charged? [default: true]", nitroCreeperInstantChargedExplosion).getBoolean(nitroCreeperInstantChargedExplosion);
         nitroCreeperSpawnMaximum = configFile.get(ENTITIES, "Nitro Creeper Maximum Spawn Count [default: 6]", nitroCreeperSpawnMaximum).getInt(nitroCreeperSpawnMaximum);
         if (nitroCreeperSpawnMaximum < 0) nitroCreeperSpawnMaximum = 0;
         
@@ -304,12 +306,14 @@ public final class Config
     public static int heatscarSpiderSpawnMinimum = 4;
     public static int heatscarSpiderWeight = 10;
     
-    public static int impSpawnMaximum = 8;
-    public static int impSpawnMinimum = 12;
+    public static int impSpawnMaximum = 12;
+    public static int impSpawnMinimum = 8;
     public static int impWeight = 10;
     
-    public static int nitroCreeperSpawnMaximum = 4;
-    public static int nitroCreeperSpawnMinimum = 6;
+    public static boolean nitroCreeperFallExplosion = true;
+    public static boolean nitroCreeperInstantChargedExplosion = true;
+    public static int nitroCreeperSpawnMaximum = 6;
+    public static int nitroCreeperSpawnMinimum = 4;
     public static int nitroCreeperWeight = 8;
     // Entites End
 
