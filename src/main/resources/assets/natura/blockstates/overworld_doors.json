@@ -12,6 +12,8 @@
         "redwood_bark_door": [{ "textures": { "layer0": "natura:items/doors/redwood_bark_door" }}],
         "tiger_door": [{ "textures": { "layer0": "natura:items/doors/tiger_door" }}],
         "maple_door": [{ "textures": { "layer0": "natura:items/doors/maple_door" }}],
-        "silverbell_door": [{ "textures": { "layer0": "natura:items/doors/silverbell_door" }}]
+        "silverbell_door": [{ "textures": { "layer0": "natura:items/doors/silverbell_door" }}],
+        "amaranth_door": [{ "textures": { "layer0": "natura:items/doors/amaranth_door" }}],
+        "willow_door": [{ "textures": { "layer0": "natura:items/doors/willow_door" }}]
     }
 }

@@ -31,6 +31,8 @@ public class PluginJEI implements IModPlugin
             ingredientBlacklist.addIngredientToBlacklist(new ItemStack(NaturaOverworld.tigerDoor, 1, OreDictionary.WILDCARD_VALUE));
             ingredientBlacklist.addIngredientToBlacklist(new ItemStack(NaturaOverworld.mapleDoor, 1, OreDictionary.WILDCARD_VALUE));
             ingredientBlacklist.addIngredientToBlacklist(new ItemStack(NaturaOverworld.silverbellDoor, 1, OreDictionary.WILDCARD_VALUE));
+            ingredientBlacklist.addIngredientToBlacklist(new ItemStack(NaturaOverworld.amaranthDoor, 1, OreDictionary.WILDCARD_VALUE));
+            ingredientBlacklist.addIngredientToBlacklist(new ItemStack(NaturaOverworld.willowDoor, 1, OreDictionary.WILDCARD_VALUE));
 
             ingredientBlacklist.addIngredientToBlacklist(new ItemStack(NaturaOverworld.barleyCrop, 1, OreDictionary.WILDCARD_VALUE));
             ingredientBlacklist.addIngredientToBlacklist(new ItemStack(NaturaOverworld.cottonCrop, 1, OreDictionary.WILDCARD_VALUE));

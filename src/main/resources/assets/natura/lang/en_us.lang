@@ -498,7 +498,10 @@ item.natura.overworld_doors.maple_door.name=Maple Door
 item.natura.overworld_doors.maple_door.tooltip=Somewhat Sweet
 item.natura.overworld_doors.silverbell_door.name=Silverbell Door
 item.natura.overworld_doors.silverbell_door.tooltip=Silver Bells
-
+item.natura.overworld_doors.amaranth_door.name=Amaranth Door
+item.natura.overworld_doors.amaranth_door.tooltip=Heart of Wood
+item.natura.overworld_doors.willow_door.name=Willow Door
+item.natura.overworld_doors.willow_door.tooltip=The Weeper
 
 item.natura.nether_doors.ghostwood_door.name=Ghostwood Door
 item.natura.nether_doors.ghostwood_door.tooltip=Pale as a ghost

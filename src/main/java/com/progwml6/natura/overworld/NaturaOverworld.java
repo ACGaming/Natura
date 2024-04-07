@@ -114,6 +114,8 @@ public class NaturaOverworld extends NaturaPulse
     public static BlockNaturaDoor tigerDoor;
     public static BlockNaturaDoor mapleDoor;
     public static BlockNaturaDoor silverbellDoor;
+    public static BlockNaturaDoor amaranthDoor;
+    public static BlockNaturaDoor willowDoor;
 
     public static BlockSaguaro saguaro;
     public static BlockSaguaroBaby saguaroBaby;
@@ -140,6 +142,8 @@ public class NaturaOverworld extends NaturaPulse
     public static ItemStack tiger_door;
     public static ItemStack maple_door;
     public static ItemStack silverbell_door;
+    public static ItemStack amaranth_door;
+    public static ItemStack willow_door;
     //@formatter:on
 
     @SubscribeEvent
@@ -199,6 +203,8 @@ public class NaturaOverworld extends NaturaPulse
         tigerDoor = registerBlock(registry, new BlockNaturaDoor(), "overworld_door_tiger");
         mapleDoor = registerBlock(registry, new BlockNaturaDoor(), "overworld_door_maple");
         silverbellDoor = registerBlock(registry, new BlockNaturaDoor(), "overworld_door_silverbell");
+        amaranthDoor = registerBlock(registry, new BlockNaturaDoor(), "overworld_door_amaranth");
+        willowDoor = registerBlock(registry, new BlockNaturaDoor(), "overworld_door_willow");
 
         saguaro = registerBlock(registry, new BlockSaguaro(), "saguaro");
         saguaroBaby = registerBlock(registry, new BlockSaguaroBaby(), "saguaro_baby");
@@ -268,6 +274,8 @@ public class NaturaOverworld extends NaturaPulse
         tigerDoor = registerItemBlock(registry, tigerDoor, "overworld_door_tiger");
         mapleDoor = registerItemBlock(registry, mapleDoor, "overworld_door_maple");
         silverbellDoor = registerItemBlock(registry, silverbellDoor, "overworld_door_silverbell");
+        amaranthDoor = registerItemBlock(registry, amaranthDoor, "overworld_door_amaranth");
+        willowDoor = registerItemBlock(registry, willowDoor, "overworld_door_willow");
 
         saguaro = registerItemBlock(registry, saguaro, "saguaro");
         saguaroBaby = registerItemBlock(registry, saguaroBaby, "saguaro_baby");
@@ -299,6 +307,8 @@ public class NaturaOverworld extends NaturaPulse
         tiger_door = overworldDoors.addMeta(5, "tiger_door", NaturaOverworld.tigerDoor.getDefaultState());
         maple_door = overworldDoors.addMeta(6, "maple_door", NaturaOverworld.mapleDoor.getDefaultState());
         silverbell_door = overworldDoors.addMeta(7, "silverbell_door", NaturaOverworld.silverbellDoor.getDefaultState());
+        amaranth_door = overworldDoors.addMeta(8, "amaranth_door", NaturaOverworld.amaranthDoor.getDefaultState());
+        willow_door = overworldDoors.addMeta(9, "willow_door", NaturaOverworld.willowDoor.getDefaultState());
 
         eucalyptusDoor.setDoor(NaturaOverworld.eucalyptus_door);
         hopseedDoor.setDoor(NaturaOverworld.hopseed_door);
@@ -308,6 +318,8 @@ public class NaturaOverworld extends NaturaPulse
         tigerDoor.setDoor(NaturaOverworld.tiger_door);
         mapleDoor.setDoor(NaturaOverworld.maple_door);
         silverbellDoor.setDoor(NaturaOverworld.silverbell_door);
+        amaranthDoor.setDoor(NaturaOverworld.amaranth_door);
+        willowDoor.setDoor(NaturaOverworld.willow_door);
         // Items End
 
         NaturaRegistry.tabWorld.setDisplayIcon(new ItemStack(coloredGrass));

@@ -1,0 +1,6 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "natura:blocks/doors/amaranth/amaranth_door_bottom"
+    }
+}

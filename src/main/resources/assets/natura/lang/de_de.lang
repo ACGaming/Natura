@@ -498,7 +498,10 @@ item.natura.overworld_doors.maple_door.name=Ahornholztür
 item.natura.overworld_doors.maple_door.tooltip=Etwas süßlich
 item.natura.overworld_doors.silverbell_door.name=Schneeglöckchenholztür
 item.natura.overworld_doors.silverbell_door.tooltip=Schneeglöckchen
-
+item.natura.overworld_doors.amaranth_door.name=Amaranthholztür
+item.natura.overworld_doors.amaranth_door.tooltip=Herz aus Holz
+item.natura.overworld_doors.willow_door.name=Weidenholztür
+item.natura.overworld_doors.willow_door.tooltip=Der Weinende
 
 item.natura.nether_doors.ghostwood_door.name=Geisterholztür
 item.natura.nether_doors.ghostwood_door.tooltip=Bleich wie ein Gespenst
