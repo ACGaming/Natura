@@ -11,22 +11,22 @@ tile.natura.clouds.ash.tooltip=So light and fluffy!\n3x3 Converts into charcoal
 tile.natura.clouds.sulfur.name=Sulfur Cloud
 tile.natura.clouds.sulfur.tooltip=So light and fluffy!\n2x2 Converts into sulfur
 
-tile.natura.overworld_logs.maple.name=Maple Wood
+tile.natura.overworld_logs.maple.name=Maple Log
 tile.natura.overworld_logs.maple.tooltip=Somewhat Sweet
-tile.natura.overworld_logs.silverbell.name=Silverbell Wood
+tile.natura.overworld_logs.silverbell.name=Silverbell Log
 tile.natura.overworld_logs.silverbell.tooltip=Silver Bells
-tile.natura.overworld_logs.amaranth.name=Amaranth Wood
+tile.natura.overworld_logs.amaranth.name=Amaranth Log
 tile.natura.overworld_logs.amaranth.tooltip=Heart of Wood
-tile.natura.overworld_logs.tiger.name=Tiger Wood
+tile.natura.overworld_logs.tiger.name=Tigerwood Log
 tile.natura.overworld_logs.tiger.tooltip=Wild Grain
 
-tile.natura.overworld_logs2.willow.name=Willow Wood
+tile.natura.overworld_logs2.willow.name=Willow Log
 tile.natura.overworld_logs2.willow.tooltip=The Weeper
-tile.natura.overworld_logs2.eucalyptus.name=Eucalyptus Wood
+tile.natura.overworld_logs2.eucalyptus.name=Eucalyptus Log
 tile.natura.overworld_logs2.eucalyptus.tooltip=The pink wood
-tile.natura.overworld_logs2.sakura.name=Sakura Wood
+tile.natura.overworld_logs2.sakura.name=Sakura Log
 tile.natura.overworld_logs2.sakura.tooltip=Flowering Cherry
-tile.natura.overworld_logs2.hopseed.name=Hopseed Wood
+tile.natura.overworld_logs2.hopseed.name=Hopseed Log
 tile.natura.overworld_logs2.hopseed.tooltip=Ascended Glitch
 
 tile.natura.overworld_leaves.maple.name=Maple Leaves
@@ -35,7 +35,7 @@ tile.natura.overworld_leaves.silverbell.name=Silverbell Leaves
 tile.natura.overworld_leaves.silverbell.tooltip=Silver Bells
 tile.natura.overworld_leaves.amaranth.name=Amaranth Leaves
 tile.natura.overworld_leaves.amaranth.tooltip=Heart of Wood
-tile.natura.overworld_leaves.tiger.name=Tiger Leaves
+tile.natura.overworld_leaves.tiger.name=Tigerwood Leaves
 tile.natura.overworld_leaves.tiger.tooltip=Wild Grain
 
 tile.natura.overworld_leaves2.willow.name=Willow Leaves
@@ -131,7 +131,7 @@ tile.natura.overworld_slab2.redwood.tooltip=Giant Sequoia
 tile.natura.overworld_stairs_maple.name=Maple Stairs
 tile.natura.overworld_stairs_silverbell.name=Silverbell Stairs
 tile.natura.overworld_stairs_amaranth.name=Amaranth Stairs
-tile.natura.overworld_stairs_tiger.name=Tiger Stairs
+tile.natura.overworld_stairs_tiger.name=Tigerwood Stairs
 tile.natura.overworld_stairs_willow.name=Willow Stairs
 tile.natura.overworld_stairs_eucalyptus.name=Eucalyptus Stairs
 tile.natura.overworld_stairs_hopseed.name=Hopseed Stairs
@@ -147,7 +147,7 @@ tile.natura.overworld_berrybush_blackberry.tooltip=Sweet and black\nFound in wet
 tile.natura.overworld_berrybush_maloberry.name=Maloberry Bush
 tile.natura.overworld_berrybush_maloberry.tooltip=Tasty and yellow-orange\nFound in cold areas
 
-tile.natura.bluebells_flower.name=Bluebells
+tile.natura.bluebells_flower.name=Bluebell
 
 tile.natura.saguaro.name=Saguaro Cactus
 tile.natura.saguaro.tooltip=Grows like a tree\nGives fruit after a rainstorm
@@ -158,103 +158,103 @@ tile.natura.saguaro_fruit.tooltip=Grows like a tree\nGives fruit after a rainsto
 
 tile.natura.maple_button.name=Maple Button
 tile.natura.maple_pressure_plate.name=Maple Pressure Plate
-tile.natura.maple_trap_door.name=Maple Trap Door
+tile.natura.maple_trap_door.name=Maple Trapdoor
 tile.natura.maple_fence.name=Maple Fence
 tile.natura.maple_fence_gate.name=Maple Fence Gate
 
 tile.natura.silverbell_button.name=Silverbell Button
 tile.natura.silverbell_pressure_plate.name=Silverbell Pressure Plate
-tile.natura.silverbell_trap_door.name=Silverbell Trap Door
+tile.natura.silverbell_trap_door.name=Silverbell Trapdoor
 tile.natura.silverbell_fence.name=Silverbell Fence
 tile.natura.silverbell_fence_gate.name=Silverbell Fence Gate
 
 tile.natura.amaranth_button.name=Amaranth Button
 tile.natura.amaranth_pressure_plate.name=Amaranth Pressure Plate
-tile.natura.amaranth_trap_door.name=Amaranth Trap Door
+tile.natura.amaranth_trap_door.name=Amaranth Trapdoor
 tile.natura.amaranth_fence.name=Amaranth Fence
 tile.natura.amaranth_fence_gate.name=Amaranth Fence Gate
 
-tile.natura.tiger_button.name=Tiger Button
-tile.natura.tiger_pressure_plate.name=Tiger Pressure Plate
-tile.natura.tiger_trap_door.name=Tiger Trap Door
-tile.natura.tiger_fence.name=Tiger Fence
-tile.natura.tiger_fence_gate.name=Tiger Fence Gate
+tile.natura.tiger_button.name=Tigerwood Button
+tile.natura.tiger_pressure_plate.name=Tigerwood Pressure Plate
+tile.natura.tiger_trap_door.name=Tigerwood Trapdoor
+tile.natura.tiger_fence.name=Tigerwood Fence
+tile.natura.tiger_fence_gate.name=Tigerwood Fence Gate
 
 tile.natura.willow_button.name=Willow Button
 tile.natura.willow_pressure_plate.name=Willow Pressure Plate
-tile.natura.willow_trap_door.name=Willow Trap Door
+tile.natura.willow_trap_door.name=Willow Trapdoor
 tile.natura.willow_fence.name=Willow Fence
 tile.natura.willow_fence_gate.name=Willow Fence Gate
 
 tile.natura.eucalyptus_button.name=Eucalyptus Button
 tile.natura.eucalyptus_pressure_plate.name=Eucalyptus Pressure Plate
-tile.natura.eucalyptus_trap_door.name=Eucalyptus Trap Door
+tile.natura.eucalyptus_trap_door.name=Eucalyptus Trapdoor
 tile.natura.eucalyptus_fence.name=Eucalyptus Fence
 tile.natura.eucalyptus_fence_gate.name=Eucalyptus Fence Gate
 
 tile.natura.hopseed_button.name=Hopseed Button
 tile.natura.hopseed_pressure_plate.name=Hopseed Pressure Plate
-tile.natura.hopseed_trap_door.name=Hopseed Trap Door
+tile.natura.hopseed_trap_door.name=Hopseed Trapdoor
 tile.natura.hopseed_fence.name=Hopseed Fence
 tile.natura.hopseed_fence_gate.name=Hopseed Fence Gate
 
 tile.natura.sakura_button.name=Sakura Button
 tile.natura.sakura_pressure_plate.name=Sakura Pressure Plate
-tile.natura.sakura_trap_door.name=Sakura Trap Door
+tile.natura.sakura_trap_door.name=Sakura Trapdoor
 tile.natura.sakura_fence.name=Sakura Fence
 tile.natura.sakura_fence_gate.name=Sakura Fence Gate
 
 tile.natura.redwood_button.name=Redwood Button
 tile.natura.redwood_pressure_plate.name=Redwood Pressure Plate
-tile.natura.redwood_trap_door.name=Redwood Trap Door
+tile.natura.redwood_trap_door.name=Redwood Trapdoor
 tile.natura.redwood_fence.name=Redwood Fence
 tile.natura.redwood_fence_gate.name=Redwood Fence Gate
 
 tile.natura.overworld_bookshelves.maple.name=Maple Bookshelf
 tile.natura.overworld_bookshelves.silverbell.name=Silverbell Bookshelf
 tile.natura.overworld_bookshelves.amaranth.name=Amaranth Bookshelf
-tile.natura.overworld_bookshelves.tiger.name=Tiger Bookshelf
+tile.natura.overworld_bookshelves.tiger.name=Tigerwood Bookshelf
 tile.natura.overworld_bookshelves.willow.name=Willow Bookshelf
 tile.natura.overworld_bookshelves.eucalyptus.name=Eucalyptus Bookshelf
 tile.natura.overworld_bookshelves.hopseed.name=Hopseed Bookshelf
 tile.natura.overworld_bookshelves.sakura.name=Sakura Bookshelf
 tile.natura.overworld_bookshelves.redwood.name=Redwood Bookshelf
 
-tile.natura.overworld_workbenches.maple.name=Maple Workbench
-tile.natura.overworld_workbenches.silverbell.name=Silverbell Workbench
-tile.natura.overworld_workbenches.amaranth.name=Amaranth Workbench
-tile.natura.overworld_workbenches.tiger.name=Tiger Workbench
-tile.natura.overworld_workbenches.willow.name=Willow Workbench
-tile.natura.overworld_workbenches.eucalyptus.name=Eucalyptus Workbench
-tile.natura.overworld_workbenches.hopseed.name=Hopseed Workbench
-tile.natura.overworld_workbenches.sakura.name=Sakura Workbench
-tile.natura.overworld_workbenches.redwood.name=Redwood Workbench
+tile.natura.overworld_workbenches.maple.name=Maple Crafting Table
+tile.natura.overworld_workbenches.silverbell.name=Silverbell Crafting Table
+tile.natura.overworld_workbenches.amaranth.name=Amaranth Crafting Table
+tile.natura.overworld_workbenches.tiger.name=Tigerwood Crafting Table
+tile.natura.overworld_workbenches.willow.name=Willow Crafting Table
+tile.natura.overworld_workbenches.eucalyptus.name=Eucalyptus Crafting Table
+tile.natura.overworld_workbenches.hopseed.name=Hopseed Crafting Table
+tile.natura.overworld_workbenches.sakura.name=Sakura Crafting Table
+tile.natura.overworld_workbenches.redwood.name=Redwood Crafting Table
 
 #######################
 #    Nether Blocks    #
 #######################
 
-tile.natura.nether_logs.ghostwood.name=Ghostwood
+tile.natura.nether_logs.ghostwood.name=Ghostwood Log
 tile.natura.nether_logs.ghostwood.tooltip=Nether Tree\nPale as a ghost
-tile.natura.nether_logs.darkwood.name=Darkwood
+tile.natura.nether_logs.darkwood.name=Darkwood Log
 tile.natura.nether_logs.darkwood.tooltip=Nether Tree
-tile.natura.nether_logs.fusewood.name=Fusewood
+tile.natura.nether_logs.fusewood.name=Fusewood Log
 tile.natura.nether_logs.fusewood.tooltip=Nether Tree\nExplosive Personality
 
-tile.natura.nether_logs2.name=Bloodwood
+tile.natura.nether_logs2.name=Bloodwood Log
 tile.natura.nether_logs2.tooltip=Fire-resistant tree
 
 tile.natura.nether_leaves.ghostwood.name=Ghostwood Leaves
 tile.natura.nether_leaves.ghostwood.tooltip=Nether Tree\nPale as a ghost
-tile.natura.nether_leaves.bloodwood.name=Blood Leaves
+tile.natura.nether_leaves.bloodwood.name=Bloodwood Leaves
 tile.natura.nether_leaves.bloodwood.tooltip=Nether Tree\nFire-resistant leaves
 tile.natura.nether_leaves.fusewood.name=Fusewood Leaves
 tile.natura.nether_leaves.fusewood.tooltip=Nether Tree\nExplosive Personality
 
 tile.natura.nether_leaves2.darkwood.name=Darkwood Leaves
-tile.natura.nether_leaves2.darkwood.tooltip=Nether Tree\nPale as a ghost
+tile.natura.nether_leaves2.darkwood.tooltip=Nether Tree
 tile.natura.nether_leaves2.darkwood_flowering.name=Darkwood Leaves
-tile.natura.nether_leaves2.darkwood_flowering.tooltip=Nether Tree\nFlowers
+tile.natura.nether_leaves2.darkwood_flowering.tooltip=Nether Tree\nFlowery
 tile.natura.nether_leaves2.darkwood_fruit.name=Darkwood Leaves
 tile.natura.nether_leaves2.darkwood_fruit.tooltip=Nether Tree\nContains an apple
 
@@ -279,7 +279,7 @@ tile.natura.nether_planks.darkwood.tooltip=Nether Tree
 
 tile.natura.nether_slab.ghostwood.name=Ghostwood Slab
 tile.natura.nether_slab.ghostwood.tooltip=Pale as a ghost
-tile.natura.nether_slab.bloodwood.name=Blood Slab
+tile.natura.nether_slab.bloodwood.name=Bloodwood Slab
 tile.natura.nether_slab.bloodwood.tooltip=Fire-resistant planks
 tile.natura.nether_slab.fusewood.name=Fusewood Slab
 tile.natura.nether_slab.fusewood.tooltip=Nether Tree\nExplosive Personality
@@ -287,7 +287,7 @@ tile.natura.nether_slab.darkwood.name=Darkwood Slab
 tile.natura.nether_slab.darkwood.tooltip=Nether Tree
 
 tile.natura.nether_stairs_ghostwood.name=Ghostwood Stairs
-tile.natura.nether_stairs_bloodwood.name=Blood Stairs
+tile.natura.nether_stairs_bloodwood.name=Bloodwood Stairs
 tile.natura.nether_stairs_darkwood.name=Darkwood Stairs
 tile.natura.nether_stairs_fusewood.name=Fusewood Stairs
 
@@ -296,8 +296,8 @@ tile.natura.nether_glass.soul.tooltip=Ghostly
 tile.natura.nether_glass.heat.name=Heat Glass
 
 tile.natura.nether_tainted_soil.tainted_soil.name=Tainted Soil
-tile.natura.nether_tainted_soil.tainted_farmland_dry.name=Tainted Soil
-tile.natura.nether_tainted_soil.tainted_farmland_heated.name=Tainted Soil
+tile.natura.nether_tainted_soil.tainted_farmland_dry.name=Tainted Farmland
+tile.natura.nether_tainted_soil.tainted_farmland_heated.name=Heated Tainted Farmland
 
 tile.natura.nether_heat_sand.name=Heat Sand
 
@@ -323,11 +323,11 @@ tile.natura.nether_green_large_glowshroom.all_inside.name=Green Glowshroom
 tile.natura.nether_blue_large_glowshroom.all_inside.name=Blue Glowshroom
 tile.natura.nether_purple_large_glowshroom.all_inside.name=Purple Glowshroom
 
-tile.natura.nether_lever.name=Lever
+tile.natura.nether_lever.name=Netherrack Lever
 
-tile.natura.nether_pressure_plate.name=Pressure Plate
+tile.natura.nether_pressure_plate.name=Netherrack Pressure Plate
 
-tile.natura.nether_button.name=Button
+tile.natura.nether_button.name=Netherrack Button
 
 tile.natura.blaze_rail.name=Blaze Rail
 tile.natura.blaze_rail_golden.name=Powered Blaze Rail
@@ -336,30 +336,30 @@ tile.natura.blaze_rail_detector.name=Detector Blaze Rail
 
 tile.natura.blaze_hopper.name=Blaze Hopper
 
-tile.natura.netherrack_furnace.name=Nether Furnace
-tile.natura.lit_netherrack_furnace.name=Nether Furnace
+tile.natura.netherrack_furnace.name=Netherrack Furnace
+tile.natura.lit_netherrack_furnace.name=Lit Netherrack Furnace
 
 tile.natura.ghostwood_button.name=Ghostwood Button
 tile.natura.ghostwood_pressure_plate.name=Ghostwood Pressure Plate
-tile.natura.ghostwood_trap_door.name=Ghostwood Trap Door
+tile.natura.ghostwood_trap_door.name=Ghostwood Trapdoor
 tile.natura.ghostwood_fence.name=Ghostwood Fence
 tile.natura.ghostwood_fence_gate.name=Ghostwood Fence Gate
 
 tile.natura.bloodwood_button.name=Bloodwood Button
 tile.natura.bloodwood_pressure_plate.name=Bloodwood Pressure Plate
-tile.natura.bloodwood_trap_door.name=Bloodwood Trap Door
+tile.natura.bloodwood_trap_door.name=Bloodwood Trapdoor
 tile.natura.bloodwood_fence.name=Bloodwood Fence
 tile.natura.bloodwood_fence_gate.name=Bloodwood Fence Gate
 
 tile.natura.fusewood_button.name=Fusewood Button
 tile.natura.fusewood_pressure_plate.name=Fusewood Pressure Plate
-tile.natura.fusewood_trap_door.name=Fusewood Trap Door
+tile.natura.fusewood_trap_door.name=Fusewood Trapdoor
 tile.natura.fusewood_fence.name=Fusewood Fence
 tile.natura.fusewood_fence_gate.name=Fusewood Fence Gate
 
 tile.natura.darkwood_button.name=Darkwood Button
 tile.natura.darkwood_pressure_plate.name=Darkwood Pressure Plate
-tile.natura.darkwood_trap_door.name=Darkwood Trap Door
+tile.natura.darkwood_trap_door.name=Darkwood Trapdoor
 tile.natura.darkwood_fence.name=Darkwood Fence
 tile.natura.darkwood_fence_gate.name=Darkwood Fence Gate
 
@@ -368,10 +368,10 @@ tile.natura.nether_bookshelves.bloodwood.name=Bloodwood Bookshelf
 tile.natura.nether_bookshelves.fusewood.name=Fusewood Bookshelf
 tile.natura.nether_bookshelves.darkwood.name=Darkwood Bookshelf
 
-tile.natura.nether_workbenches.ghostwood.name=Ghostwood Workbench
-tile.natura.nether_workbenches.bloodwood.name=Bloodwood Workbench
-tile.natura.nether_workbenches.fusewood.name=Fusewood Workbench
-tile.natura.nether_workbenches.darkwood.name=Darkwood Workbench
+tile.natura.nether_workbenches.ghostwood.name=Ghostwood Crafting Table
+tile.natura.nether_workbenches.bloodwood.name=Bloodwood Crafting Table
+tile.natura.nether_workbenches.fusewood.name=Fusewood Crafting Table
+tile.natura.nether_workbenches.darkwood.name=Darkwood Crafting Table
 
 ################
 #    Items     #
@@ -424,24 +424,24 @@ item.natura.materials.flame_string.name=Flamestring
 item.natura.materials.flame_string.tooltip=Somewhat more durable than string
 item.natura.materials.blue_dye.name=Blue Dye
 
-item.natura.sticks.maple_stick.name=Maple Sticks
-item.natura.sticks.silverbell_stick.name=Silverbell Sticks
-item.natura.sticks.amaranth_stick.name=Amaranth Sticks
-item.natura.sticks.tiger_stick.name=Tiger Sticks
-item.natura.sticks.willow_stick.name=Willow Sticks
-item.natura.sticks.eucalyptus_stick.name=Eucalyptus Sticks
-item.natura.sticks.hopseed_stick.name=Hopseed Sticks
-item.natura.sticks.sakura_stick.name=Sakura Sticks
-item.natura.sticks.redwood_stick.name=Redwood Sticks
-item.natura.sticks.ghostwood_stick.name=Ghostwood Sticks
-item.natura.sticks.darkwood_stick.name=Darkwood Sticks
-item.natura.sticks.fusewood_stick.name=Fusewood Sticks
-item.natura.sticks.bloodwood_stick.name=Bloodwood Sticks
+item.natura.sticks.maple_stick.name=Maple Stick
+item.natura.sticks.silverbell_stick.name=Silverbell Stick
+item.natura.sticks.amaranth_stick.name=Amaranth Stick
+item.natura.sticks.tiger_stick.name=Tigerwood Stick
+item.natura.sticks.willow_stick.name=Willow Stick
+item.natura.sticks.eucalyptus_stick.name=Eucalyptus Stick
+item.natura.sticks.hopseed_stick.name=Hopseed Stick
+item.natura.sticks.sakura_stick.name=Sakura Stick
+item.natura.sticks.redwood_stick.name=Redwood Stick
+item.natura.sticks.ghostwood_stick.name=Ghostwood Stick
+item.natura.sticks.darkwood_stick.name=Darkwood Stick
+item.natura.sticks.fusewood_stick.name=Fusewood Stick
+item.natura.sticks.bloodwood_stick.name=Bloodwood Stick
 
-item.natura.empty_bowls.ghostwood_bowl.name=Empty Ghostwood Bowl
-item.natura.empty_bowls.bloodwood_bowl.name=Empty Bloodwood Bowl
-item.natura.empty_bowls.darkwood_bowl.name=Empty Darkwood Bowl
-item.natura.empty_bowls.fusewood_bowl.name=Empty Fusewood Bowl
+item.natura.empty_bowls.ghostwood_bowl.name=Ghostwood Bowl
+item.natura.empty_bowls.bloodwood_bowl.name=Bloodwood Bowl
+item.natura.empty_bowls.darkwood_bowl.name=Darkwood Bowl
+item.natura.empty_bowls.fusewood_bowl.name=Fusewood Bowl
 
 item.natura.soups.ghostwood_mushroomstew.name=Mushroom Stew
 item.natura.soups.bloodwood_mushroomstew.name=Mushroom Stew
@@ -492,7 +492,7 @@ item.natura.overworld_doors.redwood_door.name=Redwood Door
 item.natura.overworld_doors.redwood_door.tooltip=Giant Sequoia
 item.natura.overworld_doors.redwood_bark_door.name=Redwood Bark Door
 item.natura.overworld_doors.redwood_bark_door.tooltip=Secret Tunnel
-item.natura.overworld_doors.tiger_door.name=Tiger Door
+item.natura.overworld_doors.tiger_door.name=Tigerwood Door
 item.natura.overworld_doors.tiger_door.tooltip=Wild Grain
 item.natura.overworld_doors.maple_door.name=Maple Door
 item.natura.overworld_doors.maple_door.tooltip=Somewhat Sweet
@@ -520,37 +520,37 @@ item.natura.flint_and_blaze.name=Flint and Blaze
 item.natura.ghostwood_sword.name=Ghostwood Sword
 item.natura.ghostwood_pickaxe.name=Ghostwood Pickaxe
 item.natura.ghostwood_shovel.name=Ghostwood Shovel
-item.natura.ghostwood_axe.name=Ghostwood Hatchet
+item.natura.ghostwood_axe.name=Ghostwood Axe
 item.natura.ghostwood_kama.name=Ghostwood Kama
 item.natura.ghostwood_bow.name=Ghostwood Bow
 
 item.natura.bloodwood_sword.name=Bloodwood Sword
 item.natura.bloodwood_pickaxe.name=Bloodwood Pickaxe
 item.natura.bloodwood_shovel.name=Bloodwood Shovel
-item.natura.bloodwood_axe.name=Bloodwood Hatchet
+item.natura.bloodwood_axe.name=Bloodwood Axe
 item.natura.bloodwood_kama.name=Bloodwood Kama
 item.natura.bloodwood_bow.name=Bloodwood Bow
 
 item.natura.darkwood_sword.name=Darkwood Sword
 item.natura.darkwood_pickaxe.name=Darkwood Pickaxe
 item.natura.darkwood_shovel.name=Darkwood Shovel
-item.natura.darkwood_axe.name=Darkwood Hatchet
+item.natura.darkwood_axe.name=Darkwood Axe
 item.natura.darkwood_kama.name=Darkwood Kama
 item.natura.darkwood_bow.name=Darkwood Bow
 
 item.natura.fusewood_sword.name=Fusewood Sword
 item.natura.fusewood_pickaxe.name=Fusewood Pickaxe
 item.natura.fusewood_shovel.name=Fusewood Shovel
-item.natura.fusewood_axe.name=Fusewood Hatchet
+item.natura.fusewood_axe.name=Fusewood Axe
 item.natura.fusewood_kama.name=Fusewood Kama
 item.natura.fusewood_bow.name=Fusewood Bow
 
-item.natura.netherquartz_sword.name=Quartz Sword
-item.natura.netherquartz_pickaxe.name=Quartz Pickaxe
-item.natura.netherquartz_shovel.name=Quartz Shovel
-item.natura.netherquartz_axe.name=Quartz Hatchet
-item.natura.netherquartz_kama.name=Quartz Kama
-item.natura.netherquartz_bow.name=Quartz Bow
+item.natura.netherquartz_sword.name=Nether Quartz Sword
+item.natura.netherquartz_pickaxe.name=Nether Quartz Pickaxe
+item.natura.netherquartz_shovel.name=Nether Quartz Shovel
+item.natura.netherquartz_axe.name=Nether Quartz Axe
+item.natura.netherquartz_kama.name=Nether Quartz Kama
+item.natura.netherquartz_bow.name=Nether Quartz Bow
 
 #################
 #   Entities    #
@@ -560,11 +560,6 @@ entity.imp.name=Imp
 entity.heatscarspider.name=Heatscar Spider
 entity.babyheatscarspider.name=Baby Heatscar Spider
 entity.nitrocreeper.name=Nitro Creeper
-
-entity.natura.imp.name=Imp
-entity.natura.heatscarspider.name=Heatscar Spider
-entity.natura.babyheatscarspider.name=Baby Heatscar Spider
-entity.natura.nitrocreeper.name=Nitro Creeper
 
 ################
 #     GUIs     #
