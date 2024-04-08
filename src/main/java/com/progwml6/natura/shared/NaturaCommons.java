@@ -76,10 +76,10 @@ public class NaturaCommons extends NaturaPulse
     public static ItemStack impmeatCooked;
 
     // Bowls
-    public static ItemStack ghostwood_emptybowl;
-    public static ItemStack bloodwood_emptybowl;
-    public static ItemStack darkwood_emptybowl;
-    public static ItemStack fusewood_emptybowl;
+    //public static ItemStack ghostwood_emptybowl;
+    //public static ItemStack bloodwood_emptybowl;
+    //public static ItemStack darkwood_emptybowl;
+    //public static ItemStack fusewood_emptybowl;
 
     // Soup
     /*public static ItemStack ghostwood_mushroomstew;
@@ -87,8 +87,8 @@ public class NaturaCommons extends NaturaPulse
     public static ItemStack darkwood_mushroomstew;
     public static ItemStack fusewood_mushroomstew;*/
 
-    public static ItemNaturaEdibleSoup berryMedley;
-    public static ItemNaturaEdibleSoup glowshroom_stew;
+    public static Item berryMedley;
+    public static Item glowshroom_stew;
     /*public static ItemStack ghostwood_glowshroomstew;
     public static ItemStack bloodwood_glowshroomstew;
     public static ItemStack darkwood_glowshroomstew;
@@ -161,9 +161,6 @@ public class NaturaCommons extends NaturaPulse
         //soups.setCreativeTab(NaturaRegistry.tabGeneral);
         seed_bags.setCreativeTab(NaturaRegistry.tabGeneral);
         //sticks.setCreativeTab(NaturaRegistry.tabGeneral);
-        
-        berryMedley.setCreativeTab(NaturaRegistry.tabGeneral);
-        glowshroom_stew.setCreativeTab(NaturaRegistry.tabGeneral);
 
         barley = materials.addMeta(0, "barley");
         barleyFlour = materials.addMeta(1, "barley_flour");
@@ -188,7 +185,7 @@ public class NaturaCommons extends NaturaPulse
             blueberry = edibles.addFood(3, 1, 0.4F, 16, "blueberry", false);
             blackberry = edibles.addFood(4, 1, 0.4F, 16, "blackberry", false);
             maloberry = edibles.addFood(5, 1, 0.4F, 16, "maloberry", false);
-            berryMedley = registerItem(registry, new ItemNaturaEdibleSoup(5, 1.4F, false), "berry_medley");
+            berryMedley = registerItem(registry, new ItemNaturaEdibleSoup(5, 1.4F, false), "berry_medley").setCreativeTab(NaturaRegistry.tabGeneral);
         }
 
         if (isNetherLoaded())
@@ -213,7 +210,7 @@ public class NaturaCommons extends NaturaPulse
         //darkwood_mushroomstew = soups.addFood(2, 6, 0.6f, 32, "darkwood_mushroomstew", darkwood_emptybowl, false);
         //fusewood_mushroomstew = soups.addFood(3, 6, 0.6f, 32, "fusewood_mushroomstew", fusewood_emptybowl, false);
 
-        glowshroom_stew = registerItem(registry, new ItemNaturaEdibleSoup(6, 0.6F, false), "glowshroom_stew");
+        glowshroom_stew = registerItem(registry, new ItemNaturaEdibleSoup(6, 0.6F, false), "glowshroom_stew").setCreativeTab(NaturaRegistry.tabGeneral);
         //ghostwood_glowshroomstew = soups.addFood(5, 6, 0.6f, 32, "ghostwood_glowshroomstew", ghostwood_emptybowl, false, new PotionEffect(MobEffects.NIGHT_VISION, 45 * 25, 0), new PotionEffect(MobEffects.POISON, 16 * 25, 0), new PotionEffect(MobEffects.MINING_FATIGUE, 8 * 25, 0));
         //bloodwood_glowshroomstew = soups.addFood(6, 3, 0.2f, 32, "bloodwood_glowshroomstew", bloodwood_emptybowl, false, new PotionEffect(MobEffects.NIGHT_VISION, 45 * 25, 0), new PotionEffect(MobEffects.POISON, 16 * 25, 0), new PotionEffect(MobEffects.MINING_FATIGUE, 8 * 25, 0));
         //darkwood_glowshroomstew = soups.addFood(7, 3, 0.2f, 32, "darkwood_glowshroomstew", darkwood_emptybowl, false, new PotionEffect(MobEffects.NIGHT_VISION, 45 * 25, 0), new PotionEffect(MobEffects.POISON, 16 * 25, 0), new PotionEffect(MobEffects.MINING_FATIGUE, 8 * 25, 0));
