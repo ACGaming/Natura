@@ -424,37 +424,9 @@ item.natura.materials.flame_string.name=Пламенная нить
 item.natura.materials.flame_string.tooltip=Более долговечна, чем нить
 item.natura.materials.blue_dye.name=Синий краситель
 
-item.natura.sticks.maple_stick.name=Палка из древесины клёна
-item.natura.sticks.silverbell_stick.name=Палка из древесины галезии
-item.natura.sticks.amaranth_stick.name=Палка из древесины щирицы
-item.natura.sticks.tiger_stick.name=Палка из древесины тигрового дерева
-item.natura.sticks.willow_stick.name=Палка из древесины ивы
-item.natura.sticks.eucalyptus_stick.name=Палка из древесины эвкалипта
-item.natura.sticks.hopseed_stick.name=Палка их древесины хмельного дерева
-item.natura.sticks.sakura_stick.name=Палка из древесины сакуры
-item.natura.sticks.redwood_stick.name=Палка их древесины красного дерева
-item.natura.sticks.ghostwood_stick.name=Палка из древесины призрачного дерева
-item.natura.sticks.darkwood_stick.name=Палка из древесины тёмного дерева
-item.natura.sticks.fusewood_stick.name=Палка из древесины плавкого дерева
-item.natura.sticks.bloodwood_stick.name=Палка из древесины кровавого дерева
+item.natura.glowshroom_stew.name=Тушёные светогрибы
 
-item.natura.empty_bowls.ghostwood_bowl.name=Миска из древесины призрачного дерева
-item.natura.empty_bowls.bloodwood_bowl.name=Миска из древесины кровавого дерева
-item.natura.empty_bowls.darkwood_bowl.name=Миска из древесины тёмного дерева
-item.natura.empty_bowls.fusewood_bowl.name=Миска из древесины плавкого дерева
-
-item.natura.soups.ghostwood_mushroomstew.name=Тушёные грибы
-item.natura.soups.bloodwood_mushroomstew.name=Тушёные грибы
-item.natura.soups.darkwood_mushroomstew.name=Тушёные грибы
-item.natura.soups.fusewood_mushroomstew.name=Тушёные грибы
-
-item.natura.soups.vanilla_glowshroomstew.name=Тушёные светогрибы
-item.natura.soups.ghostwood_glowshroomstew.name=Тушёные светогрибы
-item.natura.soups.bloodwood_glowshroomstew.name=Тушёные светогрибы
-item.natura.soups.darkwood_glowshroomstew.name=Тушёные светогрибы
-item.natura.soups.fusewood_glowshroomstew.name=Тушёные светогрибы
-
-item.natura.soups.berry_medley.name=Ягодный салат
+item.natura.berry_medley.name=Ягодный салат
 item.natura.soups.berry_medley.tooltip=Неотразимое сочетание ягод
 
 item.natura.imp_armor_helmet.name=Шлем дьяволёнка

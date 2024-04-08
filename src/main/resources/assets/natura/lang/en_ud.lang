@@ -415,37 +415,9 @@ item.natura.materials.flame_string.name=ᵷuᴉɹʇsǝɯɐꞁℲ
 item.natura.materials.flame_string.tooltip=ᵷuᴉɹʇs uɐɥʇ ǝꞁqɐɹnp ǝɹoɯ ʇɐɥʍǝɯoS
 item.natura.materials.blue_dye.name=ǝʎᗡ ǝnꞁᗺ
 
-item.natura.sticks.maple_stick.name=sʞɔᴉʇS ǝꞁdɐW
-item.natura.sticks.silverbell_stick.name=sʞɔᴉʇS ꞁꞁǝqɹǝʌꞁᴉS
-item.natura.sticks.amaranth_stick.name=sʞɔᴉʇS ɥʇuɐɹɐɯⱯ
-item.natura.sticks.tiger_stick.name=sʞɔᴉʇS ɹǝᵷᴉ⟘
-item.natura.sticks.willow_stick.name=sʞɔᴉʇS ʍoꞁꞁᴉM
-item.natura.sticks.eucalyptus_stick.name=sʞɔᴉʇS snʇdʎꞁɐɔnƎ
-item.natura.sticks.hopseed_stick.name=sʞɔᴉʇS pǝǝsdoH
-item.natura.sticks.sakura_stick.name=sʞɔᴉʇS ɐɹnʞɐS
-item.natura.sticks.redwood_stick.name=sʞɔᴉʇS pooʍpǝᴚ
-item.natura.sticks.ghostwood_stick.name=sʞɔᴉʇS pooʍʇsoɥ⅁
-item.natura.sticks.darkwood_stick.name=sʞɔᴉʇS pooʍʞɹɐᗡ
-item.natura.sticks.fusewood_stick.name=sʞɔᴉʇS pooʍǝsnℲ
-item.natura.sticks.bloodwood_stick.name=sʞɔᴉʇS pooʍpooꞁᗺ
+item.natura.glowshroom_stew.name=ʍǝʇS ɯooɹɥsʍoꞁ⅁
 
-item.natura.empty_bowls.ghostwood_bowl.name=ꞁʍoᗺ pooʍʇsoɥ⅁ ʎʇdɯƎ
-item.natura.empty_bowls.bloodwood_bowl.name=ꞁʍoᗺ pooʍpooꞁᗺ ʎʇdɯƎ
-item.natura.empty_bowls.darkwood_bowl.name=ꞁʍoᗺ pooʍʞɹɐᗡ ʎʇdɯƎ
-item.natura.empty_bowls.fusewood_bowl.name=ꞁʍoᗺ pooʍǝsnℲ ʎʇdɯƎ
-
-item.natura.soups.ghostwood_mushroomstew.name=ʍǝʇS ɯooɹɥsnW
-item.natura.soups.bloodwood_mushroomstew.name=ʍǝʇS ɯooɹɥsnW
-item.natura.soups.darkwood_mushroomstew.name=ʍǝʇS ɯooɹɥsnW
-item.natura.soups.fusewood_mushroomstew.name=ʍǝʇS ɯooɹɥsnW
-
-item.natura.soups.vanilla_glowshroomstew.name=ʍǝʇS ɯooɹɥsʍoꞁ⅁
-item.natura.soups.ghostwood_glowshroomstew.name=ʍǝʇS ɯooɹɥsʍoꞁ⅁
-item.natura.soups.bloodwood_glowshroomstew.name=ʍǝʇS ɯooɹɥsʍoꞁ⅁
-item.natura.soups.darkwood_glowshroomstew.name=ʍǝʇS ɯooɹɥsʍoꞁ⅁
-item.natura.soups.fusewood_glowshroomstew.name=ʍǝʇS ɯooɹɥsʍoꞁ⅁
-
-item.natura.soups.berry_medley.name=ʎǝꞁpǝW ʎɹɹǝᗺ
+item.natura.berry_medley.name=ʎǝꞁpǝW ʎɹɹǝᗺ
 item.natura.soups.berry_medley.tooltip=sǝᴉɹɹǝq ɟo uoᴉʇɐuᴉqɯoɔ ǝꞁqɐʇsᴉsǝɹɹᴉ uⱯ
 
 item.natura.imp_armor_helmet.name=ʇǝɯꞁǝH uᴉʞsdɯI

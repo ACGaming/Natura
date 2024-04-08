@@ -424,37 +424,9 @@ item.natura.materials.flame_string.name=炎の糸
 item.natura.materials.flame_string.tooltip=普通の糸よりも少し丈夫
 item.natura.materials.blue_dye.name=青い染料
 
-item.natura.sticks.maple_stick.name=楓の棒
-item.natura.sticks.silverbell_stick.name=シルバーベルの棒
-item.natura.sticks.amaranth_stick.name=アマランスの棒
-item.natura.sticks.tiger_stick.name=タイガーウッドの棒
-item.natura.sticks.willow_stick.name=柳の棒
-item.natura.sticks.eucalyptus_stick.name=ユーカリの棒
-item.natura.sticks.hopseed_stick.name=ハウチワノキの棒
-item.natura.sticks.sakura_stick.name=桜の棒
-item.natura.sticks.redwood_stick.name=レッドウッドの棒
-item.natura.sticks.ghostwood_stick.name=ゴーストウッドの棒
-item.natura.sticks.darkwood_stick.name=ダークウッドの棒
-item.natura.sticks.fusewood_stick.name=ヒューズウッドの棒
-item.natura.sticks.bloodwood_stick.name=ブラッドウッドの棒
+item.natura.glowshroom_stew.name=輝くキノコシチュー
 
-item.natura.empty_bowls.ghostwood_bowl.name=ゴーストウッドのボウル
-item.natura.empty_bowls.bloodwood_bowl.name=ブラッドウッドのボウル
-item.natura.empty_bowls.darkwood_bowl.name=ダークウッドのボウル
-item.natura.empty_bowls.fusewood_bowl.name=ヒューズウッドのボウル
-
-item.natura.soups.ghostwood_mushroomstew.name=キノコシチュー
-item.natura.soups.bloodwood_mushroomstew.name=キノコシチュー
-item.natura.soups.darkwood_mushroomstew.name=キノコシチュー
-item.natura.soups.fusewood_mushroomstew.name=キノコシチュー
-
-item.natura.soups.vanilla_glowshroomstew.name=輝くキノコシチュー
-item.natura.soups.ghostwood_glowshroomstew.name=輝くキノコシチュー
-item.natura.soups.bloodwood_glowshroomstew.name=輝くキノコシチュー
-item.natura.soups.darkwood_glowshroomstew.name=輝くキノコシチュー
-item.natura.soups.fusewood_glowshroomstew.name=輝くキノコシチュー
-
-item.natura.soups.berry_medley.name=ベリーメドレー
+item.natura.berry_medley.name=ベリーメドレー
 item.natura.soups.berry_medley.tooltip=魅力的なベリーの組み合わせ
 
 item.natura.imp_armor_helmet.name=インプの革の帽子

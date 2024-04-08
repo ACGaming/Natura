@@ -424,37 +424,9 @@ item.natura.materials.flame_string.name=Flammenfaden
 item.natura.materials.flame_string.tooltip=Etwas haltbarer als normale Fäden
 item.natura.materials.blue_dye.name=Blauer Farbstoff
 
-item.natura.sticks.maple_stick.name=Ahornholzstock
-item.natura.sticks.silverbell_stick.name=Schneeglöckchenholzstock
-item.natura.sticks.amaranth_stick.name=Amaranthstock
-item.natura.sticks.tiger_stick.name=Tigerholzstock
-item.natura.sticks.willow_stick.name=Weidenholzstock
-item.natura.sticks.eucalyptus_stick.name=Eukalyptusholzstock
-item.natura.sticks.hopseed_stick.name=Hopfenbuschstock
-item.natura.sticks.sakura_stick.name=Blütenkirschholzstock
-item.natura.sticks.redwood_stick.name=Mammutbaumholzstock
-item.natura.sticks.ghostwood_stick.name=Geisterholzstock
-item.natura.sticks.darkwood_stick.name=Finsterholzstock
-item.natura.sticks.fusewood_stick.name=Zündholzstock
-item.natura.sticks.bloodwood_stick.name=Blutholzstock
+item.natura.glowshroom_stew.name=Glühpilzeintopf
 
-item.natura.empty_bowls.ghostwood_bowl.name=Leere Geisterholzschale
-item.natura.empty_bowls.bloodwood_bowl.name=Leere Blutholzschale
-item.natura.empty_bowls.darkwood_bowl.name=Leere Finsterholzschale
-item.natura.empty_bowls.fusewood_bowl.name=Leere Zündholzschale
-
-item.natura.soups.ghostwood_mushroomstew.name=Pilzeintopf
-item.natura.soups.bloodwood_mushroomstew.name=Pilzeintopf
-item.natura.soups.darkwood_mushroomstew.name=Pilzeintopf
-item.natura.soups.fusewood_mushroomstew.name=Pilzeintopf
-
-item.natura.soups.vanilla_glowshroomstew.name=Glühpilzeintopf
-item.natura.soups.ghostwood_glowshroomstew.name=Glühpilzeintopf
-item.natura.soups.bloodwood_glowshroomstew.name=Glühpilzeintopf
-item.natura.soups.darkwood_glowshroomstew.name=Glühpilzeintopf
-item.natura.soups.fusewood_glowshroomstew.name=Glühpilzeintopf
-
-item.natura.soups.berry_medley.name=Beerenmischung
+item.natura.berry_medley.name=Beerenmischung
 item.natura.soups.berry_medley.tooltip=Eine unwiderstehliche Kombination von Beeren
 
 item.natura.imp_armor_helmet.name=Koboldhauthelm

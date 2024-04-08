@@ -424,37 +424,9 @@ item.natura.materials.flame_string.name=Eldtråd
 item.natura.materials.flame_string.tooltip=Något tåligare än vanlig tråd
 item.natura.materials.blue_dye.name=Blå färg
 
-item.natura.sticks.maple_stick.name=Lönnträpinne
-item.natura.sticks.silverbell_stick.name=Snödroppsträpinne
-item.natura.sticks.amaranth_stick.name=Amarantträpinne
-item.natura.sticks.tiger_stick.name=Tigerpinne
-item.natura.sticks.willow_stick.name=Pilträpinne
-item.natura.sticks.eucalyptus_stick.name=Eukalyptusträpinne
-item.natura.sticks.hopseed_stick.name=Kinesträpinne
-item.natura.sticks.sakura_stick.name=Sakuraträpinne
-item.natura.sticks.redwood_stick.name=Mammutträpinne
-item.natura.sticks.ghostwood_stick.name=Spökträpinne
-item.natura.sticks.darkwood_stick.name=Mörkerträpinne
-item.natura.sticks.fusewood_stick.name=Stubinträpinne
-item.natura.sticks.bloodwood_stick.name=Blodträpinne
+item.natura.soups.glowshroom_stew.name=Glödsvampssoppa
 
-item.natura.empty_bowls.ghostwood_bowl.name=Tom spökträskål
-item.natura.empty_bowls.bloodwood_bowl.name=Tom blodträskål
-item.natura.empty_bowls.darkwood_bowl.name=Tom mörkerträskål
-item.natura.empty_bowls.fusewood_bowl.name=Tom stubinträskål
-
-item.natura.soups.ghostwood_mushroomstew.name=Svampsoppa
-item.natura.soups.bloodwood_mushroomstew.name=Svampsoppa
-item.natura.soups.darkwood_mushroomstew.name=Svampsoppa
-item.natura.soups.fusewood_mushroomstew.name=Svampsoppa
-
-item.natura.soups.vanilla_glowshroomstew.name=Glödsvampssoppa
-item.natura.soups.ghostwood_glowshroomstew.name=Glödsvampssoppa
-item.natura.soups.bloodwood_glowshroomstew.name=Glödsvampssoppa
-item.natura.soups.darkwood_glowshroomstew.name=Glödsvampssoppa
-item.natura.soups.fusewood_glowshroomstew.name=Glödsvampssoppa
-
-item.natura.soups.berry_medley.name=Potpurri av bär
+item.natura.berry_medley.name=Potpurri av bär
 item.natura.soups.berry_medley.tooltip=En oemotståndlig kombination av bär
 
 item.natura.imp_armor_helmet.name=Impskinnhjälm

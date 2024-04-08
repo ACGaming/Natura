@@ -424,35 +424,7 @@ item.natura.materials.flame_string.name=Flamestring
 item.natura.materials.flame_string.tooltip=Somewhat more durable than string
 item.natura.materials.blue_dye.name=Blue Dye
 
-item.natura.sticks.maple_stick.name=Maple Stick
-item.natura.sticks.silverbell_stick.name=Silverbell Stick
-item.natura.sticks.amaranth_stick.name=Amaranth Stick
-item.natura.sticks.tiger_stick.name=Tigerwood Stick
-item.natura.sticks.willow_stick.name=Willow Stick
-item.natura.sticks.eucalyptus_stick.name=Eucalyptus Stick
-item.natura.sticks.hopseed_stick.name=Hopseed Stick
-item.natura.sticks.sakura_stick.name=Sakura Stick
-item.natura.sticks.redwood_stick.name=Redwood Stick
-item.natura.sticks.ghostwood_stick.name=Ghostwood Stick
-item.natura.sticks.darkwood_stick.name=Darkwood Stick
-item.natura.sticks.fusewood_stick.name=Fusewood Stick
-item.natura.sticks.bloodwood_stick.name=Bloodwood Stick
-
-item.natura.empty_bowls.ghostwood_bowl.name=Ghostwood Bowl
-item.natura.empty_bowls.bloodwood_bowl.name=Bloodwood Bowl
-item.natura.empty_bowls.darkwood_bowl.name=Darkwood Bowl
-item.natura.empty_bowls.fusewood_bowl.name=Fusewood Bowl
-
-item.natura.soups.ghostwood_mushroomstew.name=Mushroom Stew
-item.natura.soups.bloodwood_mushroomstew.name=Mushroom Stew
-item.natura.soups.darkwood_mushroomstew.name=Mushroom Stew
-item.natura.soups.fusewood_mushroomstew.name=Mushroom Stew
-
 item.natura.glowshroom_stew.name=Glowshroom Stew
-item.natura.soups.ghostwood_glowshroomstew.name=Glowshroom Stew
-item.natura.soups.bloodwood_glowshroomstew.name=Glowshroom Stew
-item.natura.soups.darkwood_glowshroomstew.name=Glowshroom Stew
-item.natura.soups.fusewood_glowshroomstew.name=Glowshroom Stew
 
 item.natura.berry_medley.name=Berry Medley
 item.natura.soups.berry_medley.tooltip=An irresistable combination of berries
