@@ -21,8 +21,7 @@
             "data": 1
         },
         "B": {
-            "item": "natura:sticks",
-            "data": 12
+            "item": "minecraft:netherbrick"
         }
     },
     "result": {

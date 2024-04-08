@@ -56,7 +56,7 @@ public class NaturaCommons extends NaturaPulse
     public static ItemNaturaEdibleSoup soups;
     public static ItemSeedBag seed_bags;
     public static ItemBoneBag boneMealBag;
-    public static ItemMetaDynamic sticks;
+    //public static ItemMetaDynamic sticks;
 
     // Material Itemstacks
     public static ItemStack barley;
@@ -117,7 +117,7 @@ public class NaturaCommons extends NaturaPulse
     public static ItemStack nether_wart_seed_bag;
 
     //Wood Sticks
-    public static ItemStack maple_stick;
+   /*public static ItemStack maple_stick;
     public static ItemStack silverbell_stick;
     public static ItemStack amaranth_stick;
     public static ItemStack tiger_stick;
@@ -129,7 +129,7 @@ public class NaturaCommons extends NaturaPulse
     public static ItemStack ghostwood_stick;
     public static ItemStack darkwood_stick;
     public static ItemStack fusewood_stick;
-    public static ItemStack bloodwood_stick;
+    public static ItemStack bloodwood_stick;*/
     //@formatter:on
 
     @SubscribeEvent
@@ -154,14 +154,14 @@ public class NaturaCommons extends NaturaPulse
         edibles = registerItem(registry, new ItemNaturaEdible(), "edibles");
         soups = registerItem(registry, new ItemNaturaEdibleSoup(), "soups");
         seed_bags = registerItem(registry, new ItemSeedBag(), "seed_bags");
-        sticks = registerItem(registry, new ItemMetaDynamic(), "sticks");
+        //sticks = registerItem(registry, new ItemMetaDynamic(), "sticks");
 
         materials.setCreativeTab(NaturaRegistry.tabGeneral);
         empty_bowls.setCreativeTab(NaturaRegistry.tabGeneral);
         edibles.setCreativeTab(NaturaRegistry.tabGeneral);
         soups.setCreativeTab(NaturaRegistry.tabGeneral);
         seed_bags.setCreativeTab(NaturaRegistry.tabGeneral);
-        sticks.setCreativeTab(NaturaRegistry.tabGeneral);
+        //sticks.setCreativeTab(NaturaRegistry.tabGeneral);
 
         barley = materials.addMeta(0, "barley");
         barleyFlour = materials.addMeta(1, "barley_flour");
@@ -224,7 +224,7 @@ public class NaturaCommons extends NaturaPulse
 
         boneMealBag = registerItem(registry, new ItemBoneBag(), "bonemeal_bag");
 
-        if (isOverworldLoaded())
+        /*if (isOverworldLoaded())
         {
             maple_stick = sticks.addMeta(0, "maple_stick");
             silverbell_stick = sticks.addMeta(1, "silverbell_stick");
@@ -243,7 +243,7 @@ public class NaturaCommons extends NaturaPulse
             darkwood_stick = sticks.addMeta(10, "darkwood_stick");
             fusewood_stick = sticks.addMeta(11, "fusewood_stick");
             bloodwood_stick = sticks.addMeta(12, "bloodwood_stick");
-        }
+        }*/
 
         NaturaRegistry.tabGeneral.setDisplayIcon(cotton);
 
