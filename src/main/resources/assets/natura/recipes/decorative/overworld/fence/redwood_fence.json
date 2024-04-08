@@ -17,8 +17,8 @@
     ],
     "key": {
         "A": {
-            "item": "natura:sticks",
-            "data": 8
+            "type": "forge:ore_dict",
+            "ore": "stickWood"
         },
         "B": {
             "item": "natura:overworld_planks",
