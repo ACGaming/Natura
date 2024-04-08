@@ -119,9 +119,10 @@ public class NetherClientProxy extends ClientProxy
         Item heatSandItem = Item.getItemFromBlock(NaturaNether.netherHeatSand);
         ModelLoader.setCustomModelResourceLocation(heatSandItem, 0, new ModelResourceLocation(Util.resource("nether_heat_sand"), "normal"));
 
-        ModelLoader.setCustomStateMapper(NaturaNether.netherThornVines, new CustomStateMap("nether_thorn_vine"));
+        // Obsolete?
+        //ModelLoader.setCustomStateMapper(NaturaNether.netherThornVines, new CustomStateMap("nether_thorn_vines"));
 
-        this.registerItemModelNatura(new ItemStack(NaturaNether.netherThornVines), "nether_thorn_vine");
+        this.registerItemModelNatura(new ItemStack(NaturaNether.netherThornVines), "nether_thorn_vines");
 
         // logs
         Item nether_log = Item.getItemFromBlock(NaturaNether.netherLog);
