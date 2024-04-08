@@ -4,7 +4,6 @@ import java.util.Locale;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import net.minecraft.util.ResourceLocation;
 
 public class Util
@@ -12,6 +11,8 @@ public class Util
     public static final String MODID = "natura";
 
     public static final String RESOURCE = MODID.toLowerCase(Locale.US);
+
+    public static final Integer DATAFIXER_VERSION = 1;
 
     public static Logger getLogger(String type)
     {

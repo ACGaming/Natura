@@ -2,6 +2,15 @@ package com.progwml6.natura;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import net.minecraft.util.datafix.FixTypes;
+import net.minecraftforge.common.util.ModFixs;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.Mod.Instance;
+import net.minecraftforge.fml.common.SidedProxy;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 
 import com.progwml6.natura.common.CommonProxy;
 import com.progwml6.natura.common.config.Config;
@@ -9,6 +18,7 @@ import com.progwml6.natura.common.gui.GuiHandler;
 import com.progwml6.natura.decorative.NaturaDecorative;
 import com.progwml6.natura.entities.NaturaEntities;
 import com.progwml6.natura.library.Util;
+import com.progwml6.natura.library.datafixes.ItemIDFixer;
 import com.progwml6.natura.nether.NaturaNether;
 import com.progwml6.natura.oredict.NaturaOredict;
 import com.progwml6.natura.overworld.NaturaOverworld;
@@ -16,13 +26,6 @@ import com.progwml6.natura.plugin.CraftingTweaks;
 import com.progwml6.natura.shared.NaturaCommons;
 import com.progwml6.natura.tools.NaturaTools;
 import com.progwml6.natura.world.NaturaWorld;
-
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventHandler;
-import net.minecraftforge.fml.common.Mod.Instance;
-import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.network.NetworkRegistry;
 import slimeknights.mantle.pulsar.control.PulseManager;
 
 @Mod(modid = Natura.modID, name = Natura.modName, version = Natura.modVersion, dependencies = "required-after:forge@[14.23.3.2673,);required-after:mantle@[1.12-1.3.0,);", acceptedMinecraftVersions = "[1.12, 1.13)")
@@ -67,4 +70,10 @@ public class Natura
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
     }
 
+    @EventHandler
+    public void init(FMLPreInitializationEvent event)
+    {
+        ModFixs modFixer = FMLCommonHandler.instance().getDataFixer().init(Util.MODID, Util.DATAFIXER_VERSION);
+        modFixer.registerFix(FixTypes.ITEM_INSTANCE, new ItemIDFixer());
+    }
 }
