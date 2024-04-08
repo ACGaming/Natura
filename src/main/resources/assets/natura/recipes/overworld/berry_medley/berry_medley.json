@@ -8,8 +8,7 @@
     "type": "forge:ore_shapeless",
     "ingredients": [
         {
-            "type": "forge:ore_dict",
-            "ore": "bowlWood"
+            "item": "minecraft:bowl"
         },
         [
             {
@@ -67,7 +66,6 @@
         ]
     ],
     "result": {
-        "item": "natura:soups",
-        "data": 9
+        "item": "natura:berry_medley"
     }
 }

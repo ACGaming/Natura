@@ -448,13 +448,13 @@ item.natura.soups.bloodwood_mushroomstew.name=Mushroom Stew
 item.natura.soups.darkwood_mushroomstew.name=Mushroom Stew
 item.natura.soups.fusewood_mushroomstew.name=Mushroom Stew
 
-item.natura.soups.vanilla_glowshroomstew.name=Glowshroom Stew
+item.natura.glowshroom_stew.name=Glowshroom Stew
 item.natura.soups.ghostwood_glowshroomstew.name=Glowshroom Stew
 item.natura.soups.bloodwood_glowshroomstew.name=Glowshroom Stew
 item.natura.soups.darkwood_glowshroomstew.name=Glowshroom Stew
 item.natura.soups.fusewood_glowshroomstew.name=Glowshroom Stew
 
-item.natura.soups.berry_medley.name=Berry Medley
+item.natura.berry_medley.name=Berry Medley
 item.natura.soups.berry_medley.tooltip=An irresistable combination of berries
 
 item.natura.imp_armor_helmet.name=Impskin Helmet
