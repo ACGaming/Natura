@@ -25,11 +25,8 @@ public class CommonsClientProxy extends ClientProxy
         registerItemBlockMeta(clouds);
 
         materials.registerItemModels();
-        //empty_bowls.registerItemModels();
-        //soups.registerItemModels();
         edibles.registerItemModels();
         seed_bags.registerItemModels();
-        //sticks.registerItemModels();
 
         registerItemModel(berryMedley);
         registerItemModel(boneMealBag);

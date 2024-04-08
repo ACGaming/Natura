@@ -42,18 +42,12 @@ public class NaturaOredict extends NaturaPulse
 
     private static void ensureOredict()
     {
-        //oredict(Items.BOWL, "bowlWood");
         oredict(Blocks.CHEST, "chestWood");
         oredict(Blocks.TRAPPED_CHEST, "chestWood");
     }
 
     private static void registerCommons()
     {
-        //oredict(NaturaCommons.bloodwood_emptybowl, "bowlWood");
-        //oredict(NaturaCommons.ghostwood_emptybowl, "bowlWood");
-        //oredict(NaturaCommons.darkwood_emptybowl, "bowlWood");
-        //oredict(NaturaCommons.fusewood_emptybowl, "bowlWood");
-
         oredict(NaturaCommons.barley, "cropBarley");
         oredict(NaturaCommons.cotton, "cropCotton");
 
@@ -67,8 +61,6 @@ public class NaturaOredict extends NaturaPulse
 
         oredict(NaturaCommons.sulfurPowder, "dustSulphur");
         oredict(NaturaCommons.sulfurPowder, "dustSulfur");
-
-        //oredict(NaturaCommons.sticks, "stickWood");
     }
 
     private static void registerOverworld()
