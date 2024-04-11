@@ -3,6 +3,7 @@ package com.progwml6.natura;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import net.minecraft.util.datafix.FixTypes;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ModFixs;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
@@ -11,6 +12,7 @@ import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.relauncher.Side;
 
 import com.progwml6.natura.common.CommonProxy;
 import com.progwml6.natura.common.config.Config;
@@ -47,6 +49,10 @@ public class Natura
     public static CommonProxy proxy;
 
     public static PulseManager pulseManager = new PulseManager(Config.pulseConfig);
+    
+    public static boolean isServer() {
+        return (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER);
+    }
 
     static
     {
@@ -66,6 +72,10 @@ public class Natura
     public void preInit(FMLPreInitializationEvent event)
     {
         Config.load(event);
+        
+        if (isServer()) {
+        	MinecraftForge.EVENT_BUS.register(new NaturaClientEvents());
+        }
 
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
     }
