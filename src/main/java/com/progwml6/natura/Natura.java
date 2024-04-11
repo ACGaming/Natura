@@ -73,7 +73,7 @@ public class Natura
     {
         Config.load(event);
         
-        if (isServer()) {
+        if (!isServer()) {
         	MinecraftForge.EVENT_BUS.register(new NaturaClientEvents());
         }
 
