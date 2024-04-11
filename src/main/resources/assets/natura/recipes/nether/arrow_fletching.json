@@ -7,7 +7,7 @@
     ],
     "type": "minecraft:crafting_shaped",
     "pattern": [
-        " A ",
+        "BAB",
         "BAB",
         "BAB"
     ],
@@ -17,8 +17,8 @@
             "ore": "stickWood"
         },
         "B": {
-            "item": "natura:nether_leaves",
-            "data": 0
+            "type": "forge:ore_dict",
+            "ore": "treeLeaves"
         }
     },
     "result": {

@@ -7,9 +7,9 @@
     ],
     "type": "forge:ore_shaped",
     "pattern": [
-        " A ",
-        "BCB",
-        " B "
+        "A",
+        "C",
+        "B"
     ],
     "key": {
         "A": {
@@ -26,6 +26,6 @@
     },
     "result": {
         "item": "minecraft:arrow",
-        "count": 4
+        "count": 2
     }
 }
