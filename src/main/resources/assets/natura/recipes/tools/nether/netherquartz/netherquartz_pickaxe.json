@@ -1,41 +1,31 @@
 {
-    "conditions": [
-        {
-            "type": "natura:is_pulse_loaded",
-            "pulse_name": "NaturaNether"
-        },
-        {
-            "type": "natura:is_pulse_loaded",
-            "pulse_name": "NaturaTools"
-        }
-    ],
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "AAA",
-        " B ",
-        " B "
-    ],
-    "key": {
-        "A": [
-            {
-                "item": "minecraft:quartz_block",
-                "data": 0
-            },
-            {
-                "item": "minecraft:quartz_block",
-                "data": 1
-            },
-            {
-                "item": "minecraft:quartz_block",
-                "data": 2
-            }
-        ],
-        "B": {
-            "item": "minecraft:netherbrick"
-        }
+  "conditions": [
+    {
+      "type": "natura:is_pulse_loaded",
+      "pulse_name": "NaturaNether"
     },
-    "result": {
-        "item": "natura:netherquartz_pickaxe",
-        "data": 0
+    {
+      "type": "natura:is_pulse_loaded",
+      "pulse_name": "NaturaTools"
     }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AAA",
+    " B ",
+    " B "
+  ],
+  "key": {
+    "A": {
+      "type": "forge:ore_dict",
+      "ore": "gemQuartz"
+    },
+    "B": {
+      "item": "minecraft:netherbrick"
+    }
+  },
+  "result": {
+    "item": "natura:netherquartz_pickaxe",
+    "data": 0
+  }
 }

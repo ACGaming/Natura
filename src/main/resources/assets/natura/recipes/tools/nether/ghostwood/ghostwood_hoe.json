@@ -18,14 +18,14 @@
     "key": {
         "A": {
             "item": "natura:nether_planks",
-            "data": 1
+            "data": 0
         },
         "B": {
             "item": "minecraft:netherbrick"
         }
     },
     "result": {
-        "item": "natura:bloodwood_kama",
+        "item": "natura:ghostwood_hoe",
         "data": 0
     }
 }

@@ -16,26 +16,16 @@
         " B"
     ],
     "key": {
-        "A": [
-            {
-                "item": "minecraft:quartz_block",
-                "data": 0
-            },
-            {
-                "item": "minecraft:quartz_block",
-                "data": 1
-            },
-            {
-                "item": "minecraft:quartz_block",
-                "data": 2
-            }
-        ],
+        "A": {
+            "item": "natura:nether_planks",
+            "data": 1
+        },
         "B": {
             "item": "minecraft:netherbrick"
         }
     },
     "result": {
-        "item": "natura:netherquartz_kama",
+        "item": "natura:bloodwood_hoe",
         "data": 0
     }
 }

@@ -2,11 +2,11 @@ package com.progwml6.natura.tools.item.tools;
 
 import com.progwml6.natura.library.NaturaRegistry;
 
-import net.minecraft.item.ItemSpade;
+import net.minecraft.item.ItemHoe;
 
-public class ItemNaturaShovel extends ItemSpade
+public class ItemNaturaHoe extends ItemHoe
 {
-    public ItemNaturaShovel(ToolMaterial toolMaterialIn)
+    public ItemNaturaHoe(ToolMaterial toolMaterialIn)
     {
         super(toolMaterialIn);
 

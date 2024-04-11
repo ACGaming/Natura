@@ -377,9 +377,9 @@ tile.natura.nether_workbenches.darkwood.name=Darkwood Crafting Table
 #    Items     #
 ################
 
-item.natura.edibles.impmeat_raw.name=Raw Imphide
+item.natura.edibles.impmeat_raw.name=Raw Imp
 item.natura.edibles.impmeat_raw.tooltip=Eating this probably isn't good for you
-item.natura.edibles.impmeat_cooked.name=Cooked Imphide
+item.natura.edibles.impmeat_cooked.name=Cooked Imp
 item.natura.edibles.impmeat_cooked.tooltip=It's warm to the touch
 
 item.natura.edibles.raspberry.name=Raspberry
@@ -418,21 +418,35 @@ item.natura.materials.sulfur_powder.name=Sulfur
 item.natura.materials.sulfur_powder.tooltip=2x2 converts into gunpowder
 item.natura.materials.ghostwood_fletching.name=Ghostwood Fletching
 item.natura.materials.ghostwood_fletching.tooltip=Arrow crafting component
-item.natura.materials.imp_leather.name=Imp Leather
-item.natura.materials.imp_leather.tooltip=Resist the heat of the Nether
+item.natura.materials.imp_leather.name=Imp Hide
+item.natura.materials.imp_leather.tooltip=Heat-Resistant!
 item.natura.materials.flame_string.name=Flamestring
 item.natura.materials.flame_string.tooltip=Somewhat more durable than string
 item.natura.materials.blue_dye.name=Blue Dye
+
+item.natura.sticks.maple_stick.name=Maple Stick
+item.natura.sticks.silverbell_stick.name=Silverbell Stick
+item.natura.sticks.amaranth_stick.name=Amaranth Stick
+item.natura.sticks.tiger_stick.name=Tigerwood Stick
+item.natura.sticks.willow_stick.name=Willow Stick
+item.natura.sticks.eucalyptus_stick.name=Eucalyptus Stick
+item.natura.sticks.hopseed_stick.name=Hopseed Stick
+item.natura.sticks.sakura_stick.name=Sakura Stick
+item.natura.sticks.redwood_stick.name=Redwood Stick
+item.natura.sticks.ghostwood_stick.name=Ghostwood Stick
+item.natura.sticks.darkwood_stick.name=Darkwood Stick
+item.natura.sticks.fusewood_stick.name=Fusewood Stick
+item.natura.sticks.bloodwood_stick.name=Bloodwood Stick
 
 item.natura.glowshroom_stew.name=Glowshroom Stew
 
 item.natura.berry_medley.name=Berry Medley
 item.natura.soups.berry_medley.tooltip=An irresistable combination of berries
 
-item.natura.imp_armor_helmet.name=Impskin Helmet
-item.natura.imp_armor_chestplate.name=Impskin Jerkin
-item.natura.imp_armor_leggings.name=Impskin Leggings
-item.natura.imp_armor_boots.name=Impskin Boots
+item.natura.imp_armor_helmet.name=Imp Hide Cap
+item.natura.imp_armor_chestplate.name=Imp Hide Jerkin
+item.natura.imp_armor_leggings.name=Imp Hide Pants
+item.natura.imp_armor_boots.name=Imp Hide Boots
 
 item.natura.seed_bags.wheat_seed_bag.name=Wheat Seed Bag
 item.natura.seed_bags.wheat_seed_bag.tooltip=Plants in a 3x3 area
@@ -496,35 +510,35 @@ item.natura.ghostwood_sword.name=Ghostwood Sword
 item.natura.ghostwood_pickaxe.name=Ghostwood Pickaxe
 item.natura.ghostwood_shovel.name=Ghostwood Shovel
 item.natura.ghostwood_axe.name=Ghostwood Axe
-item.natura.ghostwood_kama.name=Ghostwood Kama
+item.natura.ghostwood_hoe.name=Ghostwood Hoe
 item.natura.ghostwood_bow.name=Ghostwood Bow
 
 item.natura.bloodwood_sword.name=Bloodwood Sword
 item.natura.bloodwood_pickaxe.name=Bloodwood Pickaxe
 item.natura.bloodwood_shovel.name=Bloodwood Shovel
 item.natura.bloodwood_axe.name=Bloodwood Axe
-item.natura.bloodwood_kama.name=Bloodwood Kama
+item.natura.bloodwood_hoe.name=Bloodwood Hoe
 item.natura.bloodwood_bow.name=Bloodwood Bow
 
 item.natura.darkwood_sword.name=Darkwood Sword
 item.natura.darkwood_pickaxe.name=Darkwood Pickaxe
 item.natura.darkwood_shovel.name=Darkwood Shovel
 item.natura.darkwood_axe.name=Darkwood Axe
-item.natura.darkwood_kama.name=Darkwood Kama
+item.natura.darkwood_hoe.name=Darkwood Hoe
 item.natura.darkwood_bow.name=Darkwood Bow
 
 item.natura.fusewood_sword.name=Fusewood Sword
 item.natura.fusewood_pickaxe.name=Fusewood Pickaxe
 item.natura.fusewood_shovel.name=Fusewood Shovel
 item.natura.fusewood_axe.name=Fusewood Axe
-item.natura.fusewood_kama.name=Fusewood Kama
+item.natura.fusewood_hoe.name=Fusewood Hoe
 item.natura.fusewood_bow.name=Fusewood Bow
 
 item.natura.netherquartz_sword.name=Nether Quartz Sword
 item.natura.netherquartz_pickaxe.name=Nether Quartz Pickaxe
 item.natura.netherquartz_shovel.name=Nether Quartz Shovel
 item.natura.netherquartz_axe.name=Nether Quartz Axe
-item.natura.netherquartz_kama.name=Nether Quartz Kama
+item.natura.netherquartz_hoe.name=Nether Quartz Hoe
 item.natura.netherquartz_bow.name=Nether Quartz Bow
 
 #################

@@ -31,7 +31,7 @@ public class ToolsClientProxy extends ClientProxy
         this.registerItemModelNatura(new ItemStack(NaturaTools.ghostwoodPickaxe), "ghostwood_pickaxe");
         this.registerItemModelNatura(new ItemStack(NaturaTools.ghostwoodShovel), "ghostwood_shovel");
         this.registerItemModelNatura(new ItemStack(NaturaTools.ghostwoodAxe), "ghostwood_axe");
-        this.registerItemModelNatura(new ItemStack(NaturaTools.ghostwoodKama), "ghostwood_kama");
+        this.registerItemModelNatura(new ItemStack(NaturaTools.ghostwoodHoe), "ghostwood_hoe");
 
         ItemStack stack = new ItemStack(NaturaTools.ghostwoodBow, 1, 0);
         this.registerItemModelNatura(stack, "ghostwood_bow");
@@ -46,7 +46,7 @@ public class ToolsClientProxy extends ClientProxy
         this.registerItemModelNatura(new ItemStack(NaturaTools.bloodwoodPickaxe), "bloodwood_pickaxe");
         this.registerItemModelNatura(new ItemStack(NaturaTools.bloodwoodShovel), "bloodwood_shovel");
         this.registerItemModelNatura(new ItemStack(NaturaTools.bloodwoodAxe), "bloodwood_axe");
-        this.registerItemModelNatura(new ItemStack(NaturaTools.bloodwoodKama), "bloodwood_kama");
+        this.registerItemModelNatura(new ItemStack(NaturaTools.bloodwoodHoe), "bloodwood_hoe");
 
         stack = new ItemStack(NaturaTools.bloodwoodBow, 1, 0);
         this.registerItemModelNatura(stack, "bloodwood_bow");
@@ -61,7 +61,7 @@ public class ToolsClientProxy extends ClientProxy
         this.registerItemModelNatura(new ItemStack(NaturaTools.darkwoodPickaxe), "darkwood_pickaxe");
         this.registerItemModelNatura(new ItemStack(NaturaTools.darkwoodShovel), "darkwood_shovel");
         this.registerItemModelNatura(new ItemStack(NaturaTools.darkwoodAxe), "darkwood_axe");
-        this.registerItemModelNatura(new ItemStack(NaturaTools.darkwoodKama), "darkwood_kama");
+        this.registerItemModelNatura(new ItemStack(NaturaTools.darkwoodHoe), "darkwood_hoe");
 
         stack = new ItemStack(NaturaTools.darkwoodBow, 1, 0);
         this.registerItemModelNatura(stack, "darkwood_bow");
@@ -76,7 +76,7 @@ public class ToolsClientProxy extends ClientProxy
         this.registerItemModelNatura(new ItemStack(NaturaTools.fusewoodPickaxe), "fusewood_pickaxe");
         this.registerItemModelNatura(new ItemStack(NaturaTools.fusewoodShovel), "fusewood_shovel");
         this.registerItemModelNatura(new ItemStack(NaturaTools.fusewoodAxe), "fusewood_axe");
-        this.registerItemModelNatura(new ItemStack(NaturaTools.fusewoodKama), "fusewood_kama");
+        this.registerItemModelNatura(new ItemStack(NaturaTools.fusewoodHoe), "fusewood_hoe");
 
         stack = new ItemStack(NaturaTools.fusewoodBow, 1, 0);
         this.registerItemModelNatura(stack, "fusewood_bow");
@@ -91,7 +91,7 @@ public class ToolsClientProxy extends ClientProxy
         this.registerItemModelNatura(new ItemStack(NaturaTools.netherquartzPickaxe), "netherquartz_pickaxe");
         this.registerItemModelNatura(new ItemStack(NaturaTools.netherquartzShovel), "netherquartz_shovel");
         this.registerItemModelNatura(new ItemStack(NaturaTools.netherquartzAxe), "netherquartz_axe");
-        this.registerItemModelNatura(new ItemStack(NaturaTools.netherquartzKama), "netherquartz_kama");
+        this.registerItemModelNatura(new ItemStack(NaturaTools.netherquartzHoe), "netherquartz_hoe");
 
         this.registerItemModelNatura(new ItemStack(NaturaTools.flintAndBlaze), "flint_and_blaze");
     }

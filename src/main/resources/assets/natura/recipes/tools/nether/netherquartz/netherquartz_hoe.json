@@ -11,9 +11,9 @@
   ],
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "A",
-    "A",
-    "B"
+    "AA",
+    " B",
+    " B"
   ],
   "key": {
     "A": {
@@ -25,7 +25,7 @@
     }
   },
   "result": {
-    "item": "natura:netherquartz_sword",
+    "item": "natura:netherquartz_hoe",
     "data": 0
   }
 }

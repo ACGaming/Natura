@@ -6,21 +6,10 @@ import net.minecraft.item.ItemAxe;
 
 public class ItemNaturaAxe extends ItemAxe
 {
-    private static final float[] ATTACK_DAMAGES = new float[] { 6.0F, 8.0F, 8.0F, 8.0F, 6.0F };
-
-    private static final float[] ATTACK_SPEEDS = new float[] { -3.2F, -3.2F, -3.1F, -3.0F, -3.0F };
-
-    public ItemNaturaAxe(ToolMaterial toolMaterialIn, int harvestLevelIn, float damageIn, float speedIn)
+    public ItemNaturaAxe(ToolMaterial material, float damage, float speed)
     {
-        super(toolMaterialIn, damageIn, speedIn);
+        super(material, damage - 1.0F, speed - 4.0F);
 
         this.setCreativeTab(NaturaRegistry.tabGeneral);
-
-        this.setHarvestLevel("axe", harvestLevelIn);
-    }
-
-    public ItemNaturaAxe(ToolMaterial toolMaterialIn, int harvestLevelIn)
-    {
-        this(toolMaterialIn, harvestLevelIn, ATTACK_DAMAGES[toolMaterialIn.ordinal()], ATTACK_SPEEDS[toolMaterialIn.ordinal()]);
     }
 }

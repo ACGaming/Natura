@@ -6,12 +6,10 @@ import net.minecraft.item.ItemPickaxe;
 
 public class ItemNaturaPickaxe extends ItemPickaxe
 {
-    public ItemNaturaPickaxe(ToolMaterial toolMaterialIn, int harvestLevelIn)
+    public ItemNaturaPickaxe(ToolMaterial toolMaterialIn)
     {
         super(toolMaterialIn);
 
         this.setCreativeTab(NaturaRegistry.tabGeneral);
-
-        this.setHarvestLevel("pickaxe", harvestLevelIn);
     }
 }
