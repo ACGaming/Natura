@@ -3,8 +3,7 @@ package com.progwml6.natura.entities.entity.passive;
 import javax.annotation.Nullable;
 
 import com.progwml6.natura.entities.NaturaEntities;
-import com.progwml6.natura.shared.NaturaCommons;
-
+import com.progwml6.natura.nether.NaturaNether;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -41,7 +40,7 @@ public class EntityImp extends EntityAnimal {
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(1, new EntityAIPanic(this, 1.75D));
         this.tasks.addTask(2, new EntityAIMate(this, 1.0D));
-        //this.tasks.addTask(3, new EntityAITempt(this, 1.2D, soups, false));
+        this.tasks.addTask(3, new EntityAITempt(this, 1.2D, new ItemStack(NaturaNether.netherGlowshroom).getItem(), false));
         this.tasks.addTask(4, new EntityAIAvoidEntity<>(this, EntityPlayer.class, 8.0F, 1.0D, 1.2D));
         this.tasks.addTask(5, new EntityAIFollowParent(this, 1.1D));
         this.tasks.addTask(6, new EntityAIWanderAvoidWater(this, 1.0D));
@@ -129,25 +128,10 @@ public class EntityImp extends EntityAnimal {
      * Checks if the parameter is an item which this animal can be fed to breed it (wheat, carrots or seeds depending on
      * the animal type)
      */
-    /*@Override
-    public boolean isBreedingItem(ItemStack par1ItemStack) {
-        return !par1ItemStack.isEmpty() && par1ItemStack.getItem() == soups && par1ItemStack.getItemDamage() >= 4;
-    }
-
     @Override
-    protected void consumeItemFromStack(EntityPlayer player, ItemStack stack) {
-        if (stack.getItem() == NaturaCommons.glowshroom_stew) {
-            ItemStack bowl = soups.getBowlType(stack.getItemDamage());
-
-            if (!player.inventory.addItemStackToInventory(bowl)) {
-                player.dropItem(Items.BOWL, false, false);
-            }
-        }
-
-        if (!player.capabilities.isCreativeMode) {
-            stack.shrink(1);
-        }
-    }*/
+    public boolean isBreedingItem(ItemStack stack) {
+        return stack.getItem() == new ItemStack(NaturaNether.netherGlowshroom).getItem();
+    }
 
     @Override
     public EntityAgeable createChild(EntityAgeable par1EntityAgeable) {
@@ -156,7 +140,7 @@ public class EntityImp extends EntityAnimal {
 
     @Override
     public boolean getCanSpawnHere() {
-        return (this.world.provider.doesWaterVaporize() || this.world.provider.isNether()) && this.world.checkNoEntityCollision(this.getEntityBoundingBox()) && this.world.getCollisionBoxes(this, this.getEntityBoundingBox()).isEmpty() && !this.world.containsAnyLiquid(this.getEntityBoundingBox());
+    	return this.world.getBlockState((new BlockPos(this)).down()).canEntitySpawn(this) && (this.world.checkNoEntityCollision(this.getEntityBoundingBox()) && !this.world.containsAnyLiquid(this.getEntityBoundingBox()));
     }
 
     @Override
