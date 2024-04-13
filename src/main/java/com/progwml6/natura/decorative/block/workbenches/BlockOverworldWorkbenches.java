@@ -42,11 +42,4 @@ public class BlockOverworldWorkbenches extends EnumBlock<BlockOverworldPlanks.Pl
             return true;
         }
     }
-
-    @Override
-    @Deprecated
-    public boolean isFullCube(IBlockState state)
-    {
-        return false;
-    }
 }

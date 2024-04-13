@@ -89,11 +89,4 @@ public class BlockOverworldBookshelves extends EnumBlock<BlockOverworldPlanks.Pl
     {
         return 1;
     }
-
-    @Override
-    @Deprecated
-    public boolean isFullCube(IBlockState state)
-    {
-        return false;
-    }
 }

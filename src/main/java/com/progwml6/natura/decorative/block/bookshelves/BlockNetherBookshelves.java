@@ -89,11 +89,4 @@ public class BlockNetherBookshelves extends EnumBlock<BlockNetherPlanks.PlankTyp
     {
         return 1;
     }
-
-    @Override
-    @Deprecated
-    public boolean isFullCube(IBlockState state)
-    {
-        return false;
-    }
 }

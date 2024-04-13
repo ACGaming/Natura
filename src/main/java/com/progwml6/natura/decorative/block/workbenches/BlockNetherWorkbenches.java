@@ -42,11 +42,4 @@ public class BlockNetherWorkbenches extends EnumBlock<BlockNetherPlanks.PlankTyp
             return true;
         }
     }
-
-    @Override
-    @Deprecated
-    public boolean isFullCube(IBlockState state)
-    {
-        return false;
-    }
 }

@@ -2,6 +2,7 @@ package com.progwml6.natura.nether.block.soil;
 
 import java.util.Locale;
 
+import com.google.common.base.Predicate;
 import com.progwml6.natura.library.NaturaRegistry;
 
 import net.minecraft.block.SoundType;
@@ -15,14 +16,13 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
+import net.minecraftforge.common.IPlantable;
 import slimeknights.mantle.block.EnumBlock;
 
-public class BlockTaintedSoil extends EnumBlock<BlockTaintedSoil.SoilType>
-{
+public class BlockTaintedSoil extends EnumBlock<BlockTaintedSoil.SoilType> {
     public static PropertyEnum<SoilType> TYPE = PropertyEnum.create("type", SoilType.class);
 
-    public BlockTaintedSoil()
-    {
+    public BlockTaintedSoil() {
         super(Material.GROUND, TYPE, SoilType.class);
 
         this.setCreativeTab(NaturaRegistry.tabWorld);
@@ -33,10 +33,8 @@ public class BlockTaintedSoil extends EnumBlock<BlockTaintedSoil.SoilType>
     }
 
     @Override
-    public boolean isFertile(World world, BlockPos pos)
-    {
-        if (world.getBlockState(pos).getValue(TYPE) == SoilType.TAINTED_FARMLAND_HEATED)
-        {
+    public boolean isFertile(World world, BlockPos pos) {
+        if (world.getBlockState(pos).getValue(TYPE) == SoilType.TAINTED_FARMLAND_HEATED) {
             return true;
         }
 
@@ -44,12 +42,10 @@ public class BlockTaintedSoil extends EnumBlock<BlockTaintedSoil.SoilType>
     }
 
     @Override
-    public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, net.minecraftforge.common.IPlantable plantable)
-    {
+    public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, IPlantable plantable) {
         EnumPlantType plantType = plantable.getPlantType(world, pos.up());
 
-        if (plantType == EnumPlantType.Nether)
-        {
+        if (plantType == EnumPlantType.Nether) {
             return true;
         }
 
@@ -57,37 +53,31 @@ public class BlockTaintedSoil extends EnumBlock<BlockTaintedSoil.SoilType>
     }
 
     @Override
-    public boolean isFireSource(World world, BlockPos pos, EnumFacing side)
-    {
-        return true;
+    public boolean isFireSource(World world, BlockPos pos, EnumFacing side) {
+        return side == EnumFacing.UP;
     }
 
     @Override
-    public boolean isReplaceableOreGen(IBlockState state, IBlockAccess world, BlockPos pos, com.google.common.base.Predicate<IBlockState> target)
-    {
+    public boolean isReplaceableOreGen(IBlockState state, IBlockAccess world, BlockPos pos, Predicate<IBlockState> target) {
         return target.apply(Blocks.NETHERRACK.getDefaultState());
     }
 
-    public enum SoilType implements IStringSerializable, EnumBlock.IEnumMeta
-    {
+    public enum SoilType implements IStringSerializable, EnumBlock.IEnumMeta {
         TAINTED_SOIL, TAINTED_FARMLAND_DRY, TAINTED_FARMLAND_HEATED;
 
         public final int meta;
 
-        SoilType()
-        {
+        SoilType() {
             this.meta = this.ordinal();
         }
 
         @Override
-        public String getName()
-        {
+        public String getName() {
             return this.toString().toLowerCase(Locale.US);
         }
 
         @Override
-        public int getMeta()
-        {
+        public int getMeta() {
             return this.meta;
         }
     }
