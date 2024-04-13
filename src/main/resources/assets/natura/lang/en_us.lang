@@ -558,6 +558,9 @@ itemGroup.NaturaGeneral=Natura's General Items
 itemGroup.NaturaWorld=Natura's World Items
 itemGroup.NaturaDecorative=Natura's Decorative Items
 
+msg.natura.respawn_obelisk.activate=Obelisk activated. Spawn point has been set!
+msg.natura.respawn_obelisk.deactivate=Obelisk deactivated. Spawn point has been reset!
+
 ###############
 #    HWYLA    #
 ###############
