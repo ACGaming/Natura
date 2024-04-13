@@ -22,16 +22,15 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.oredict.OreDictionary;
 import slimeknights.mantle.pulsar.pulse.Pulse;
 
+// TODO: Add ore dictionary support for fences, fence gates, buttons, pressure plates, and trapdoors
 @Pulse(id = NaturaOredict.PulseId, description = "Everything that has to do with the ore dictionary", forced = true)
-public class NaturaOredict extends NaturaPulse
-{
+public class NaturaOredict extends NaturaPulse {
     public static final String PulseId = "NaturaOredict";
 
     static final Logger log = Util.getLogger(PulseId);
 
     @SubscribeEvent
-    public void registerItems(RegistryEvent.Register<Item> event)
-    {
+    public void registerItems(RegistryEvent.Register<Item> event) {
         ensureOredict();
 
         registerCommons();
@@ -40,14 +39,12 @@ public class NaturaOredict extends NaturaPulse
         registerDecorative();
     }
 
-    private static void ensureOredict()
-    {
+    private static void ensureOredict() {
         oredict(Blocks.CHEST, "chestWood");
         oredict(Blocks.TRAPPED_CHEST, "chestWood");
     }
 
-    private static void registerCommons()
-    {
+    private static void registerCommons() {
         oredict(NaturaCommons.barley, "cropBarley");
         oredict(NaturaCommons.cotton, "cropCotton");
 
@@ -63,28 +60,33 @@ public class NaturaOredict extends NaturaPulse
         oredict(NaturaCommons.sulfurPowder, "dustSulfur");
     }
 
-    private static void registerOverworld()
-    {
-        if (isOverworldLoaded())
-        {
-            if (Config.dropBarley)
-            {
+    private static void registerOverworld() {
+        if (isOverworldLoaded()) {
+            if (Config.dropBarley) {
                 MinecraftForge.addGrassSeed(NaturaOverworld.barley_seeds, 3);
             }
-            if (Config.dropCotton)
-            {
+            if (Config.dropCotton) {
                 MinecraftForge.addGrassSeed(NaturaOverworld.cotton_seeds, 3);
             }
 
             // Food
             oredict(NaturaCommons.raspberry, "cropRaspberry");
+            oredict(NaturaCommons.raspberry, "listAllberry");
             oredict(NaturaCommons.raspberry, "listAllfruit");
             oredict(NaturaCommons.blueberry, "cropBlueberry");
+            oredict(NaturaCommons.raspberry, "listAllberry");
             oredict(NaturaCommons.blueberry, "listAllfruit");
             oredict(NaturaCommons.blackberry, "cropBlackberry");
+            oredict(NaturaCommons.raspberry, "listAllberry");
             oredict(NaturaCommons.blackberry, "listAllfruit");
             oredict(NaturaCommons.maloberry, "cropMaloberry");
+            oredict(NaturaCommons.raspberry, "listAllberry");
             oredict(NaturaCommons.maloberry, "listAllfruit");
+
+            oredict(NaturaOverworld.saguaroFruitItem, "cropCactusfruit");
+
+            // Doors
+            oredict(NaturaOverworld.overworldDoors, "doorWood");
 
             // Planks
             oredict(NaturaOverworld.overworldPlanks, "plankWood");
@@ -130,22 +132,31 @@ public class NaturaOredict extends NaturaPulse
         }
     }
 
-    private static void registerNether()
-    {
+    private static void registerNether() {
         // Nether
-        if (isNetherLoaded())
-        {
+        if (isNetherLoaded()) {
             oredict(NaturaCommons.blightberry, "cropBlightberry");
+            oredict(NaturaCommons.blightberry, "listAllberry");
             oredict(NaturaCommons.blightberry, "listAllfruit");
             oredict(NaturaCommons.duskberry, "cropDuskberry");
+            oredict(NaturaCommons.blightberry, "listAllberry");
             oredict(NaturaCommons.duskberry, "listAllfruit");
             oredict(NaturaCommons.skyberry, "cropSkyberry");
+            oredict(NaturaCommons.blightberry, "listAllberry");
             oredict(NaturaCommons.skyberry, "listAllfruit");
             oredict(NaturaCommons.stingberry, "cropStingberry");
+            oredict(NaturaCommons.blightberry, "listAllberry");
             oredict(NaturaCommons.stingberry, "listAllfruit");
 
-            // Tained Soil
+            // Heat Sand
+            oredict(NaturaNether.netherHeatSand, "sand");
+
+            // Tainted Soil
+            oredict(NaturaNether.netherTaintedSoil, "dirt");
             oredict(NaturaNether.netherTaintedSoil, "taintedSoil");
+
+            // Doors
+            oredict(NaturaNether.netherDoors, "doorWood");
 
             // Planks
             oredict(NaturaNether.netherPlanks, "plankWood");
@@ -172,6 +183,7 @@ public class NaturaOredict extends NaturaPulse
 
             // Glass
             oredict(NaturaNether.netherGlass, BlockNetherGlass.GlassType.SOUL.getMeta(), "glassSoul");
+            oredict(NaturaNether.netherGlass, BlockNetherGlass.GlassType.SOUL.getMeta(), "glass");
             oredict(NaturaNether.netherGlass, "glass");
 
             // Vines
@@ -182,53 +194,42 @@ public class NaturaOredict extends NaturaPulse
         }
     }
 
-    private static void registerDecorative()
-    {
+    private static void registerDecorative() {
         // Decorative
-        if (isDecorativeLoaded())
-        {
+        if (isDecorativeLoaded()) {
             // Overworld
-            if (isOverworldLoaded())
-            {
+            if (isOverworldLoaded()) {
                 oredict(NaturaDecorative.overworldWorkbenches, "crafterWood");
                 oredict(NaturaDecorative.overworldWorkbenches, "craftingTableWood");
             }
 
             // Nether
-            if (isNetherLoaded())
-            {
+            if (isNetherLoaded()) {
                 oredict(NaturaDecorative.netherWorkbenches, "crafterWood");
                 oredict(NaturaDecorative.netherWorkbenches, "craftingTableWood");
             }
         }
     }
 
-    public static void oredict(Item item, String... name)
-    {
+    public static void oredict(Item item, String... name) {
         oredict(item, OreDictionary.WILDCARD_VALUE, name);
     }
 
-    public static void oredict(Block block, String... name)
-    {
+    public static void oredict(Block block, String... name) {
         oredict(block, OreDictionary.WILDCARD_VALUE, name);
     }
 
-    public static void oredict(Item item, int meta, String... name)
-    {
+    public static void oredict(Item item, int meta, String... name) {
         oredict(new ItemStack(item, 1, meta), name);
     }
 
-    public static void oredict(Block block, int meta, String... name)
-    {
+    public static void oredict(Block block, int meta, String... name) {
         oredict(new ItemStack(block, 1, meta), name);
     }
 
-    public static void oredict(ItemStack stack, String... names)
-    {
-        if (!stack.isEmpty() && stack.getItem() != Items.AIR)
-        {
-            for (String name : names)
-            {
+    public static void oredict(ItemStack stack, String... names) {
+        if (!stack.isEmpty() && stack.getItem() != Items.AIR) {
+            for (String name : names) {
                 OreDictionary.registerOre(name, stack);
             }
         }
