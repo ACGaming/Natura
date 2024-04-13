@@ -57,7 +57,7 @@ public class BloodwoodTreeGenerator extends BaseTreeGenerator
 
             height++;
         }
-        while (height <= 120);
+        while (height <= world.provider.getActualHeight());
 
         return new BlockPos(pos.getX(), returnHeight, pos.getZ());
     }
