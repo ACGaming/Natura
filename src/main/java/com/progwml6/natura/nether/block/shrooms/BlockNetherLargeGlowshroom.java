@@ -8,6 +8,7 @@ import javax.annotation.Nullable;
 import com.progwml6.natura.nether.NaturaNether;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
@@ -36,6 +37,7 @@ public class BlockNetherLargeGlowshroom extends Block {
         super(Material.WOOD);
 
         this.setLightLevel(0.825F);
+        this.setSoundType(SoundType.WOOD);
 
         this.smallState = smallStateIn;
         this.glowshroomMeta = glowshroomMetaIn;
