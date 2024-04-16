@@ -29,6 +29,7 @@ public class BlockNetherLog2 extends Block
         super(Material.WOOD);
 
         this.setHardness(8.0F);
+        this.setResistance(25.0F);
         this.setSoundType(SoundType.METAL);
         this.setCreativeTab(NaturaRegistry.tabWorld);
         this.setHarvestLevel("axe", 2);

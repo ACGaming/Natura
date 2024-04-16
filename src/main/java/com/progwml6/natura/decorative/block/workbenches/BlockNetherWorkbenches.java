@@ -26,6 +26,7 @@ public class BlockNetherWorkbenches extends EnumBlock<BlockNetherPlanks.PlankTyp
 
         this.setSoundType(SoundType.WOOD);
         this.setHardness(2.5F);
+        this.setResistance(10.0F);
         this.setCreativeTab(NaturaRegistry.tabDecorative);
     }
 

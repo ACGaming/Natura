@@ -56,7 +56,7 @@ public class BlockRespawnObelisk extends EnumBlock<BlockRespawnObelisk.ObeliskTy
     }
 
     // TODO: The respawn obelisk will still set spawns while in lava or when close to the bedrock roof in the Nether
-    // Switching dimensions will also cancel the newly changed spawn as if the obelisk was deactivated
+    // Placing an obelisk in the Nether and then switching dimensions will also cancel out the newly changed spawn as if the obelisk was deactivated
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         if (state.getValue(TYPE) == ObeliskType.INACTIVE && !playerIn.isSneaking()) {

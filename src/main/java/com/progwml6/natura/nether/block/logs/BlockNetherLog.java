@@ -27,7 +27,7 @@ public class BlockNetherLog extends BlockEnumLog<BlockNetherLog.LogType>
         super(TYPE, BlockNetherLog.LogType.class);
 
         this.setHardness(3.5F);
-        this.setResistance(40F);
+        this.setResistance(20.0F);
         this.setHarvestLevel("axe", 1, this.blockState.getBaseState().withProperty(TYPE, BlockNetherLog.LogType.FUSEWOOD));
         this.setHarvestLevel("axe", -1, this.blockState.getBaseState().withProperty(TYPE, BlockNetherLog.LogType.DARKWOOD));
         this.setDefaultState(this.blockState.getBaseState().withProperty(LOG_AXIS, BlockEnumLog.EnumAxis.Y));

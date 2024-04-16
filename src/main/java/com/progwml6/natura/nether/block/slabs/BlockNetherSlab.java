@@ -26,6 +26,7 @@ public class BlockNetherSlab extends EnumBlockSlab<BlockNetherSlab.PlankType>
         Blocks.FIRE.setFireInfo(this, 5, 20);
 
         this.setHardness(2.0F);
+        this.setResistance(10.0F);
         this.setSoundType(SoundType.WOOD);
         this.setCreativeTab(NaturaRegistry.tabDecorative);
     }
