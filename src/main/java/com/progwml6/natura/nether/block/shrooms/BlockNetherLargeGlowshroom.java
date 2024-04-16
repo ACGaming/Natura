@@ -12,18 +12,12 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.MobEffects;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IStringSerializable;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
@@ -41,7 +35,7 @@ public class BlockNetherLargeGlowshroom extends Block {
     public BlockNetherLargeGlowshroom(Block smallStateIn, int glowshroomMetaIn) {
         super(Material.WOOD);
 
-        this.setLightLevel(0.625f);
+        this.setLightLevel(0.825F);
 
         this.smallState = smallStateIn;
         this.glowshroomMeta = glowshroomMetaIn;
@@ -137,43 +131,6 @@ public class BlockNetherLargeGlowshroom extends Block {
 
         return block == this ? false : super.shouldSideBeRendered(blockState, blockAccess, pos, side);
     }
-
-    /*@Override
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
-    {
-        if (worldIn.getBlockState(pos.up()).getBlock() instanceof BlockNetherLargeGlowshroom)
-        {
-            return null;
-        }
-        else
-        {
-            return new AxisAlignedBB(pos.getX(), pos.getY() + 0.9375, pos.getZ(), pos.getX() + 1.0D, pos.getY() + 1.0D, pos.getZ() + 1.0D);
-        }
-    }*/
-
-    /*@Override
-    public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
-    {
-        if (entityIn.motionY < 0)
-        {
-            entityIn.motionY *= 0.25F;
-        }
-
-        entityIn.fallDistance -= 0.25f;
-
-        if (entityIn.motionY == 0f)
-        {
-            entityIn.motionX *= 0.25f;
-            entityIn.motionZ *= 0.25f;
-        }
-
-        if (entityIn instanceof EntityLiving)
-        {
-            EntityLiving living = (EntityLiving) entityIn;
-
-            living.addPotionEffect(new PotionEffect(MobEffects.NAUSEA, 100, 0));
-        }
-    }*/
 
     public static enum EnumType implements IStringSerializable {
         NORTH_WEST(1, "north_west"), NORTH(2, "north"), NORTH_EAST(3, "north_east"), WEST(4, "west"), CENTER(5, "center"), EAST(6, "east"), SOUTH_WEST(7, "south_west"), SOUTH(8, "south"), SOUTH_EAST(9, "south_east"), STEM(10, "stem"), ALL_INSIDE(0, "all_inside"), ALL_OUTSIDE(14, "all_outside"), ALL_STEM(15, "all_stem");

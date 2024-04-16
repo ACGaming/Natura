@@ -21,6 +21,7 @@ public class BlockNetherThornVines extends BlockVine
         super();
         this.setCreativeTab(NaturaRegistry.tabWorld);
         this.setHardness(1.0F);
+        this.setLightLevel(0.825F);
         this.setSoundType(SoundType.PLANT);
     }
 

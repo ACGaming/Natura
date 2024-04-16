@@ -35,7 +35,7 @@ public class BlockNetherGlowshroom extends BlockMushroom
     {
         super();
 
-        this.setLightLevel(0.625f);
+        this.setLightLevel(0.825F);
         this.setCreativeTab(NaturaRegistry.tabWorld);
         this.setSoundType(SoundType.PLANT);
     }
