@@ -13,9 +13,11 @@ import com.progwml6.natura.tools.item.tools.ItemNaturaAxe;
 import com.progwml6.natura.tools.item.tools.ItemNaturaFlintAndBlaze;
 import com.progwml6.natura.tools.item.tools.ItemNaturaHoe;
 import com.progwml6.natura.tools.item.tools.ItemNaturaPickaxe;
+import com.progwml6.natura.tools.item.tools.ItemNaturaShears;
 import com.progwml6.natura.tools.item.tools.ItemNaturaShovel;
 import com.progwml6.natura.tools.item.tools.ItemNaturaSword;
 
+import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
@@ -86,6 +88,7 @@ public class NaturaTools extends NaturaPulse
     public static Item netherquartzShovel;
     public static Item netherquartzAxe;
     public static Item netherquartzHoe;
+    public static Item netherquartzShears;
 
     public static Item flintAndBlaze;
     //@formatter:on
@@ -148,6 +151,7 @@ public class NaturaTools extends NaturaPulse
             netherquartzShovel = registerItem(registry, new ItemNaturaShovel(quartzToolMaterial), "netherquartz_shovel");
             netherquartzAxe = registerItem(registry, new ItemNaturaAxe(quartzToolMaterial, 9.0F, 0.95F), "netherquartz_axe");
             netherquartzHoe = registerItem(registry, new ItemNaturaHoe(quartzToolMaterial), "netherquartz_hoe");
+            netherquartzShears = registerItem(registry, new ItemNaturaShears(151, Ingredient.fromStacks(new ItemStack(Items.QUARTZ))), "netherquartz_shears");
 
             flintAndBlaze = registerItem(registry, new ItemNaturaFlintAndBlaze(), "flint_and_blaze");
         }

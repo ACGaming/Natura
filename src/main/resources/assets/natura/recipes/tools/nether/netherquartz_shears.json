@@ -1,0 +1,29 @@
+{
+  "conditions": [
+    {
+      "type": "natura:is_pulse_loaded",
+      "pulse_name": "NaturaNether"
+    },
+    {
+      "type": "natura:is_pulse_loaded",
+      "pulse_name": "NaturaTools"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  A",
+    " A ",
+    "B  "
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:quartz"
+    },
+    "B": {
+      "item": "minecraft:netherbrick"
+    }
+  },
+  "result": {
+    "item": "natura:netherquartz_shears"
+  }
+}

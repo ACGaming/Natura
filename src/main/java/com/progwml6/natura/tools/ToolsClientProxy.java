@@ -60,6 +60,7 @@ public class ToolsClientProxy extends ClientProxy
         this.registerItemModelNatura(new ItemStack(NaturaTools.netherquartzShovel), "netherquartz_shovel");
         this.registerItemModelNatura(new ItemStack(NaturaTools.netherquartzAxe), "netherquartz_axe");
         this.registerItemModelNatura(new ItemStack(NaturaTools.netherquartzHoe), "netherquartz_hoe");
+        this.registerItemModelNatura(new ItemStack(NaturaTools.netherquartzShears), "netherquartz_shears");
 
         this.registerItemModelNatura(new ItemStack(NaturaTools.flintAndBlaze), "flint_and_blaze");
     }
