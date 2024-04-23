@@ -78,6 +78,21 @@ tile.natura.redwood_leaves.normal.tooltip=Giant Sequoia
 tile.natura.redwood_sapling.redwood.name=Redwood Sapling
 tile.natura.redwood_sapling.redwood.tooltip=Plant these in a 7x7\nIt takes days to grow
 
+tile.natura.apple_log.apple.name=Apple Log
+tile.natura.apple_log.apple.tooltip=Apples to the Core
+
+tile.natura.apple_leaves.normal.name=Apple Leaves
+tile.natura.apple_leaves.normal.tooltip=Apples to the Core
+tile.natura.apple_leaves.flowering.name=Apple Leaves
+tile.natura.apple_leaves.flowering.tooltip=Apples to the Core\nFlowery
+tile.natura.apple_leaves.fruit.name=Apple Leaves
+tile.natura.apple_leaves.fruit.tooltip=Apples to the Core\nContains an apple
+tile.natura.apple_leaves.golden_fruit.name=Apple Leaves
+tile.natura.apple_leaves.golden_fruit.tooltip=Apples to the Core\nContains a golden apple
+
+tile.natura.apple_sapling.apple.name=Apple Sapling
+tile.natura.apple_sapling.apple.tooltip=Apples to the Core
+
 tile.natura.colored_grass.topiary.name=Topiary Grass
 tile.natura.colored_grass.bluegrass.name=Bluegrass
 tile.natura.colored_grass.autumnal.name=Autumnal Grass
@@ -108,6 +123,8 @@ tile.natura.overworld_planks.hopseed.name=Hopseed Planks
 tile.natura.overworld_planks.hopseed.tooltip=Ascended Glitch
 tile.natura.overworld_planks.redwood.name=Redwood Planks
 tile.natura.overworld_planks.redwood.tooltip=Giant Sequoia
+tile.natura.overworld_planks.apple.name=Apple Planks
+tile.natura.overworld_planks.apple.tooltip=Apples to the Core
 
 tile.natura.overworld_slab.maple.name=Maple Slab
 tile.natura.overworld_slab.maple.tooltip=Somewhat Sweet
@@ -127,6 +144,8 @@ tile.natura.overworld_slab2.hopseed.name=Hopseed Slab
 tile.natura.overworld_slab2.hopseed.tooltip=Ascended Glitch
 tile.natura.overworld_slab2.redwood.name=Redwood Slab
 tile.natura.overworld_slab2.redwood.tooltip=Giant Sequoia
+tile.natura.overworld_slab2.apple.name=Apple Slab
+tile.natura.overworld_slab2.apple.tooltip=Apples to the Core
 
 tile.natura.overworld_stairs_maple.name=Maple Stairs
 tile.natura.overworld_stairs_silverbell.name=Silverbell Stairs
@@ -137,6 +156,7 @@ tile.natura.overworld_stairs_eucalyptus.name=Eucalyptus Stairs
 tile.natura.overworld_stairs_hopseed.name=Hopseed Stairs
 tile.natura.overworld_stairs_sakura.name=Sakura Stairs
 tile.natura.overworld_stairs_redwood.name=Redwood Stairs
+tile.natura.overworld_stairs_apple.name=Apple Stairs
 
 tile.natura.overworld_berrybush_raspberry.name=Raspberry Bush
 tile.natura.overworld_berrybush_raspberry.tooltip=Sweet and red\nFound in warm areas
@@ -210,6 +230,12 @@ tile.natura.redwood_trap_door.name=Redwood Trapdoor
 tile.natura.redwood_fence.name=Redwood Fence
 tile.natura.redwood_fence_gate.name=Redwood Fence Gate
 
+tile.natura.apple_button.name=Apple Button
+tile.natura.apple_pressure_plate.name=Apple Pressure Plate
+tile.natura.apple_trap_door.name=Apple Trapdoor
+tile.natura.apple_fence.name=Apple Fence
+tile.natura.apple_fence_gate.name=Apple Fence Gate
+
 tile.natura.overworld_bookshelves.maple.name=Maple Bookshelf
 tile.natura.overworld_bookshelves.silverbell.name=Silverbell Bookshelf
 tile.natura.overworld_bookshelves.amaranth.name=Amaranth Bookshelf
@@ -219,6 +245,7 @@ tile.natura.overworld_bookshelves.eucalyptus.name=Eucalyptus Bookshelf
 tile.natura.overworld_bookshelves.hopseed.name=Hopseed Bookshelf
 tile.natura.overworld_bookshelves.sakura.name=Sakura Bookshelf
 tile.natura.overworld_bookshelves.redwood.name=Redwood Bookshelf
+tile.natura.overworld_bookshelves.apple.name=Apple Bookshelf
 
 tile.natura.overworld_workbenches.maple.name=Maple Crafting Table
 tile.natura.overworld_workbenches.silverbell.name=Silverbell Crafting Table
@@ -229,6 +256,7 @@ tile.natura.overworld_workbenches.eucalyptus.name=Eucalyptus Crafting Table
 tile.natura.overworld_workbenches.hopseed.name=Hopseed Crafting Table
 tile.natura.overworld_workbenches.sakura.name=Sakura Crafting Table
 tile.natura.overworld_workbenches.redwood.name=Redwood Crafting Table
+tile.natura.overworld_workbenches.apple.name=Apple Crafting Table
 
 #######################
 #    Nether Blocks    #
@@ -433,6 +461,7 @@ item.natura.sticks.eucalyptus_stick.name=Eucalyptus Stick
 item.natura.sticks.hopseed_stick.name=Hopseed Stick
 item.natura.sticks.sakura_stick.name=Sakura Stick
 item.natura.sticks.redwood_stick.name=Redwood Stick
+item.natura.sticks.apple_stick.name=Apple Stick
 item.natura.sticks.ghostwood_stick.name=Ghostwood Stick
 item.natura.sticks.darkwood_stick.name=Darkwood Stick
 item.natura.sticks.fusewood_stick.name=Fusewood Stick
@@ -488,6 +517,8 @@ item.natura.overworld_doors.amaranth_door.name=Amaranth Door
 item.natura.overworld_doors.amaranth_door.tooltip=Heart of Wood
 item.natura.overworld_doors.willow_door.name=Willow Door
 item.natura.overworld_doors.willow_door.tooltip=The Weeper
+item.natura.overworld_doors.apple_door.name=Apple Door
+item.natura.overworld_doors.apple_door.tooltip=Apples to the Core
 
 item.natura.nether_doors.ghostwood_door.name=Ghostwood Door
 item.natura.nether_doors.ghostwood_door.tooltip=Pale as a ghost

@@ -86,6 +86,14 @@
                     "top": "natura:blocks/workbenches/overworld/redwood_workbench_top",
                     "bottom": "natura:blocks/planks/overworld/redwood_planks"
                 }
+            },
+            "apple": {
+                "textures": {
+                    "front": "natura:blocks/workbenches/overworld/apple_workbench_face",
+                    "side": "natura:blocks/workbenches/overworld/apple_workbench_side",
+                    "top": "natura:blocks/workbenches/overworld/apple_workbench_top",
+                    "bottom": "natura:blocks/planks/overworld/apple_planks"
+                }
             }
         }
     }

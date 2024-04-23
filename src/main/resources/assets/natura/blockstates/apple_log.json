@@ -1,0 +1,32 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "transform": "forge:default-block"
+    },
+    "variants": {
+        "type": {
+            "apple": {
+                "model": "cube_column",
+                "textures": {
+                    "end": "natura:blocks/logs/overworld/apple_log_top",
+                    "side": "natura:blocks/logs/overworld/apple_log"
+                }
+            }
+        },
+        "axis": {
+            "none": {
+                "__comment": "nothing to rotate"
+            },
+            "y": {
+                "__comment": "nothing to rotate"
+            },
+            "z": {
+                "x": 90
+            },
+            "x": {
+                "x": 90,
+                "y": 90
+            }
+        }
+    }
+}

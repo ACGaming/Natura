@@ -78,6 +78,21 @@ tile.natura.redwood_leaves.normal.tooltip=Mammutbaum
 tile.natura.redwood_sapling.redwood.name=Mammutbaumsetzling
 tile.natura.redwood_sapling.redwood.tooltip=Pflanze diesen in einem 7x7-Feld\nEr benötigt Tage, um zu wachsen
 
+tile.natura.apple_log.apple.name=Apfelbaumholz
+tile.natura.apple_log.apple.tooltip=Äpfel bis zum Kern
+
+tile.natura.apple_leaves.normal.name=Apfelbaumblätter
+tile.natura.apple_leaves.normal.tooltip=Äpfel bis zum Kern
+tile.natura.apple_leaves.flowering.name=Apfelbaumblätter
+tile.natura.apple_leaves.flowering.tooltip=Äpfel bis zum Kern\nBlühend
+tile.natura.apple_leaves.fruit.name=Apfelbaumblätter
+tile.natura.apple_leaves.fruit.tooltip=Äpfel bis zum Kern\nEnthält einen Apfel
+tile.natura.apple_leaves.golden_fruit.name=Apfelbaumblätter
+tile.natura.apple_leaves.golden_fruit.tooltip=Äpfel bis zum Kern\nEnthält einen goldenen Apfel
+
+tile.natura.apple_sapling.apple.name=Apfelbaumsetzling
+tile.natura.apple_sapling.apple.tooltip=Äpfel bis zum Kern
+
 tile.natura.colored_grass.topiary.name=Formschnittgras
 tile.natura.colored_grass.bluegrass.name=Blaugras
 tile.natura.colored_grass.autumnal.name=Herbstliches Gras
@@ -108,6 +123,8 @@ tile.natura.overworld_planks.hopseed.name=Hopfenbuschbretter
 tile.natura.overworld_planks.hopseed.tooltip=Klein und klebrig
 tile.natura.overworld_planks.redwood.name=Mammutbaumholzbretter
 tile.natura.overworld_planks.redwood.tooltip=Mammutbaum
+tile.natura.overworld_planks.apple.name=Apfelbaumholzbretter
+tile.natura.overworld_planks.apple.tooltip=Äpfel bis zum Kern
 
 tile.natura.overworld_slab.maple.name=Ahornholzstufe
 tile.natura.overworld_slab.maple.tooltip=Etwas süßlich
@@ -127,6 +144,8 @@ tile.natura.overworld_slab2.hopseed.name=Hopfenbuschstufe
 tile.natura.overworld_slab2.hopseed.tooltip=Klein und klebrig
 tile.natura.overworld_slab2.redwood.name=Mammutbaumholzzstufe
 tile.natura.overworld_slab2.redwood.tooltip=Mammutbaum
+tile.natura.overworld_slab2.apple.name=Apfelbaumholzstufe
+tile.natura.overworld_slab2.apple.tooltip=Äpfel bis zum Kern
 
 tile.natura.overworld_stairs_maple.name=Ahornholztreppe
 tile.natura.overworld_stairs_silverbell.name=Schneeglöckchenholztreppe
@@ -137,6 +156,7 @@ tile.natura.overworld_stairs_eucalyptus.name=Eukalyptusholztreppe
 tile.natura.overworld_stairs_hopseed.name=Hopfenbuschtreppe
 tile.natura.overworld_stairs_sakura.name=Blütenkirschholztreppe
 tile.natura.overworld_stairs_redwood.name=Mammutbaumholztreppe
+tile.natura.overworld_stairs_apple.name=Apfelbaumholztreppe
 
 tile.natura.overworld_berrybush_raspberry.name=Himbeerstrauch
 tile.natura.overworld_berrybush_raspberry.tooltip=Süß und rot\nWächst in warmen Gebieten
@@ -205,10 +225,16 @@ tile.natura.sakura_fence.name=Blütenkirschholzzaun
 tile.natura.sakura_fence_gate.name=Blütenkirschholzzauntor
 
 tile.natura.redwood_button.name=Mammutbaumholzknopf
-tile.natura.redwood_pressure_plate.name=Rotholzdruckplatte
-tile.natura.redwood_trap_door.name=Rotholzfalltür
-tile.natura.redwood_fence.name=Rotholzzaun
-tile.natura.redwood_fence_gate.name=Rotholzzauntor
+tile.natura.redwood_pressure_plate.name=Mammutbaumholzdruckplatte
+tile.natura.redwood_trap_door.name=Mammutbaumholzfalltür
+tile.natura.redwood_fence.name=Mammutbaumholzzaun
+tile.natura.redwood_fence_gate.name=Mammutbaumholzzauntor
+
+tile.natura.apple_button.name=Apfelbaumholzknopf
+tile.natura.apple_pressure_plate.name=Apfelbaumholzdruckplatte
+tile.natura.apple_trap_door.name=Apfelbaumholzfalltür
+tile.natura.apple_fence.name=Apfelbaumholzzaun
+tile.natura.apple_fence_gate.name=Apfelbaumholzzauntor
 
 tile.natura.overworld_bookshelves.maple.name=Ahornholzbücherregal
 tile.natura.overworld_bookshelves.silverbell.name=Schneeglöckchenholzbücherregal
@@ -219,6 +245,7 @@ tile.natura.overworld_bookshelves.eucalyptus.name=Eukalyptusholzbücherregal
 tile.natura.overworld_bookshelves.hopseed.name=Hopfenbuschbücherregal
 tile.natura.overworld_bookshelves.sakura.name=Blütenkirschholzbücherregal
 tile.natura.overworld_bookshelves.redwood.name=Mammutbaumholzbücherregal
+tile.natura.overworld_bookshelves.apple.name=Apfelbaumholzbücherregal
 
 tile.natura.overworld_workbenches.maple.name=Ahornholzwerkbank
 tile.natura.overworld_workbenches.silverbell.name=Schneeglöckchenholzwerkbank
@@ -229,6 +256,7 @@ tile.natura.overworld_workbenches.eucalyptus.name=Eukalyptusholzwerkbank
 tile.natura.overworld_workbenches.hopseed.name=Hopfenbuschwerkbank
 tile.natura.overworld_workbenches.sakura.name=Blütenkirschholzwerkbank
 tile.natura.overworld_workbenches.redwood.name=Mammutbaumholzwerkbank
+tile.natura.overworld_workbenches.apple.name=Apfelbaumholzwerkbank
 
 #######################
 #    Nether Blocks    #
@@ -254,7 +282,7 @@ tile.natura.nether_leaves.fusewood.tooltip=Netherbaum\nExplosive Persönlichkeit
 tile.natura.nether_leaves2.darkwood.name=Finsterholzblätter
 tile.natura.nether_leaves2.darkwood.tooltip=Netherbaum\nBleich wie ein Gespenst
 tile.natura.nether_leaves2.darkwood_flowering.name=Finsterholzblätter
-tile.natura.nether_leaves2.darkwood_flowering.tooltip=Netherbaum\nBlumen
+tile.natura.nether_leaves2.darkwood_flowering.tooltip=Netherbaum\nBlühend
 tile.natura.nether_leaves2.darkwood_fruit.name=Finsterholzblätter
 tile.natura.nether_leaves2.darkwood_fruit.tooltip=Netherbaum\nEnthält einen Apfel
 
@@ -474,6 +502,8 @@ item.natura.overworld_doors.amaranth_door.name=Amaranthholztür
 item.natura.overworld_doors.amaranth_door.tooltip=Herz aus Holz
 item.natura.overworld_doors.willow_door.name=Weidenholztür
 item.natura.overworld_doors.willow_door.tooltip=Der Weinende
+item.natura.overworld_doors.apple_door.name=Apfelbaumholztür
+item.natura.overworld_doors.apple_door.tooltip=Äpfel bis zum Kern
 
 item.natura.nether_doors.ghostwood_door.name=Geisterholztür
 item.natura.nether_doors.ghostwood_door.tooltip=Bleich wie ein Gespenst
@@ -496,36 +526,37 @@ item.natura.ghostwood_sword.name=Geisterholzschwert
 item.natura.ghostwood_pickaxe.name=Geisterholzspitzhacke
 item.natura.ghostwood_shovel.name=Geisterholzschaufel
 item.natura.ghostwood_axe.name=Geisterholzaxt
-item.natura.ghostwood_kama.name=Geisterholzkama
+item.natura.ghostwood_hoe.name=Geisterholzhacke
 item.natura.ghostwood_bow.name=Geisterholzbogen
 
 item.natura.bloodwood_sword.name=Blutholzschwert
 item.natura.bloodwood_pickaxe.name=Blutholzspitzhacke
 item.natura.bloodwood_shovel.name=Blutholzschaufel
 item.natura.bloodwood_axe.name=Blutholzaxt
-item.natura.bloodwood_kama.name=Blutholzkama
+item.natura.bloodwood_hoe.name=Blutholzhacke
 item.natura.bloodwood_bow.name=Blutholzbogen
 
 item.natura.darkwood_sword.name=Finsterholzschwert
 item.natura.darkwood_pickaxe.name=Finsterholzspitzhacke
 item.natura.darkwood_shovel.name=Finsterholzschaufel
 item.natura.darkwood_axe.name=Finsterholzaxt
-item.natura.darkwood_kama.name=Finsterholzkama
+item.natura.darkwood_hoe.name=Finsterholzhacke
 item.natura.darkwood_bow.name=Finsterholzbogen
 
 item.natura.fusewood_sword.name=Zündholzschwert
 item.natura.fusewood_pickaxe.name=Zündholzspitzhacke
 item.natura.fusewood_shovel.name=Zündholzschaufel
 item.natura.fusewood_axe.name=Zündholzaxt
-item.natura.fusewood_kama.name=Zündholzkama
+item.natura.fusewood_hoe.name=Zündholzhacke
 item.natura.fusewood_bow.name=Zündholzbogen
 
 item.natura.netherquartz_sword.name=Quarzschwert
 item.natura.netherquartz_pickaxe.name=Quarzspitzhacke
 item.natura.netherquartz_shovel.name=Quarzschaufel
 item.natura.netherquartz_axe.name=Quarzaxt
-item.natura.netherquartz_kama.name=Quarzkama
+item.natura.netherquartz_hoe.name=Quarzhacke
 item.natura.netherquartz_bow.name=Quarzbogen
+item.natura.netherquartz_shears.name=Quarzschere
 
 #################
 #   Entities    #
@@ -536,22 +567,20 @@ entity.heatscarspider.name=Schwelspinne
 entity.babyheatscarspider.name=Babyschwelspinne
 entity.nitrocreeper.name=Nitrocreeper
 
-entity.natura.imp.name=Kobold
-entity.natura.heatscarspider.name=Schwelspinne
-entity.natura.babyheatscarspider.name=Babyschwelspinne
-entity.natura.nitrocreeper.name=Nitrocreeper
-
 ################
 #     GUIs     #
 ################
 
-itemGroup.NaturaGeneral=Allgemeine Items von Natura
-itemGroup.NaturaWorld=Die Welt-Items von Natura
-itemGroup.NaturaDecorative=Naturas Dekorations-Items
+itemGroup.NaturaGeneral=Natura allgemeine Items
+itemGroup.NaturaWorld=Naturas Welt-Items
+itemGroup.NaturaDecorative=Naturas dekorative Items
+
+msg.natura.respawn_obelisk.activate=Obelisk aktiviert. Spawnpunkt wurde gesetzt!
+msg.natura.respawn_obelisk.deactivate=Obelisk deaktiviert. Spawnpunkt wurde zurückgesetzt!
 
 ###############
 #    HWYLA    #
 ###############
 
-option.natura.alternatecropitem=Alternativer Anbau
+option.natura.alternatecropitem=Alternative Nutzpflanze
 option.natura.alternatedooritem=Alternative Tür

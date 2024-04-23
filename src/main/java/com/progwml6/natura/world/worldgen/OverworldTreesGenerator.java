@@ -2,20 +2,6 @@ package com.progwml6.natura.world.worldgen;
 
 import java.util.Random;
 
-import com.progwml6.natura.common.config.Config;
-import com.progwml6.natura.overworld.NaturaOverworld;
-import com.progwml6.natura.overworld.block.leaves.BlockRedwoodLeaves;
-import com.progwml6.natura.overworld.block.logs.BlockOverworldLog;
-import com.progwml6.natura.overworld.block.logs.BlockOverworldLog2;
-import com.progwml6.natura.overworld.block.logs.BlockRedwoodLog;
-import com.progwml6.natura.world.worldgen.saguaro.SaguaroGenerator;
-import com.progwml6.natura.world.worldgen.trees.overworld.EucalyptusTreeGenerator;
-import com.progwml6.natura.world.worldgen.trees.overworld.HopseedTreeGenerator;
-import com.progwml6.natura.world.worldgen.trees.overworld.OverworldTreeGenerator;
-import com.progwml6.natura.world.worldgen.trees.overworld.RedwoodTreeGenerator;
-import com.progwml6.natura.world.worldgen.trees.overworld.SakuraTreeGenerator;
-import com.progwml6.natura.world.worldgen.trees.overworld.WillowTreeGenerator;
-
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -25,6 +11,17 @@ import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.fml.common.IWorldGenerator;
+
+import com.progwml6.natura.common.config.Config;
+import com.progwml6.natura.overworld.NaturaOverworld;
+import com.progwml6.natura.overworld.block.leaves.BlockAppleLeaves;
+import com.progwml6.natura.overworld.block.leaves.BlockRedwoodLeaves;
+import com.progwml6.natura.overworld.block.logs.BlockAppleLog;
+import com.progwml6.natura.overworld.block.logs.BlockOverworldLog;
+import com.progwml6.natura.overworld.block.logs.BlockOverworldLog2;
+import com.progwml6.natura.overworld.block.logs.BlockRedwoodLog;
+import com.progwml6.natura.world.worldgen.saguaro.SaguaroGenerator;
+import com.progwml6.natura.world.worldgen.trees.overworld.*;
 
 public class OverworldTreesGenerator implements IWorldGenerator
 {
@@ -42,6 +39,8 @@ public class OverworldTreesGenerator implements IWorldGenerator
     SakuraTreeGenerator sakuraTreeGen;
 
     RedwoodTreeGenerator redwoodTreeGen;
+
+    AppleTreeGenerator appleTreeGen;
 
     SaguaroGenerator saguaroGen;
     //@formatter:on
@@ -68,6 +67,13 @@ public class OverworldTreesGenerator implements IWorldGenerator
         IBlockState redwoodLeaves = NaturaOverworld.redwoodLeaves.getDefaultState();
 
         this.redwoodTreeGen = new RedwoodTreeGenerator(redwoodLog.withProperty(BlockRedwoodLog.TYPE, BlockRedwoodLog.RedwoodType.BARK), redwoodLog.withProperty(BlockRedwoodLog.TYPE, BlockRedwoodLog.RedwoodType.HEART), redwoodLog.withProperty(BlockRedwoodLog.TYPE, BlockRedwoodLog.RedwoodType.ROOT), redwoodLeaves.withProperty(BlockRedwoodLeaves.TYPE, BlockRedwoodLeaves.RedwoodType.NORMAL), false, false);
+
+        IBlockState appleLog = NaturaOverworld.appleLog.getDefaultState().withProperty(BlockAppleLog.TYPE, BlockAppleLog.LogType.APPLE);
+        IBlockState appleLeavesNormal = NaturaOverworld.appleLeaves.getDefaultState().withProperty(BlockAppleLeaves.TYPE, BlockAppleLeaves.LeavesType.NORMAL);
+        IBlockState appleLeavesFlowering = NaturaOverworld.appleLeaves.getDefaultState().withProperty(BlockAppleLeaves.TYPE, BlockAppleLeaves.LeavesType.FLOWERING);
+        IBlockState appleLeavesFruiting = NaturaOverworld.appleLeaves.getDefaultState().withProperty(BlockAppleLeaves.TYPE, BlockAppleLeaves.LeavesType.FRUIT);
+        IBlockState appleLeavesFruitingGolden = NaturaOverworld.appleLeaves.getDefaultState().withProperty(BlockAppleLeaves.TYPE, BlockAppleLeaves.LeavesType.GOLDEN_FRUIT);
+        this.appleTreeGen = new AppleTreeGenerator(6, 4, appleLog, appleLeavesNormal, appleLeavesFlowering, appleLeavesFruiting, appleLeavesFruitingGolden);
 
         this.saguaroGen = new SaguaroGenerator(NaturaOverworld.saguaro.getDefaultState(), true, false);
     }
@@ -129,6 +135,46 @@ public class OverworldTreesGenerator implements IWorldGenerator
 
                     this.eucalyptusTreeGen.generateTree(random, world, position);
                 }
+
+                if (Config.generateMaple && random.nextInt(Config.mapleRarity) == 0)
+                {
+                    xSpawn = xPos + random.nextInt(16);
+                    ySpawn = Config.seaLevel + 48;
+                    zSpawn = zPos + random.nextInt(16);
+                    position = new BlockPos(xSpawn, ySpawn, zSpawn);
+
+                    this.mapleTreeGen.generateTree(random, world, position);
+                }
+
+                if (Config.generateSilverbell && random.nextInt(Config.silverbellRarity) == 0)
+                {
+                    xSpawn = xPos + random.nextInt(16);
+                    ySpawn = Config.seaLevel + 48;
+                    zSpawn = zPos + random.nextInt(16);
+                    position = new BlockPos(xSpawn, ySpawn, zSpawn);
+
+                    this.silverbellTreeGen.generateTree(random, world, position);
+                }
+
+                if (Config.generateTiger && random.nextInt(Config.tigerRarity) == 0)
+                {
+                    xSpawn = xPos + random.nextInt(16);
+                    ySpawn = Config.seaLevel + 48;
+                    zSpawn = zPos + random.nextInt(16);
+                    position = new BlockPos(xSpawn, ySpawn, zSpawn);
+
+                    this.tigerTreeGen.generateTree(random, world, position);
+                }
+
+                if (Config.generateApple && random.nextInt(Config.appleSpawnRarity) == 0)
+                {
+                    xSpawn = xPos + random.nextInt(16);
+                    ySpawn = random.nextInt(Config.appleSpawnRange) + Config.seaLevel;
+                    zSpawn = zPos + random.nextInt(16);
+                    position = new BlockPos(xSpawn, ySpawn, zSpawn);
+
+                    this.appleTreeGen.generateTree(random, world, position);
+                }
             }
 
             if (BiomeDictionary.hasType(biome, Type.PLAINS))
@@ -151,6 +197,16 @@ public class OverworldTreesGenerator implements IWorldGenerator
                     position = new BlockPos(xSpawn, ySpawn, zSpawn);
 
                     this.eucalyptusTreeGen.generateTree(random, world, position);
+                }
+
+                if (Config.generateApple && random.nextInt(Config.appleSpawnRarity) == 0)
+                {
+                    xSpawn = xPos + random.nextInt(16);
+                    ySpawn = random.nextInt(Config.appleSpawnRange) + Config.seaLevel;
+                    zSpawn = zPos + random.nextInt(16);
+                    position = new BlockPos(xSpawn, ySpawn, zSpawn);
+
+                    this.appleTreeGen.generateTree(random, world, position);
                 }
             }
 
@@ -213,39 +269,6 @@ public class OverworldTreesGenerator implements IWorldGenerator
                     position = new BlockPos(xSpawn, ySpawn, zSpawn);
 
                     this.amaranthTreeGen.generateTree(random, world, position);
-                }
-            }
-
-            if (BiomeDictionary.hasType(biome, Type.FOREST))
-            {
-                if (Config.generateMaple && random.nextInt(Config.mapleRarity) == 0)
-                {
-                    xSpawn = xPos + random.nextInt(16);
-                    ySpawn = Config.seaLevel + 48;
-                    zSpawn = zPos + random.nextInt(16);
-                    position = new BlockPos(xSpawn, ySpawn, zSpawn);
-
-                    this.mapleTreeGen.generateTree(random, world, position);
-                }
-
-                if (Config.generateSilverbell && random.nextInt(Config.silverbellRarity) == 0)
-                {
-                    xSpawn = xPos + random.nextInt(16);
-                    ySpawn = Config.seaLevel + 48;
-                    zSpawn = zPos + random.nextInt(16);
-                    position = new BlockPos(xSpawn, ySpawn, zSpawn);
-
-                    this.silverbellTreeGen.generateTree(random, world, position);
-                }
-
-                if (Config.generateTiger && random.nextInt(Config.tigerRarity) == 0)
-                {
-                    xSpawn = xPos + random.nextInt(16);
-                    ySpawn = Config.seaLevel + 48;
-                    zSpawn = zPos + random.nextInt(16);
-                    position = new BlockPos(xSpawn, ySpawn, zSpawn);
-
-                    this.tigerTreeGen.generateTree(random, world, position);
                 }
             }
 

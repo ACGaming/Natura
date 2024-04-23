@@ -87,6 +87,7 @@ public class NaturaOredict extends NaturaPulse {
 
             // Doors
             oredict(NaturaOverworld.overworldDoors, "doorWood");
+            oredict(NaturaOverworld.appleDoor, "doorWood");
 
             // Planks
             oredict(NaturaOverworld.overworldPlanks, "plankWood");
@@ -95,6 +96,7 @@ public class NaturaOredict extends NaturaPulse {
             oredict(NaturaOverworld.overworldLog, "logWood");
             oredict(NaturaOverworld.overworldLog2, "logWood");
             oredict(NaturaOverworld.redwoodLog, "logWood");
+            oredict(NaturaOverworld.appleLog, "logWood");
 
             // Slabs
             oredict(NaturaOverworld.overworldSlab, "slabWood");
@@ -104,11 +106,13 @@ public class NaturaOredict extends NaturaPulse {
             oredict(NaturaOverworld.overworldSapling, "treeSapling");
             oredict(NaturaOverworld.overworldSapling2, "treeSapling");
             oredict(NaturaOverworld.redwoodSapling, "treeSapling");
+            oredict(NaturaOverworld.appleSapling, "treeSapling");
 
             // Leaves
             oredict(NaturaOverworld.overworldLeaves, "treeLeaves");
             oredict(NaturaOverworld.overworldLeaves2, "treeLeaves");
             oredict(NaturaOverworld.redwoodLeaves, "treeLeaves");
+            oredict(NaturaOverworld.appleLeaves, "treeLeaves");
 
             // Stairs
             oredict(NaturaOverworld.overworldStairsAmaranth, "stairWood");
@@ -120,6 +124,7 @@ public class NaturaOredict extends NaturaPulse {
             oredict(NaturaOverworld.overworldStairsSilverbell, "stairWood");
             oredict(NaturaOverworld.overworldStairsTiger, "stairWood");
             oredict(NaturaOverworld.overworldStairsWillow, "stairWood");
+            oredict(NaturaOverworld.overworldStairsApple, "stairWood");
 
             // Seeds
             oredict(NaturaOverworld.barley_seeds, "seedBarley");

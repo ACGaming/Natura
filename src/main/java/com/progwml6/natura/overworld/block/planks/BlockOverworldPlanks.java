@@ -1,14 +1,15 @@
 package com.progwml6.natura.overworld.block.planks;
 
 import java.util.Locale;
-
-import com.progwml6.natura.library.NaturaRegistry;
+import javax.annotation.Nonnull;
 
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.IStringSerializable;
+
+import com.progwml6.natura.library.NaturaRegistry;
 import slimeknights.mantle.block.EnumBlock;
 
 public class BlockOverworldPlanks extends EnumBlock<BlockOverworldPlanks.PlankType>
@@ -28,7 +29,7 @@ public class BlockOverworldPlanks extends EnumBlock<BlockOverworldPlanks.PlankTy
 
     public enum PlankType implements IStringSerializable, EnumBlock.IEnumMeta
     {
-        MAPLE, SILVERBELL, AMARANTH, TIGER, WILLOW, EUCALYPTUS, HOPSEED, SAKURA, REDWOOD;
+        MAPLE, SILVERBELL, AMARANTH, TIGER, WILLOW, EUCALYPTUS, HOPSEED, SAKURA, REDWOOD, APPLE;
 
         public final int meta;
 
@@ -37,6 +38,7 @@ public class BlockOverworldPlanks extends EnumBlock<BlockOverworldPlanks.PlankTy
             this.meta = this.ordinal();
         }
 
+        @Nonnull
         @Override
         public String getName()
         {

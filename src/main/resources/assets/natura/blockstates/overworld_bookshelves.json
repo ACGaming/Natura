@@ -64,6 +64,12 @@
                     "end": "natura:blocks/planks/overworld/redwood_planks",
                     "side": "natura:blocks/bookshelves/overworld/redwood_bookshelf"
                 }
+            },
+            "apple": {
+                "textures": {
+                    "end": "natura:blocks/planks/overworld/apple_planks",
+                    "side": "natura:blocks/bookshelves/overworld/apple_bookshelf"
+                }
             }
         }
     }

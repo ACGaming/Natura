@@ -324,16 +324,15 @@ public final class Config
 
     // Trees Start
     public static boolean generateRedwood = false;
-
     public static boolean generateMaple = true;
     public static boolean generateSilverbell = true;
     public static boolean generateAmaranth = true;
     public static boolean generateTiger = true;
-
     public static boolean generateWillow = true;
     public static boolean generateEucalyptus = true;
     public static boolean generateHopseed = true;
     public static boolean generateSakura = true;
+    public static boolean generateApple = true;
 
     public static boolean generateBloodwood = true;
     public static boolean generateDarkwood = true;
@@ -341,12 +340,10 @@ public final class Config
     public static boolean generateGhostwood = true;
 
     public static int redwoodSpawnRarity = 150;
-
     public static int mapleRarity = 10;
     public static int silverbellRarity = 70;
     public static int amaranthRarity = 1;
     public static int tigerRarity = 30;
-
     public static int willowRarity = 10;
     public static int eucalyptusSpawnRarity = 25;
     public static int eucalyptusSpawnRange = 32;
@@ -354,6 +351,8 @@ public final class Config
     public static int hopseedSpawnRange = 20;
     public static int sakuraSpawnRarity = 10;
     public static int sakuraSpawnRange = 32;
+    public static int appleSpawnRarity = 40;
+    public static int appleSpawnRange = 32;
 
     public static int bloodwoodSpawnRarity = 14;
     public static int darkwoodSpawnRarity = 10;

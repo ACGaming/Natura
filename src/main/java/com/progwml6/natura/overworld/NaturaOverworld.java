@@ -1,8 +1,20 @@
 package com.progwml6.natura.overworld;
 
-import org.apache.logging.log4j.Logger;
-
 import com.google.common.eventbus.Subscribe;
+import org.apache.logging.log4j.Logger;
+import net.minecraft.block.Block;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.FurnaceRecipes;
+import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.event.RegistryEvent.Register;
+import net.minecraftforge.fml.common.SidedProxy;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.registries.IForgeRegistry;
+
 import com.progwml6.natura.common.CommonProxy;
 import com.progwml6.natura.common.NaturaPulse;
 import com.progwml6.natura.common.block.BlockEnumBerryBush;
@@ -16,9 +28,11 @@ import com.progwml6.natura.overworld.block.crops.BlockNaturaBarley;
 import com.progwml6.natura.overworld.block.crops.BlockNaturaCotton;
 import com.progwml6.natura.overworld.block.flower.BlockBluebellsFlower;
 import com.progwml6.natura.overworld.block.grass.BlockColoredGrass;
+import com.progwml6.natura.overworld.block.leaves.BlockAppleLeaves;
 import com.progwml6.natura.overworld.block.leaves.BlockOverworldLeaves;
 import com.progwml6.natura.overworld.block.leaves.BlockOverworldLeaves2;
 import com.progwml6.natura.overworld.block.leaves.BlockRedwoodLeaves;
+import com.progwml6.natura.overworld.block.logs.BlockAppleLog;
 import com.progwml6.natura.overworld.block.logs.BlockOverworldLog;
 import com.progwml6.natura.overworld.block.logs.BlockOverworldLog2;
 import com.progwml6.natura.overworld.block.logs.BlockRedwoodLog;
@@ -26,6 +40,7 @@ import com.progwml6.natura.overworld.block.planks.BlockOverworldPlanks;
 import com.progwml6.natura.overworld.block.saguaro.BlockSaguaro;
 import com.progwml6.natura.overworld.block.saguaro.BlockSaguaroBaby;
 import com.progwml6.natura.overworld.block.saguaro.BlockSaguaroFruit;
+import com.progwml6.natura.overworld.block.saplings.BlockAppleSapling;
 import com.progwml6.natura.overworld.block.saplings.BlockOverworldSapling;
 import com.progwml6.natura.overworld.block.saplings.BlockOverworldSapling2;
 import com.progwml6.natura.overworld.block.saplings.BlockRedwoodSapling;
@@ -36,19 +51,6 @@ import com.progwml6.natura.overworld.item.ItemSaguaroFruit;
 import com.progwml6.natura.overworld.item.ItemSeeds;
 import com.progwml6.natura.shared.NaturaCommons;
 import com.progwml6.natura.shared.item.bags.ItemSeedBag;
-
-import net.minecraft.block.Block;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.FurnaceRecipes;
-import net.minecraftforge.client.event.ModelRegistryEvent;
-import net.minecraftforge.event.RegistryEvent.Register;
-import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.registries.IForgeRegistry;
 import slimeknights.mantle.item.ItemBlockMeta;
 import slimeknights.mantle.pulsar.pulse.Pulse;
 
@@ -83,6 +85,10 @@ public class NaturaOverworld extends NaturaPulse
     public static BlockRedwoodSapling redwoodSapling;
     public static BlockRedwoodLeaves redwoodLeaves;
 
+    public static BlockAppleLog appleLog;
+    public static BlockAppleSapling appleSapling;
+    public static BlockAppleLeaves appleLeaves;
+
     public static BlockBluebellsFlower bluebellsFlower;
 
     public static BlockOverworldSlab overworldSlab;
@@ -97,6 +103,7 @@ public class NaturaOverworld extends NaturaPulse
     public static Block overworldStairsHopseed;
     public static Block overworldStairsSakura;
     public static Block overworldStairsRedwood;
+    public static Block overworldStairsApple;
 
     public static BlockEnumBerryBush overworldBerryBushRaspberry;
     public static BlockEnumBerryBush overworldBerryBushBlueberry;
@@ -116,6 +123,7 @@ public class NaturaOverworld extends NaturaPulse
     public static BlockNaturaDoor silverbellDoor;
     public static BlockNaturaDoor amaranthDoor;
     public static BlockNaturaDoor willowDoor;
+    public static BlockNaturaDoor appleDoor;
 
     public static BlockSaguaro saguaro;
     public static BlockSaguaroBaby saguaroBaby;
@@ -144,6 +152,7 @@ public class NaturaOverworld extends NaturaPulse
     public static ItemStack silverbell_door;
     public static ItemStack amaranth_door;
     public static ItemStack willow_door;
+    public static ItemStack apple_door;
     //@formatter:on
 
     @SubscribeEvent
@@ -161,14 +170,17 @@ public class NaturaOverworld extends NaturaPulse
         overworldLog = registerBlock(registry, new BlockOverworldLog(), "overworld_logs");
         overworldLog2 = registerBlock(registry, new BlockOverworldLog2(), "overworld_logs2");
         redwoodLog = registerBlock(registry, new BlockRedwoodLog(), "redwood_logs");
+        appleLog = registerBlock(registry, new BlockAppleLog(), "apple_log");
 
         overworldLeaves = registerBlock(registry, new BlockOverworldLeaves(), "overworld_leaves");
         overworldLeaves2 = registerBlock(registry, new BlockOverworldLeaves2(), "overworld_leaves2");
         redwoodLeaves = registerBlock(registry, new BlockRedwoodLeaves(), "redwood_leaves");
+        appleLeaves = registerBlock(registry, new BlockAppleLeaves(), "apple_leaves");
 
         overworldSapling = registerBlock(registry, new BlockOverworldSapling(), "overworld_sapling");
         overworldSapling2 = registerBlock(registry, new BlockOverworldSapling2(), "overworld_sapling2");
         redwoodSapling = registerBlock(registry, new BlockRedwoodSapling(), "redwood_sapling");
+        appleSapling = registerBlock(registry, new BlockAppleSapling(), "apple_sapling");
 
         bluebellsFlower = registerBlock(registry, new BlockBluebellsFlower(), "bluebells_flower");
 
@@ -186,6 +198,7 @@ public class NaturaOverworld extends NaturaPulse
         overworldStairsHopseed = registerBlockStairsFrom(registry, overworldPlanks, BlockOverworldPlanks.PlankType.HOPSEED, "overworld_stairs_hopseed");
         overworldStairsSakura = registerBlockStairsFrom(registry, overworldPlanks, BlockOverworldPlanks.PlankType.SAKURA, "overworld_stairs_sakura");
         overworldStairsRedwood = registerBlockStairsFrom(registry, overworldPlanks, BlockOverworldPlanks.PlankType.REDWOOD, "overworld_stairs_redwood");
+        overworldStairsApple = registerBlockStairsFrom(registry, overworldPlanks, BlockOverworldPlanks.PlankType.APPLE, "overworld_stairs_apple");
 
         overworldBerryBushRaspberry = registerBlock(registry, new BlockOverworldBerryBush(), "overworld_berrybush_raspberry");
         overworldBerryBushBlueberry = registerBlock(registry, new BlockOverworldBerryBush(), "overworld_berrybush_blueberry");
@@ -205,6 +218,7 @@ public class NaturaOverworld extends NaturaPulse
         silverbellDoor = registerBlock(registry, new BlockNaturaDoor(), "overworld_door_silverbell");
         amaranthDoor = registerBlock(registry, new BlockNaturaDoor(), "overworld_door_amaranth");
         willowDoor = registerBlock(registry, new BlockNaturaDoor(), "overworld_door_willow");
+        appleDoor = registerBlock(registry, new BlockNaturaDoor(), "overworld_door_apple");
 
         saguaro = registerBlock(registry, new BlockSaguaro(), "saguaro");
         saguaroBaby = registerBlock(registry, new BlockSaguaroBaby(), "saguaro_baby");
@@ -227,14 +241,17 @@ public class NaturaOverworld extends NaturaPulse
         overworldLog = registerEnumItemBlock(registry, overworldLog, "overworld_logs");
         overworldLog2 = registerEnumItemBlock(registry, overworldLog2, "overworld_logs2");
         redwoodLog = registerEnumItemBlock(registry, redwoodLog, "redwood_logs");
+        appleLog = registerEnumItemBlock(registry, appleLog, "apple_log");
 
         overworldLeaves = registerItemBlockProp(registry, new ItemBlockLeaves(overworldLeaves), "overworld_leaves", BlockOverworldLog.TYPE);
         overworldLeaves2 = registerItemBlockProp(registry, new ItemBlockLeaves(overworldLeaves2), "overworld_leaves2", BlockOverworldLog2.TYPE);
         redwoodLeaves = registerItemBlockProp(registry, new ItemBlockLeaves(redwoodLeaves), "redwood_leaves", BlockRedwoodLeaves.TYPE);
+        appleLeaves = registerItemBlockProp(registry, new ItemBlockLeaves(appleLeaves), "apple_leaves", BlockAppleLeaves.TYPE);
 
         overworldSapling = registerItemBlockProp(registry, new ItemBlockMeta(overworldSapling), "overworld_sapling", BlockOverworldSapling.FOLIAGE);
         overworldSapling2 = registerItemBlockProp(registry, new ItemBlockMeta(overworldSapling2), "overworld_sapling2", BlockOverworldSapling2.FOLIAGE);
         redwoodSapling = registerItemBlockProp(registry, new ItemBlockMeta(redwoodSapling), "redwood_sapling", BlockRedwoodSapling.FOLIAGE);
+        appleSapling = registerItemBlockProp(registry, new ItemBlockMeta(appleSapling), "apple_sapling", BlockAppleSapling.FOLIAGE);
 
         bluebellsFlower = registerItemBlock(registry, bluebellsFlower, "bluebells_flower");
 
@@ -252,6 +269,7 @@ public class NaturaOverworld extends NaturaPulse
         overworldStairsHopseed = registerItemBlock(registry, overworldStairsHopseed, "overworld_stairs_hopseed");
         overworldStairsSakura = registerItemBlock(registry, overworldStairsSakura, "overworld_stairs_sakura");
         overworldStairsRedwood = registerItemBlock(registry, overworldStairsRedwood, "overworld_stairs_redwood");
+        overworldStairsApple = registerItemBlock(registry, overworldStairsApple, "overworld_stairs_apple");
 
         overworldBerryBushRaspberry = registerItemBlock(registry, overworldBerryBushRaspberry, "overworld_berrybush_raspberry");
         overworldBerryBushBlueberry = registerItemBlock(registry, overworldBerryBushBlueberry, "overworld_berrybush_blueberry");
@@ -276,6 +294,7 @@ public class NaturaOverworld extends NaturaPulse
         silverbellDoor = registerItemBlock(registry, silverbellDoor, "overworld_door_silverbell");
         amaranthDoor = registerItemBlock(registry, amaranthDoor, "overworld_door_amaranth");
         willowDoor = registerItemBlock(registry, willowDoor, "overworld_door_willow");
+        appleDoor = registerItemBlock(registry, appleDoor, "overworld_door_apple");
 
         saguaro = registerItemBlock(registry, saguaro, "saguaro");
         saguaroBaby = registerItemBlock(registry, saguaroBaby, "saguaro_baby");
@@ -309,6 +328,7 @@ public class NaturaOverworld extends NaturaPulse
         silverbell_door = overworldDoors.addMeta(7, "silverbell_door", NaturaOverworld.silverbellDoor.getDefaultState());
         amaranth_door = overworldDoors.addMeta(8, "amaranth_door", NaturaOverworld.amaranthDoor.getDefaultState());
         willow_door = overworldDoors.addMeta(9, "willow_door", NaturaOverworld.willowDoor.getDefaultState());
+        apple_door = overworldDoors.addMeta(10, "apple_door", NaturaOverworld.appleDoor.getDefaultState());
 
         eucalyptusDoor.setDoor(NaturaOverworld.eucalyptus_door);
         hopseedDoor.setDoor(NaturaOverworld.hopseed_door);
@@ -320,6 +340,7 @@ public class NaturaOverworld extends NaturaPulse
         silverbellDoor.setDoor(NaturaOverworld.silverbell_door);
         amaranthDoor.setDoor(NaturaOverworld.amaranth_door);
         willowDoor.setDoor(NaturaOverworld.willow_door);
+        appleDoor.setDoor(NaturaOverworld.apple_door);
         // Items End
 
         NaturaRegistry.tabWorld.setDisplayIcon(new ItemStack(coloredGrass));
@@ -363,5 +384,6 @@ public class NaturaOverworld extends NaturaPulse
         furnaceRecipes.addSmeltingRecipe(new ItemStack(redwoodLog, 1, BlockRedwoodLog.RedwoodType.BARK.getMeta()), new ItemStack(Items.COAL, 1, 1), 0.15f);
         furnaceRecipes.addSmeltingRecipe(new ItemStack(redwoodLog, 1, BlockRedwoodLog.RedwoodType.ROOT.getMeta()), new ItemStack(Items.COAL, 1, 1), 0.15f);
         furnaceRecipes.addSmeltingRecipe(new ItemStack(redwoodLog, 1, BlockRedwoodLog.RedwoodType.HEART.getMeta()), new ItemStack(Items.COAL, 1, 1), 0.15f);
+        furnaceRecipes.addSmeltingRecipe(new ItemStack(appleLog, 1, BlockAppleLog.LogType.APPLE.getMeta()), new ItemStack(Items.COAL, 1, 1), 0.15f);
     }
 }

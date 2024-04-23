@@ -1,0 +1,38 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "transform": "forge:default-block",
+        "model": "leaves",
+        "textures": {
+            "all": "natura:blocks/leaves/overworld/apple_leaves"
+        }
+    },
+	"variants": {
+        "type": {
+            "normal": {
+                "model": "leaves",
+                "textures": {
+                    "all": "natura:blocks/leaves/overworld/apple_leaves"
+                }
+            },
+            "flowering": {
+                "model": "leaves",
+                "textures": {
+                    "all": "natura:blocks/leaves/overworld/apple_flowering_leaves"
+                }
+            },
+            "fruit": {
+                "model": "leaves",
+                "textures": {
+                    "all": "natura:blocks/leaves/overworld/apple_fruit_leaves"
+                }
+            },
+            "golden_fruit": {
+                "model": "leaves",
+                "textures": {
+                    "all": "natura:blocks/leaves/overworld/apple_golden_fruit_leaves"
+                }
+            }
+        }
+    }
+}

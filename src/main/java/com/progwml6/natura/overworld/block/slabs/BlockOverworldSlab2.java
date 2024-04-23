@@ -1,10 +1,7 @@
 package com.progwml6.natura.overworld.block.slabs;
 
 import java.util.Locale;
-
-import com.progwml6.natura.library.NaturaRegistry;
-import com.progwml6.natura.overworld.NaturaOverworld;
-import com.progwml6.natura.overworld.block.planks.BlockOverworldPlanks;
+import javax.annotation.Nonnull;
 
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -12,6 +9,10 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.IStringSerializable;
+
+import com.progwml6.natura.library.NaturaRegistry;
+import com.progwml6.natura.overworld.NaturaOverworld;
+import com.progwml6.natura.overworld.block.planks.BlockOverworldPlanks;
 import slimeknights.mantle.block.EnumBlock;
 import slimeknights.mantle.block.EnumBlockSlab;
 
@@ -43,7 +44,7 @@ public class BlockOverworldSlab2 extends EnumBlockSlab<BlockOverworldSlab2.Plank
     // using a separate Enum than BlockOverworldPlanks since there are more variants than the 8 types slabs support
     public enum PlankType implements IStringSerializable, EnumBlock.IEnumMeta
     {
-        EUCALYPTUS, HOPSEED, SAKURA, REDWOOD;
+        EUCALYPTUS, HOPSEED, SAKURA, REDWOOD, APPLE;
 
         public final int meta;
 
@@ -52,6 +53,7 @@ public class BlockOverworldSlab2 extends EnumBlockSlab<BlockOverworldSlab2.Plank
             this.meta = this.ordinal();
         }
 
+        @Nonnull
         @Override
         public String getName()
         {
@@ -62,16 +64,18 @@ public class BlockOverworldSlab2 extends EnumBlockSlab<BlockOverworldSlab2.Plank
         {
             switch (this)
             {
-            case EUCALYPTUS:
-                return BlockOverworldPlanks.PlankType.EUCALYPTUS;
-            case HOPSEED:
-                return BlockOverworldPlanks.PlankType.HOPSEED;
-            case SAKURA:
-                return BlockOverworldPlanks.PlankType.SAKURA;
-            case REDWOOD:
-                return BlockOverworldPlanks.PlankType.REDWOOD;
-            default:
-                return null;
+                case EUCALYPTUS:
+                    return BlockOverworldPlanks.PlankType.EUCALYPTUS;
+                case HOPSEED:
+                    return BlockOverworldPlanks.PlankType.HOPSEED;
+                case SAKURA:
+                    return BlockOverworldPlanks.PlankType.SAKURA;
+                case REDWOOD:
+                    return BlockOverworldPlanks.PlankType.REDWOOD;
+                case APPLE:
+                    return BlockOverworldPlanks.PlankType.APPLE;
+                default:
+                    return null;
             }
         }
 

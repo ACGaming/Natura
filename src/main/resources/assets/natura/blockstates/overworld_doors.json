@@ -14,6 +14,7 @@
         "maple_door": [{ "textures": { "layer0": "natura:items/doors/maple_door" }}],
         "silverbell_door": [{ "textures": { "layer0": "natura:items/doors/silverbell_door" }}],
         "amaranth_door": [{ "textures": { "layer0": "natura:items/doors/amaranth_door" }}],
-        "willow_door": [{ "textures": { "layer0": "natura:items/doors/willow_door" }}]
+        "willow_door": [{ "textures": { "layer0": "natura:items/doors/willow_door" }}],
+        "apple_door": [{ "textures": { "layer0": "natura:items/doors/apple_door" }}]
     }
 }
