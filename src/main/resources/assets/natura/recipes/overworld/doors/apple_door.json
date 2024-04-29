@@ -19,7 +19,8 @@
         }
     },
     "result": {
-        "item": "natura:apple_door",
+        "item": "natura:overworld_doors",
+        "data": 10,
         "count": 3
     }
 }
