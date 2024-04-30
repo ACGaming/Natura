@@ -1,8 +1,7 @@
 package com.progwml6.natura.overworld.block.crops;
 
 import java.util.Random;
-
-import javax.annotation.Nullable;
+import javax.annotation.Nonnull;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
@@ -10,10 +9,10 @@ import net.minecraft.block.IGrowable;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -24,91 +23,6 @@ import net.minecraftforge.common.ForgeHooks;
 
 public abstract class BlockOverworldCrops extends BlockBush implements IGrowable
 {
-    protected BlockOverworldCrops()
-    {
-        this.setDefaultState(this.blockState.getBaseState().withProperty(this.getAgeProperty(), Integer.valueOf(0)));
-        this.setTickRandomly(true);
-        this.setCreativeTab((CreativeTabs) null);
-        this.setHardness(0.0F);
-        this.setSoundType(SoundType.PLANT);
-        this.disableStats();
-    }
-
-    @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-    {
-        return new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.25D, 1.0D);
-    }
-
-    /**
-     * Return true if the block can sustain a Bush
-     */
-    @Override
-    protected boolean canSustainBush(IBlockState state)
-    {
-        return state.getBlock() == Blocks.FARMLAND;
-    }
-
-    protected abstract PropertyInteger getAgeProperty();
-
-    public abstract int getMaxAge();
-
-    protected int getAge(IBlockState state)
-    {
-        return state.getValue(this.getAgeProperty()).intValue();
-    }
-
-    public IBlockState withAge(int age)
-    {
-        return this.getDefaultState().withProperty(this.getAgeProperty(), Integer.valueOf(age));
-    }
-
-    public boolean isMaxAge(IBlockState state)
-    {
-        return state.getValue(this.getAgeProperty()).intValue() >= this.getMaxAge();
-    }
-
-    @Override
-    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
-    {
-        super.updateTick(worldIn, pos, state, rand);
-
-        if (worldIn.getLightFromNeighbors(pos.up()) >= 9)
-        {
-            int i = this.getAge(state);
-
-            if (i < this.getMaxAge())
-            {
-                float f = getGrowthChance(this, worldIn, pos);
-
-                if (ForgeHooks.onCropsGrowPre(worldIn, pos, state, rand.nextInt((int) (25.0F / f) + 1) == 0))
-                {
-                    worldIn.setBlockState(pos, this.withAge(i + 1), 2);
-
-                    ForgeHooks.onCropsGrowPost(worldIn, pos, state, worldIn.getBlockState(pos));
-                }
-            }
-        }
-    }
-
-    public void grow(World worldIn, BlockPos pos, IBlockState state)
-    {
-        int i = this.getAge(state) + this.getBonemealAgeIncrease(worldIn);
-        int j = this.getMaxAge();
-
-        if (i > j)
-        {
-            i = j;
-        }
-
-        worldIn.setBlockState(pos, this.withAge(i), 2);
-    }
-
-    protected int getBonemealAgeIncrease(World worldIn)
-    {
-        return MathHelper.getInt(worldIn.rand, 2, 5);
-    }
-
     protected static float getGrowthChance(Block blockIn, World worldIn, BlockPos pos)
     {
         float f = 1.0F;
@@ -164,66 +78,38 @@ public abstract class BlockOverworldCrops extends BlockBush implements IGrowable
         return f;
     }
 
-    @Override
-    public boolean canBlockStay(World worldIn, BlockPos pos, IBlockState state)
+    protected BlockOverworldCrops()
     {
-        IBlockState soil = worldIn.getBlockState(pos.down());
-        return (worldIn.getLight(pos) >= 8 || worldIn.canSeeSky(pos)) && soil.getBlock().canSustainPlant(soil, worldIn, pos.down(), net.minecraft.util.EnumFacing.UP, this);
+        this.setDefaultState(this.blockState.getBaseState().withProperty(this.getAgeProperty(), 0));
+        this.setTickRandomly(true);
+        this.setHardness(0.0F);
+        this.setSoundType(SoundType.PLANT);
+        this.disableStats();
     }
 
-    protected abstract ItemStack getSeed();
+    public abstract int getMaxAge();
 
-    protected abstract ItemStack getCrop();
-
-    @Override
-    public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
+    public IBlockState withAge(int age)
     {
-        super.getDrops(drops, world, pos, state, fortune);
+        return this.getDefaultState().withProperty(this.getAgeProperty(), age);
+    }
 
-        int age = this.getAge(state);
-        Random rand = world instanceof World ? ((World) world).rand : new Random();
+    public boolean isMaxAge(IBlockState state)
+    {
+        return state.getValue(this.getAgeProperty()) >= this.getMaxAge();
+    }
 
-        if (age >= this.getMaxAge())
+    public void grow(World worldIn, BlockPos pos, IBlockState state)
+    {
+        int i = this.getAge(state) + this.getBonemealAgeIncrease(worldIn);
+        int j = this.getMaxAge();
+
+        if (i > j)
         {
-            for (int i = 0; i < 3 + fortune; ++i)
-            {
-                if (rand.nextInt(2 * this.getMaxAge()) <= age)
-                {
-                    drops.add(this.getSeed());
-                }
-            }
+            i = j;
         }
-    }
 
-    /**
-     * Spawns this Block's drops into the World as EntityItems.
-     */
-    @Override
-    public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune)
-    {
-        super.dropBlockAsItemWithChance(worldIn, pos, state, chance, 0);
-    }
-
-    /**
-     * Get the Item that this Block should drop when harvested.
-     */
-    @Override
-    @Nullable
-    public Item getItemDropped(IBlockState state, Random rand, int fortune)
-    {
-        return this.isMaxAge(state) ? this.getCrop().getItem() : this.getSeed().getItem();
-    }
-
-    @Override
-    public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
-    {
-        return this.getSeed();
-    }
-
-    @Override
-    public int damageDropped(IBlockState state)
-    {
-        return this.isMaxAge(state) ? this.getCrop().getMetadata() : this.getSeed().getMetadata();
+        worldIn.setBlockState(pos, this.withAge(i), 2);
     }
 
     /**
@@ -251,6 +137,7 @@ public abstract class BlockOverworldCrops extends BlockBush implements IGrowable
      * Convert the given metadata into a BlockState for this Block
      */
     @Override
+    @Nonnull
     public IBlockState getStateFromMeta(int meta)
     {
         return this.withAge(meta);
@@ -264,4 +151,118 @@ public abstract class BlockOverworldCrops extends BlockBush implements IGrowable
     {
         return this.getAge(state);
     }
+
+    /**
+     * Get the Item that this Block should drop when harvested.
+     */
+    @Override
+    @Nonnull
+    public Item getItemDropped(IBlockState state, Random rand, int fortune)
+    {
+        return this.isMaxAge(state) ? this.getCrop().getItem() : this.getSeed().getItem();
+    }
+
+    /**
+     * Spawns this Block's drops into the World as EntityItems.
+     */
+    @Override
+    public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune)
+    {
+        super.dropBlockAsItemWithChance(worldIn, pos, state, chance, 0);
+    }
+
+    @Override
+    public int damageDropped(IBlockState state)
+    {
+        return this.isMaxAge(state) ? this.getCrop().getMetadata() : this.getSeed().getMetadata();
+    }
+
+    @Override
+    @Nonnull
+    public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
+    {
+        return this.isMaxAge(state) ? this.getCrop() : this.getSeed();
+    }
+
+    @Override
+    public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
+    {
+        super.getDrops(drops, world, pos, state, fortune);
+
+        int age = this.getAge(state);
+        Random rand = world instanceof World ? ((World) world).rand : new Random();
+
+        if (age >= this.getMaxAge())
+        {
+            for (int i = 0; i < 3 + fortune; ++i)
+            {
+                if (rand.nextInt(2 * this.getMaxAge()) <= age)
+                {
+                    drops.add(this.getSeed());
+                }
+            }
+        }
+    }
+
+    /**
+     * Return true if the block can sustain a Bush
+     */
+    @Override
+    protected boolean canSustainBush(IBlockState state)
+    {
+        return state.getBlock() == Blocks.FARMLAND;
+    }
+
+    @Override
+    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
+    {
+        super.updateTick(worldIn, pos, state, rand);
+
+        if (worldIn.getLightFromNeighbors(pos.up()) >= 9)
+        {
+            int i = this.getAge(state);
+
+            if (i < this.getMaxAge())
+            {
+                float f = getGrowthChance(this, worldIn, pos);
+
+                if (ForgeHooks.onCropsGrowPre(worldIn, pos, state, rand.nextInt((int) (25.0F / f) + 1) == 0))
+                {
+                    worldIn.setBlockState(pos, this.withAge(i + 1), 2);
+
+                    ForgeHooks.onCropsGrowPost(worldIn, pos, state, worldIn.getBlockState(pos));
+                }
+            }
+        }
+    }
+
+    @Override
+    public boolean canBlockStay(World worldIn, BlockPos pos, IBlockState state)
+    {
+        IBlockState soil = worldIn.getBlockState(pos.down());
+        return (worldIn.getLight(pos) >= 8 || worldIn.canSeeSky(pos)) && soil.getBlock().canSustainPlant(soil, worldIn, pos.down(), EnumFacing.UP, this);
+    }
+
+    @Override
+    @Nonnull
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        return new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.25D, 1.0D);
+    }
+
+    protected abstract PropertyInteger getAgeProperty();
+
+    protected int getAge(IBlockState state)
+    {
+        return state.getValue(this.getAgeProperty());
+    }
+
+    protected int getBonemealAgeIncrease(World worldIn)
+    {
+        return MathHelper.getInt(worldIn.rand, 2, 5);
+    }
+
+    protected abstract ItemStack getSeed();
+
+    protected abstract ItemStack getCrop();
 }
