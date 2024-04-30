@@ -28,7 +28,7 @@ public class BlockHeatSand extends BlockFalling {
 
     public BlockHeatSand() {
         super(Material.SAND);
-        this.setHardness(3f);
+        this.setHardness(0.5F);
         this.setSoundType(SoundType.SAND);
         this.setCreativeTab(NaturaRegistry.tabWorld);
         this.setHarvestLevel("shovel", 0);

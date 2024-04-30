@@ -11,6 +11,7 @@ import com.progwml6.natura.common.item.ItemBlockLeaves;
 import com.progwml6.natura.common.item.ItemNaturaDoor;
 import com.progwml6.natura.library.NaturaRegistry;
 import com.progwml6.natura.library.Util;
+import com.progwml6.natura.nether.block.BlockSmoothNetherrack;
 import com.progwml6.natura.nether.block.bush.BlockNetherBerryBush;
 import com.progwml6.natura.nether.block.button.BlockNetherButton;
 import com.progwml6.natura.nether.block.furnace.BlockNetherrackFurnace;
@@ -78,6 +79,7 @@ public class NaturaNether extends NaturaPulse
     public static BlockNetherThornVines netherThornVines;
 
     public static BlockNetherGlass netherGlass;
+    public static BlockSmoothNetherrack smoothNetherrack;
 
     public static Block netherStairsGhostwood;
     public static Block netherStairsBloodwood;
@@ -150,6 +152,8 @@ public class NaturaNether extends NaturaPulse
         netherThornVines = registerBlock(registry, new BlockNetherThornVines(), "nether_thorn_vines");
 
         netherGlass = registerBlock(registry, new BlockNetherGlass(), "nether_glass");
+        
+        smoothNetherrack = registerBlock(registry, new BlockSmoothNetherrack(), "smooth_netherrack");
 
         netherStairsGhostwood = registerBlockStairsFrom(registry, netherPlanks, BlockNetherPlanks.PlankType.GHOSTWOOD, "nether_stairs_ghostwood");
         netherStairsBloodwood = registerBlockStairsFrom(registry, netherPlanks, BlockNetherPlanks.PlankType.BLOODWOOD, "nether_stairs_bloodwood");
@@ -217,6 +221,8 @@ public class NaturaNether extends NaturaPulse
         netherThornVines = registerItemBlock(registry, netherThornVines, "nether_thorn_vines");
 
         netherGlass = registerEnumItemBlock(registry, netherGlass, "nether_glass");
+        
+        smoothNetherrack = registerItemBlock(registry, smoothNetherrack, "smooth_netherrack");
 
         netherStairsGhostwood = registerItemBlock(registry, netherStairsGhostwood, "nether_stairs_ghostwood");
         netherStairsBloodwood = registerItemBlock(registry, netherStairsBloodwood, "nether_stairs_bloodwood");

@@ -26,8 +26,7 @@ public class BlockTaintedSoil extends EnumBlock<BlockTaintedSoil.SoilType> {
         super(Material.GROUND, TYPE, SoilType.class);
 
         this.setCreativeTab(NaturaRegistry.tabWorld);
-        this.setHardness(2.2f);
-        this.setResistance(25F);
+        this.setHardness(0.5F);
         this.setSoundType(SoundType.GROUND);
         this.setHarvestLevel("shovel", 0);
     }

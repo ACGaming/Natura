@@ -9,7 +9,6 @@ import com.progwml6.natura.common.ClientProxy;
 import com.progwml6.natura.common.block.BlockEnumBerryBush;
 import com.progwml6.natura.common.client.LeavesColorizer;
 import com.progwml6.natura.library.Util;
-import com.progwml6.natura.library.client.state.CustomStateMap;
 import com.progwml6.natura.nether.block.leaves.BlockNetherLeaves;
 import com.progwml6.natura.nether.block.leaves.BlockNetherLeaves2;
 import com.progwml6.natura.nether.block.logs.BlockNetherLog;
@@ -106,6 +105,8 @@ public class NetherClientProxy extends ClientProxy
         registerItemBlockMeta(NaturaNether.netherTaintedSoil);
 
         registerItemBlockMeta(NaturaNether.netherGlass);
+        
+        registerItemModel(NaturaNether.smoothNetherrack);
 
         registerItemBlockMeta(NaturaNether.netherSlab);
 

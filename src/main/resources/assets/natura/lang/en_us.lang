@@ -391,6 +391,8 @@ tile.natura.darkwood_trap_door.name=Darkwood Trapdoor
 tile.natura.darkwood_fence.name=Darkwood Fence
 tile.natura.darkwood_fence_gate.name=Darkwood Fence Gate
 
+tile.natura.smooth_netherrack.name=Smooth Netherrack
+
 tile.natura.nether_bookshelves.ghostwood.name=Ghostwood Bookshelf
 tile.natura.nether_bookshelves.bloodwood.name=Bloodwood Bookshelf
 tile.natura.nether_bookshelves.fusewood.name=Fusewood Bookshelf
