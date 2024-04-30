@@ -4,7 +4,6 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -134,7 +133,7 @@ public class AppleTreeGenerator extends BaseTreeGenerator
 
     protected IBlockState getRandomizedLeaves(Random random)
     {
-        int chance = random.nextInt(100);
+        int chance = random.nextInt(200);
 
         if (chance == 0)
         {
@@ -165,10 +164,11 @@ public class AppleTreeGenerator extends BaseTreeGenerator
             do
             {
                 BlockPos position = new BlockPos(pos.getX(), height, pos.getZ());
+                IBlockState state = world.getBlockState(position);
+                Block block = state.getBlock();
+                boolean isSoil = block.canSustainPlant(state, world, position, EnumFacing.UP, NaturaOverworld.appleSapling);
 
-                Block block = world.getBlockState(position).getBlock();
-
-                if ((block == Blocks.DIRT || block == Blocks.GRASS) && !world.getBlockState(position.up()).isFullBlock())
+                if (isSoil && !world.getBlockState(position.up()).isFullBlock())
                 {
                     returnHeight = height + 1;
                     break;
@@ -185,10 +185,11 @@ public class AppleTreeGenerator extends BaseTreeGenerator
             do
             {
                 BlockPos position = new BlockPos(pos.getX(), height, pos.getZ());
+                IBlockState state = world.getBlockState(position);
+                Block block = state.getBlock();
+                boolean isSoil = block.canSustainPlant(state, world, position, EnumFacing.UP, NaturaOverworld.appleSapling);
 
-                Block block = world.getBlockState(position).getBlock();
-
-                if ((block == Blocks.DIRT || block == Blocks.GRASS) && !world.getBlockState(position.up()).isFullBlock())
+                if (isSoil && !world.getBlockState(position.up()).isFullBlock())
                 {
                     returnHeight = height + 1;
                     break;

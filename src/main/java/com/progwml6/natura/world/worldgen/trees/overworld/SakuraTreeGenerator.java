@@ -4,14 +4,8 @@ import java.util.List;
 import java.util.Random;
 
 import com.google.common.collect.Lists;
-import com.progwml6.natura.common.block.BlockEnumLog;
-import com.progwml6.natura.common.config.Config;
-import com.progwml6.natura.overworld.NaturaOverworld;
-import com.progwml6.natura.world.worldgen.trees.BaseTreeGenerator;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -20,42 +14,33 @@ import net.minecraft.world.WorldType;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 
+import com.progwml6.natura.common.block.BlockEnumLog;
+import com.progwml6.natura.common.config.Config;
+import com.progwml6.natura.overworld.NaturaOverworld;
+import com.progwml6.natura.world.worldgen.trees.BaseTreeGenerator;
+
 public class SakuraTreeGenerator extends BaseTreeGenerator
 {
-    private Random rand;
-
-    private World world;
-
-    private BlockPos basePos = BlockPos.ORIGIN;
-
-    int heightLimit;
-
-    int height;
-
-    double heightAttenuation = 0.618D;
-
-    double branchSlope = 0.381D;
-
-    double scaleWidth = 1.0D;
-
-    double leafDensity = 1.0D;
-
-    int trunkSize = 1;
-
-    int heightLimitLimit = 12;
-
-    /** Sets the distance limit for how far away the generator will populate leaves from the base leaf node. */
-    int leafDistanceLimit = 4;
-
-    List<FoliageCoordinates> foliageCoords;
-
     public final IBlockState log;
-
     public final IBlockState leaves;
-
     public final boolean findGround;
-
     public final boolean isSapling;
+    int heightLimit;
+    int height;
+    double heightAttenuation = 0.618D;
+    double branchSlope = 0.381D;
+    double scaleWidth = 1.0D;
+    double leafDensity = 1.0D;
+    int trunkSize = 1;
+    int heightLimitLimit = 12;
+    /**
+     * Sets the distance limit for how far away the generator will populate leaves from the base leaf node.
+     */
+    int leafDistanceLimit = 4;
+    List<FoliageCoordinates> foliageCoords;
+    private Random rand;
+    private World world;
+    private BlockPos basePos = BlockPos.ORIGIN;
 
     public SakuraTreeGenerator(IBlockState log, IBlockState leaves, boolean findGround, boolean isSapling)
     {
@@ -63,6 +48,68 @@ public class SakuraTreeGenerator extends BaseTreeGenerator
         this.isSapling = isSapling;
         this.log = log;
         this.leaves = leaves;
+    }
+
+    public void setDecorationDefaults()
+    {
+        this.leafDistanceLimit = 5;
+    }
+
+    public boolean isReplaceable(World world, BlockPos pos)
+    {
+        net.minecraft.block.state.IBlockState state = world.getBlockState(pos);
+        return state.getBlock().isAir(state, world, pos) || state.getBlock().isLeaves(state, world, pos);
+    }
+
+    @Override
+    public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider)
+    {
+    }
+
+    @Override
+    public void generateTree(Random random, World worldIn, BlockPos position)
+    {
+        this.world = worldIn;
+
+        if (this.findGround)
+        {
+            this.basePos = this.findGround(worldIn, position);
+        }
+        else
+        {
+            this.basePos = position;
+        }
+
+        this.rand = new Random(random.nextLong());
+
+        if (this.heightLimit == 0)
+        {
+            this.heightLimit = 5 + this.rand.nextInt(this.heightLimitLimit);
+        }
+
+        if (!this.validTreeLocation())
+        {
+            this.world = null; //Fix vanilla Mem leak, holds latest world
+        }
+        else
+        {
+            this.generateLeafNodeList();
+            this.generateLeaves();
+            this.generateTrunk();
+            this.generateLeafNodeBases();
+            this.world = null; //Fix vanilla Mem leak, holds latest world
+        }
+    }
+
+    protected void setBlockAndMetadata(World world, BlockPos pos, IBlockState stateNew)
+    {
+        IBlockState state = world.getBlockState(pos);
+        Block block = state.getBlock();
+
+        if (block.isAir(state, world, pos) || block.canPlaceBlockAt(world, pos) || world.getBlockState(pos) == this.leaves)
+        {
+            world.setBlockState(pos, stateNew, 2);
+        }
     }
 
     /**
@@ -86,7 +133,7 @@ public class SakuraTreeGenerator extends BaseTreeGenerator
 
         int j = this.basePos.getY() + this.height;
         int k = this.heightLimit - this.leafDistanceLimit;
-        this.foliageCoords = Lists.<FoliageCoordinates> newArrayList();
+        this.foliageCoords = Lists.newArrayList();
         this.foliageCoords.add(new FoliageCoordinates(this.basePos.up(k), j));
 
         for (; k >= 0; --k)
@@ -205,39 +252,6 @@ public class SakuraTreeGenerator extends BaseTreeGenerator
     }
 
     /**
-     * Returns the absolute greatest distance in the BlockPos object.
-     */
-    private int getGreatestDistance(BlockPos posIn)
-    {
-        int i = MathHelper.abs(posIn.getX());
-        int j = MathHelper.abs(posIn.getY());
-        int k = MathHelper.abs(posIn.getZ());
-        return k > i && k > j ? k : (j > i ? j : i);
-    }
-
-    private BlockEnumLog.EnumAxis getLogAxis(BlockPos p_175938_1_, BlockPos p_175938_2_)
-    {
-        BlockEnumLog.EnumAxis enumaxis = BlockEnumLog.EnumAxis.Y;
-        int i = Math.abs(p_175938_2_.getX() - p_175938_1_.getX());
-        int j = Math.abs(p_175938_2_.getZ() - p_175938_1_.getZ());
-        int k = Math.max(i, j);
-
-        if (k > 0)
-        {
-            if (i == k)
-            {
-                enumaxis = BlockEnumLog.EnumAxis.X;
-            }
-            else if (j == k)
-            {
-                enumaxis = BlockEnumLog.EnumAxis.Z;
-            }
-        }
-
-        return enumaxis;
-    }
-
-    /**
      * Generates the leaf portion of the tree as specified by the leafNodes list.
      */
     void generateLeaves()
@@ -323,9 +337,87 @@ public class SakuraTreeGenerator extends BaseTreeGenerator
         }
     }
 
-    public void setDecorationDefaults()
+    BlockPos findGround(World world, BlockPos pos)
     {
-        this.leafDistanceLimit = 5;
+        if (world.getWorldType() == WorldType.FLAT && this.isSapling)
+        {
+            boolean foundGround = false;
+
+            int height = Config.flatSeaLevel + 64;
+
+            do
+            {
+                height--;
+                BlockPos position = new BlockPos(pos.getX(), height, pos.getZ());
+                IBlockState underBlockState = world.getBlockState(position);
+                Block underBlock = underBlockState.getBlock();
+                boolean isSoil = underBlock.canSustainPlant(underBlockState, world, position, EnumFacing.UP, NaturaOverworld.overworldSapling);
+
+                if (isSoil || height < Config.flatSeaLevel)
+                {
+                    foundGround = true;
+                }
+            }
+            while (!foundGround);
+
+            return new BlockPos(pos.getX(), height + 1, pos.getZ());
+        }
+        else
+        {
+            boolean foundGround = false;
+
+            int height = Config.seaLevel + 64;
+
+            do
+            {
+                height--;
+                BlockPos position = new BlockPos(pos.getX(), height, pos.getZ());
+                IBlockState underState = world.getBlockState(position);
+                Block underBlock = underState.getBlock();
+                boolean isSoil = underBlock.canSustainPlant(underState, world, position, EnumFacing.UP, NaturaOverworld.overworldSapling);
+
+                if (isSoil || height < Config.seaLevel)
+                {
+                    foundGround = true;
+                }
+            }
+            while (!foundGround);
+
+            return new BlockPos(pos.getX(), height + 1, pos.getZ());
+        }
+    }
+
+    /**
+     * Returns the absolute greatest distance in the BlockPos object.
+     */
+    private int getGreatestDistance(BlockPos posIn)
+    {
+        int i = MathHelper.abs(posIn.getX());
+        int j = MathHelper.abs(posIn.getY());
+        int k = MathHelper.abs(posIn.getZ());
+        return k > i && k > j ? k : (j > i ? j : i);
+    }
+
+    private BlockEnumLog.EnumAxis getLogAxis(BlockPos p_175938_1_, BlockPos p_175938_2_)
+    {
+        BlockEnumLog.EnumAxis enumaxis = BlockEnumLog.EnumAxis.Y;
+        int i = Math.abs(p_175938_2_.getX() - p_175938_1_.getX());
+        int j = Math.abs(p_175938_2_.getZ() - p_175938_1_.getZ());
+        int k = Math.max(i, j);
+
+        if (k > 0)
+        {
+            if (i == k)
+            {
+                enumaxis = BlockEnumLog.EnumAxis.X;
+            }
+            else if (j == k)
+            {
+                enumaxis = BlockEnumLog.EnumAxis.Z;
+            }
+        }
+
+        return enumaxis;
     }
 
     /**
@@ -359,109 +451,6 @@ public class SakuraTreeGenerator extends BaseTreeGenerator
                 this.heightLimit = i;
                 return true;
             }
-        }
-    }
-
-    protected void setBlockAndMetadata(World world, BlockPos pos, IBlockState stateNew)
-    {
-        IBlockState state = world.getBlockState(pos);
-        Block block = state.getBlock();
-
-        if (block.isAir(state, world, pos) || block.canPlaceBlockAt(world, pos) || world.getBlockState(pos) == this.leaves)
-        {
-            world.setBlockState(pos, stateNew, 2);
-        }
-    }
-
-    BlockPos findGround(World world, BlockPos pos)
-    {
-        if (world.getWorldType() == WorldType.FLAT && this.isSapling)
-        {
-            boolean foundGround = false;
-
-            int height = Config.flatSeaLevel + 64;
-
-            do
-            {
-                height--;
-                BlockPos position = new BlockPos(pos.getX(), height, pos.getZ());
-                Block underBlock = world.getBlockState(position).getBlock();
-
-                if (underBlock == Blocks.DIRT || underBlock == Blocks.GRASS || height < Config.flatSeaLevel)
-                {
-                    foundGround = true;
-                }
-            }
-            while (!foundGround);
-
-            return new BlockPos(pos.getX(), height + 1, pos.getZ());
-        }
-        else
-        {
-            boolean foundGround = false;
-
-            int height = Config.seaLevel + 64;
-
-            do
-            {
-                height--;
-                BlockPos position = new BlockPos(pos.getX(), height, pos.getZ());
-                Block underBlock = world.getBlockState(position).getBlock();
-
-                if (underBlock == Blocks.DIRT || underBlock == Blocks.GRASS || height < Config.seaLevel)
-                {
-                    foundGround = true;
-                }
-            }
-            while (!foundGround);
-
-            return new BlockPos(pos.getX(), height + 1, pos.getZ());
-        }
-    }
-
-    public boolean isReplaceable(World world, BlockPos pos)
-    {
-        net.minecraft.block.state.IBlockState state = world.getBlockState(pos);
-        return state.getBlock().isAir(state, world, pos) || state.getBlock().isLeaves(state, world, pos);
-    }
-
-    @Override
-    public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider)
-    {
-    }
-
-    @Override
-    public void generateTree(Random random, World worldIn, BlockPos position)
-    {
-        this.world = worldIn;
-
-        if (this.findGround)
-        {
-            this.basePos = this.findGround(worldIn, position);
-        }
-        else
-        {
-            this.basePos = position;
-        }
-
-        this.rand = new Random(random.nextLong());
-
-        if (this.heightLimit == 0)
-        {
-            this.heightLimit = 5 + this.rand.nextInt(this.heightLimitLimit);
-        }
-
-        if (!this.validTreeLocation())
-        {
-            this.world = null; //Fix vanilla Mem leak, holds latest world
-        }
-        else
-        {
-            this.generateLeafNodeList();
-            this.generateLeaves();
-            this.generateTrunk();
-            this.generateLeafNodeBases();
-            this.world = null; //Fix vanilla Mem leak, holds latest world
         }
     }
 

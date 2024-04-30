@@ -4,11 +4,13 @@ import java.util.Random;
 
 import com.progwml6.natura.common.block.BlockEnumBerryBush;
 import com.progwml6.natura.common.config.Config;
+import com.progwml6.natura.overworld.NaturaOverworld;
 import com.progwml6.natura.world.worldgen.berry.BaseBerryBushGenerator;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -131,8 +133,9 @@ public class OverworldBerryBushGenerator extends BaseBerryBushGenerator
 
         IBlockState state = world.getBlockState(pos);
         Block block = state.getBlock();
+        boolean isSoil = block.canSustainPlant(state, world, pos, EnumFacing.UP, NaturaOverworld.overworldBerryBushBlackberry);
 
-        if (block == Blocks.DIRT || block == Blocks.GRASS)
+        if (isSoil)
         {
             pos.up();
 
@@ -204,10 +207,12 @@ public class OverworldBerryBushGenerator extends BaseBerryBushGenerator
     BlockPos findGround(World world, BlockPos pos)
     {
         int returnHeight = -1;
-        IBlockState stateDown = world.getBlockState(pos.down());
+        BlockPos posDown = pos.down();
+        IBlockState stateDown = world.getBlockState(posDown);
         Block blockDown = stateDown.getBlock();
+        boolean isSoilDown = blockDown.canSustainPlant(stateDown, world, posDown, EnumFacing.UP, NaturaOverworld.overworldBerryBushBlackberry);
 
-        if (!world.getBlockState(pos).isOpaqueCube() && (blockDown == Blocks.GRASS || blockDown == Blocks.DIRT))
+        if (!world.getBlockState(pos).isOpaqueCube() && isSoilDown)
         {
             return pos;
         }
@@ -225,8 +230,9 @@ public class OverworldBerryBushGenerator extends BaseBerryBushGenerator
 
             IBlockState state = world.getBlockState(position);
             Block block = state.getBlock();
+            boolean isSoil = block.canSustainPlant(state, world, position, EnumFacing.UP, NaturaOverworld.overworldBerryBushBlackberry);
 
-            if ((block == Blocks.DIRT || block == Blocks.GRASS))
+            if (isSoil)
             {
                 if (!world.getBlockState(position.up()).isOpaqueCube())
                 {

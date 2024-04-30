@@ -2,19 +2,20 @@ package com.progwml6.natura.world.worldgen.trees.overworld;
 
 import java.util.Random;
 
-import com.progwml6.natura.common.config.Config;
-import com.progwml6.natura.overworld.NaturaOverworld;
-import com.progwml6.natura.world.worldgen.trees.BaseTreeGenerator;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
+
+import com.progwml6.natura.common.config.Config;
+import com.progwml6.natura.overworld.NaturaOverworld;
+import com.progwml6.natura.world.worldgen.trees.BaseTreeGenerator;
 
 public class WillowTreeGenerator extends BaseTreeGenerator
 {
@@ -65,7 +66,6 @@ public class WillowTreeGenerator extends BaseTreeGenerator
 
         for (height = random.nextInt(this.treeHeightRange) + this.minTreeHeight; worldIn.getBlockState(position.down()).getMaterial() == Material.WATER; position = position.down())
         {
-            ;
         }
 
         boolean flag = true;
@@ -216,6 +216,16 @@ public class WillowTreeGenerator extends BaseTreeGenerator
         }
     }
 
+    protected void setBlockAndMetadata(World world, BlockPos pos, IBlockState stateNew)
+    {
+        IBlockState state = world.getBlockState(pos);
+        Block block = state.getBlock();
+        if (block.isAir(state, world, pos) || block.canPlaceBlockAt(world, pos) || world.getBlockState(pos) == this.leaves)
+        {
+            world.setBlockState(pos, stateNew, 2);
+        }
+    }
+
     BlockPos findGround(World world, BlockPos pos)
     {
         int returnHeight = 0;
@@ -227,10 +237,11 @@ public class WillowTreeGenerator extends BaseTreeGenerator
             do
             {
                 BlockPos position = new BlockPos(pos.getX(), height, pos.getZ());
+                IBlockState state = world.getBlockState(position);
+                Block block = state.getBlock();
+                boolean isSoil = block.canSustainPlant(state, world, position, EnumFacing.UP, NaturaOverworld.overworldSapling);
 
-                Block block = world.getBlockState(position).getBlock();
-
-                if ((block == Blocks.DIRT || block == Blocks.GRASS || block == Blocks.SAND) && !world.getBlockState(position.up()).isFullBlock())
+                if (isSoil && !world.getBlockState(position.up()).isFullBlock())
                 {
                     returnHeight = height + 1;
                     break;
@@ -247,10 +258,11 @@ public class WillowTreeGenerator extends BaseTreeGenerator
             do
             {
                 BlockPos position = new BlockPos(pos.getX(), height, pos.getZ());
+                IBlockState state = world.getBlockState(position);
+                Block block = state.getBlock();
+                boolean isSoil = block.canSustainPlant(state, world, position, EnumFacing.UP, NaturaOverworld.overworldSapling);
 
-                Block block = world.getBlockState(position).getBlock();
-
-                if ((block == Blocks.DIRT || block == Blocks.GRASS || block == Blocks.SAND) && !world.getBlockState(position.up()).isFullBlock())
+                if (isSoil && !world.getBlockState(position.up()).isFullBlock())
                 {
                     returnHeight = height + 1;
                     break;
@@ -273,16 +285,6 @@ public class WillowTreeGenerator extends BaseTreeGenerator
         {
             this.setBlockAndMetadata(worldIn, pos, this.leaves);
             pos = pos.down();
-        }
-    }
-
-    protected void setBlockAndMetadata(World world, BlockPos pos, IBlockState stateNew)
-    {
-        IBlockState state = world.getBlockState(pos);
-        Block block = state.getBlock();
-        if (block.isAir(state, world, pos) || block.canPlaceBlockAt(world, pos) || world.getBlockState(pos) == this.leaves)
-        {
-            world.setBlockState(pos, stateNew, 2);
         }
     }
 

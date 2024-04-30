@@ -2,9 +2,6 @@ package com.progwml6.natura.world.worldgen.trees.overworld;
 
 import java.util.Random;
 
-import com.progwml6.natura.overworld.NaturaOverworld;
-import com.progwml6.natura.world.worldgen.trees.BaseTreeGenerator;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -14,6 +11,9 @@ import net.minecraft.util.math.BlockPos.MutableBlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
+
+import com.progwml6.natura.overworld.NaturaOverworld;
+import com.progwml6.natura.world.worldgen.trees.BaseTreeGenerator;
 
 public class HopseedTreeGenerator extends BaseTreeGenerator
 {
@@ -183,31 +183,11 @@ public class HopseedTreeGenerator extends BaseTreeGenerator
         }
     }
 
-    private boolean blocksMatch(World world, BlockPos pos)
+    public boolean isReplaceable(World worldIn, BlockPos positionIn)
     {
-        Block underBlock = world.getBlockState(pos).getBlock();
+        IBlockState state = worldIn.getBlockState(positionIn);
 
-        if (underBlock == Blocks.DIRT || underBlock == Blocks.GRASS)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    private void growLogs(World worldIn, BlockPos positionIn)
-    {
-        this.setBlockAndMetadata(worldIn, positionIn, this.log);
-        this.setBlockAndMetadata(worldIn, positionIn.add(+1, 0, 0), this.log);
-        this.setBlockAndMetadata(worldIn, positionIn.add(0, 0, +1), this.log);
-        this.setBlockAndMetadata(worldIn, positionIn.add(+1, 0, +1), this.log);
-
-        this.setBlockAndMetadata(worldIn, positionIn.add(0, +1, 0), this.log);
-        this.setBlockAndMetadata(worldIn, positionIn.add(+1, +1, 0), this.log);
-        this.setBlockAndMetadata(worldIn, positionIn.add(0, +1, +1), this.log);
-        this.setBlockAndMetadata(worldIn, positionIn.add(+1, +1, +1), this.log);
+        return state.getBlock().isAir(state, worldIn, positionIn) || state.getBlock().isLeaves(state, worldIn, positionIn) || state.getBlock().isWood(worldIn, positionIn);
     }
 
     protected void growLeaves(World worldIn, Random random, BlockPos positionIn, int height)
@@ -248,11 +228,24 @@ public class HopseedTreeGenerator extends BaseTreeGenerator
         }
     }
 
-    public boolean isReplaceable(World worldIn, BlockPos positionIn)
+    private boolean blocksMatch(World world, BlockPos pos)
     {
-        IBlockState state = worldIn.getBlockState(positionIn);
+        IBlockState underState = world.getBlockState(pos);
+        Block underBlock = underState.getBlock();
+        return underBlock.canSustainPlant(underState, world, pos, EnumFacing.UP, NaturaOverworld.overworldSapling);
+    }
 
-        return state.getBlock().isAir(state, worldIn, positionIn) || state.getBlock().isLeaves(state, worldIn, positionIn) || state.getBlock().isWood(worldIn, positionIn);
+    private void growLogs(World worldIn, BlockPos positionIn)
+    {
+        this.setBlockAndMetadata(worldIn, positionIn, this.log);
+        this.setBlockAndMetadata(worldIn, positionIn.add(+1, 0, 0), this.log);
+        this.setBlockAndMetadata(worldIn, positionIn.add(0, 0, +1), this.log);
+        this.setBlockAndMetadata(worldIn, positionIn.add(+1, 0, +1), this.log);
+
+        this.setBlockAndMetadata(worldIn, positionIn.add(0, +1, 0), this.log);
+        this.setBlockAndMetadata(worldIn, positionIn.add(+1, +1, 0), this.log);
+        this.setBlockAndMetadata(worldIn, positionIn.add(0, +1, +1), this.log);
+        this.setBlockAndMetadata(worldIn, positionIn.add(+1, +1, +1), this.log);
     }
 
     private void onPlantGrow(World worldIn, BlockPos positionIn, BlockPos source)
