@@ -3,18 +3,9 @@ package com.progwml6.natura.overworld.block.saplings;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
-
 import javax.annotation.Nonnull;
 
 import com.google.common.collect.Lists;
-import com.progwml6.natura.Natura;
-import com.progwml6.natura.library.NaturaRegistry;
-import com.progwml6.natura.overworld.NaturaOverworld;
-import com.progwml6.natura.overworld.block.leaves.BlockRedwoodLeaves;
-import com.progwml6.natura.overworld.block.logs.BlockRedwoodLog;
-import com.progwml6.natura.world.worldgen.trees.BaseTreeGenerator;
-import com.progwml6.natura.world.worldgen.trees.overworld.RedwoodTreeGenerator;
-
 import net.minecraft.block.BlockSapling;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.properties.PropertyEnum;
@@ -31,13 +22,22 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
+import net.minecraftforge.event.terraingen.TerrainGen;
+
+import com.progwml6.natura.Natura;
+import com.progwml6.natura.library.NaturaRegistry;
+import com.progwml6.natura.overworld.NaturaOverworld;
+import com.progwml6.natura.overworld.block.leaves.BlockRedwoodLeaves;
+import com.progwml6.natura.overworld.block.logs.BlockRedwoodLog;
+import com.progwml6.natura.world.worldgen.trees.BaseTreeGenerator;
+import com.progwml6.natura.world.worldgen.trees.overworld.RedwoodTreeGenerator;
 import slimeknights.mantle.block.EnumBlock;
 
 public class BlockRedwoodSapling extends BlockSapling
 {
-    public static PropertyEnum<SaplingType> FOLIAGE = PropertyEnum.create("foliage", SaplingType.class);
+    public static final PropertyEnum<SaplingType> FOLIAGE = PropertyEnum.create("foliage", SaplingType.class);
 
-    public List<BlockPos> redwoodSaplingPositions = Lists.newArrayList();
+    private final List<BlockPos> redwoodSaplingPositions = Lists.newArrayList();
 
     public BlockRedwoodSapling()
     {
@@ -60,7 +60,7 @@ public class BlockRedwoodSapling extends BlockSapling
     @Override
     protected BlockStateContainer createBlockState()
     {
-        // TYPE has to be included because of the BlockSapling constructor.. but it's never used.
+        // TYPE has to be included because of the BlockSapling constructor, but it's never used.
         return new BlockStateContainer(this, FOLIAGE, STAGE, TYPE);
     }
 
@@ -121,7 +121,7 @@ public class BlockRedwoodSapling extends BlockSapling
     @Override
     public void generateTree(@Nonnull World worldIn, @Nonnull BlockPos pos, @Nonnull IBlockState state, @Nonnull Random rand)
     {
-        if (!net.minecraftforge.event.terraingen.TerrainGen.saplingGrowTree(worldIn, rand, pos))
+        if (!TerrainGen.saplingGrowTree(worldIn, rand, pos)/* || pos.getY() < 5*/)
         {
             return;
         }
@@ -133,9 +133,8 @@ public class BlockRedwoodSapling extends BlockSapling
         IBlockState root;
         IBlockState leaves;
 
-        switch (state.getValue(FOLIAGE))
+        if (state.getValue(FOLIAGE) == SaplingType.REDWOOD)
         {
-        case REDWOOD:
             int numSaplings = this.checkRedwoodSaplings(worldIn, pos);
 
             bark = NaturaOverworld.redwoodLog.getDefaultState().withProperty(BlockRedwoodLog.TYPE, BlockRedwoodLog.RedwoodType.BARK);
@@ -146,12 +145,11 @@ public class BlockRedwoodSapling extends BlockSapling
             if (numSaplings >= 40)
             {
                 gen = new RedwoodTreeGenerator(bark, heart, root, leaves);
-                break;
             }
-            break;
-        default:
+        }
+        else
+        {
             Natura.log.warn("BlockRedwoodSapling Warning: Invalid sapling meta/foliage, " + state.getValue(FOLIAGE) + ". Please report!");
-            break;
         }
 
         // replace saplings with air
@@ -239,6 +237,7 @@ public class BlockRedwoodSapling extends BlockSapling
             this.meta = this.ordinal();
         }
 
+        @Nonnull
         @Override
         public String getName()
         {
