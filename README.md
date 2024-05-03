@@ -1,6 +1,8 @@
 [Natura](https://minecraft.curseforge.com/projects/natura)
 ====================================
 
+Fork of Natura for 1.12.2.
+
 We work all day and we work all night 	 
 The mandrake gives us quite a fright 	 
 We munch on berries high and lo 	 
