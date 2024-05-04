@@ -4,21 +4,6 @@ import java.util.List;
 import java.util.Random;
 
 import com.google.common.collect.LinkedListMultimap;
-import com.progwml6.natura.Natura;
-import com.progwml6.natura.common.config.Config;
-import com.progwml6.natura.nether.NaturaNether;
-import com.progwml6.natura.overworld.NaturaOverworld;
-import com.progwml6.natura.world.NaturaWorld;
-import com.progwml6.natura.world.worldgen.CloudGenerator;
-import com.progwml6.natura.world.worldgen.CropGenerator;
-import com.progwml6.natura.world.worldgen.GlowshroomGenerator;
-import com.progwml6.natura.world.worldgen.NetherBerryBushesGenerator;
-import com.progwml6.natura.world.worldgen.NetherMinableGenerator;
-import com.progwml6.natura.world.worldgen.NetherTreesGenerator;
-import com.progwml6.natura.world.worldgen.OverworldBerryBushesGenerator;
-import com.progwml6.natura.world.worldgen.OverworldTreesGenerator;
-import com.progwml6.natura.world.worldgen.VineGenerator;
-
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
@@ -27,26 +12,30 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.common.gameevent.TickEvent.WorldTickEvent;
 
+import com.progwml6.natura.Natura;
+import com.progwml6.natura.common.config.Config;
+import com.progwml6.natura.nether.NaturaNether;
+import com.progwml6.natura.overworld.NaturaOverworld;
+import com.progwml6.natura.world.NaturaWorld;
+import com.progwml6.natura.world.worldgen.*;
+
 public class TickHandlerWorldRetrogen
 {
-    public static TickHandlerWorldRetrogen INSTANCE = new TickHandlerWorldRetrogen();
-
+    public static final TickHandlerWorldRetrogen INSTANCE = new TickHandlerWorldRetrogen();
+    private final LinkedListMultimap<Integer, ChunkCoords> chunkRegenList = LinkedListMultimap.create();
     // Overworld
     //@formatter:off
     private OverworldTreesGenerator overworldTreesGenerator;
     private OverworldBerryBushesGenerator overworldBerryBushesGenerator;
     private CloudGenerator cloudGenerator;
     private CropGenerator cropGenerator;
-
     // Nether
     private NetherTreesGenerator netherTreesGenerator;
     private NetherBerryBushesGenerator netherBerryBushesGenerator;
     private GlowshroomGenerator glowshroomGenerator;
     private VineGenerator vineGenerator;
-    private NetherMinableGenerator netherMineableGenerator;
     //@formatter:on
-
-    private final LinkedListMultimap<Integer, ChunkCoords> chunkRegenList = LinkedListMultimap.create();
+    private NetherMinableGenerator netherMineableGenerator;
 
     public TickHandlerWorldRetrogen()
     {
@@ -141,7 +130,7 @@ public class TickHandlerWorldRetrogen
         {
             NBTTagCompound tag = (NBTTagCompound) event.getData().getTag(NaturaWorld.PulseId);
 
-            if (tag == null || !tag.hasKey("retrogen"))
+            if (!tag.hasKey("retrogen"))
             {
                 ChunkCoords coords = new ChunkCoords(event.getChunk());
                 this.chunkRegenList.put(coords.dimension, coords);

@@ -119,7 +119,6 @@ public class NetherTreesGenerator implements IWorldGenerator
                     this.ghostwoodTreeGen.generateTree(random, world, position);
                 }
             }
-
         }
     }
 

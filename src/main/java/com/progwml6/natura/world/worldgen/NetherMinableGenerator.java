@@ -2,9 +2,6 @@ package com.progwml6.natura.world.worldgen;
 
 import java.util.Random;
 
-import com.progwml6.natura.common.config.Config;
-import com.progwml6.natura.nether.NaturaNether;
-
 import net.minecraft.block.state.pattern.BlockMatcher;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -17,9 +14,12 @@ import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.fml.common.IWorldGenerator;
 
+import com.progwml6.natura.common.config.Config;
+import com.progwml6.natura.nether.NaturaNether;
+
 public class NetherMinableGenerator implements IWorldGenerator
 {
-    public static NetherMinableGenerator INSTANCE = new NetherMinableGenerator();
+    public static final NetherMinableGenerator INSTANCE = new NetherMinableGenerator();
 
     //@formatter:off
     WorldGenMinable tainedSoilGen;
@@ -47,7 +47,9 @@ public class NetherMinableGenerator implements IWorldGenerator
 
     public void generateNether(Random random, int chunkX, int chunkZ, World world)
     {
-        int xSpawn, ySpawn, zSpawn;
+        int xSpawn;
+        int ySpawn;
+        int zSpawn;
 
         int xPos = chunkX * 16;
         int yPos = world.getSeaLevel() / 2 + 1 - 5;
@@ -57,39 +59,32 @@ public class NetherMinableGenerator implements IWorldGenerator
 
         Biome biome = world.getChunk(chunkPos).getBiome(chunkPos, world.getBiomeProvider());
 
-        if (biome == null)
+        if (this.shouldGenerateInDimension(world.provider.getDimension()) && BiomeDictionary.hasType(biome, Type.NETHER))
         {
-            return;
-        }
-
-        if (this.shouldGenerateInDimension(world.provider.getDimension()))
-        {
-            if (BiomeDictionary.hasType(biome, Type.NETHER))
+            if (Config.generateTaintedSoil)
             {
-                if (Config.generateTaintedSoil)
+                for (int i = 0; i < Config.tainedSoilClusterCount; i++)
                 {
-                    for (int i = 0; i < Config.tainedSoilClusterCount; i++)
-                    {
-                        xSpawn = xPos + random.nextInt(16);
-                        ySpawn = yPos + random.nextInt(10);
-                        zSpawn = zPos + random.nextInt(16);
+                    xSpawn = xPos + random.nextInt(16);
+                    ySpawn = yPos + random.nextInt(10);
+                    zSpawn = zPos + random.nextInt(16);
 
-                        this.tainedSoilGen.generate(world, random, new BlockPos(xSpawn, ySpawn, zSpawn));
-                    }
-                }
-
-                if (Config.generateHeatSand)
-                {
-                    for (int i = 0; i < Config.heatSandClusterCount; i++)
-                    {
-                        xSpawn = xPos + random.nextInt(16);
-                        ySpawn = yPos + random.nextInt(10);
-                        zSpawn = zPos + random.nextInt(16);
-
-                        this.heatSandGen.generate(world, random, new BlockPos(xSpawn, ySpawn, zSpawn));
-                    }
+                    this.tainedSoilGen.generate(world, random, new BlockPos(xSpawn, ySpawn, zSpawn));
                 }
             }
+
+            if (Config.generateHeatSand)
+            {
+                for (int i = 0; i < Config.heatSandClusterCount; i++)
+                {
+                    xSpawn = xPos + random.nextInt(16);
+                    ySpawn = yPos + random.nextInt(10);
+                    zSpawn = zPos + random.nextInt(16);
+
+                    this.heatSandGen.generate(world, random, new BlockPos(xSpawn, ySpawn, zSpawn));
+                }
+            }
+
         }
     }
 

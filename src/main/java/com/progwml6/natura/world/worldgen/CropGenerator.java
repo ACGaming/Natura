@@ -2,11 +2,6 @@ package com.progwml6.natura.world.worldgen;
 
 import java.util.Random;
 
-import com.progwml6.natura.common.config.Config;
-import com.progwml6.natura.overworld.NaturaOverworld;
-import com.progwml6.natura.overworld.block.crops.BlockNaturaBarley;
-import com.progwml6.natura.overworld.block.crops.BlockNaturaCotton;
-
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -15,9 +10,14 @@ import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.fml.common.IWorldGenerator;
 
+import com.progwml6.natura.common.config.Config;
+import com.progwml6.natura.overworld.NaturaOverworld;
+import com.progwml6.natura.overworld.block.crops.BlockNaturaBarley;
+import com.progwml6.natura.overworld.block.crops.BlockNaturaCotton;
+
 public class CropGenerator implements IWorldGenerator
 {
-    public static CropGenerator INSTANCE = new CropGenerator();
+    public static final CropGenerator INSTANCE = new CropGenerator();
 
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider)
@@ -50,13 +50,9 @@ public class CropGenerator implements IWorldGenerator
                 final int posY = random.nextInt(128) + Config.seaLevel;
                 final int posZ = zPos + random.nextInt(16);
                 final BlockPos newPos = new BlockPos(posX, posY, posZ);
-                //final BlockPos newPos = WorldGenHelper.getGroundPos(world, posX, posZ);
 
-                if (newPos != null)
-                {
-                    this.generateBarley(world, random, newPos);
-                    this.generateBarley(world, random, newPos);
-                }
+                this.generateBarley(world, random, newPos);
+                this.generateBarley(world, random, newPos);
             }
 
             // Cotton
@@ -66,13 +62,9 @@ public class CropGenerator implements IWorldGenerator
                 final int posZ = zPos + random.nextInt(16);
                 final int posY = random.nextInt(128) + Config.seaLevel;
                 final BlockPos newPos = new BlockPos(posX, posY, posZ);
-                //final BlockPos newPos = WorldGenHelper.getGroundPos(world, posX, posZ);
 
-                if (newPos != null)
-                {
-                    this.generateCotton(world, random, newPos);
-                    this.generateCotton(world, random, newPos);
-                }
+                this.generateCotton(world, random, newPos);
+                this.generateCotton(world, random, newPos);
             }
 
             // Bluebells
@@ -82,17 +74,13 @@ public class CropGenerator implements IWorldGenerator
                 final int posZ = zPos + random.nextInt(16);
                 final int posY = random.nextInt(128) + Config.seaLevel;
                 final BlockPos newPos = new BlockPos(posX, posY, posZ);
-                //final BlockPos newPos = WorldGenHelper.getGroundPos(world, posX, posZ);
 
-                if (newPos != null)
-                {
-                    this.generateBluebells(world, random, newPos);
-                }
+                this.generateBluebells(world, random, newPos);
             }
         }
     }
 
-    public boolean generateBarley(World world, Random random, BlockPos position)
+    public void generateBarley(World world, Random random, BlockPos position)
     {
         IBlockState state = NaturaOverworld.barleyCrop.getDefaultState().withProperty(BlockNaturaBarley.AGE, 3);
 
@@ -105,11 +93,9 @@ public class CropGenerator implements IWorldGenerator
                 world.setBlockState(blockpos, state, 2);
             }
         }
-
-        return true;
     }
 
-    public boolean generateCotton(World world, Random random, BlockPos position)
+    public void generateCotton(World world, Random random, BlockPos position)
     {
         IBlockState state = NaturaOverworld.cottonCrop.getDefaultState().withProperty(BlockNaturaCotton.AGE, 4);
 
@@ -122,11 +108,9 @@ public class CropGenerator implements IWorldGenerator
                 world.setBlockState(blockpos, state, 2);
             }
         }
-
-        return true;
     }
 
-    public boolean generateBluebells(World world, Random random, BlockPos position)
+    public void generateBluebells(World world, Random random, BlockPos position)
     {
         IBlockState state = NaturaOverworld.bluebellsFlower.getDefaultState();
 
@@ -139,8 +123,6 @@ public class CropGenerator implements IWorldGenerator
                 world.setBlockState(blockpos, state, 2);
             }
         }
-
-        return true;
     }
 
     public boolean goodClimate(Biome biome, float minTemp, float maxTemp, float minRain, float maxRain)
@@ -148,12 +130,7 @@ public class CropGenerator implements IWorldGenerator
         float temp = biome.getDefaultTemperature();
         float rain = biome.getRainfall();
 
-        if (minTemp <= temp && temp <= maxTemp && minRain <= rain && rain <= maxRain)
-        {
-            return true;
-        }
-
-        return false;
+        return minTemp <= temp && temp <= maxTemp && minRain <= rain && rain <= maxRain;
     }
 
     public boolean shouldGenerateInDimension(int dimension)

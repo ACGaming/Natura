@@ -13,7 +13,6 @@ public class BaseGlowshroomGenerator implements IWorldGenerator
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider)
     {
-
     }
 
     public void generateShroom(Random random, World world, BlockPos pos)

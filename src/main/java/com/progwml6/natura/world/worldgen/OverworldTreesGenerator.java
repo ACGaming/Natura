@@ -215,7 +215,7 @@ public class OverworldTreesGenerator implements IWorldGenerator
                     this.hopseedTreeGen.generateTree(random, world, position);
                 }
 
-                if (Config.generateEucalyptus && random.nextInt(Config.eucalyptusSpawnRarity) < 10)
+                if (Config.generateEucalyptus && random.nextInt(Config.eucalyptusSpawnRarity) == 0)
                 {
                     xSpawn = xPos + random.nextInt(16);
                     ySpawn = random.nextInt(Config.eucalyptusSpawnRange) + Config.seaLevel;

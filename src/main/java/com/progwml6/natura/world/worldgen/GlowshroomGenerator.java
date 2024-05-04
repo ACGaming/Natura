@@ -2,14 +2,6 @@ package com.progwml6.natura.world.worldgen;
 
 import java.util.Random;
 
-import com.progwml6.natura.common.config.Config;
-import com.progwml6.natura.nether.NaturaNether;
-import com.progwml6.natura.nether.block.shrooms.BlockNetherGlowshroom;
-import com.progwml6.natura.world.worldgen.glowshroom.nether.BabyGlowshroomGenerator;
-import com.progwml6.natura.world.worldgen.glowshroom.nether.BlueGlowshroomGenerator;
-import com.progwml6.natura.world.worldgen.glowshroom.nether.GreenGlowshroomGenerator;
-import com.progwml6.natura.world.worldgen.glowshroom.nether.PurpleGlowshroomGenerator;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -21,9 +13,17 @@ import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.fml.common.IWorldGenerator;
 
+import com.progwml6.natura.common.config.Config;
+import com.progwml6.natura.nether.NaturaNether;
+import com.progwml6.natura.nether.block.shrooms.BlockNetherGlowshroom;
+import com.progwml6.natura.world.worldgen.glowshroom.nether.BabyGlowshroomGenerator;
+import com.progwml6.natura.world.worldgen.glowshroom.nether.BlueGlowshroomGenerator;
+import com.progwml6.natura.world.worldgen.glowshroom.nether.GreenGlowshroomGenerator;
+import com.progwml6.natura.world.worldgen.glowshroom.nether.PurpleGlowshroomGenerator;
+
 public class GlowshroomGenerator implements IWorldGenerator
 {
-    public static GlowshroomGenerator INSTANCE = new GlowshroomGenerator();
+    public static final GlowshroomGenerator INSTANCE = new GlowshroomGenerator();
 
     //@formatter:off
     final GreenGlowshroomGenerator greenGlowshroomGen;
@@ -61,7 +61,9 @@ public class GlowshroomGenerator implements IWorldGenerator
 
     public void generateNether(Random random, int chunkX, int chunkZ, World world)
     {
-        int xSpawn, ySpawn, zSpawn;
+        int xSpawn;
+        int ySpawn;
+        int zSpawn;
 
         int xPos = chunkX * 16 + 8;
         int zPos = chunkZ * 16 + 8;
@@ -72,73 +74,79 @@ public class GlowshroomGenerator implements IWorldGenerator
 
         Biome biome = world.getChunk(chunkPos).getBiome(chunkPos, world.getBiomeProvider());
 
-        if (biome == null)
+        if (this.shouldGenerateInDimension(world.provider.getDimension()) && BiomeDictionary.hasType(biome, Type.NETHER))
         {
-            return;
-        }
-
-        if (this.shouldGenerateInDimension(world.provider.getDimension()))
-        {
-            if (BiomeDictionary.hasType(biome, Type.NETHER))
+            if (Config.generateGlowshroomtree && random.nextInt(35) == 0)
             {
-                if (Config.generateGlowshroomtree && random.nextInt(35) == 0)
+                for (int iter = 0; iter < 5; iter++)
                 {
-                    for (int iter = 0; iter < 5; iter++)
-                    {
-                        xSpawn = xPos + random.nextInt(24) - 4;
-                        zSpawn = zPos + random.nextInt(24) - 4;
-                        ySpawn = this.findGround(world, xSpawn, random.nextInt(64) + 32, zSpawn);
-                        position = new BlockPos(xSpawn, ySpawn, zSpawn);
+                    xSpawn = xPos + random.nextInt(24) - 4;
+                    zSpawn = zPos + random.nextInt(24) - 4;
+                    ySpawn = this.findGround(world, xSpawn, random.nextInt(64) + 32, zSpawn);
+                    position = new BlockPos(xSpawn, ySpawn, zSpawn);
 
-                        if (random.nextInt(3) == 0)
+                    if (random.nextInt(3) == 0)
+                    {
+                        this.purpleGlowshroomGen.generateShroom(random, world, position);
+                    }
+                    else
+                    {
+                        if (random.nextInt(2) == 0)
                         {
-                            this.purpleGlowshroomGen.generateShroom(random, world, position);
+                            this.greenGlowshroomGen.generateShroom(random, world, position);
                         }
                         else
                         {
-                            if (random.nextInt(2) == 0)
-                            {
-                                this.greenGlowshroomGen.generateShroom(random, world, position);
-                            }
-                            else
-                            {
-                                this.blueGlowshroomGen.generateShroom(random, world, position);
-                            }
+                            this.blueGlowshroomGen.generateShroom(random, world, position);
                         }
                     }
                 }
+            }
 
-                if (Config.generateGreenglowshroom && random.nextInt(7) == 0)
-                {
-                    xSpawn = xPos + random.nextInt(16);
-                    ySpawn = random.nextInt(128);
-                    zSpawn = zPos + random.nextInt(16);
-                    position = new BlockPos(xSpawn, ySpawn, zSpawn);
+            if (Config.generateGreenglowshroom && random.nextInt(7) == 0)
+            {
+                xSpawn = xPos + random.nextInt(16);
+                ySpawn = random.nextInt(128);
+                zSpawn = zPos + random.nextInt(16);
+                position = new BlockPos(xSpawn, ySpawn, zSpawn);
 
-                    this.greenBabyGlowshroomGen.generateShroom(random, world, position);
-                }
+                this.greenBabyGlowshroomGen.generateShroom(random, world, position);
+            }
 
-                if (Config.generatePurpleglowshroom && random.nextInt(8) == 0)
-                {
-                    xSpawn = xPos + random.nextInt(16);
-                    ySpawn = random.nextInt(128);
-                    zSpawn = zPos + random.nextInt(16);
-                    position = new BlockPos(xSpawn, ySpawn, zSpawn);
+            if (Config.generatePurpleglowshroom && random.nextInt(8) == 0)
+            {
+                xSpawn = xPos + random.nextInt(16);
+                ySpawn = random.nextInt(128);
+                zSpawn = zPos + random.nextInt(16);
+                position = new BlockPos(xSpawn, ySpawn, zSpawn);
 
-                    this.purpleBabyGlowshroomGen.generateShroom(random, world, position);
-                }
+                this.purpleBabyGlowshroomGen.generateShroom(random, world, position);
+            }
 
-                if (Config.generateBlueglowshroom && random.nextInt(9) == 0)
-                {
-                    xSpawn = xPos + random.nextInt(16);
-                    ySpawn = random.nextInt(128);
-                    zSpawn = zPos + random.nextInt(16);
-                    position = new BlockPos(xSpawn, ySpawn, zSpawn);
+            if (Config.generateBlueglowshroom && random.nextInt(9) == 0)
+            {
+                xSpawn = xPos + random.nextInt(16);
+                ySpawn = random.nextInt(128);
+                zSpawn = zPos + random.nextInt(16);
+                position = new BlockPos(xSpawn, ySpawn, zSpawn);
 
-                    this.blueBabyGlowshroomGen.generateShroom(random, world, position);
-                }
+                this.blueBabyGlowshroomGen.generateShroom(random, world, position);
+            }
+
+        }
+    }
+
+    public boolean shouldGenerateInDimension(int dimension)
+    {
+        for (int dimensionId : Config.netherWorldGenBlacklist)
+        {
+            if (dimension == dimensionId)
+            {
+                return false;
             }
         }
+
+        return true;
     }
 
     int findGround(World world, int x, int y, int z)
@@ -156,23 +164,9 @@ public class GlowshroomGenerator implements IWorldGenerator
             {
                 foundGround = true;
             }
-        }
-        while (!foundGround);
+        } while (!foundGround);
 
         return height + 1;
-    }
-
-    public boolean shouldGenerateInDimension(int dimension)
-    {
-        for (int dimensionId : Config.netherWorldGenBlacklist)
-        {
-            if (dimension == dimensionId)
-            {
-                return false;
-            }
-        }
-
-        return true;
     }
 
 }

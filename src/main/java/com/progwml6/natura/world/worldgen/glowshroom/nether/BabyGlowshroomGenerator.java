@@ -2,14 +2,12 @@ package com.progwml6.natura.world.worldgen.glowshroom.nether;
 
 import java.util.Random;
 
-import com.progwml6.natura.nether.block.shrooms.BlockNetherGlowshroom;
-import com.progwml6.natura.world.worldgen.glowshroom.BaseGlowshroomGenerator;
-
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.chunk.IChunkProvider;
-import net.minecraft.world.gen.IChunkGenerator;
+
+import com.progwml6.natura.nether.block.shrooms.BlockNetherGlowshroom;
+import com.progwml6.natura.world.worldgen.glowshroom.BaseGlowshroomGenerator;
 
 public class BabyGlowshroomGenerator extends BaseGlowshroomGenerator
 {
@@ -18,11 +16,6 @@ public class BabyGlowshroomGenerator extends BaseGlowshroomGenerator
     public BabyGlowshroomGenerator(IBlockState glowshroom)
     {
         this.glowshroom = glowshroom;
-    }
-
-    @Override
-    public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider)
-    {
     }
 
     @Override

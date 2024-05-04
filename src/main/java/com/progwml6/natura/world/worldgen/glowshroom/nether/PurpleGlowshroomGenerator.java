@@ -2,19 +2,19 @@ package com.progwml6.natura.world.worldgen.glowshroom.nether;
 
 import java.util.Random;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockMycelium;
+import net.minecraft.block.BlockNetherrack;
+import net.minecraft.block.BlockSoulSand;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockPos.MutableBlockPos;
+import net.minecraft.world.World;
+
 import com.progwml6.natura.nether.NaturaNether;
 import com.progwml6.natura.nether.block.shrooms.BlockNetherLargeGlowshroom;
 import com.progwml6.natura.nether.block.shrooms.BlockNetherLargeGlowshroom.EnumType;
 import com.progwml6.natura.world.worldgen.glowshroom.BaseGlowshroomGenerator;
-
-import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockPos.MutableBlockPos;
-import net.minecraft.world.World;
-import net.minecraft.world.chunk.IChunkProvider;
-import net.minecraft.world.gen.IChunkGenerator;
 
 public class PurpleGlowshroomGenerator extends BaseGlowshroomGenerator
 {
@@ -23,11 +23,6 @@ public class PurpleGlowshroomGenerator extends BaseGlowshroomGenerator
     public PurpleGlowshroomGenerator(IBlockState glowshroom)
     {
         this.glowshroom = glowshroom;
-    }
-
-    @Override
-    public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider)
-    {
     }
 
     @Override
@@ -70,17 +65,11 @@ public class PurpleGlowshroomGenerator extends BaseGlowshroomGenerator
                     }
                 }
             }
-            if (!flag)
-            {
-            }
-            else
+            if (flag)
             {
                 Block block1 = world.getBlockState(pos.down()).getBlock();
 
-                if (block1 != Blocks.MYCELIUM && block1 != Blocks.NETHERRACK && block1 != Blocks.SOUL_SAND && block1 != NaturaNether.netherTaintedSoil)
-                {
-                }
-                else
+                if (block1 instanceof BlockMycelium || block1 instanceof BlockNetherrack || block1 instanceof BlockSoulSand || block1 == NaturaNether.netherTaintedSoil)
                 {
                     int k2 = pos.getY() + height - 1;
 
