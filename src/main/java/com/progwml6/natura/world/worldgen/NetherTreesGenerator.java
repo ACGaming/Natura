@@ -2,6 +2,16 @@ package com.progwml6.natura.world.worldgen;
 
 import java.util.Random;
 
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.IChunkGenerator;
+import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.common.BiomeDictionary.Type;
+import net.minecraftforge.fml.common.IWorldGenerator;
+
 import com.progwml6.natura.common.config.Config;
 import com.progwml6.natura.nether.NaturaNether;
 import com.progwml6.natura.nether.block.leaves.BlockNetherLeaves;
@@ -13,19 +23,9 @@ import com.progwml6.natura.world.worldgen.trees.nether.DarkwoodTreeGenerator;
 import com.progwml6.natura.world.worldgen.trees.nether.FusewoodTreeGenerator;
 import com.progwml6.natura.world.worldgen.trees.nether.GhostwoodTreeGenerator;
 
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.chunk.IChunkProvider;
-import net.minecraft.world.gen.IChunkGenerator;
-import net.minecraftforge.common.BiomeDictionary;
-import net.minecraftforge.common.BiomeDictionary.Type;
-import net.minecraftforge.fml.common.IWorldGenerator;
-
 public class NetherTreesGenerator implements IWorldGenerator
 {
-    public static NetherTreesGenerator INSTANCE = new NetherTreesGenerator();
+    public static final NetherTreesGenerator INSTANCE = new NetherTreesGenerator();
 
     //@formatter:off
     DarkwoodTreeGenerator darkwoodTreeGen;
@@ -62,7 +62,9 @@ public class NetherTreesGenerator implements IWorldGenerator
 
     public void generateNether(Random random, int chunkX, int chunkZ, World world)
     {
-        int xSpawn, ySpawn, zSpawn;
+        int xSpawn;
+        int ySpawn;
+        int zSpawn;
 
         int xPos = chunkX * 16 + 8;
         int zPos = chunkZ * 16 + 8;
@@ -73,58 +75,51 @@ public class NetherTreesGenerator implements IWorldGenerator
 
         Biome biome = world.getChunk(chunkPos).getBiome(chunkPos, world.getBiomeProvider());
 
-        if (biome == null)
+        if (this.shouldGenerateInDimension(world.provider.getDimension()) && BiomeDictionary.hasType(biome, Type.NETHER))
         {
-            return;
-        }
-
-        if (this.shouldGenerateInDimension(world.provider.getDimension()))
-        {
-            if (BiomeDictionary.hasType(biome, Type.NETHER))
+            if (Config.generateBloodwood && random.nextInt(Config.bloodwoodSpawnRarity) == 0)
             {
-                if (Config.generateBloodwood && random.nextInt(Config.bloodwoodSpawnRarity) == 0)
+                xSpawn = xPos + random.nextInt(16);
+                ySpawn = 72;
+                zSpawn = zPos + random.nextInt(16);
+                position = new BlockPos(xSpawn, ySpawn, zSpawn);
+
+                this.bloodwoodTreeGen.generateTree(random, world, position);
+            }
+
+            if (Config.generateDarkwood && random.nextInt(Config.darkwoodSpawnRarity) == 0)
+            {
+                xSpawn = xPos + random.nextInt(16);
+                ySpawn = random.nextInt(64) + 32;
+                zSpawn = zPos + random.nextInt(16);
+                position = new BlockPos(xSpawn, ySpawn, zSpawn);
+
+                this.darkwoodTreeGen.generateTree(random, world, position);
+            }
+
+            if (Config.generateFusewood && random.nextInt(Config.fusewoodSpawnRarity) == 0)
+            {
+                xSpawn = xPos + random.nextInt(16);
+                ySpawn = random.nextInt(64) + 32;
+                zSpawn = zPos + random.nextInt(16);
+                position = new BlockPos(xSpawn, ySpawn, zSpawn);
+
+                this.fusewoodTreeGen.generateTree(random, world, position);
+            }
+
+            if (Config.generateGhostwood && random.nextInt(Config.ghostwoodSpawnRarity) == 0)
+            {
+                for (int iter = 0; iter < 3; iter++)
                 {
                     xSpawn = xPos + random.nextInt(16);
-                    ySpawn = 72;
+                    ySpawn = random.nextInt(80) + 16;
                     zSpawn = zPos + random.nextInt(16);
                     position = new BlockPos(xSpawn, ySpawn, zSpawn);
 
-                    this.bloodwoodTreeGen.generateTree(random, world, position);
-                }
-
-                if (Config.generateDarkwood && random.nextInt(Config.darkwoodSpawnRarity) == 0)
-                {
-                    xSpawn = xPos + random.nextInt(16);
-                    ySpawn = random.nextInt(64) + 32;
-                    zSpawn = zPos + random.nextInt(16);
-                    position = new BlockPos(xSpawn, ySpawn, zSpawn);
-
-                    this.darkwoodTreeGen.generateTree(random, world, position);
-                }
-
-                if (Config.generateFusewood && random.nextInt(Config.fusewoodSpawnRarity) == 0)
-                {
-                    xSpawn = xPos + random.nextInt(16);
-                    ySpawn = random.nextInt(64) + 32;
-                    zSpawn = zPos + random.nextInt(16);
-                    position = new BlockPos(xSpawn, ySpawn, zSpawn);
-
-                    this.fusewoodTreeGen.generateTree(random, world, position);
-                }
-
-                if (Config.generateGhostwood && random.nextInt(Config.ghostwoodSpawnRarity) == 0)
-                {
-                    for (int iter = 0; iter < 3; iter++)
-                    {
-                        xSpawn = xPos + random.nextInt(16);
-                        ySpawn = random.nextInt(80) + 16;
-                        zSpawn = zPos + random.nextInt(16);
-                        position = new BlockPos(xSpawn, ySpawn, zSpawn);
-
-                        this.ghostwoodTreeGen.generateTree(random, world, position);
-                    }
+                    this.ghostwoodTreeGen.generateTree(random, world, position);
                 }
             }
+
         }
     }
 
