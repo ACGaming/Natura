@@ -2,10 +2,6 @@ package com.progwml6.natura.world.worldgen;
 
 import java.util.Random;
 
-import com.progwml6.natura.common.config.Config;
-import com.progwml6.natura.overworld.NaturaOverworld;
-import com.progwml6.natura.world.worldgen.berry.overworld.OverworldBerryBushGenerator;
-
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -15,9 +11,13 @@ import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.fml.common.IWorldGenerator;
 
+import com.progwml6.natura.common.config.Config;
+import com.progwml6.natura.overworld.NaturaOverworld;
+import com.progwml6.natura.world.worldgen.berry.overworld.OverworldBerryBushGenerator;
+
 public class OverworldBerryBushesGenerator implements IWorldGenerator
 {
-    public static OverworldBerryBushesGenerator INSTANCE = new OverworldBerryBushesGenerator();
+    public static final OverworldBerryBushesGenerator INSTANCE = new OverworldBerryBushesGenerator();
 
     //@formatter:off
     OverworldBerryBushGenerator raspberryBushGen;
@@ -49,7 +49,9 @@ public class OverworldBerryBushesGenerator implements IWorldGenerator
 
     public void generateOverworld(Random random, int chunkX, int chunkZ, World world)
     {
-        int xSpawn, ySpawn, zSpawn;
+        int xSpawn;
+        int ySpawn;
+        int zSpawn;
 
         int xPos = chunkX * 16 + 8;
         int zPos = chunkZ * 16 + 8;
@@ -132,12 +134,7 @@ public class OverworldBerryBushesGenerator implements IWorldGenerator
         float temp = biome.getDefaultTemperature();
         float rain = biome.getRainfall();
 
-        if (minTemp <= temp && temp <= maxTemp && minRain <= rain && rain <= maxRain)
-        {
-            return true;
-        }
-
-        return false;
+        return minTemp <= temp && temp <= maxTemp && minRain <= rain && rain <= maxRain;
     }
 
 }

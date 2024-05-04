@@ -2,17 +2,16 @@ package com.progwml6.natura.world.worldgen.berry.overworld;
 
 import java.util.Random;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+
 import com.progwml6.natura.common.block.BlockEnumBerryBush;
 import com.progwml6.natura.common.config.Config;
 import com.progwml6.natura.overworld.NaturaOverworld;
 import com.progwml6.natura.world.worldgen.berry.BaseBerryBushGenerator;
-
-import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 
 public class OverworldBerryBushGenerator extends BaseBerryBushGenerator
 {
@@ -69,7 +68,7 @@ public class OverworldBerryBushGenerator extends BaseBerryBushGenerator
                 {
                     BlockPos blockpos = new BlockPos(iterX, iterY, iterZ);
 
-                    this.setBlockAndMetadata(random, world, blockpos, this.berryBush.withProperty(BlockEnumBerryBush.AGE, this.randomFullAge(random)));
+                    this.setBlockAndMetadata(world, blockpos, this.berryBush.withProperty(BlockEnumBerryBush.AGE, this.randomFullAge(random)));
                 }
             }
         }
@@ -82,7 +81,7 @@ public class OverworldBerryBushGenerator extends BaseBerryBushGenerator
                 {
                     BlockPos blockpos = new BlockPos(iterX, iterY, iterZ);
 
-                    this.setBlockAndMetadata(random, world, blockpos, this.berryBush.withProperty(BlockEnumBerryBush.AGE, this.randomFullAge(random)));
+                    this.setBlockAndMetadata(world, blockpos, this.berryBush.withProperty(BlockEnumBerryBush.AGE, this.randomFullAge(random)));
                 }
             }
         }
@@ -95,7 +94,7 @@ public class OverworldBerryBushGenerator extends BaseBerryBushGenerator
                 {
                     BlockPos blockpos = new BlockPos(iterX, iterY, iterZ);
 
-                    this.setBlockAndMetadata(random, world, blockpos, this.berryBush.withProperty(BlockEnumBerryBush.AGE, this.randomFullAge(random)));
+                    this.setBlockAndMetadata(world, blockpos, this.berryBush.withProperty(BlockEnumBerryBush.AGE, this.randomFullAge(random)));
                 }
             }
         }
@@ -107,12 +106,12 @@ public class OverworldBerryBushGenerator extends BaseBerryBushGenerator
                 int yPos = pos.getY() + 1;
                 BlockPos blockpos = new BlockPos(iterX, yPos, iterZ);
 
-                this.setBlockAndMetadata(random, world, blockpos, this.berryBush.withProperty(BlockEnumBerryBush.AGE, this.randomFullAge(random)));
+                this.setBlockAndMetadata(world, blockpos, this.berryBush.withProperty(BlockEnumBerryBush.AGE, this.randomFullAge(random)));
 
                 yPos = pos.getY() - 2;
                 blockpos = new BlockPos(iterX, yPos, iterZ);
 
-                this.setBlockAndMetadata(random, world, blockpos, this.berryBush.withProperty(BlockEnumBerryBush.AGE, this.randomFullAge(random)));
+                this.setBlockAndMetadata(world, blockpos, this.berryBush.withProperty(BlockEnumBerryBush.AGE, this.randomFullAge(random)));
             }
         }
     }
@@ -128,8 +127,7 @@ public class OverworldBerryBushGenerator extends BaseBerryBushGenerator
                 break;
             }
             pos = pos.down();
-        }
-        while (pos.getY() > 0);
+        } while (pos.getY() > 0);
 
         IBlockState state = world.getBlockState(pos);
         Block block = state.getBlock();
@@ -141,14 +139,14 @@ public class OverworldBerryBushGenerator extends BaseBerryBushGenerator
 
             for (int y = pos.getY(); y <= pos.getY() + 2; ++y)
             {
-                int subract = y - pos.getY();
-                int subract2 = 2 - subract;
+                int subtract = y - pos.getY();
+                int subtract2 = 2 - subtract;
 
-                for (int x = pos.getX() - subract2; x <= pos.getX() + subract2; ++x)
+                for (int x = pos.getX() - subtract2; x <= pos.getX() + subtract2; ++x)
                 {
                     int mathX = x - pos.getX();
 
-                    for (int z = pos.getZ() - subract2; z <= pos.getZ() + subract2; ++z)
+                    for (int z = pos.getZ() - subtract2; z <= pos.getZ() + subtract2; ++z)
                     {
                         int mathZ = z - pos.getZ();
 
@@ -156,9 +154,9 @@ public class OverworldBerryBushGenerator extends BaseBerryBushGenerator
                         IBlockState blockState = world.getBlockState(blockpos);
                         Block blockFromState = state.getBlock();
 
-                        if (Math.abs(mathX) != subract2 || Math.abs(mathZ) != subract2 || random.nextInt(2) != 0 && (blockFromState == null || blockFromState.canBeReplacedByLeaves(blockState, world, blockpos)))
+                        if (Math.abs(mathX) != subtract2 || Math.abs(mathZ) != subtract2 || random.nextInt(2) != 0 && blockFromState.canBeReplacedByLeaves(blockState, world, blockpos))
                         {
-                            this.setBlockAndMetadata(random, world, blockpos, this.berryBush.withProperty(BlockEnumBerryBush.AGE, this.randomFullAge(random)));
+                            this.setBlockAndMetadata(world, blockpos, this.berryBush.withProperty(BlockEnumBerryBush.AGE, this.randomFullAge(random)));
                         }
                     }
                 }
@@ -168,35 +166,35 @@ public class OverworldBerryBushGenerator extends BaseBerryBushGenerator
 
     protected void generateSmallNode(Random random, World world, BlockPos pos)
     {
-        this.setBlockAndMetadata(random, world, pos, this.berryBush.withProperty(BlockEnumBerryBush.AGE, this.randomFullAge(random)));
+        this.setBlockAndMetadata(world, pos, this.berryBush.withProperty(BlockEnumBerryBush.AGE, this.randomFullAge(random)));
 
         if (random.nextBoolean())
         {
-            this.setBlockAndMetadata(random, world, pos.east(), this.berryBush.withProperty(BlockEnumBerryBush.AGE, this.randomAge(random)));
+            this.setBlockAndMetadata(world, pos.east(), this.berryBush.withProperty(BlockEnumBerryBush.AGE, this.randomAge(random)));
         }
 
         if (random.nextBoolean())
         {
-            this.setBlockAndMetadata(random, world, pos.west(), this.berryBush.withProperty(BlockEnumBerryBush.AGE, this.randomAge(random)));
+            this.setBlockAndMetadata(world, pos.west(), this.berryBush.withProperty(BlockEnumBerryBush.AGE, this.randomAge(random)));
         }
 
         if (random.nextBoolean())
         {
-            this.setBlockAndMetadata(random, world, pos.south(), this.berryBush.withProperty(BlockEnumBerryBush.AGE, this.randomAge(random)));
+            this.setBlockAndMetadata(world, pos.south(), this.berryBush.withProperty(BlockEnumBerryBush.AGE, this.randomAge(random)));
         }
 
         if (random.nextBoolean())
         {
-            this.setBlockAndMetadata(random, world, pos.north(), this.berryBush.withProperty(BlockEnumBerryBush.AGE, this.randomAge(random)));
+            this.setBlockAndMetadata(world, pos.north(), this.berryBush.withProperty(BlockEnumBerryBush.AGE, this.randomAge(random)));
         }
     }
 
     protected void generateTinyNode(Random random, World world, BlockPos pos)
     {
-        this.setBlockAndMetadata(random, world, pos, this.berryBush.withProperty(BlockEnumBerryBush.AGE, this.randomAge(random)));
+        this.setBlockAndMetadata(world, pos, this.berryBush.withProperty(BlockEnumBerryBush.AGE, this.randomAge(random)));
     }
 
-    protected void setBlockAndMetadata(Random random, World world, BlockPos pos, IBlockState stateNew)
+    protected void setBlockAndMetadata(World world, BlockPos pos, IBlockState stateNew)
     {
         if (!world.getBlockState(pos).isOpaqueCube())
         {
@@ -242,8 +240,7 @@ public class OverworldBerryBushGenerator extends BaseBerryBushGenerator
             }
 
             height--;
-        }
-        while (height > 0);
+        } while (height > 0);
 
         return new BlockPos(pos.getX(), returnHeight, pos.getZ());
     }
