@@ -2,16 +2,7 @@ package com.progwml6.natura.nether.block.saplings;
 
 import java.util.Locale;
 import java.util.Random;
-
 import javax.annotation.Nonnull;
-
-import com.progwml6.natura.Natura;
-import com.progwml6.natura.library.NaturaRegistry;
-import com.progwml6.natura.nether.NaturaNether;
-import com.progwml6.natura.nether.block.leaves.BlockNetherLeaves;
-import com.progwml6.natura.nether.block.logs.BlockNetherLog2;
-import com.progwml6.natura.world.worldgen.trees.BaseTreeGenerator;
-import com.progwml6.natura.world.worldgen.trees.nether.BloodwoodTreeGenerator;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSapling;
@@ -32,11 +23,19 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
+
+import com.progwml6.natura.Natura;
+import com.progwml6.natura.library.NaturaRegistry;
+import com.progwml6.natura.nether.NaturaNether;
+import com.progwml6.natura.nether.block.leaves.BlockNetherLeaves;
+import com.progwml6.natura.nether.block.logs.BlockNetherLog2;
+import com.progwml6.natura.world.worldgen.trees.BaseTreeGenerator;
+import com.progwml6.natura.world.worldgen.trees.nether.BloodwoodTreeGenerator;
 import slimeknights.mantle.block.EnumBlock;
 
 public class BlockNetherSapling2 extends BlockSapling
 {
-    public static PropertyEnum<SaplingType> FOLIAGE = PropertyEnum.create("foliage", SaplingType.class);
+    public static final PropertyEnum<SaplingType> FOLIAGE = PropertyEnum.create("foliage", SaplingType.class);
 
     public BlockNetherSapling2()
     {
@@ -47,20 +46,119 @@ public class BlockNetherSapling2 extends BlockSapling
     }
 
     @Override
-    public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
+    public boolean canPlaceBlockAt(World worldIn, @Nonnull BlockPos pos)
+    {
+        Block block = worldIn.getBlockState(pos).getBlock();
+
+        if (block.isReplaceable(worldIn, pos))
+        {
+            IBlockState ceilingBlockState = worldIn.getBlockState(pos.up());
+            Block netherCeiling = ceilingBlockState.getBlock();
+
+            return this.canGrowOnBlock(netherCeiling) || netherCeiling.canSustainPlant(ceilingBlockState, worldIn, pos.up(), EnumFacing.DOWN, this);
+        }
+        return false;
+    }
+
+    @Override
+    public boolean canBlockStay(@Nonnull World worldIn, @Nonnull BlockPos pos, IBlockState state)
+    {
+        if (state.getValue(FOLIAGE) == SaplingType.BLOODWOOD)
+        {
+            IBlockState ceilingBlockState = worldIn.getBlockState(pos.up());
+            Block netherCeiling = ceilingBlockState.getBlock();
+
+            return this.canGrowOnBlock(netherCeiling) || netherCeiling.canSustainPlant(ceilingBlockState, worldIn, pos.up(), EnumFacing.DOWN, this);
+        }
+        return true;
+    }
+
+    @Nonnull
+    @Override
+    public EnumPlantType getPlantType(@Nonnull IBlockAccess world, @Nonnull BlockPos pos)
+    {
+        return EnumPlantType.Nether;
+    }
+
+    public boolean canGrowOnBlock(Block block)
+    {
+        return block == Blocks.SOUL_SAND || block == Blocks.NETHERRACK || block == NaturaNether.netherTaintedSoil;
+    }
+
+    @Override
+    public boolean isReplaceable(@Nonnull IBlockAccess worldIn, @Nonnull BlockPos pos)
+    {
+        return false;
+    }
+
+    @Nonnull
+    @Override
+    public ItemStack getPickBlock(@Nonnull IBlockState state, @Nonnull RayTraceResult target, @Nonnull World world, @Nonnull BlockPos pos, @Nonnull EntityPlayer player)
+    {
+        IBlockState iblockstate = world.getBlockState(pos);
+        int meta = iblockstate.getBlock().getMetaFromState(iblockstate);
+        return new ItemStack(Item.getItemFromBlock(this), 1, meta);
+    }
+
+    @Override
+    public void generateTree(@Nonnull World worldIn, @Nonnull BlockPos pos, @Nonnull IBlockState state, @Nonnull Random rand)
+    {
+        if (!net.minecraftforge.event.terraingen.TerrainGen.saplingGrowTree(worldIn, rand, pos))
+        {
+            return;
+        }
+        BaseTreeGenerator gen = new BaseTreeGenerator();
+
+        IBlockState log;
+        IBlockState log2;
+        IBlockState log3;
+        IBlockState log4;
+        IBlockState log5;
+        IBlockState leaves;
+
+        if (state.getValue(FOLIAGE) == SaplingType.BLOODWOOD)
+        {
+            log = NaturaNether.netherLog2.getDefaultState().withProperty(BlockNetherLog2.META, 15);
+            log2 = NaturaNether.netherLog2.getDefaultState().withProperty(BlockNetherLog2.META, 0);
+            log3 = NaturaNether.netherLog2.getDefaultState().withProperty(BlockNetherLog2.META, 1);
+            log4 = NaturaNether.netherLog2.getDefaultState().withProperty(BlockNetherLog2.META, 2);
+            log5 = NaturaNether.netherLog2.getDefaultState().withProperty(BlockNetherLog2.META, 3);
+            leaves = NaturaNether.netherLeaves.getDefaultState().withProperty(BlockNetherLeaves.TYPE, BlockNetherLeaves.LeavesType.BLOODWOOD);
+
+            gen = new BloodwoodTreeGenerator(log, log2, log3, log4, log5, leaves);
+        }
+        else
+        {
+            Natura.log.warn("BlockNetherSapling Warning: Invalid sapling meta/foliage, " + state.getValue(FOLIAGE) + ". Please report!");
+        }
+
+        // replace sapling with air
+        worldIn.setBlockToAir(pos);
+
+        // try generating
+        gen.generateTree(rand, worldIn, pos);
+
+        // check if it generated
+        if (worldIn.isAirBlock(pos))
+        {
+            // nope, set sapling again
+            worldIn.setBlockState(pos, state, 4);
+        }
+    }
+
+    @Override
+    public int damageDropped(@Nonnull IBlockState state)
+    {
+        return this.getMetaFromState(state);
+    }
+
+    @Override
+    public void getSubBlocks(@Nonnull CreativeTabs tab, @Nonnull NonNullList<ItemStack> list)
     {
         for (SaplingType type : SaplingType.values())
         {
             list.add(new ItemStack(this, 1, this.getMetaFromState(this.getDefaultState().withProperty(FOLIAGE, type))));
         }
-    }
-
-    @Nonnull
-    @Override
-    protected BlockStateContainer createBlockState()
-    {
-        // TYPE has to be included because of the BlockSapling constructor.. but it's never used.
-        return new BlockStateContainer(this, FOLIAGE, STAGE, TYPE);
     }
 
     /**
@@ -89,127 +187,12 @@ public class BlockNetherSapling2 extends BlockSapling
         return state.getValue(FOLIAGE).ordinal();
     }
 
-    @Override
-    public int damageDropped(IBlockState state)
-    {
-        return this.getMetaFromState(state);
-    }
-
-    @Override
-    public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
-    {
-        Block block = worldIn.getBlockState(pos).getBlock();
-
-        if (block == null || block.isReplaceable(worldIn, pos))
-        {
-            IBlockState ceilingBlockState = worldIn.getBlockState(pos.up());
-            Block netherCeiling = ceilingBlockState.getBlock();
-
-            if (netherCeiling != null)
-            {
-                if (this.canGrowOnBlock(netherCeiling) || netherCeiling.canSustainPlant(ceilingBlockState, worldIn, pos.up(), EnumFacing.DOWN, this))
-                {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public boolean canBlockStay(World worldIn, BlockPos pos, IBlockState state)
-    {
-        switch (state.getValue(FOLIAGE))
-        {
-        case BLOODWOOD:
-            IBlockState ceilingBlockState = worldIn.getBlockState(pos.up());
-            Block netherCeiling = ceilingBlockState.getBlock();
-
-            if (netherCeiling == null)
-            {
-                return false;
-            }
-
-            return this.canGrowOnBlock(netherCeiling) || netherCeiling.canSustainPlant(ceilingBlockState, worldIn, pos.up(), EnumFacing.DOWN, this);
-        default:
-            return true;
-        }
-    }
-
-    public boolean canGrowOnBlock(Block block)
-    {
-        return block == Blocks.SOUL_SAND || block == Blocks.NETHERRACK || block == NaturaNether.netherTaintedSoil;
-    }
-
     @Nonnull
     @Override
-    public EnumPlantType getPlantType(IBlockAccess world, BlockPos pos)
+    protected BlockStateContainer createBlockState()
     {
-        return EnumPlantType.Nether;
-    }
-
-    @Override
-    public boolean isReplaceable(IBlockAccess worldIn, @Nonnull BlockPos pos)
-    {
-        return false;
-    }
-
-    @Nonnull
-    @Override
-    public ItemStack getPickBlock(@Nonnull IBlockState state, RayTraceResult target, @Nonnull World world, @Nonnull BlockPos pos, EntityPlayer player)
-    {
-        IBlockState iblockstate = world.getBlockState(pos);
-        int meta = iblockstate.getBlock().getMetaFromState(iblockstate);
-        return new ItemStack(Item.getItemFromBlock(this), 1, meta);
-    }
-
-    @Override
-    public void generateTree(@Nonnull World worldIn, @Nonnull BlockPos pos, @Nonnull IBlockState state, @Nonnull Random rand)
-    {
-        if (!net.minecraftforge.event.terraingen.TerrainGen.saplingGrowTree(worldIn, rand, pos))
-        {
-            return;
-        }
-        BaseTreeGenerator gen = new BaseTreeGenerator();
-
-        IBlockState log;
-        IBlockState log2;
-        IBlockState log3;
-        IBlockState log4;
-        IBlockState log5;
-        IBlockState leaves;
-
-        switch (state.getValue(FOLIAGE))
-        {
-        case BLOODWOOD:
-            log = NaturaNether.netherLog2.getDefaultState().withProperty(BlockNetherLog2.META, 15);
-            log2 = NaturaNether.netherLog2.getDefaultState().withProperty(BlockNetherLog2.META, 0);
-            log3 = NaturaNether.netherLog2.getDefaultState().withProperty(BlockNetherLog2.META, 1);
-            log4 = NaturaNether.netherLog2.getDefaultState().withProperty(BlockNetherLog2.META, 2);
-            log5 = NaturaNether.netherLog2.getDefaultState().withProperty(BlockNetherLog2.META, 3);
-            leaves = NaturaNether.netherLeaves.getDefaultState().withProperty(BlockNetherLeaves.TYPE, BlockNetherLeaves.LeavesType.BLOODWOOD);
-
-            gen = new BloodwoodTreeGenerator(log, log2, log3, log4, log5, leaves);
-
-            break;
-        default:
-            Natura.log.warn("BlockNetherSapling Warning: Invalid sapling meta/foliage, " + state.getValue(FOLIAGE) + ". Please report!");
-            break;
-
-        }
-
-        // replace sapling with air
-        worldIn.setBlockToAir(pos);
-
-        // try generating
-        gen.generateTree(rand, worldIn, pos);
-
-        // check if it generated
-        if (worldIn.isAirBlock(pos))
-        {
-            // nope, set sapling again
-            worldIn.setBlockState(pos, state, 4);
-        }
+        // TYPE has to be included because of the BlockSapling constructor, but it's never used.
+        return new BlockStateContainer(this, FOLIAGE, STAGE, TYPE);
     }
 
     public enum SaplingType implements IStringSerializable, EnumBlock.IEnumMeta
@@ -223,6 +206,7 @@ public class BlockNetherSapling2 extends BlockSapling
             this.meta = this.ordinal();
         }
 
+        @Nonnull
         @Override
         public String getName()
         {

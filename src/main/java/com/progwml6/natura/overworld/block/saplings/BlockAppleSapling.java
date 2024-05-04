@@ -45,20 +45,20 @@ public class BlockAppleSapling extends BlockSapling
 
     @Nonnull
     @Override
-    public EnumPlantType getPlantType(IBlockAccess world, BlockPos pos)
+    public EnumPlantType getPlantType(@Nonnull IBlockAccess world, @Nonnull BlockPos pos)
     {
         return EnumPlantType.Plains;
     }
 
     @Override
-    public boolean isReplaceable(IBlockAccess worldIn, @Nonnull BlockPos pos)
+    public boolean isReplaceable(@Nonnull IBlockAccess worldIn, @Nonnull BlockPos pos)
     {
         return false;
     }
 
     @Nonnull
     @Override
-    public ItemStack getPickBlock(@Nonnull IBlockState state, RayTraceResult target, @Nonnull World world, @Nonnull BlockPos pos, EntityPlayer player)
+    public ItemStack getPickBlock(@Nonnull IBlockState state, @Nonnull RayTraceResult target, @Nonnull World world, @Nonnull BlockPos pos, @Nonnull EntityPlayer player)
     {
         IBlockState iblockstate = world.getBlockState(pos);
         int meta = iblockstate.getBlock().getMetaFromState(iblockstate);
@@ -110,13 +110,13 @@ public class BlockAppleSapling extends BlockSapling
     }
 
     @Override
-    public int damageDropped(IBlockState state)
+    public int damageDropped(@Nonnull IBlockState state)
     {
         return this.getMetaFromState(state);
     }
 
     @Override
-    public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
+    public void getSubBlocks(@Nonnull CreativeTabs tab, @Nonnull NonNullList<ItemStack> list)
     {
         for (SaplingType type : SaplingType.values())
         {

@@ -48,74 +48,25 @@ public class BlockRedwoodSapling extends BlockSapling
     }
 
     @Override
-    public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
-    {
-        for (SaplingType type : SaplingType.values())
-        {
-            list.add(new ItemStack(this, 1, this.getMetaFromState(this.getDefaultState().withProperty(FOLIAGE, type))));
-        }
-    }
-
-    @Nonnull
-    @Override
-    protected BlockStateContainer createBlockState()
-    {
-        // TYPE has to be included because of the BlockSapling constructor, but it's never used.
-        return new BlockStateContainer(this, FOLIAGE, STAGE, TYPE);
-    }
-
-    /**
-     * Convert the given metadata into a BlockState for this Block
-     */
-    @Nonnull
-    @Override
-    public IBlockState getStateFromMeta(int meta)
-    {
-        if (meta < 0 || meta >= SaplingType.values().length)
-        {
-            meta = 0;
-        }
-
-        SaplingType sapling = SaplingType.values()[meta];
-
-        return this.getDefaultState().withProperty(FOLIAGE, sapling);
-    }
-
-    /**
-     * Convert the BlockState into the correct metadata value
-     */
-    @Override
-    public int getMetaFromState(IBlockState state)
-    {
-        return state.getValue(FOLIAGE).ordinal();
-    }
-
-    @Override
-    public int damageDropped(IBlockState state)
-    {
-        return this.getMetaFromState(state);
-    }
-
-    @Override
-    public boolean isReplaceable(IBlockAccess worldIn, @Nonnull BlockPos pos)
+    public boolean isReplaceable(@Nonnull IBlockAccess worldIn, @Nonnull BlockPos pos)
     {
         return false;
     }
 
     @Nonnull
     @Override
-    public EnumPlantType getPlantType(IBlockAccess world, BlockPos pos)
-    {
-        return EnumPlantType.Plains;
-    }
-
-    @Nonnull
-    @Override
-    public ItemStack getPickBlock(@Nonnull IBlockState state, RayTraceResult target, @Nonnull World world, @Nonnull BlockPos pos, EntityPlayer player)
+    public ItemStack getPickBlock(@Nonnull IBlockState state, @Nonnull RayTraceResult target, @Nonnull World world, @Nonnull BlockPos pos, @Nonnull EntityPlayer player)
     {
         IBlockState iblockstate = world.getBlockState(pos);
         int meta = iblockstate.getBlock().getMetaFromState(iblockstate);
         return new ItemStack(Item.getItemFromBlock(this), 1, meta);
+    }
+
+    @Nonnull
+    @Override
+    public EnumPlantType getPlantType(@Nonnull IBlockAccess world, @Nonnull BlockPos pos)
+    {
+        return EnumPlantType.Plains;
     }
 
     @Override
@@ -165,17 +116,53 @@ public class BlockRedwoodSapling extends BlockSapling
         }
     }
 
-    private void replaceAirWithBlocks(World worldIn, IBlockState state)
+    @Override
+    public int damageDropped(@Nonnull IBlockState state)
     {
-        for (BlockPos pos : redwoodSaplingPositions)
+        return this.getMetaFromState(state);
+    }
+
+    @Override
+    public void getSubBlocks(@Nonnull CreativeTabs tab, @Nonnull NonNullList<ItemStack> list)
+    {
+        for (SaplingType type : SaplingType.values())
         {
-            if (worldIn.isAirBlock(pos))
-            {
-                worldIn.setBlockState(pos, state, 4);
-            }
+            list.add(new ItemStack(this, 1, this.getMetaFromState(this.getDefaultState().withProperty(FOLIAGE, type))));
+        }
+    }
+
+    /**
+     * Convert the given metadata into a BlockState for this Block
+     */
+    @Nonnull
+    @Override
+    public IBlockState getStateFromMeta(int meta)
+    {
+        if (meta < 0 || meta >= SaplingType.values().length)
+        {
+            meta = 0;
         }
 
-        redwoodSaplingPositions.clear();
+        SaplingType sapling = SaplingType.values()[meta];
+
+        return this.getDefaultState().withProperty(FOLIAGE, sapling);
+    }
+
+    /**
+     * Convert the BlockState into the correct metadata value
+     */
+    @Override
+    public int getMetaFromState(IBlockState state)
+    {
+        return state.getValue(FOLIAGE).ordinal();
+    }
+
+    @Nonnull
+    @Override
+    protected BlockStateContainer createBlockState()
+    {
+        // TYPE has to be included because of the BlockSapling constructor, but it's never used.
+        return new BlockStateContainer(this, FOLIAGE, STAGE, TYPE);
     }
 
     /**
@@ -224,6 +211,19 @@ public class BlockRedwoodSapling extends BlockSapling
                 }
             }
         }
+    }
+
+    private void replaceAirWithBlocks(World worldIn, IBlockState state)
+    {
+        for (BlockPos pos : redwoodSaplingPositions)
+        {
+            if (worldIn.isAirBlock(pos))
+            {
+                worldIn.setBlockState(pos, state, 4);
+            }
+        }
+
+        redwoodSaplingPositions.clear();
     }
 
     public enum SaplingType implements IStringSerializable, EnumBlock.IEnumMeta

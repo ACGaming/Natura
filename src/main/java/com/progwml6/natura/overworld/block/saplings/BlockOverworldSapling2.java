@@ -2,18 +2,7 @@ package com.progwml6.natura.overworld.block.saplings;
 
 import java.util.Locale;
 import java.util.Random;
-
 import javax.annotation.Nonnull;
-
-import com.progwml6.natura.Natura;
-import com.progwml6.natura.library.NaturaRegistry;
-import com.progwml6.natura.overworld.NaturaOverworld;
-import com.progwml6.natura.overworld.block.logs.BlockOverworldLog2;
-import com.progwml6.natura.world.worldgen.trees.BaseTreeGenerator;
-import com.progwml6.natura.world.worldgen.trees.overworld.EucalyptusTreeGenerator;
-import com.progwml6.natura.world.worldgen.trees.overworld.HopseedTreeGenerator;
-import com.progwml6.natura.world.worldgen.trees.overworld.SakuraTreeGenerator;
-import com.progwml6.natura.world.worldgen.trees.overworld.WillowTreeGenerator;
 
 import net.minecraft.block.BlockSapling;
 import net.minecraft.block.SoundType;
@@ -31,11 +20,21 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
+
+import com.progwml6.natura.Natura;
+import com.progwml6.natura.library.NaturaRegistry;
+import com.progwml6.natura.overworld.NaturaOverworld;
+import com.progwml6.natura.overworld.block.logs.BlockOverworldLog2;
+import com.progwml6.natura.world.worldgen.trees.BaseTreeGenerator;
+import com.progwml6.natura.world.worldgen.trees.overworld.EucalyptusTreeGenerator;
+import com.progwml6.natura.world.worldgen.trees.overworld.HopseedTreeGenerator;
+import com.progwml6.natura.world.worldgen.trees.overworld.SakuraTreeGenerator;
+import com.progwml6.natura.world.worldgen.trees.overworld.WillowTreeGenerator;
 import slimeknights.mantle.block.EnumBlock;
 
 public class BlockOverworldSapling2 extends BlockSapling
 {
-    public static PropertyEnum<SaplingType> FOLIAGE = PropertyEnum.create("foliage", SaplingType.class);
+    public static final PropertyEnum<SaplingType> FOLIAGE = PropertyEnum.create("foliage", SaplingType.class);
 
     public BlockOverworldSapling2()
     {
@@ -46,20 +45,100 @@ public class BlockOverworldSapling2 extends BlockSapling
     }
 
     @Override
-    public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
+    public boolean isReplaceable(@Nonnull IBlockAccess worldIn, @Nonnull BlockPos pos)
+    {
+        return false;
+    }
+
+    @Nonnull
+    @Override
+    public ItemStack getPickBlock(@Nonnull IBlockState state, @Nonnull RayTraceResult target, @Nonnull World world, @Nonnull BlockPos pos, @Nonnull EntityPlayer player)
+    {
+        IBlockState iblockstate = world.getBlockState(pos);
+        int meta = iblockstate.getBlock().getMetaFromState(iblockstate);
+        return new ItemStack(Item.getItemFromBlock(this), 1, meta);
+    }
+
+    @Nonnull
+    @Override
+    public EnumPlantType getPlantType(@Nonnull IBlockAccess world, @Nonnull BlockPos pos)
+    {
+        return EnumPlantType.Plains;
+    }
+
+    @Override
+    public void generateTree(@Nonnull World worldIn, @Nonnull BlockPos pos, @Nonnull IBlockState state, @Nonnull Random rand)
+    {
+        if (!net.minecraftforge.event.terraingen.TerrainGen.saplingGrowTree(worldIn, rand, pos))
+        {
+            return;
+        }
+        BaseTreeGenerator gen = new BaseTreeGenerator();
+        IBlockState log;
+        IBlockState leaves;
+
+        switch (state.getValue(FOLIAGE))
+        {
+            case WILLOW:
+                log = NaturaOverworld.overworldLog2.getDefaultState().withProperty(BlockOverworldLog2.TYPE, BlockOverworldLog2.LogType.WILLOW);
+                leaves = NaturaOverworld.overworldLeaves2.getDefaultState().withProperty(BlockOverworldLog2.TYPE, BlockOverworldLog2.LogType.WILLOW);
+
+                gen = new WillowTreeGenerator(4, 5, log, leaves, true, true);
+
+                break;
+            case EUCALYPTUS:
+                log = NaturaOverworld.overworldLog2.getDefaultState().withProperty(BlockOverworldLog2.TYPE, BlockOverworldLog2.LogType.EUCALYPTUS);
+                leaves = NaturaOverworld.overworldLeaves2.getDefaultState().withProperty(BlockOverworldLog2.TYPE, BlockOverworldLog2.LogType.EUCALYPTUS);
+
+                gen = new EucalyptusTreeGenerator(6, 3, log, leaves);
+
+                break;
+            case HOPSEED:
+                log = NaturaOverworld.overworldLog2.getDefaultState().withProperty(BlockOverworldLog2.TYPE, BlockOverworldLog2.LogType.HOPSEED);
+                leaves = NaturaOverworld.overworldLeaves2.getDefaultState().withProperty(BlockOverworldLog2.TYPE, BlockOverworldLog2.LogType.HOPSEED);
+
+                gen = new HopseedTreeGenerator(2, 3, log, leaves, true, true);
+
+                break;
+            case SAKURA:
+                log = NaturaOverworld.overworldLog2.getDefaultState().withProperty(BlockOverworldLog2.TYPE, BlockOverworldLog2.LogType.SAKURA);
+                leaves = NaturaOverworld.overworldLeaves2.getDefaultState().withProperty(BlockOverworldLog2.TYPE, BlockOverworldLog2.LogType.SAKURA);
+
+                gen = new SakuraTreeGenerator(log, leaves, false, true);
+
+                break;
+            default:
+                Natura.log.warn("BlockOverworldLog2 Warning: Invalid sapling meta/foliage, " + state.getValue(FOLIAGE) + ". Please report!");
+                break;
+        }
+
+        // replace sapling with air
+        worldIn.setBlockToAir(pos);
+
+        // try generating
+        gen.generateTree(rand, worldIn, pos);
+
+        // check if it generated
+        if (worldIn.isAirBlock(pos))
+        {
+            // nope, set sapling again
+            worldIn.setBlockState(pos, state, 4);
+        }
+    }
+
+    @Override
+    public int damageDropped(@Nonnull IBlockState state)
+    {
+        return this.getMetaFromState(state);
+    }
+
+    @Override
+    public void getSubBlocks(@Nonnull CreativeTabs tab, @Nonnull NonNullList<ItemStack> list)
     {
         for (SaplingType type : SaplingType.values())
         {
             list.add(new ItemStack(this, 1, this.getMetaFromState(this.getDefaultState().withProperty(FOLIAGE, type))));
         }
-    }
-
-    @Nonnull
-    @Override
-    protected BlockStateContainer createBlockState()
-    {
-        // TYPE has to be included because of the BlockSapling constructor.. but it's never used.
-        return new BlockStateContainer(this, FOLIAGE, STAGE, TYPE);
     }
 
     /**
@@ -88,92 +167,12 @@ public class BlockOverworldSapling2 extends BlockSapling
         return state.getValue(FOLIAGE).ordinal();
     }
 
-    @Override
-    public int damageDropped(IBlockState state)
-    {
-        return this.getMetaFromState(state);
-    }
-
-    @Override
-    public boolean isReplaceable(IBlockAccess worldIn, @Nonnull BlockPos pos)
-    {
-        return false;
-    }
-
     @Nonnull
     @Override
-    public EnumPlantType getPlantType(IBlockAccess world, BlockPos pos)
+    protected BlockStateContainer createBlockState()
     {
-        return EnumPlantType.Plains;
-    }
-
-    @Nonnull
-    @Override
-    public ItemStack getPickBlock(@Nonnull IBlockState state, RayTraceResult target, @Nonnull World world, @Nonnull BlockPos pos, EntityPlayer player)
-    {
-        IBlockState iblockstate = world.getBlockState(pos);
-        int meta = iblockstate.getBlock().getMetaFromState(iblockstate);
-        return new ItemStack(Item.getItemFromBlock(this), 1, meta);
-    }
-
-    @Override
-    public void generateTree(@Nonnull World worldIn, @Nonnull BlockPos pos, @Nonnull IBlockState state, @Nonnull Random rand)
-    {
-        if (!net.minecraftforge.event.terraingen.TerrainGen.saplingGrowTree(worldIn, rand, pos))
-        {
-            return;
-        }
-        BaseTreeGenerator gen = new BaseTreeGenerator();
-        IBlockState log;
-        IBlockState leaves;
-
-        switch (state.getValue(FOLIAGE))
-        {
-        case WILLOW:
-            log = NaturaOverworld.overworldLog2.getDefaultState().withProperty(BlockOverworldLog2.TYPE, BlockOverworldLog2.LogType.WILLOW);
-            leaves = NaturaOverworld.overworldLeaves2.getDefaultState().withProperty(BlockOverworldLog2.TYPE, BlockOverworldLog2.LogType.WILLOW);
-
-            gen = new WillowTreeGenerator(4, 5, log, leaves, true, true);
-
-            break;
-        case EUCALYPTUS:
-            log = NaturaOverworld.overworldLog2.getDefaultState().withProperty(BlockOverworldLog2.TYPE, BlockOverworldLog2.LogType.EUCALYPTUS);
-            leaves = NaturaOverworld.overworldLeaves2.getDefaultState().withProperty(BlockOverworldLog2.TYPE, BlockOverworldLog2.LogType.EUCALYPTUS);
-
-            gen = new EucalyptusTreeGenerator(6, 3, log, leaves);
-
-            break;
-        case HOPSEED:
-            log = NaturaOverworld.overworldLog2.getDefaultState().withProperty(BlockOverworldLog2.TYPE, BlockOverworldLog2.LogType.HOPSEED);
-            leaves = NaturaOverworld.overworldLeaves2.getDefaultState().withProperty(BlockOverworldLog2.TYPE, BlockOverworldLog2.LogType.HOPSEED);
-
-            gen = new HopseedTreeGenerator(2, 3, log, leaves, true, true);
-
-            break;
-        case SAKURA:
-            log = NaturaOverworld.overworldLog2.getDefaultState().withProperty(BlockOverworldLog2.TYPE, BlockOverworldLog2.LogType.SAKURA);
-            leaves = NaturaOverworld.overworldLeaves2.getDefaultState().withProperty(BlockOverworldLog2.TYPE, BlockOverworldLog2.LogType.SAKURA);
-
-            gen = new SakuraTreeGenerator(log, leaves, false, true);
-
-            break;
-        default:
-            Natura.log.warn("BlockOverworldLog2 Warning: Invalid sapling meta/foliage, " + state.getValue(FOLIAGE) + ". Please report!");
-            break;
-        }
-
-        // replace sapling with air
-        worldIn.setBlockToAir(pos);
-
-        // try generating
-        gen.generateTree(rand, worldIn, pos);
-
-        // check if it generated
-        if (worldIn.isAirBlock(pos))
-        {
-            // nope, set sapling again
-            worldIn.setBlockState(pos, state, 4);
-        }
+        // TYPE has to be included because of the BlockSapling constructor, but it's never used.
+        return new BlockStateContainer(this, FOLIAGE, STAGE, TYPE);
     }
 
     public enum SaplingType implements IStringSerializable, EnumBlock.IEnumMeta
@@ -187,6 +186,7 @@ public class BlockOverworldSapling2 extends BlockSapling
             this.meta = this.ordinal();
         }
 
+        @Nonnull
         @Override
         public String getName()
         {
