@@ -10,8 +10,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldType;
-import net.minecraft.world.chunk.IChunkProvider;
-import net.minecraft.world.gen.IChunkGenerator;
 
 import com.progwml6.natura.common.config.Config;
 import com.progwml6.natura.overworld.NaturaOverworld;
@@ -44,11 +42,6 @@ public class WillowTreeGenerator extends BaseTreeGenerator
     public WillowTreeGenerator(int treeHeight, int treeRange, IBlockState log, IBlockState leaves)
     {
         this(treeHeight, treeRange, log, leaves, true, false);
-    }
-
-    @Override
-    public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider)
-    {
     }
 
     @Override
@@ -86,7 +79,7 @@ public class WillowTreeGenerator extends BaseTreeGenerator
                     k = 3;
                 }
 
-                BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+                BlockPos.MutableBlockPos mutableBlockPos = new BlockPos.MutableBlockPos();
 
                 for (int l = position.getX() - k; l <= position.getX() + k && flag; ++l)
                 {
@@ -94,10 +87,10 @@ public class WillowTreeGenerator extends BaseTreeGenerator
                     {
                         if (j >= 0 && j < 128)
                         {
-                            IBlockState iblockstate = worldIn.getBlockState(blockpos$mutableblockpos.setPos(l, j, i1));
+                            IBlockState iblockstate = worldIn.getBlockState(mutableBlockPos.setPos(l, j, i1));
                             Block block = iblockstate.getBlock();
 
-                            if (!iblockstate.getBlock().isAir(iblockstate, worldIn, blockpos$mutableblockpos.setPos(l, j, i1)) && !iblockstate.getBlock().isLeaves(iblockstate, worldIn, blockpos$mutableblockpos.setPos(l, j, i1)))
+                            if (!iblockstate.getBlock().isAir(iblockstate, worldIn, mutableBlockPos.setPos(l, j, i1)) && !iblockstate.getBlock().isLeaves(iblockstate, worldIn, mutableBlockPos.setPos(l, j, i1)))
                             {
                                 if (block != Blocks.WATER && block != Blocks.FLOWING_WATER)
                                 {
@@ -117,10 +110,7 @@ public class WillowTreeGenerator extends BaseTreeGenerator
                 }
             }
 
-            if (!flag)
-            {
-            }
-            else
+            if (flag)
             {
                 BlockPos down = position.down();
                 IBlockState state = worldIn.getBlockState(down);
@@ -173,20 +163,20 @@ public class WillowTreeGenerator extends BaseTreeGenerator
                     {
                         int k2 = i2 - (position.getY() + height);
                         int i3 = 2 - k2 / 2;
-                        BlockPos.MutableBlockPos blockpos$mutableblockpos1 = new BlockPos.MutableBlockPos();
+                        BlockPos.MutableBlockPos mutableBlockPos = new BlockPos.MutableBlockPos();
 
                         for (int l3 = position.getX() - i3; l3 <= position.getX() + i3; ++l3)
                         {
                             for (int j4 = position.getZ() - i3; j4 <= position.getZ() + i3; ++j4)
                             {
-                                blockpos$mutableblockpos1.setPos(l3, i2, j4);
+                                mutableBlockPos.setPos(l3, i2, j4);
 
-                                if (worldIn.getBlockState(blockpos$mutableblockpos1).getMaterial() == Material.LEAVES)
+                                if (worldIn.getBlockState(mutableBlockPos).getMaterial() == Material.LEAVES)
                                 {
-                                    BlockPos blockpos3 = blockpos$mutableblockpos1.west();
-                                    BlockPos blockpos4 = blockpos$mutableblockpos1.east();
-                                    BlockPos blockpos1 = blockpos$mutableblockpos1.north();
-                                    BlockPos blockpos2 = blockpos$mutableblockpos1.south();
+                                    BlockPos blockpos3 = mutableBlockPos.west();
+                                    BlockPos blockpos4 = mutableBlockPos.east();
+                                    BlockPos blockpos1 = mutableBlockPos.north();
+                                    BlockPos blockpos2 = mutableBlockPos.south();
 
                                     if (random.nextInt(4) == 0 && this.isAir(worldIn, blockpos3))
                                     {
@@ -248,10 +238,7 @@ public class WillowTreeGenerator extends BaseTreeGenerator
                 }
 
                 height--;
-            }
-            while (height > Config.flatSeaLevel);
-
-            return new BlockPos(pos.getX(), returnHeight, pos.getZ());
+            } while (height > Config.flatSeaLevel);
         }
         else
         {
@@ -269,11 +256,9 @@ public class WillowTreeGenerator extends BaseTreeGenerator
                 }
 
                 height--;
-            }
-            while (height > Config.seaLevel);
-
-            return new BlockPos(pos.getX(), returnHeight, pos.getZ());
+            } while (height > Config.seaLevel);
         }
+        return new BlockPos(pos.getX(), returnHeight, pos.getZ());
     }
 
     private void addDownLeaves(World worldIn, BlockPos pos)

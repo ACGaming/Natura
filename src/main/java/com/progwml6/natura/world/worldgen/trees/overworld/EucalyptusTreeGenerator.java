@@ -7,8 +7,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.chunk.IChunkProvider;
-import net.minecraft.world.gen.IChunkGenerator;
 
 import com.progwml6.natura.overworld.NaturaOverworld;
 import com.progwml6.natura.world.worldgen.trees.BaseTreeGenerator;
@@ -37,11 +35,6 @@ public class EucalyptusTreeGenerator extends BaseTreeGenerator
     public EucalyptusTreeGenerator(int treeHeight, int treeRange, IBlockState log, IBlockState leaves)
     {
         this(treeHeight, treeRange, log, leaves, true);
-    }
-
-    @Override
-    public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider)
-    {
     }
 
     @Override
@@ -74,7 +67,7 @@ public class EucalyptusTreeGenerator extends BaseTreeGenerator
                     k = 3;
                 }
 
-                BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+                BlockPos.MutableBlockPos mutableBlockPos = new BlockPos.MutableBlockPos();
 
                 for (int l = pos.getX() - k; l <= pos.getX() + k && flag; ++l)
                 {
@@ -82,9 +75,9 @@ public class EucalyptusTreeGenerator extends BaseTreeGenerator
                     {
                         if (j >= 0 && j < 256)
                         {
-                            IBlockState iblockstate = world.getBlockState(blockpos$mutableblockpos.setPos(l, j, i1));
+                            IBlockState iblockstate = world.getBlockState(mutableBlockPos.setPos(l, j, i1));
 
-                            if (!iblockstate.getBlock().isAir(iblockstate, world, blockpos$mutableblockpos.setPos(l, j, i1)) && !iblockstate.getBlock().isLeaves(iblockstate, world, blockpos$mutableblockpos.setPos(l, j, i1)))
+                            if (!iblockstate.getBlock().isAir(iblockstate, world, mutableBlockPos.setPos(l, j, i1)) && !iblockstate.getBlock().isLeaves(iblockstate, world, mutableBlockPos.setPos(l, j, i1)))
                             {
                                 flag = false;
                             }
@@ -97,14 +90,11 @@ public class EucalyptusTreeGenerator extends BaseTreeGenerator
                 }
             }
 
-            if (!flag)
-            {
-            }
-            else
+            if (flag)
             {
                 IBlockState state = world.getBlockState(pos.down());
                 Block soil = state.getBlock();
-                boolean isSoil = (soil != null && soil.canSustainPlant(state, world, pos.down(), EnumFacing.UP, NaturaOverworld.overworldSapling));
+                boolean isSoil = soil.canSustainPlant(state, world, pos.down(), EnumFacing.UP, NaturaOverworld.overworldSapling);
 
                 if (isSoil)
                 {
@@ -119,14 +109,14 @@ public class EucalyptusTreeGenerator extends BaseTreeGenerator
                     this.genStraightBranch(world, random, pos, height, 2);
                     this.genStraightBranch(world, random, pos, height, 3);
                     this.genStraightBranch(world, random, pos, height, 4);
-                    this.generateNode(world, random, pos.up(height));
+                    this.generateNode(world, pos.up(height));
                 }
             }
         }
     }
 
     @SuppressWarnings("deprecation")
-    public boolean generateNode(World world, Random random, BlockPos pos)
+    public void generateNode(World world, BlockPos pos)
     {
         this.setBlockAndMetadata(world, pos, this.log);
 
@@ -175,7 +165,6 @@ public class EucalyptusTreeGenerator extends BaseTreeGenerator
             }
         }
 
-        return true;
     }
 
     protected void placeTrunk(World world, BlockPos pos, int height)
@@ -223,11 +212,6 @@ public class EucalyptusTreeGenerator extends BaseTreeGenerator
         {
             BlockPos position = new BlockPos(pos.getX(), y, pos.getZ());
 
-            if (y < 32)
-            {
-                break;
-            }
-
             IBlockState state = world.getBlockState(position);
             Block block = state.getBlock();
             boolean isSoil = block.canSustainPlant(state, world, position, EnumFacing.UP, NaturaOverworld.overworldSapling);
@@ -238,8 +222,7 @@ public class EucalyptusTreeGenerator extends BaseTreeGenerator
                 break;
             }
             y--;
-        }
-        while (y > 0);
+        } while (y >= 32);
 
         return new BlockPos(pos.getX(), returnHeight, pos.getZ());
     }
@@ -258,17 +241,14 @@ public class EucalyptusTreeGenerator extends BaseTreeGenerator
                 byte0 = 1;
                 byte1 = 1;
                 break;
-
             case 2:
                 byte0 = -1;
                 byte1 = 1;
                 break;
-
             case 3:
                 byte0 = 1;
                 byte1 = -1;
                 break;
-
             case 4:
                 byte0 = -1;
                 byte1 = -1;
@@ -304,7 +284,7 @@ public class EucalyptusTreeGenerator extends BaseTreeGenerator
 
             if (bIter == 1)
             {
-                this.generateNode(world, random, blockpos);
+                this.generateNode(world, blockpos);
             }
 
             heightShift = random.nextInt(6);
@@ -324,21 +304,14 @@ public class EucalyptusTreeGenerator extends BaseTreeGenerator
         {
             case 1:
                 xShift = 1;
-                zShift = 0;
                 break;
-
             case 2:
-                xShift = 0;
                 zShift = 1;
                 break;
-
             case 3:
                 xShift = -1;
-                zShift = 0;
                 break;
-
             case 4:
-                xShift = 0;
                 zShift = -1;
                 break;
         }
@@ -374,7 +347,7 @@ public class EucalyptusTreeGenerator extends BaseTreeGenerator
 
             if (j2 == 1)
             {
-                this.generateNode(world, random, blockpos);
+                this.generateNode(world, blockpos);
             }
 
             heightShift = random.nextInt(6);

@@ -11,8 +11,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldType;
-import net.minecraft.world.chunk.IChunkProvider;
-import net.minecraft.world.gen.IChunkGenerator;
 
 import com.progwml6.natura.common.block.BlockEnumLog;
 import com.progwml6.natura.common.config.Config;
@@ -50,20 +48,10 @@ public class SakuraTreeGenerator extends BaseTreeGenerator
         this.leaves = leaves;
     }
 
-    public void setDecorationDefaults()
-    {
-        this.leafDistanceLimit = 5;
-    }
-
     public boolean isReplaceable(World world, BlockPos pos)
     {
         net.minecraft.block.state.IBlockState state = world.getBlockState(pos);
         return state.getBlock().isAir(state, world, pos) || state.getBlock().isLeaves(state, world, pos);
-    }
-
-    @Override
-    public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider)
-    {
     }
 
     @Override
@@ -87,18 +75,14 @@ public class SakuraTreeGenerator extends BaseTreeGenerator
             this.heightLimit = 5 + this.rand.nextInt(this.heightLimitLimit);
         }
 
-        if (!this.validTreeLocation())
-        {
-            this.world = null; //Fix vanilla Mem leak, holds latest world
-        }
-        else
+        if (this.validTreeLocation())
         {
             this.generateLeafNodeList();
             this.generateLeaves();
             this.generateTrunk();
             this.generateLeafNodeBases();
-            this.world = null; //Fix vanilla Mem leak, holds latest world
         }
+        this.world = null; //Fix vanilla Mem leak, holds latest world
     }
 
     protected void setBlockAndMetadata(World world, BlockPos pos, IBlockState stateNew)
@@ -239,9 +223,9 @@ public class SakuraTreeGenerator extends BaseTreeGenerator
     {
         BlockPos blockpos = p_175937_2_.add(-p_175937_1_.getX(), -p_175937_1_.getY(), -p_175937_1_.getZ());
         int i = this.getGreatestDistance(blockpos);
-        float f = (float) blockpos.getX() / (float) i;
-        float f1 = (float) blockpos.getY() / (float) i;
-        float f2 = (float) blockpos.getZ() / (float) i;
+        float f = (float) blockpos.getX() / i;
+        float f1 = (float) blockpos.getY() / i;
+        float f2 = (float) blockpos.getZ() / i;
 
         for (int j = 0; j <= i; ++j)
         {
@@ -263,7 +247,7 @@ public class SakuraTreeGenerator extends BaseTreeGenerator
     }
 
     /**
-     * Indicates whether or not a leaf node requires additional wood to be added to preserve integrity.
+     * Indicates whether a leaf node requires additional wood to be added to preserve integrity.
      */
     boolean leafNodeNeedsBase(int p_76493_1_)
     {
@@ -313,15 +297,11 @@ public class SakuraTreeGenerator extends BaseTreeGenerator
     {
         BlockPos blockpos = posTwo.add(-posOne.getX(), -posOne.getY(), -posOne.getZ());
         int i = this.getGreatestDistance(blockpos);
-        float f = (float) blockpos.getX() / (float) i;
-        float f1 = (float) blockpos.getY() / (float) i;
-        float f2 = (float) blockpos.getZ() / (float) i;
+        float f = (float) blockpos.getX() / i;
+        float f1 = (float) blockpos.getY() / i;
+        float f2 = (float) blockpos.getZ() / i;
 
-        if (i == 0)
-        {
-            return -1;
-        }
-        else
+        if (i != 0)
         {
             for (int j = 0; j <= i; ++j)
             {
@@ -333,8 +313,8 @@ public class SakuraTreeGenerator extends BaseTreeGenerator
                 }
             }
 
-            return -1;
         }
+        return -1;
     }
 
     BlockPos findGround(World world, BlockPos pos)
@@ -357,8 +337,7 @@ public class SakuraTreeGenerator extends BaseTreeGenerator
                 {
                     foundGround = true;
                 }
-            }
-            while (!foundGround);
+            } while (!foundGround);
 
             return new BlockPos(pos.getX(), height + 1, pos.getZ());
         }
@@ -380,8 +359,7 @@ public class SakuraTreeGenerator extends BaseTreeGenerator
                 {
                     foundGround = true;
                 }
-            }
-            while (!foundGround);
+            } while (!foundGround);
 
             return new BlockPos(pos.getX(), height + 1, pos.getZ());
         }
@@ -395,7 +373,7 @@ public class SakuraTreeGenerator extends BaseTreeGenerator
         int i = MathHelper.abs(posIn.getX());
         int j = MathHelper.abs(posIn.getY());
         int k = MathHelper.abs(posIn.getZ());
-        return k > i && k > j ? k : (j > i ? j : i);
+        return k > i && k > j ? k : (Math.max(j, i));
     }
 
     private BlockEnumLog.EnumAxis getLogAxis(BlockPos p_175938_1_, BlockPos p_175938_2_)
@@ -411,7 +389,7 @@ public class SakuraTreeGenerator extends BaseTreeGenerator
             {
                 enumaxis = BlockEnumLog.EnumAxis.X;
             }
-            else if (j == k)
+            else
             {
                 enumaxis = BlockEnumLog.EnumAxis.Z;
             }
@@ -421,7 +399,7 @@ public class SakuraTreeGenerator extends BaseTreeGenerator
     }
 
     /**
-     * Returns a boolean indicating whether or not the current location for the tree, spanning basePos to to the height
+     * Returns a boolean indicating whether the current location for the tree, spanning basePos to the height
      * limit, is valid.
      */
     private boolean validTreeLocation()

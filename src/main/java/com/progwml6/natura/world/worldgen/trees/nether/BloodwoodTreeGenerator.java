@@ -2,16 +2,14 @@ package com.progwml6.natura.world.worldgen.trees.nether;
 
 import java.util.Random;
 
-import com.progwml6.natura.nether.NaturaNether;
-import com.progwml6.natura.world.worldgen.trees.BaseTreeGenerator;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.chunk.IChunkProvider;
-import net.minecraft.world.gen.IChunkGenerator;
+
+import com.progwml6.natura.nether.NaturaNether;
+import com.progwml6.natura.world.worldgen.trees.BaseTreeGenerator;
 
 public class BloodwoodTreeGenerator extends BaseTreeGenerator
 {
@@ -35,36 +33,6 @@ public class BloodwoodTreeGenerator extends BaseTreeGenerator
         this.trunk3 = trunk3;
         this.trunk4 = trunk4;
         this.leaves = leaves;
-    }
-
-    BlockPos findCeiling(World world, BlockPos pos)
-    {
-        int returnHeight = 0;
-
-        int height = pos.getY();
-
-        do
-        {
-            BlockPos position = new BlockPos(pos.getX(), height, pos.getZ());
-
-            Block block = world.getBlockState(position).getBlock();
-
-            if ((block == Blocks.NETHERRACK || block == Blocks.SOUL_SAND || block == NaturaNether.netherTaintedSoil) && !world.getBlockState(position.down()).isFullBlock())
-            {
-                returnHeight = height - 1;
-                break;
-            }
-
-            height++;
-        }
-        while (height <= world.provider.getActualHeight());
-
-        return new BlockPos(pos.getX(), returnHeight, pos.getZ());
-    }
-
-    @Override
-    public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider)
-    {
     }
 
     @Override
@@ -101,124 +69,7 @@ public class BloodwoodTreeGenerator extends BaseTreeGenerator
         this.genStraightBranch(world, random, pos.add(1, 0, 1), -treeHeight, 4);
     }
 
-    private void genBranch(World world, Random random, BlockPos pos, int height, int direction)
-    {
-        int posX = pos.getX();
-        int posY = pos.getY() + height;
-        int posZ = pos.getZ();
-        byte offsetX = 0;
-        byte offsetZ = 0;
-
-        switch (direction)
-        {
-        case 1:
-            offsetX = 1;
-            offsetZ = 1;
-            break;
-
-        case 2:
-            offsetX = -1;
-            offsetZ = 1;
-            break;
-
-        case 3:
-            offsetX = 1;
-            offsetZ = -1;
-            break;
-
-        case 4:
-            offsetX = -1;
-            offsetZ = -1;
-            break;
-        }
-
-        int heightShift = random.nextInt(6);
-
-        for (int bIter = 4; bIter > 0; bIter--)
-        {
-            if (heightShift % 3 != 0)
-            {
-                posX += offsetX;
-            }
-
-            if (heightShift % 3 != 1)
-            {
-                posZ += offsetZ;
-            }
-
-            int branch = heightShift % 3 - 1;
-
-            posY += branch;
-
-            BlockPos blockpos = new BlockPos(posX, posY, posZ);
-
-            this.generateNode(world, random, blockpos);
-
-            heightShift = random.nextInt(6);
-        }
-    }
-
-    private void genStraightBranch(World world, Random random, BlockPos pos, int height, int direction)
-    {
-        int posX = pos.getX();
-        int posY = pos.getY() + height;
-        int posZ = pos.getZ();
-
-        byte xShift = 0;
-        byte zShift = 0;
-
-        switch (direction)
-        {
-        case 1:
-            xShift = 1;
-            zShift = 0;
-            break;
-
-        case 2:
-            xShift = 0;
-            zShift = 1;
-            break;
-
-        case 3:
-            xShift = -1;
-            zShift = 0;
-            break;
-
-        case 4:
-            xShift = 0;
-            zShift = -1;
-            break;
-        }
-
-        int heightShift = random.nextInt(6);
-
-        for (int j2 = 4; j2 > 0; j2--)
-        {
-            if (xShift == 0)
-            {
-                posX = (posX + random.nextInt(3)) - 1;
-                posZ += zShift;
-            }
-
-            if (zShift == 0)
-            {
-                posX += xShift;
-                posZ = (posZ + random.nextInt(3)) - 1;
-            }
-
-            int branch = heightShift % 3 - 1;
-
-            posY += branch;
-
-            BlockPos blockpos = new BlockPos(posX, posY, posZ);
-
-            this.generateNode(world, random, blockpos);
-
-            heightShift = random.nextInt(6);
-        }
-    }
-
-    public boolean generateNode(World world, Random random, BlockPos pos)
+    public void generateNode(World world, BlockPos pos)
     {
         this.setBlockAndMetadata(world, pos, this.full);
 
@@ -266,12 +117,141 @@ public class BloodwoodTreeGenerator extends BaseTreeGenerator
                 }
             }
         }
-
-        return true;
     }
 
     protected void setBlockAndMetadata(World world, BlockPos pos, IBlockState stateNew)
     {
         world.setBlockState(pos, stateNew, 2);
+    }
+
+    BlockPos findCeiling(World world, BlockPos pos)
+    {
+        int returnHeight = 0;
+
+        int height = pos.getY();
+
+        do
+        {
+            BlockPos position = new BlockPos(pos.getX(), height, pos.getZ());
+
+            Block block = world.getBlockState(position).getBlock();
+
+            if ((block == Blocks.NETHERRACK || block == Blocks.SOUL_SAND || block == NaturaNether.netherTaintedSoil) && !world.getBlockState(position.down()).isFullBlock())
+            {
+                returnHeight = height - 1;
+                break;
+            }
+
+            height++;
+        } while (height <= world.provider.getActualHeight());
+
+        return new BlockPos(pos.getX(), returnHeight, pos.getZ());
+    }
+
+    private void genBranch(World world, Random random, BlockPos pos, int height, int direction)
+    {
+        int posX = pos.getX();
+        int posY = pos.getY() + height;
+        int posZ = pos.getZ();
+        byte offsetX = 0;
+        byte offsetZ = 0;
+
+        switch (direction)
+        {
+            case 1:
+                offsetX = 1;
+                offsetZ = 1;
+                break;
+            case 2:
+                offsetX = -1;
+                offsetZ = 1;
+                break;
+            case 3:
+                offsetX = 1;
+                offsetZ = -1;
+                break;
+            case 4:
+                offsetX = -1;
+                offsetZ = -1;
+                break;
+        }
+
+        int heightShift = random.nextInt(6);
+
+        for (int bIter = 4; bIter > 0; bIter--)
+        {
+            if (heightShift % 3 != 0)
+            {
+                posX += offsetX;
+            }
+
+            if (heightShift % 3 != 1)
+            {
+                posZ += offsetZ;
+            }
+
+            int branch = heightShift % 3 - 1;
+
+            posY += branch;
+
+            BlockPos blockpos = new BlockPos(posX, posY, posZ);
+
+            this.generateNode(world, blockpos);
+
+            heightShift = random.nextInt(6);
+        }
+    }
+
+    private void genStraightBranch(World world, Random random, BlockPos pos, int height, int direction)
+    {
+        int posX = pos.getX();
+        int posY = pos.getY() + height;
+        int posZ = pos.getZ();
+
+        byte xShift = 0;
+        byte zShift = 0;
+
+        switch (direction)
+        {
+            case 1:
+                xShift = 1;
+                break;
+            case 2:
+                zShift = 1;
+                break;
+            case 3:
+                xShift = -1;
+                break;
+            case 4:
+                zShift = -1;
+                break;
+        }
+
+        int heightShift = random.nextInt(6);
+
+        for (int j2 = 4; j2 > 0; j2--)
+        {
+            if (xShift == 0)
+            {
+                posX = (posX + random.nextInt(3)) - 1;
+                posZ += zShift;
+            }
+
+            if (zShift == 0)
+            {
+                posX += xShift;
+                posZ = (posZ + random.nextInt(3)) - 1;
+            }
+
+            int branch = heightShift % 3 - 1;
+
+            posY += branch;
+
+            BlockPos blockpos = new BlockPos(posX, posY, posZ);
+
+            this.generateNode(world, blockpos);
+
+            heightShift = random.nextInt(6);
+        }
     }
 }

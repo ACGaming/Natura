@@ -9,8 +9,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockPos.MutableBlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.chunk.IChunkProvider;
-import net.minecraft.world.gen.IChunkGenerator;
 
 import com.progwml6.natura.overworld.NaturaOverworld;
 import com.progwml6.natura.world.worldgen.trees.BaseTreeGenerator;
@@ -42,11 +40,6 @@ public class HopseedTreeGenerator extends BaseTreeGenerator
     public HopseedTreeGenerator(int treeHeight, int treeRange, IBlockState log, IBlockState leaves)
     {
         this(treeHeight, treeRange, log, leaves, true, false);
-    }
-
-    @Override
-    public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider)
-    {
     }
 
     @Override
@@ -115,16 +108,14 @@ public class HopseedTreeGenerator extends BaseTreeGenerator
                 }
             }
 
-            if (!hasSpace)
-            {
-            }
-            else
+            if (hasSpace)
             {
                 BlockPos downPosition = position.down();
 
                 IBlockState state = worldIn.getBlockState(downPosition);
 
-                boolean isSoil = (state.getBlock() != null && state.getBlock().canSustainPlant(state, worldIn, downPosition, EnumFacing.UP, NaturaOverworld.overworldSapling2));
+                state.getBlock();
+                boolean isSoil = state.getBlock().canSustainPlant(state, worldIn, downPosition, EnumFacing.UP, NaturaOverworld.overworldSapling2);
 
                 if (isSoil && position.getY() < 256 - height - 1)
                 {
@@ -143,7 +134,7 @@ public class HopseedTreeGenerator extends BaseTreeGenerator
 
                         IBlockState newState = worldIn.getBlockState(blockpos);
 
-                        if (newState.getBlock() == Blocks.AIR || newState.getBlock() == null || newState.getBlock().isLeaves(newState, worldIn, blockpos))
+                        if (newState.getBlock() == Blocks.AIR || newState.getBlock().isLeaves(newState, worldIn, blockpos))
                         {
                             worldIn.setBlockState(blockpos, this.log, 0);
                         }
@@ -154,7 +145,7 @@ public class HopseedTreeGenerator extends BaseTreeGenerator
 
                             newState = worldIn.getBlockState(blockpos);
 
-                            if (newState.getBlock() == Blocks.AIR || newState.getBlock() == null || newState.getBlock().isLeaves(newState, worldIn, blockpos))
+                            if (newState.getBlock() == Blocks.AIR || newState.getBlock().isLeaves(newState, worldIn, blockpos))
                             {
                                 worldIn.setBlockState(blockpos, this.log, 0);
                             }
@@ -163,7 +154,7 @@ public class HopseedTreeGenerator extends BaseTreeGenerator
 
                             newState = worldIn.getBlockState(blockpos);
 
-                            if (newState.getBlock() == Blocks.AIR || newState.getBlock() == null || newState.getBlock().isLeaves(newState, worldIn, blockpos))
+                            if (newState.getBlock() == Blocks.AIR || newState.getBlock().isLeaves(newState, worldIn, blockpos))
                             {
                                 worldIn.setBlockState(blockpos, this.log, 0);
                             }
@@ -172,7 +163,7 @@ public class HopseedTreeGenerator extends BaseTreeGenerator
 
                             newState = worldIn.getBlockState(blockpos);
 
-                            if (newState.getBlock() == Blocks.AIR || newState.getBlock() == null || newState.getBlock().isLeaves(newState, worldIn, blockpos))
+                            if (newState.getBlock() == Blocks.AIR || newState.getBlock().isLeaves(newState, worldIn, blockpos))
                             {
                                 worldIn.setBlockState(blockpos, this.log, 0);
                             }
@@ -194,21 +185,21 @@ public class HopseedTreeGenerator extends BaseTreeGenerator
     {
         for (int y = positionIn.getY() - 2 + height; y <= positionIn.getY() + height; ++y)
         {
-            int subract = y - (positionIn.getY() + height);
-            int subract2 = 2 + 1 - subract;
+            int subtract = y - (positionIn.getY() + height);
+            int subtract2 = 2 + 1 - subtract;
 
-            for (int x = positionIn.getX() - subract2; x <= positionIn.getX() + subract2; ++x)
+            for (int x = positionIn.getX() - subtract2; x <= positionIn.getX() + subtract2; ++x)
             {
                 int mathX = x - positionIn.getX();
 
-                for (int z = positionIn.getZ() - subract2; z <= positionIn.getZ() + subract2; ++z)
+                for (int z = positionIn.getZ() - subtract2; z <= positionIn.getZ() + subtract2; ++z)
                 {
                     int mathZ = z - positionIn.getZ();
 
                     BlockPos blockpos = new BlockPos(x, y, z);
                     IBlockState state = worldIn.getBlockState(blockpos);
 
-                    if ((mathX >= 0 || mathZ >= 0 || mathX * mathX + mathZ * mathZ <= subract2 * subract2) && (mathX <= 0 && mathZ <= 0 || mathX * mathX + mathZ * mathZ <= (subract2 + 1) * (subract2 + 1)) && (random.nextInt(4) != 0 || mathX * mathX + mathZ * mathZ <= (subract2 - 1) * (subract2 - 1)) && (state.getBlock().isAir(state, worldIn, blockpos) || state.getBlock().isLeaves(state, worldIn, blockpos) || state.getBlock().canBeReplacedByLeaves(state, worldIn, blockpos)))
+                    if ((mathX >= 0 || mathZ >= 0 || mathX * mathX + mathZ * mathZ <= subtract2 * subtract2) && (mathX <= 0 && mathZ <= 0 || mathX * mathX + mathZ * mathZ <= (subtract2 + 1) * (subtract2 + 1)) && (random.nextInt(4) != 0 || mathX * mathX + mathZ * mathZ <= (subtract2 - 1) * (subtract2 - 1)) && (state.getBlock().isAir(state, worldIn, blockpos) || state.getBlock().isLeaves(state, worldIn, blockpos) || state.getBlock().canBeReplacedByLeaves(state, worldIn, blockpos)))
                     {
                         this.setBlockAndMetadata(worldIn, blockpos, this.leaves);
                     }

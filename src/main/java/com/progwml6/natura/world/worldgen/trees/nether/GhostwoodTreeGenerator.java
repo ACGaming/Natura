@@ -4,10 +4,6 @@ import java.util.List;
 import java.util.Random;
 
 import com.google.common.collect.Lists;
-import com.progwml6.natura.common.block.BlockEnumLog;
-import com.progwml6.natura.nether.NaturaNether;
-import com.progwml6.natura.world.worldgen.trees.BaseTreeGenerator;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -15,17 +11,16 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import net.minecraft.world.chunk.IChunkProvider;
-import net.minecraft.world.gen.IChunkGenerator;
+
+import com.progwml6.natura.common.block.BlockEnumLog;
+import com.progwml6.natura.nether.NaturaNether;
+import com.progwml6.natura.world.worldgen.trees.BaseTreeGenerator;
 
 public class GhostwoodTreeGenerator extends BaseTreeGenerator
 {
-    private Random rand;
-
-    private World world;
-
-    private BlockPos basePos = BlockPos.ORIGIN;
-
+    public final IBlockState log;
+    public final IBlockState leaves;
+    public final boolean seekHeight;
     int heightLimit;
 
     int height;
@@ -42,22 +37,68 @@ public class GhostwoodTreeGenerator extends BaseTreeGenerator
 
     int heightLimitLimit = 12;
 
-    /** Sets the distance limit for how far away the generator will populate leaves from the base leaf node. */
+    /**
+     * Sets the distance limit for how far away the generator will populate leaves from the base leaf node.
+     */
     int leafDistanceLimit = 4;
 
     List<GhostwoodTreeGenerator.FoliageCoordinates> foliageCoords;
-
-    public final IBlockState log;
-
-    public final IBlockState leaves;
-
-    public final boolean seekHeight;
+    private Random rand;
+    private World world;
+    private BlockPos basePos = BlockPos.ORIGIN;
 
     public GhostwoodTreeGenerator(IBlockState log, IBlockState leaves, boolean seekHeight)
     {
         this.log = log;
         this.leaves = leaves;
         this.seekHeight = seekHeight;
+    }
+
+    public boolean isReplaceable(World world, BlockPos pos)
+    {
+        IBlockState state = world.getBlockState(pos);
+        return state.getBlock().isAir(state, world, pos) || state.getBlock().isLeaves(state, world, pos);
+    }
+
+    @Override
+    public void generateTree(Random random, World worldIn, BlockPos position)
+    {
+        this.world = worldIn;
+
+        if (this.seekHeight)
+        {
+            this.basePos = this.findGround(worldIn, position);
+        }
+        else
+        {
+            this.basePos = position;
+        }
+
+        this.rand = new Random(random.nextLong());
+
+        if (this.heightLimit == 0)
+        {
+            this.heightLimit = 5 + this.rand.nextInt(this.heightLimitLimit);
+        }
+
+        if (this.validTreeLocation())
+        {
+            this.generateLeafNodeList();
+            this.generateLeaves();
+            this.generateTrunk();
+            this.generateLeafNodeBases();
+        }
+        this.world = null; //Fix vanilla Mem leak, holds latest world
+    }
+
+    protected void setBlockAndMetadata(World world, BlockPos pos, IBlockState stateNew)
+    {
+        IBlockState state = world.getBlockState(pos);
+        Block block = state.getBlock();
+        if (block.isAir(state, world, pos) || block.canPlaceBlockAt(world, pos) || world.getBlockState(pos) == this.leaves)
+        {
+            world.setBlockState(pos, stateNew, 2);
+        }
     }
 
     /**
@@ -81,7 +122,7 @@ public class GhostwoodTreeGenerator extends BaseTreeGenerator
 
         int j = this.basePos.getY() + this.height;
         int k = this.heightLimit - this.leafDistanceLimit;
-        this.foliageCoords = Lists.<GhostwoodTreeGenerator.FoliageCoordinates> newArrayList();
+        this.foliageCoords = Lists.newArrayList();
         this.foliageCoords.add(new GhostwoodTreeGenerator.FoliageCoordinates(this.basePos.up(k), j));
 
         for (; k >= 0; --k)
@@ -187,9 +228,9 @@ public class GhostwoodTreeGenerator extends BaseTreeGenerator
     {
         BlockPos blockpos = p_175937_2_.add(-p_175937_1_.getX(), -p_175937_1_.getY(), -p_175937_1_.getZ());
         int i = this.getGreatestDistance(blockpos);
-        float f = (float) blockpos.getX() / (float) i;
-        float f1 = (float) blockpos.getY() / (float) i;
-        float f2 = (float) blockpos.getZ() / (float) i;
+        float f = (float) blockpos.getX() / i;
+        float f1 = (float) blockpos.getY() / i;
+        float f2 = (float) blockpos.getZ() / i;
 
         for (int j = 0; j <= i; ++j)
         {
@@ -197,39 +238,6 @@ public class GhostwoodTreeGenerator extends BaseTreeGenerator
             BlockEnumLog.EnumAxis enumaxis = this.getLogAxis(p_175937_1_, blockpos1);
             this.setBlockAndMetadata(this.world, blockpos1, state.withProperty(BlockEnumLog.LOG_AXIS, enumaxis));
         }
-    }
-
-    /**
-     * Returns the absolute greatest distance in the BlockPos object.
-     */
-    private int getGreatestDistance(BlockPos posIn)
-    {
-        int i = MathHelper.abs(posIn.getX());
-        int j = MathHelper.abs(posIn.getY());
-        int k = MathHelper.abs(posIn.getZ());
-        return k > i && k > j ? k : (j > i ? j : i);
-    }
-
-    private BlockEnumLog.EnumAxis getLogAxis(BlockPos p_175938_1_, BlockPos p_175938_2_)
-    {
-        BlockEnumLog.EnumAxis enumaxis = BlockEnumLog.EnumAxis.Y;
-        int i = Math.abs(p_175938_2_.getX() - p_175938_1_.getX());
-        int j = Math.abs(p_175938_2_.getZ() - p_175938_1_.getZ());
-        int k = Math.max(i, j);
-
-        if (k > 0)
-        {
-            if (i == k)
-            {
-                enumaxis = BlockEnumLog.EnumAxis.X;
-            }
-            else if (j == k)
-            {
-                enumaxis = BlockEnumLog.EnumAxis.Z;
-            }
-        }
-
-        return enumaxis;
     }
 
     /**
@@ -244,7 +252,7 @@ public class GhostwoodTreeGenerator extends BaseTreeGenerator
     }
 
     /**
-     * Indicates whether or not a leaf node requires additional wood to be added to preserve integrity.
+     * Indicates whether a leaf node requires additional wood to be added to preserve integrity.
      */
     boolean leafNodeNeedsBase(int p_76493_1_)
     {
@@ -294,37 +302,81 @@ public class GhostwoodTreeGenerator extends BaseTreeGenerator
     {
         BlockPos blockpos = posTwo.add(-posOne.getX(), -posOne.getY(), -posOne.getZ());
         int i = this.getGreatestDistance(blockpos);
-        float f = (float) blockpos.getX() / (float) i;
-        float f1 = (float) blockpos.getY() / (float) i;
-        float f2 = (float) blockpos.getZ() / (float) i;
+        float f = (float) blockpos.getX() / i;
+        float f1 = (float) blockpos.getY() / i;
+        float f2 = (float) blockpos.getZ() / i;
 
-        if (i == 0)
-        {
-            return -1;
-        }
-        else
+        if (i != 0)
         {
             for (int j = 0; j <= i; ++j)
             {
-                BlockPos blockpos1 = posOne.add(0.5F + j * f, 0.5F + j * f1, 0.5F + j * f2);
+                BlockPos blockPos = posOne.add(0.5F + j * f, 0.5F + j * f1, 0.5F + j * f2);
 
-                if (!this.isReplaceable(this.world, blockpos1))
+                if (!this.isReplaceable(this.world, blockPos))
                 {
                     return j;
                 }
             }
-
-            return -1;
         }
+        return -1;
     }
 
-    public void setDecorationDefaults()
+    BlockPos findGround(World world, BlockPos pos)
     {
-        this.leafDistanceLimit = 5;
+        boolean foundGround = false;
+        int height = pos.getY();
+
+        BlockPos position = new BlockPos(pos.getX(), height, pos.getZ());
+
+        do
+        {
+            position = position.down();
+            Block underBlock = world.getBlockState(position).getBlock();
+
+            if (underBlock == Blocks.NETHERRACK || underBlock == Blocks.SOUL_SAND || underBlock == NaturaNether.netherTaintedSoil || position.getY() < 0)
+            {
+                foundGround = true;
+            }
+        } while (!foundGround);
+
+        return position.up();
     }
 
     /**
-     * Returns a boolean indicating whether or not the current location for the tree, spanning basePos to to the height
+     * Returns the absolute greatest distance in the BlockPos object.
+     */
+    private int getGreatestDistance(BlockPos posIn)
+    {
+        int i = MathHelper.abs(posIn.getX());
+        int j = MathHelper.abs(posIn.getY());
+        int k = MathHelper.abs(posIn.getZ());
+        return k > i && k > j ? k : (Math.max(j, i));
+    }
+
+    private BlockEnumLog.EnumAxis getLogAxis(BlockPos p_175938_1_, BlockPos p_175938_2_)
+    {
+        BlockEnumLog.EnumAxis enumaxis = BlockEnumLog.EnumAxis.Y;
+        int i = Math.abs(p_175938_2_.getX() - p_175938_1_.getX());
+        int j = Math.abs(p_175938_2_.getZ() - p_175938_1_.getZ());
+        int k = Math.max(i, j);
+
+        if (k > 0)
+        {
+            if (i == k)
+            {
+                enumaxis = BlockEnumLog.EnumAxis.X;
+            }
+            else
+            {
+                enumaxis = BlockEnumLog.EnumAxis.Z;
+            }
+        }
+
+        return enumaxis;
+    }
+
+    /**
+     * Returns a boolean indicating whether the current location for the tree, spanning basePos to the height
      * limit, is valid.
      */
     private boolean validTreeLocation()
@@ -332,7 +384,7 @@ public class GhostwoodTreeGenerator extends BaseTreeGenerator
         BlockPos down = this.basePos.down();
         IBlockState state = this.world.getBlockState(down);
         Block soil = state.getBlock();
-        boolean isSoil = (soil != null && soil.canSustainPlant(state, this.world, down, EnumFacing.UP, NaturaNether.netherSapling) || soil == Blocks.NETHERRACK);
+        boolean isSoil = soil.canSustainPlant(state, this.world, down, EnumFacing.UP, NaturaNether.netherSapling) || soil == Blocks.NETHERRACK;
 
         if (!isSoil)
         {
@@ -355,84 +407,6 @@ public class GhostwoodTreeGenerator extends BaseTreeGenerator
                 this.heightLimit = i;
                 return true;
             }
-        }
-    }
-
-    protected void setBlockAndMetadata(World world, BlockPos pos, IBlockState stateNew)
-    {
-        IBlockState state = world.getBlockState(pos);
-        Block block = state.getBlock();
-        if (block.isAir(state, world, pos) || block.canPlaceBlockAt(world, pos) || world.getBlockState(pos) == this.leaves)
-        {
-            world.setBlockState(pos, stateNew, 2);
-        }
-    }
-
-    BlockPos findGround(World world, BlockPos pos)
-    {
-        boolean foundGround = false;
-        int height = pos.getY();
-
-        BlockPos position = new BlockPos(pos.getX(), height, pos.getZ());
-
-        do
-        {
-            position = position.down();
-            Block underBlock = world.getBlockState(position).getBlock();
-
-            if (underBlock == Blocks.NETHERRACK || underBlock == Blocks.SOUL_SAND || underBlock == NaturaNether.netherTaintedSoil || position.getY() < 0)
-            {
-                foundGround = true;
-            }
-        }
-        while (!foundGround);
-
-        return position.up();
-    }
-
-    public boolean isReplaceable(World world, BlockPos pos)
-    {
-        IBlockState state = world.getBlockState(pos);
-        return state.getBlock().isAir(state, world, pos) || state.getBlock().isLeaves(state, world, pos);
-    }
-
-    @Override
-    public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider)
-    {
-    }
-
-    @Override
-    public void generateTree(Random random, World worldIn, BlockPos position)
-    {
-        this.world = worldIn;
-
-        if (this.seekHeight)
-        {
-            this.basePos = this.findGround(worldIn, position);
-        }
-        else
-        {
-            this.basePos = position;
-        }
-
-        this.rand = new Random(random.nextLong());
-
-        if (this.heightLimit == 0)
-        {
-            this.heightLimit = 5 + this.rand.nextInt(this.heightLimitLimit);
-        }
-
-        if (!this.validTreeLocation())
-        {
-            this.world = null; //Fix vanilla Mem leak, holds latest world
-        }
-        else
-        {
-            this.generateLeafNodeList();
-            this.generateLeaves();
-            this.generateTrunk();
-            this.generateLeafNodeBases();
-            this.world = null; //Fix vanilla Mem leak, holds latest world
         }
     }
 

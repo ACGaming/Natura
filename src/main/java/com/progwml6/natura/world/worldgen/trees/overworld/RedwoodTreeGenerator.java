@@ -13,8 +13,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldType;
-import net.minecraft.world.chunk.IChunkProvider;
-import net.minecraft.world.gen.IChunkGenerator;
 
 import com.progwml6.natura.common.config.Config;
 import com.progwml6.natura.overworld.NaturaOverworld;
@@ -34,7 +32,6 @@ public class RedwoodTreeGenerator extends BaseTreeGenerator
     double branchSlope = 0.381D;
     double scaleWidth = 1.0D;
     double leafDensity = 1.0D;
-    int trunkSize = 1;
     int heightLimitLimit = 12;
     /**
      * Sets the distance limit for how far away the generator will populate leaves from the base leaf node.
@@ -79,11 +76,6 @@ public class RedwoodTreeGenerator extends BaseTreeGenerator
     }
 
     @Override
-    public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider)
-    {
-    }
-
-    @Override
     public void generateTree(Random random, World world, BlockPos pos)
     {
         BlockPos groundPosition = pos;
@@ -111,61 +103,61 @@ public class RedwoodTreeGenerator extends BaseTreeGenerator
             {
                 if (currentHeight < treeHeight / 10)
                 {
-                    this.genRing13(world, random, groundPosition.up(currentHeight));
+                    this.genRing13(world, groundPosition.up(currentHeight));
                 }
                 else if (currentHeight < treeHeight * 2 / 10)
                 {
-                    this.genRing12(world, random, groundPosition.up(currentHeight));
+                    this.genRing12(world, groundPosition.up(currentHeight));
                 }
                 else if (currentHeight < treeHeight * 3 / 10)
                 {
-                    this.genRing11(world, random, groundPosition.up(currentHeight));
+                    this.genRing11(world, groundPosition.up(currentHeight));
                 }
                 else if (currentHeight < treeHeight * 4 / 10)
                 {
-                    this.genRing10(world, random, groundPosition.up(currentHeight));
+                    this.genRing10(world, groundPosition.up(currentHeight));
                 }
                 else if (currentHeight < treeHeight * 5 / 10)
                 {
-                    this.genRing9(world, random, groundPosition.up(currentHeight));
+                    this.genRing9(world, groundPosition.up(currentHeight));
 
-                    this.growLowBranch(world, random, groundPosition.up(currentHeight));
+                    this.growLowBranch(random, groundPosition.up(currentHeight));
                 }
                 else if (currentHeight < treeHeight * 6 / 10)
                 {
-                    this.genRing8(world, random, groundPosition.up(currentHeight));
+                    this.genRing8(world, groundPosition.up(currentHeight));
 
-                    this.growLowBranch(world, random, groundPosition.up(currentHeight));
+                    this.growLowBranch(random, groundPosition.up(currentHeight));
                 }
                 else if (currentHeight < treeHeight * 7 / 10)
                 {
-                    this.genRing7(world, random, groundPosition.up(currentHeight));
+                    this.genRing7(world, groundPosition.up(currentHeight));
 
-                    this.growMiddleBranch(world, random, groundPosition.up(currentHeight));
+                    this.growMiddleBranch(random, groundPosition.up(currentHeight));
                 }
                 else if (currentHeight < treeHeight * 8 / 10)
                 {
-                    this.genRing6(world, random, groundPosition.up(currentHeight));
+                    this.genRing6(world, groundPosition.up(currentHeight));
 
-                    this.growMiddleBranch(world, random, groundPosition.up(currentHeight));
+                    this.growMiddleBranch(random, groundPosition.up(currentHeight));
                 }
                 else if (currentHeight < treeHeight * 9 / 10)
                 {
-                    this.genRing5(world, random, groundPosition.up(currentHeight));
+                    this.genRing5(world, groundPosition.up(currentHeight));
 
-                    this.growHighBranch(world, random, groundPosition.up(currentHeight));
+                    this.growHighBranch(random, groundPosition.up(currentHeight));
                 }
                 else
                 {
-                    this.genRing3(world, random, groundPosition.up(currentHeight));
+                    this.genRing3(world, groundPosition.up(currentHeight));
 
-                    this.growHighBranch(world, random, groundPosition.up(currentHeight));
+                    this.growHighBranch(random, groundPosition.up(currentHeight));
                 }
             }
 
-            this.growBigRoots(world, random, groundPosition.down());
+            this.growBigRoots(world, groundPosition.down());
 
-            this.growTop(world, random, groundPosition.up(this.height));
+            this.growTop(groundPosition.up(this.height));
         }
         else if (treeHeight > 100)
         {
@@ -173,49 +165,49 @@ public class RedwoodTreeGenerator extends BaseTreeGenerator
             {
                 if (currentHeight < treeHeight / 8)
                 {
-                    this.genRing11(world, random, groundPosition.up(currentHeight));
+                    this.genRing11(world, groundPosition.up(currentHeight));
                 }
                 else if (currentHeight < treeHeight * 2 / 8)
                 {
-                    this.genRing10(world, random, groundPosition.up(currentHeight));
+                    this.genRing10(world, groundPosition.up(currentHeight));
                 }
                 else if (currentHeight < treeHeight * 3 / 8)
                 {
-                    this.genRing9(world, random, groundPosition.up(currentHeight));
+                    this.genRing9(world, groundPosition.up(currentHeight));
                 }
                 else if (currentHeight < treeHeight * 4 / 8)
                 {
-                    this.genRing8(world, random, groundPosition.up(currentHeight));
+                    this.genRing8(world, groundPosition.up(currentHeight));
                 }
                 else if (currentHeight < treeHeight * 5 / 8)
                 {
-                    this.genRing7(world, random, groundPosition.up(currentHeight));
+                    this.genRing7(world, groundPosition.up(currentHeight));
 
-                    this.growMiddleBranch(world, random, groundPosition.up(currentHeight));
+                    this.growMiddleBranch(random, groundPosition.up(currentHeight));
                 }
                 else if (currentHeight < treeHeight * 6 / 8)
                 {
-                    this.genRing6(world, random, groundPosition.up(currentHeight));
+                    this.genRing6(world, groundPosition.up(currentHeight));
 
-                    this.growMiddleBranch(world, random, groundPosition.up(currentHeight));
+                    this.growMiddleBranch(random, groundPosition.up(currentHeight));
                 }
                 else if (currentHeight < treeHeight * 7 / 8)
                 {
-                    this.genRing5(world, random, groundPosition.up(currentHeight));
+                    this.genRing5(world, groundPosition.up(currentHeight));
 
-                    this.growHighBranch(world, random, groundPosition.up(currentHeight));
+                    this.growHighBranch(random, groundPosition.up(currentHeight));
                 }
                 else
                 {
-                    this.genRing3(world, random, groundPosition.up(currentHeight));
+                    this.genRing3(world, groundPosition.up(currentHeight));
 
-                    this.growHighBranch(world, random, groundPosition.up(currentHeight));
+                    this.growHighBranch(random, groundPosition.up(currentHeight));
                 }
             }
 
-            this.growMediumRoots(world, random, groundPosition.down());
+            this.growMediumRoots(world, groundPosition.down());
 
-            this.growTop(world, random, groundPosition.up(this.height));
+            this.growTop(groundPosition.up(this.height));
         }
         else
         {
@@ -223,43 +215,43 @@ public class RedwoodTreeGenerator extends BaseTreeGenerator
             {
                 if (currentHeight < treeHeight / 6)
                 {
-                    this.genRing9(world, random, groundPosition.up(currentHeight));
+                    this.genRing9(world, groundPosition.up(currentHeight));
                 }
                 else if (currentHeight < treeHeight * 2 / 6)
                 {
-                    this.genRing8(world, random, groundPosition.up(currentHeight));
+                    this.genRing8(world, groundPosition.up(currentHeight));
                 }
                 else if (currentHeight < treeHeight * 3 / 6)
                 {
-                    this.genRing7(world, random, groundPosition.up(currentHeight));
+                    this.genRing7(world, groundPosition.up(currentHeight));
                 }
                 else if (currentHeight < treeHeight * 4 / 6)
                 {
-                    this.genRing6(world, random, groundPosition.up(currentHeight));
+                    this.genRing6(world, groundPosition.up(currentHeight));
 
-                    this.growMiddleBranch(world, random, groundPosition.up(currentHeight));
+                    this.growMiddleBranch(random, groundPosition.up(currentHeight));
                 }
                 else if (currentHeight < treeHeight * 5 / 6)
                 {
-                    this.genRing5(world, random, groundPosition.up(currentHeight));
+                    this.genRing5(world, groundPosition.up(currentHeight));
 
-                    this.growHighBranch(world, random, groundPosition.up(currentHeight));
+                    this.growHighBranch(random, groundPosition.up(currentHeight));
                 }
                 else
                 {
-                    this.genRing3(world, random, groundPosition.up(currentHeight));
+                    this.genRing3(world, groundPosition.up(currentHeight));
 
-                    this.growHighBranch(world, random, groundPosition.up(currentHeight));
+                    this.growHighBranch(random, groundPosition.up(currentHeight));
                 }
             }
 
-            this.growSmallRoots(world, random, groundPosition.down());
+            this.growSmallRoots(world, groundPosition.down());
 
-            this.growTop(world, random, groundPosition.up(this.height));
+            this.growTop(groundPosition.up(this.height));
         }
     }
 
-    public boolean growTop(World world, Random random, BlockPos pos)
+    public void growTop(BlockPos pos)
     {
         this.basePos = pos.up(4);
         this.generateLeafNodeList();
@@ -280,11 +272,9 @@ public class RedwoodTreeGenerator extends BaseTreeGenerator
         this.generateLeafNodeList();
         this.generateLeaves();
         this.generateLeafNodeBases();
-
-        return false;
     }
 
-    public boolean growHighBranch(World world, Random random, BlockPos pos)
+    public void growHighBranch(Random random, BlockPos pos)
     {
         int xPos = pos.getX();
         int yPos = pos.getY();
@@ -297,11 +287,9 @@ public class RedwoodTreeGenerator extends BaseTreeGenerator
             this.generateLeaves();
             this.generateLeafNodeBases();
         }
-
-        return false;
     }
 
-    public boolean growMiddleBranch(World world, Random random, BlockPos pos)
+    public void growMiddleBranch(Random random, BlockPos pos)
     {
         int xPos = pos.getX();
         int yPos = pos.getY();
@@ -314,11 +302,9 @@ public class RedwoodTreeGenerator extends BaseTreeGenerator
             this.generateLeaves();
             this.generateLeafNodeBases();
         }
-
-        return false;
     }
 
-    public boolean growLowBranch(World world, Random random, BlockPos pos)
+    public void growLowBranch(Random random, BlockPos pos)
     {
         int xPos = pos.getX();
         int yPos = pos.getY();
@@ -342,90 +328,82 @@ public class RedwoodTreeGenerator extends BaseTreeGenerator
         this.generateLeafNodeList();
         this.generateLeaves();
         this.generateLeafNodeBases();
-
-        return false;
     }
 
-    public boolean growSmallRoots(World world, Random random, BlockPos pos)
+    public void growSmallRoots(World world, BlockPos pos)
     {
-        this.genRing9(world, random, pos);
+        this.genRing9(world, pos);
 
-        this.smallRoot1(world, random, pos.down(1));
-        this.smallRoot1(world, random, pos.down(2));
-        this.smallRoot1(world, random, pos.down(3));
+        this.smallRoot1(world, pos.down(1));
+        this.smallRoot1(world, pos.down(2));
+        this.smallRoot1(world, pos.down(3));
 
-        this.smallRoot2(world, random, pos.down(4));
-        this.smallRoot2(world, random, pos.down(5));
+        this.smallRoot2(world, pos.down(4));
+        this.smallRoot2(world, pos.down(5));
 
-        this.smallRoot3(world, random, pos.down(6));
-        this.smallRoot3(world, random, pos.down(7));
-        this.smallRoot3(world, random, pos.down(8));
-        this.smallRoot3(world, random, pos.down(9));
+        this.smallRoot3(world, pos.down(6));
+        this.smallRoot3(world, pos.down(7));
+        this.smallRoot3(world, pos.down(8));
+        this.smallRoot3(world, pos.down(9));
 
-        this.smallRoot4(world, random, pos.down(10));
-        this.smallRoot4(world, random, pos.down(11));
-
-        return true;
+        this.smallRoot4(world, pos.down(10));
+        this.smallRoot4(world, pos.down(11));
     }
 
-    public boolean growMediumRoots(World world, Random random, BlockPos pos)
+    public void growMediumRoots(World world, BlockPos pos)
     {
-        this.genRing11(world, random, pos);
+        this.genRing11(world, pos);
 
-        this.mediumRoot1(world, random, pos.down(1));
-        this.mediumRoot1(world, random, pos.down(2));
-        this.mediumRoot1(world, random, pos.down(3));
+        this.mediumRoot1(world, pos.down(1));
+        this.mediumRoot1(world, pos.down(2));
+        this.mediumRoot1(world, pos.down(3));
 
-        this.mediumRoot2(world, random, pos.down(4));
-        this.mediumRoot2(world, random, pos.down(5));
+        this.mediumRoot2(world, pos.down(4));
+        this.mediumRoot2(world, pos.down(5));
 
-        this.mediumRoot3(world, random, pos.down(6));
-        this.mediumRoot3(world, random, pos.down(7));
-        this.mediumRoot3(world, random, pos.down(8));
-        this.mediumRoot3(world, random, pos.down(9));
+        this.mediumRoot3(world, pos.down(6));
+        this.mediumRoot3(world, pos.down(7));
+        this.mediumRoot3(world, pos.down(8));
+        this.mediumRoot3(world, pos.down(9));
 
-        this.mediumRoot4(world, random, pos.down(10));
-        this.mediumRoot4(world, random, pos.down(11));
+        this.mediumRoot4(world, pos.down(10));
+        this.mediumRoot4(world, pos.down(11));
 
-        this.mediumRoot5(world, random, pos.down(12));
-        this.mediumRoot5(world, random, pos.down(13));
-        this.mediumRoot5(world, random, pos.down(14));
-
-        return true;
+        this.mediumRoot5(world, pos.down(12));
+        this.mediumRoot5(world, pos.down(13));
+        this.mediumRoot5(world, pos.down(14));
     }
 
-    public boolean growBigRoots(World world, Random random, BlockPos pos)
+    public void growBigRoots(World world, BlockPos pos)
     {
-        this.genRing13(world, random, pos);
+        this.genRing13(world, pos);
 
-        this.bigRoot1(world, random, pos.down(1));
-        this.bigRoot1(world, random, pos.down(2));
-        this.bigRoot1(world, random, pos.down(3));
+        this.bigRoot1(world, pos.down(1));
+        this.bigRoot1(world, pos.down(2));
+        this.bigRoot1(world, pos.down(3));
 
-        this.bigRoot2(world, random, pos.down(4));
-        this.bigRoot2(world, random, pos.down(5));
+        this.bigRoot2(world, pos.down(4));
+        this.bigRoot2(world, pos.down(5));
 
-        this.bigRoot3(world, random, pos.down(6));
-        this.bigRoot3(world, random, pos.down(7));
-        this.bigRoot3(world, random, pos.down(8));
-        this.bigRoot3(world, random, pos.down(9));
+        this.bigRoot3(world, pos.down(6));
+        this.bigRoot3(world, pos.down(7));
+        this.bigRoot3(world, pos.down(8));
+        this.bigRoot3(world, pos.down(9));
 
-        this.bigRoot4(world, random, pos.down(10));
-        this.bigRoot4(world, random, pos.down(11));
+        this.bigRoot4(world, pos.down(10));
+        this.bigRoot4(world, pos.down(11));
 
-        this.bigRoot5(world, random, pos.down(12));
-        this.bigRoot5(world, random, pos.down(13));
-        this.bigRoot5(world, random, pos.down(14));
+        this.bigRoot5(world, pos.down(12));
+        this.bigRoot5(world, pos.down(13));
+        this.bigRoot5(world, pos.down(14));
 
-        this.bigRoot6(world, random, pos.down(15));
-        this.bigRoot6(world, random, pos.down(16));
-        this.bigRoot6(world, random, pos.down(17));
-        this.bigRoot6(world, random, pos.down(18));
-
-        return true;
+        this.bigRoot6(world, pos.down(15));
+        this.bigRoot6(world, pos.down(16));
+        this.bigRoot6(world, pos.down(17));
+        this.bigRoot6(world, pos.down(18));
     }
 
-    public boolean smallRoot1(World world, Random random, BlockPos pos)
+    public void smallRoot1(World world, BlockPos pos)
     {
         if (world.getBlockState(pos).getBlock() != Blocks.BEDROCK && pos.getY() > 0)
         {
@@ -481,11 +459,9 @@ public class RedwoodTreeGenerator extends BaseTreeGenerator
             this.setBlockAndMetadata(world, pos.add(4, 0, -1), this.root);
             this.setBlockAndMetadata(world, pos.add(4, 0, 1), this.root);
         }
-
-        return true;
     }
 
-    public boolean smallRoot2(World world, Random random, BlockPos pos)
+    public void smallRoot2(World world, BlockPos pos)
     {
         if (world.getBlockState(pos).getBlock() != Blocks.BEDROCK && pos.getY() > 0)
         {
@@ -533,11 +509,9 @@ public class RedwoodTreeGenerator extends BaseTreeGenerator
             this.setBlockAndMetadata(world, pos.add(4, 0, -1), this.root);
             this.setBlockAndMetadata(world, pos.add(4, 0, 1), this.root);
         }
-
-        return true;
     }
 
-    public boolean smallRoot3(World world, Random random, BlockPos pos)
+    public void smallRoot3(World world, BlockPos pos)
     {
         if (world.getBlockState(pos).getBlock() != Blocks.BEDROCK && pos.getY() > 0)
         {
@@ -557,11 +531,9 @@ public class RedwoodTreeGenerator extends BaseTreeGenerator
             this.setBlockAndMetadata(world, pos.add(2, 0, -2), this.root);
             this.setBlockAndMetadata(world, pos.add(2, 0, 2), this.root);
         }
-
-        return true;
     }
 
-    public boolean smallRoot4(World world, Random random, BlockPos pos)
+    public void smallRoot4(World world, BlockPos pos)
     {
         if (world.getBlockState(pos).getBlock() != Blocks.BEDROCK && pos.getY() > 0)
         {
@@ -571,11 +543,9 @@ public class RedwoodTreeGenerator extends BaseTreeGenerator
             this.setBlockAndMetadata(world, pos.add(1, 0, -2), this.root);
             this.setBlockAndMetadata(world, pos.add(1, 0, 2), this.root);
         }
-
-        return true;
     }
 
-    public boolean mediumRoot1(World world, Random random, BlockPos pos)
+    public void mediumRoot1(World world, BlockPos pos)
     {
         if (world.getBlockState(pos).getBlock() != Blocks.BEDROCK && pos.getY() > 0)
         {
@@ -657,11 +627,9 @@ public class RedwoodTreeGenerator extends BaseTreeGenerator
             this.setBlockAndMetadata(world, pos.add(5, 0, -1), this.root);
             this.setBlockAndMetadata(world, pos.add(5, 0, 1), this.root);
         }
-
-        return true;
     }
 
-    public boolean mediumRoot2(World world, Random random, BlockPos pos)
+    public void mediumRoot2(World world, BlockPos pos)
     {
         if (world.getBlockState(pos).getBlock() != Blocks.BEDROCK && pos.getY() > 0)
         {
@@ -713,11 +681,9 @@ public class RedwoodTreeGenerator extends BaseTreeGenerator
             this.setBlockAndMetadata(world, pos.add(4, 0, -1), this.root);
             this.setBlockAndMetadata(world, pos.add(4, 0, 1), this.root);
         }
-
-        return true;
     }
 
-    public boolean mediumRoot3(World world, Random random, BlockPos pos)
+    public void mediumRoot3(World world, BlockPos pos)
     {
         if (world.getBlockState(pos).getBlock() != Blocks.BEDROCK && pos.getY() > 0)
         {
@@ -747,11 +713,9 @@ public class RedwoodTreeGenerator extends BaseTreeGenerator
             this.setBlockAndMetadata(world, pos.add(3, 0, -2), this.root);
             this.setBlockAndMetadata(world, pos.add(3, 0, 2), this.root);
         }
-
-        return true;
     }
 
-    public boolean mediumRoot4(World world, Random random, BlockPos pos)
+    public void mediumRoot4(World world, BlockPos pos)
     {
         if (world.getBlockState(pos).getBlock() != Blocks.BEDROCK && pos.getY() > 0)
         {
@@ -767,11 +731,9 @@ public class RedwoodTreeGenerator extends BaseTreeGenerator
             this.setBlockAndMetadata(world, pos.add(2, 0, -2), this.root);
             this.setBlockAndMetadata(world, pos.add(2, 0, 2), this.root);
         }
-
-        return true;
     }
 
-    public boolean mediumRoot5(World world, Random random, BlockPos pos)
+    public void mediumRoot5(World world, BlockPos pos)
     {
         if (world.getBlockState(pos).getBlock() != Blocks.BEDROCK && pos.getY() > 0)
         {
@@ -780,11 +742,9 @@ public class RedwoodTreeGenerator extends BaseTreeGenerator
             this.setBlockAndMetadata(world, pos.add(1, 0, -3), this.root);
             this.setBlockAndMetadata(world, pos.add(1, 0, 3), this.root);
         }
-
-        return true;
     }
 
-    public boolean bigRoot1(World world, Random random, BlockPos pos)
+    public void bigRoot1(World world, BlockPos pos)
     {
         if (world.getBlockState(pos).getBlock() != Blocks.BEDROCK && pos.getY() > 0)
         {
@@ -912,11 +872,9 @@ public class RedwoodTreeGenerator extends BaseTreeGenerator
             this.setBlockAndMetadata(world, pos.add(6, 0, 1), this.root);
             this.setBlockAndMetadata(world, pos.add(6, 0, 2), this.root);
         }
-
-        return true;
     }
 
-    public boolean bigRoot2(World world, Random random, BlockPos pos)
+    public void bigRoot2(World world, BlockPos pos)
     {
         if (world.getBlockState(pos).getBlock() != Blocks.BEDROCK && pos.getY() > 0)
         {
@@ -1034,13 +992,11 @@ public class RedwoodTreeGenerator extends BaseTreeGenerator
             this.setBlockAndMetadata(world, pos.add(5, 0, 3), this.root);
             this.setBlockAndMetadata(world, pos.add(5, 0, 4), this.root);
         }
-
-        return true;
     }
 
     //TODO: CHANGE EVERYTHING BELOW.
 
-    public boolean bigRoot3(World world, Random random, BlockPos pos)
+    public void bigRoot3(World world, BlockPos pos)
     {
         if (world.getBlockState(pos).getBlock() != Blocks.BEDROCK && pos.getY() > 0)
         {
@@ -1100,11 +1056,9 @@ public class RedwoodTreeGenerator extends BaseTreeGenerator
             this.setBlockAndMetadata(world, pos.add(4, 0, 2), this.root);
             this.setBlockAndMetadata(world, pos.add(4, 0, 3), this.root);
         }
-
-        return true;
     }
 
-    public boolean bigRoot4(World world, Random random, BlockPos pos)
+    public void bigRoot4(World world, BlockPos pos)
     {
         if (world.getBlockState(pos).getBlock() != Blocks.BEDROCK && pos.getY() > 0)
         {
@@ -1144,11 +1098,9 @@ public class RedwoodTreeGenerator extends BaseTreeGenerator
             this.setBlockAndMetadata(world, pos.add(4, 0, -3), this.root);
             this.setBlockAndMetadata(world, pos.add(4, 0, 3), this.root);
         }
-
-        return true;
     }
 
-    public boolean bigRoot5(World world, Random random, BlockPos pos)
+    public void bigRoot5(World world, BlockPos pos)
     {
         if (world.getBlockState(pos).getBlock() != Blocks.BEDROCK && pos.getY() > 0)
         {
@@ -1174,11 +1126,9 @@ public class RedwoodTreeGenerator extends BaseTreeGenerator
             this.setBlockAndMetadata(world, pos.add(3, 0, -3), this.root);
             this.setBlockAndMetadata(world, pos.add(3, 0, 3), this.root);
         }
-
-        return true;
     }
 
-    public boolean bigRoot6(World world, Random random, BlockPos pos)
+    public void bigRoot6(World world, BlockPos pos)
     {
         if (world.getBlockState(pos).getBlock() != Blocks.BEDROCK && pos.getY() > 0)
         {
@@ -1192,11 +1142,9 @@ public class RedwoodTreeGenerator extends BaseTreeGenerator
             this.setBlockAndMetadata(world, pos.add(2, 0, 3), this.root);
             this.setBlockAndMetadata(world, pos.add(2, 0, 4), this.root);
         }
-
-        return true;
     }
 
-    public boolean genRing13(World world, Random random, BlockPos pos)
+    public void genRing13(World world, BlockPos pos)
     {
         if (world.getBlockState(pos).getBlock() != Blocks.BEDROCK && pos.getY() > 0)
         {
@@ -1352,11 +1300,9 @@ public class RedwoodTreeGenerator extends BaseTreeGenerator
             this.setBlockAndMetadata(world, pos.add(6, 0, 1), this.bark);
             this.setBlockAndMetadata(world, pos.add(6, 0, 2), this.bark);
         }
-
-        return true;
     }
 
-    public boolean genRing12(World world, Random random, BlockPos pos)
+    public void genRing12(World world, BlockPos pos)
     {
         if (world.getBlockState(pos).getBlock() != Blocks.BEDROCK && pos.getY() > 0)
         {
@@ -1500,11 +1446,9 @@ public class RedwoodTreeGenerator extends BaseTreeGenerator
             this.setBlockAndMetadata(world, pos.add(6, 0, 0), this.bark);
             this.setBlockAndMetadata(world, pos.add(6, 0, 1), this.bark);
         }
-
-        return true;
     }
 
-    public boolean genRing11(World world, Random random, BlockPos pos)
+    public void genRing11(World world, BlockPos pos)
     {
         if (world.getBlockState(pos).getBlock() != Blocks.BEDROCK && pos.getY() > 0)
         {
@@ -1610,11 +1554,9 @@ public class RedwoodTreeGenerator extends BaseTreeGenerator
             this.setBlockAndMetadata(world, pos.add(5, 0, 0), this.bark);
             this.setBlockAndMetadata(world, pos.add(5, 0, 1), this.bark);
         }
-
-        return true;
     }
 
-    public boolean genRing10(World world, Random random, BlockPos pos)
+    public void genRing10(World world, BlockPos pos)
     {
         if (world.getBlockState(pos).getBlock() != Blocks.BEDROCK && pos.getY() > 0)
         {
@@ -1698,11 +1640,9 @@ public class RedwoodTreeGenerator extends BaseTreeGenerator
             this.setBlockAndMetadata(world, pos.add(4, 0, 1), this.bark);
             this.setBlockAndMetadata(world, pos.add(4, 0, 2), this.bark);
         }
-
-        return true;
     }
 
-    public boolean genRing9(World world, Random random, BlockPos pos)
+    public void genRing9(World world, BlockPos pos)
     {
         if (world.getBlockState(pos).getBlock() != Blocks.BEDROCK && pos.getY() > 0)
         {
@@ -1778,11 +1718,9 @@ public class RedwoodTreeGenerator extends BaseTreeGenerator
             this.setBlockAndMetadata(world, pos.add(4, 0, 0), this.bark);
             this.setBlockAndMetadata(world, pos.add(4, 0, 1), this.bark);
         }
-
-        return true;
     }
 
-    public boolean genRing8(World world, Random random, BlockPos pos)
+    public void genRing8(World world, BlockPos pos)
     {
         if (world.getBlockState(pos).getBlock() != Blocks.BEDROCK && pos.getY() > 0)
         {
@@ -1840,11 +1778,9 @@ public class RedwoodTreeGenerator extends BaseTreeGenerator
             this.setBlockAndMetadata(world, pos.add(3, 0, 1), this.bark);
             this.setBlockAndMetadata(world, pos.add(3, 0, 2), this.bark);
         }
-
-        return true;
     }
 
-    public boolean genRing7(World world, Random random, BlockPos pos)
+    public void genRing7(World world, BlockPos pos)
     {
         if (world.getBlockState(pos).getBlock() != Blocks.BEDROCK && pos.getY() > 0)
         {
@@ -1895,10 +1831,9 @@ public class RedwoodTreeGenerator extends BaseTreeGenerator
             this.setBlockAndMetadata(world, pos.add(3, 0, 1), this.bark);
         }
 
-        return true;
     }
 
-    public boolean genRing6(World world, Random random, BlockPos pos)
+    public void genRing6(World world, BlockPos pos)
     {
         if (world.getBlockState(pos).getBlock() != Blocks.BEDROCK && pos.getY() > 0)
         {
@@ -1935,10 +1870,9 @@ public class RedwoodTreeGenerator extends BaseTreeGenerator
             this.setBlockAndMetadata(world, pos.add(2, 0, 2), this.bark);
         }
 
-        return true;
     }
 
-    public boolean genRing5(World world, Random random, BlockPos pos)
+    public void genRing5(World world, BlockPos pos)
     {
         if (world.getBlockState(pos).getBlock() != Blocks.BEDROCK && pos.getY() > 0)
         {
@@ -1971,57 +1905,9 @@ public class RedwoodTreeGenerator extends BaseTreeGenerator
             this.setBlockAndMetadata(world, pos.add(2, 0, 1), this.bark);
         }
 
-        return true;
     }
 
-    public boolean genRing4(World world, Random random, BlockPos pos)
-    {
-        if (world.getBlockState(pos).getBlock() != Blocks.BEDROCK && pos.getY() > 0)
-        {
-            this.setBlockAndMetadata(world, pos.add(-2, 0, -1), this.bark);
-            this.setBlockAndMetadata(world, pos.add(-2, 0, 0), this.bark);
-
-            this.setBlockAndMetadata(world, pos.add(-1, 0, -2), this.bark);
-            this.setBlockAndMetadata(world, pos.add(-1, 0, -1), this.heart);
-            this.setBlockAndMetadata(world, pos.add(-1, 0, 0), this.heart);
-            this.setBlockAndMetadata(world, pos.add(-1, 0, 1), this.bark);
-
-            this.setBlockAndMetadata(world, pos.add(0, 0, -2), this.bark);
-            this.setBlockAndMetadata(world, pos.add(0, 0, -1), this.heart);
-
-            this.setBlockAndMetadata(world, pos, this.heart);
-
-            this.setBlockAndMetadata(world, pos.add(0, 0, 1), this.bark);
-
-            this.setBlockAndMetadata(world, pos.add(1, 0, -1), this.bark);
-            this.setBlockAndMetadata(world, pos.add(1, 0, 0), this.bark);
-        }
-
-        return true;
-    }
-
-    public boolean genRing3s(World world, Random random, BlockPos pos)
-    {
-        if (world.getBlockState(pos).getBlock() != Blocks.BEDROCK && pos.getY() > 0)
-        {
-            this.setBlockAndMetadata(world, pos.add(-1, 0, -1), this.bark);
-            this.setBlockAndMetadata(world, pos.add(-1, 0, 0), this.bark);
-            this.setBlockAndMetadata(world, pos.add(-1, 0, 1), this.bark);
-
-            this.setBlockAndMetadata(world, pos.add(0, 0, -1), this.bark);
-
-            this.setBlockAndMetadata(world, pos, this.heart);
-
-            this.setBlockAndMetadata(world, pos.add(0, 0, 1), this.bark);
-
-            this.setBlockAndMetadata(world, pos.add(1, 0, -1), this.bark);
-            this.setBlockAndMetadata(world, pos.add(1, 0, 0), this.bark);
-        }
-
-        return true;
-    }
-
-    public boolean genRing3(World world, Random random, BlockPos pos)
+    public void genRing3(World world, BlockPos pos)
     {
         if (world.getBlockState(pos).getBlock() != Blocks.BEDROCK && pos.getY() > 0)
         {
@@ -2039,33 +1925,6 @@ public class RedwoodTreeGenerator extends BaseTreeGenerator
             this.setBlockAndMetadata(world, pos.add(1, 0, 0), this.bark);
             this.setBlockAndMetadata(world, pos.add(1, 0, 1), this.bark);
         }
-
-        return true;
-    }
-
-    public boolean genRing2(World world, Random random, BlockPos pos)
-    {
-        if (world.getBlockState(pos).getBlock() != Blocks.BEDROCK && pos.getY() > 0)
-        {
-            this.setBlockAndMetadata(world, pos.add(-1, 0, -1), this.bark);
-            this.setBlockAndMetadata(world, pos.add(-1, 0, 0), this.bark);
-
-            this.setBlockAndMetadata(world, pos.add(0, 0, -1), this.bark);
-
-            this.setBlockAndMetadata(world, pos, this.bark);
-        }
-
-        return true;
-    }
-
-    public boolean genRing1(World world, Random random, BlockPos pos)
-    {
-        if (world.getBlockState(pos).getBlock() != Blocks.BEDROCK && pos.getY() > 0)
-        {
-            this.setBlockAndMetadata(world, pos, this.bark);
-        }
-
-        return true;
     }
 
     protected void setBlockAndMetadata(World world, BlockPos pos, IBlockState stateNew)
@@ -2077,7 +1936,7 @@ public class RedwoodTreeGenerator extends BaseTreeGenerator
     }
 
     /**
-     * returns whether or not a tree can grow into a block
+     * returns whether a tree can grow into a block
      * For example, a tree will not grow into stone
      */
     protected boolean canGrowInto(Block blockType)
@@ -2213,9 +2072,9 @@ public class RedwoodTreeGenerator extends BaseTreeGenerator
     {
         BlockPos blockpos = pos2.add(-pos1.getX(), -pos1.getY(), -pos1.getZ());
         int i = this.getGreatestDistance(blockpos);
-        float f = (float) blockpos.getX() / (float) i;
-        float f1 = (float) blockpos.getY() / (float) i;
-        float f2 = (float) blockpos.getZ() / (float) i;
+        float f = (float) blockpos.getX() / i;
+        float f1 = (float) blockpos.getY() / i;
+        float f2 = (float) blockpos.getZ() / i;
 
         for (int j = 0; j <= i; ++j)
         {
@@ -2236,7 +2095,7 @@ public class RedwoodTreeGenerator extends BaseTreeGenerator
     }
 
     /**
-     * Indicates whether or not a leaf node requires additional wood to be added to preserve integrity.
+     * Indicates whether a leaf node requires additional wood to be added to preserve integrity.
      */
     boolean leafNodeNeedsBase(int p_76493_1_)
     {
@@ -2268,28 +2127,23 @@ public class RedwoodTreeGenerator extends BaseTreeGenerator
     {
         BlockPos blockpos = posTwo.add(-posOne.getX(), -posOne.getY(), -posOne.getZ());
         int i = this.getGreatestDistance(blockpos);
-        float f = (float) blockpos.getX() / (float) i;
-        float f1 = (float) blockpos.getY() / (float) i;
-        float f2 = (float) blockpos.getZ() / (float) i;
+        float f = (float) blockpos.getX() / i;
+        float f1 = (float) blockpos.getY() / i;
+        float f2 = (float) blockpos.getZ() / i;
 
-        if (i == 0)
-        {
-            return -1;
-        }
-        else
+        if (i != 0)
         {
             for (int j = 0; j <= i; ++j)
             {
-                BlockPos blockpos1 = posOne.add(0.5F + j * f, 0.5F + j * f1, 0.5F + j * f2);
+                BlockPos pos = posOne.add(0.5F + j * f, 0.5F + j * f1, 0.5F + j * f2);
 
-                if (!this.isReplaceable(this.world, blockpos1))
+                if (!this.isReplaceable(this.world, pos))
                 {
                     return j;
                 }
             }
-
-            return -1;
         }
+        return -1;
     }
 
     BlockPos findGround(World world, BlockPos pos)
@@ -2313,8 +2167,7 @@ public class RedwoodTreeGenerator extends BaseTreeGenerator
                 {
                     foundGround = true;
                 }
-            }
-            while (!foundGround);
+            } while (!foundGround);
 
             return new BlockPos(pos.getX(), height, pos.getZ());
         }
@@ -2337,8 +2190,7 @@ public class RedwoodTreeGenerator extends BaseTreeGenerator
                 {
                     foundGround = true;
                 }
-            }
-            while (!foundGround);
+            } while (!foundGround);
 
             return new BlockPos(pos.getX(), height, pos.getZ());
         }
@@ -2352,7 +2204,7 @@ public class RedwoodTreeGenerator extends BaseTreeGenerator
         int i = MathHelper.abs(posIn.getX());
         int j = MathHelper.abs(posIn.getY());
         int k = MathHelper.abs(posIn.getZ());
-        return k > i && k > j ? k : (j > i ? j : i);
+        return k > i && k > j ? k : (Math.max(j, i));
     }
 
     //TODO: CHANGE EVERYTHING ABOVE.

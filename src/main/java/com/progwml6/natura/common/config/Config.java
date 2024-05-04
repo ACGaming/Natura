@@ -345,11 +345,11 @@ public final class Config
     public static int amaranthRarity = 1;
     public static int tigerRarity = 30;
     public static int willowRarity = 10;
-    public static int eucalyptusSpawnRarity = 25;
+    public static int eucalyptusSpawnRarity = 40;
     public static int eucalyptusSpawnRange = 32;
     public static int hopseedSpawnRarity = 10;
     public static int hopseedSpawnRange = 20;
-    public static int sakuraSpawnRarity = 10;
+    public static int sakuraSpawnRarity = 50;
     public static int sakuraSpawnRange = 32;
     public static int appleSpawnRarity = 40;
     public static int appleSpawnRange = 32;

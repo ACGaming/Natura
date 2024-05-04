@@ -8,8 +8,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldType;
-import net.minecraft.world.chunk.IChunkProvider;
-import net.minecraft.world.gen.IChunkGenerator;
 
 import com.progwml6.natura.common.config.Config;
 import com.progwml6.natura.overworld.NaturaOverworld;
@@ -45,11 +43,6 @@ public class OverworldTreeGenerator extends BaseTreeGenerator
     }
 
     @Override
-    public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider)
-    {
-    }
-
-    @Override
     public void generateTree(Random rand, World worldIn, BlockPos position)
     {
         int heightRange = rand.nextInt(this.treeHeightRange) + this.minTreeHeight;
@@ -68,7 +61,7 @@ public class OverworldTreeGenerator extends BaseTreeGenerator
         {
             IBlockState state = worldIn.getBlockState(position.down());
             Block soil = state.getBlock();
-            boolean isSoil = (soil != null && soil.canSustainPlant(state, worldIn, position.down(), EnumFacing.UP, NaturaOverworld.overworldSapling));
+            boolean isSoil = soil.canSustainPlant(state, worldIn, position.down(), EnumFacing.UP, NaturaOverworld.overworldSapling);
 
             if (isSoil)
             {
@@ -88,18 +81,18 @@ public class OverworldTreeGenerator extends BaseTreeGenerator
     {
         for (int y = pos.getY() - 3 + height; y <= pos.getY() + height; ++y)
         {
-            int subract = y - (pos.getY() + height);
-            int subract2 = 1 - subract / 2;
+            int subtract = y - (pos.getY() + height);
+            int subtract2 = 1 - subtract / 2;
 
-            for (int x = pos.getX() - subract2; x <= pos.getX() + subract2; ++x)
+            for (int x = pos.getX() - subtract2; x <= pos.getX() + subtract2; ++x)
             {
                 int mathX = x - pos.getX();
 
-                for (int z = pos.getZ() - subract2; z <= pos.getZ() + subract2; ++z)
+                for (int z = pos.getZ() - subtract2; z <= pos.getZ() + subtract2; ++z)
                 {
                     int mathZ = z - pos.getZ();
 
-                    if (Math.abs(mathX) != subract2 || Math.abs(mathZ) != subract2 || random.nextInt(2) != 0 && subract != 0)
+                    if (Math.abs(mathX) != subtract2 || Math.abs(mathZ) != subtract2 || random.nextInt(2) != 0 && subtract != 0)
                     {
                         BlockPos blockpos = new BlockPos(x, y, z);
                         IBlockState state = world.getBlockState(blockpos);
@@ -122,7 +115,7 @@ public class OverworldTreeGenerator extends BaseTreeGenerator
             IBlockState state = world.getBlockState(blockpos);
             Block block = state.getBlock();
 
-            if (block == null || block.isAir(state, world, blockpos) || block.isLeaves(state, world, blockpos) || block.isReplaceable(world, blockpos))
+            if (block.isAir(state, world, blockpos) || block.isLeaves(state, world, blockpos) || block.isReplaceable(world, blockpos))
             {
                 world.setBlockState(blockpos, this.log, 2);
             }
@@ -151,10 +144,8 @@ public class OverworldTreeGenerator extends BaseTreeGenerator
                 }
 
                 height--;
-            }
-            while (height > Config.flatSeaLevel);
+            } while (height > Config.flatSeaLevel);
 
-            return new BlockPos(pos.getX(), returnHeight, pos.getZ());
         }
         else
         {
@@ -172,16 +163,14 @@ public class OverworldTreeGenerator extends BaseTreeGenerator
                 }
 
                 height--;
-            }
-            while (height > Config.seaLevel);
-
-            return new BlockPos(pos.getX(), returnHeight, pos.getZ());
+            } while (height > Config.seaLevel);
         }
+        return new BlockPos(pos.getX(), returnHeight, pos.getZ());
     }
 
     private boolean checkIfCanGrow(BlockPos position, int heightRange, World worldIn)
     {
-        boolean canGrowTree = true;
+        boolean canGrowTree = false;
 
         BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos(position.getX(), position.getY(), position.getZ());
 
@@ -202,9 +191,9 @@ public class OverworldTreeGenerator extends BaseTreeGenerator
                 range = 2;
             }
 
-            for (int x = position.getX() - range; x <= position.getX() + range && canGrowTree; ++x)
+            for (int x = position.getX() - range; x <= position.getX() + range; ++x)
             {
-                for (z = position.getZ() - range; z <= position.getZ() + range && canGrowTree; ++z)
+                for (z = position.getZ() - range; z <= position.getZ() + range; ++z)
                 {
                     if (y >= 0 && y < worldIn.getActualHeight())
                     {
@@ -213,7 +202,7 @@ public class OverworldTreeGenerator extends BaseTreeGenerator
                         IBlockState state = worldIn.getBlockState(pos);
                         Block block = state.getBlock();
 
-                        if (block != null && block != NaturaOverworld.overworldSapling || !block.isLeaves(state, worldIn, pos))
+                        if (block != NaturaOverworld.overworldSapling || !block.isLeaves(state, worldIn, pos))
                         {
                             canGrowTree = true;
                         }

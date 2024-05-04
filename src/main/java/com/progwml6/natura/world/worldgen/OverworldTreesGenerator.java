@@ -25,23 +25,19 @@ import com.progwml6.natura.world.worldgen.trees.overworld.*;
 
 public class OverworldTreesGenerator implements IWorldGenerator
 {
-    public static OverworldTreesGenerator INSTANCE = new OverworldTreesGenerator();
+    public static final OverworldTreesGenerator INSTANCE = new OverworldTreesGenerator();
 
     //@formatter:off
     OverworldTreeGenerator mapleTreeGen;
     OverworldTreeGenerator silverbellTreeGen;
     OverworldTreeGenerator amaranthTreeGen;
     OverworldTreeGenerator tigerTreeGen;
-
     WillowTreeGenerator willowTreeGen;
     EucalyptusTreeGenerator eucalyptusTreeGen;
     HopseedTreeGenerator hopseedTreeGen;
     SakuraTreeGenerator sakuraTreeGen;
-
     RedwoodTreeGenerator redwoodTreeGen;
-
     AppleTreeGenerator appleTreeGen;
-
     SaguaroGenerator saguaroGen;
     //@formatter:on
 
@@ -93,7 +89,9 @@ public class OverworldTreesGenerator implements IWorldGenerator
 
     public void generateOverworld(Random random, int chunkX, int chunkZ, World world, boolean retroGen)
     {
-        int xSpawn, ySpawn, zSpawn;
+        int xSpawn;
+        int ySpawn;
+        int zSpawn;
 
         int xPos = chunkX * 16 + 8;
         int zPos = chunkZ * 16 + 8;
@@ -104,16 +102,11 @@ public class OverworldTreesGenerator implements IWorldGenerator
 
         Biome biome = world.getChunk(chunkPos).getBiome(chunkPos, world.getBiomeProvider());
 
-        if (biome == null)
-        {
-            return;
-        }
-
         if (this.shouldGenerateInDimension(world.provider.getDimension()))
         {
             if (BiomeDictionary.hasType(biome, Type.FOREST))
             {
-                if (Config.generateSakura && random.nextInt(Config.sakuraSpawnRarity * 5) == 0)
+                if (Config.generateSakura && random.nextInt(Config.sakuraSpawnRarity) == 0)
                 {
                     for (int iter = 0; iter < 3; iter++)
                     {
@@ -189,7 +182,7 @@ public class OverworldTreesGenerator implements IWorldGenerator
                     this.redwoodTreeGen.generateTree(random, world, position);
                 }
 
-                if (Config.generateEucalyptus && random.nextInt((int) (Config.eucalyptusSpawnRarity * 1.5)) == 0)
+                if (Config.generateEucalyptus && random.nextInt(Config.eucalyptusSpawnRarity) == 0)
                 {
                     xSpawn = xPos + random.nextInt(16);
                     ySpawn = random.nextInt(Config.eucalyptusSpawnRange) + Config.seaLevel;
