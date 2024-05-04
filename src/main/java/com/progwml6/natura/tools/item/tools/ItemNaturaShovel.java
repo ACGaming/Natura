@@ -1,8 +1,8 @@
 package com.progwml6.natura.tools.item.tools;
 
-import com.progwml6.natura.library.NaturaRegistry;
-
 import net.minecraft.item.ItemSpade;
+
+import com.progwml6.natura.library.NaturaRegistry;
 
 public class ItemNaturaShovel extends ItemSpade
 {

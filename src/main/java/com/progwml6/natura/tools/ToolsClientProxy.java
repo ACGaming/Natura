@@ -1,8 +1,8 @@
 package com.progwml6.natura.tools;
 
-import com.progwml6.natura.common.ClientProxy;
-
 import net.minecraft.item.ItemStack;
+
+import com.progwml6.natura.common.ClientProxy;
 
 public class ToolsClientProxy extends ClientProxy
 {

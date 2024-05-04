@@ -1,8 +1,8 @@
 package com.progwml6.natura.tools.item.tools;
 
-import com.progwml6.natura.library.NaturaRegistry;
-
 import net.minecraft.item.ItemAxe;
+
+import com.progwml6.natura.library.NaturaRegistry;
 
 public class ItemNaturaAxe extends ItemAxe
 {

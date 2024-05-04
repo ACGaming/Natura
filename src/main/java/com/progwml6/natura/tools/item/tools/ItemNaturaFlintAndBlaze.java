@@ -1,6 +1,6 @@
 package com.progwml6.natura.tools.item.tools;
 
-import com.progwml6.natura.library.NaturaRegistry;
+import javax.annotation.Nonnull;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -14,6 +14,8 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import com.progwml6.natura.library.NaturaRegistry;
+
 public class ItemNaturaFlintAndBlaze extends Item
 {
     public ItemNaturaFlintAndBlaze()
@@ -26,8 +28,9 @@ public class ItemNaturaFlintAndBlaze extends Item
     /**
      * Called when a Block is right-clicked with this Item
      */
+    @Nonnull
     @Override
-    public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    public EnumActionResult onItemUse(EntityPlayer player, @Nonnull World worldIn, @Nonnull BlockPos pos, @Nonnull EnumHand hand, @Nonnull EnumFacing facing, float hitX, float hitY, float hitZ)
     {
         pos = pos.offset(facing);
         ItemStack itemstack = player.getHeldItem(hand);

@@ -1,6 +1,6 @@
 package com.progwml6.natura.tools.item.bows;
 
-import com.progwml6.natura.library.NaturaRegistry;
+import javax.annotation.Nonnull;
 
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
@@ -19,14 +19,18 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraftforge.event.ForgeEventFactory;
 
-public class ItemNaturaBow extends ItemBow {
-    public float damageMult;
-    public float velocityMult;
-    public float inaccuracy;
-    public float drawTimeMult;
-    public Ingredient repairMaterial;
+import com.progwml6.natura.library.NaturaRegistry;
 
-    public ItemNaturaBow(int durability, float damageMult, float velocityMult, float drawTimeMult, float inaccuracy, Ingredient repairMaterial) {
+public class ItemNaturaBow extends ItemBow
+{
+    public final float damageMult;
+    public final float velocityMult;
+    public final float inaccuracy;
+    public final float drawTimeMult;
+    public final Ingredient repairMaterial;
+
+    public ItemNaturaBow(int durability, float damageMult, float velocityMult, float drawTimeMult, float inaccuracy, Ingredient repairMaterial)
+    {
         this.setCreativeTab(NaturaRegistry.tabGeneral);
         this.maxStackSize = 1;
         this.setMaxDamage(durability);
@@ -36,7 +40,8 @@ public class ItemNaturaBow extends ItemBow {
         this.inaccuracy = inaccuracy;
         this.repairMaterial = repairMaterial;
         this.addPropertyOverride(new ResourceLocation("pull"), (ItemStack bow, World world, EntityLivingBase entity) -> {
-            if (entity == null) {
+            if (entity == null)
+            {
                 return 0.0F;
             }
 
@@ -47,8 +52,10 @@ public class ItemNaturaBow extends ItemBow {
     }
 
     @Override
-    public void onPlayerStoppedUsing(ItemStack itemStack, World world, EntityLivingBase entityLiving, int timeInUse) {
-        if (entityLiving instanceof EntityPlayer) {
+    public void onPlayerStoppedUsing(@Nonnull ItemStack itemStack, @Nonnull World world, @Nonnull EntityLivingBase entityLiving, int timeInUse)
+    {
+        if (entityLiving instanceof EntityPlayer)
+        {
             EntityPlayer player = (EntityPlayer) entityLiving;
             boolean isInfinityEnchant = player.capabilities.isCreativeMode || EnchantmentHelper.getEnchantmentLevel(Enchantments.INFINITY, itemStack) > 0;
             ItemStack stack = this.findAmmo(player);
@@ -59,23 +66,28 @@ public class ItemNaturaBow extends ItemBow {
             charge = ForgeEventFactory.onArrowLoose(itemStack, world, player, charge, !stack.isEmpty() || isInfinityEnchant);
             if (charge < 0) return;
 
-            if ((!stack.isEmpty() || isInfinityEnchant)) {
-                if (stack.isEmpty()) {
+            if ((!stack.isEmpty() || isInfinityEnchant))
+            {
+                if (stack.isEmpty())
+                {
                     stack = new ItemStack(Items.ARROW);
                 }
 
                 float arrowVelocity = getArrowVelocity(charge);
 
-                if ((double) arrowVelocity >= 0.1D) {
+                if (arrowVelocity >= 0.1D)
+                {
                     boolean arrowInfinite = player.capabilities.isCreativeMode || (stack.getItem() instanceof ItemArrow && ((ItemArrow) stack.getItem()).isInfinite(stack, itemStack, player));
 
-                    if (!world.isRemote) {
+                    if (!world.isRemote)
+                    {
                         ItemArrow itemArrow = (ItemArrow) (stack.getItem() instanceof ItemArrow ? stack.getItem() : Items.ARROW);
                         EntityArrow entityArrow = itemArrow.createArrow(world, stack, player);
                         entityArrow = this.customizeArrow(entityArrow);
                         entityArrow.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, (arrowVelocity * 3.0F) * velocityMult, inaccuracy);
 
-                        if (arrowVelocity == 1.0F) {
+                        if (arrowVelocity == 1.0F)
+                        {
                             entityArrow.setIsCritical(true);
                         }
 
@@ -83,23 +95,27 @@ public class ItemNaturaBow extends ItemBow {
 
                         int power = EnchantmentHelper.getEnchantmentLevel(Enchantments.POWER, itemStack);
 
-                        if (power > 0) {
-                            entityArrow.setDamage(entityArrow.getDamage() + (double) power * 0.5D + 0.5D);
+                        if (power > 0)
+                        {
+                            entityArrow.setDamage(entityArrow.getDamage() + power * 0.5D + 0.5D);
                         }
 
                         int punch = EnchantmentHelper.getEnchantmentLevel(Enchantments.PUNCH, itemStack);
 
-                        if (punch > 0) {
+                        if (punch > 0)
+                        {
                             entityArrow.setKnockbackStrength(punch);
                         }
 
-                        if (EnchantmentHelper.getEnchantmentLevel(Enchantments.FLAME, itemStack) > 0) {
+                        if (EnchantmentHelper.getEnchantmentLevel(Enchantments.FLAME, itemStack) > 0)
+                        {
                             entityArrow.setFire(100);
                         }
 
                         itemStack.damageItem(1, player);
 
-                        if (arrowInfinite || player.capabilities.isCreativeMode && (stack.getItem() == Items.SPECTRAL_ARROW || stack.getItem() == Items.TIPPED_ARROW)) {
+                        if (arrowInfinite || player.capabilities.isCreativeMode && (stack.getItem() == Items.SPECTRAL_ARROW || stack.getItem() == Items.TIPPED_ARROW))
+                        {
                             entityArrow.pickupStatus = EntityArrow.PickupStatus.CREATIVE_ONLY;
                         }
 
@@ -108,10 +124,12 @@ public class ItemNaturaBow extends ItemBow {
 
                     world.playSound(null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS, 1.0F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + arrowVelocity * 0.5F);
 
-                    if (!arrowInfinite && !player.capabilities.isCreativeMode) {
+                    if (!arrowInfinite && !player.capabilities.isCreativeMode)
+                    {
                         stack.shrink(1);
 
-                        if (stack.isEmpty()) {
+                        if (stack.isEmpty())
+                        {
                             player.inventory.deleteStack(stack);
                         }
                     }
@@ -123,7 +141,8 @@ public class ItemNaturaBow extends ItemBow {
     }
 
     @Override
-    public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
+    public boolean getIsRepairable(@Nonnull ItemStack toRepair, @Nonnull ItemStack repair)
+    {
         return repairMaterial.test(repair) || super.getIsRepairable(toRepair, repair);
     }
 }

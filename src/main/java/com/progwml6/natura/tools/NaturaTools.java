@@ -1,22 +1,7 @@
 package com.progwml6.natura.tools;
 
-import org.apache.logging.log4j.Logger;
-
 import com.google.common.eventbus.Subscribe;
-import com.progwml6.natura.common.CommonProxy;
-import com.progwml6.natura.common.NaturaPulse;
-import com.progwml6.natura.library.Util;
-import com.progwml6.natura.nether.NaturaNether;
-import com.progwml6.natura.tools.item.armor.ItemNaturaImpArmor;
-import com.progwml6.natura.tools.item.bows.ItemNaturaBow;
-import com.progwml6.natura.tools.item.tools.ItemNaturaAxe;
-import com.progwml6.natura.tools.item.tools.ItemNaturaFlintAndBlaze;
-import com.progwml6.natura.tools.item.tools.ItemNaturaHoe;
-import com.progwml6.natura.tools.item.tools.ItemNaturaPickaxe;
-import com.progwml6.natura.tools.item.tools.ItemNaturaShears;
-import com.progwml6.natura.tools.item.tools.ItemNaturaShovel;
-import com.progwml6.natura.tools.item.tools.ItemNaturaSword;
-
+import org.apache.logging.log4j.Logger;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -32,6 +17,14 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
+
+import com.progwml6.natura.common.CommonProxy;
+import com.progwml6.natura.common.NaturaPulse;
+import com.progwml6.natura.library.Util;
+import com.progwml6.natura.nether.NaturaNether;
+import com.progwml6.natura.tools.item.armor.ItemNaturaImpArmor;
+import com.progwml6.natura.tools.item.bows.ItemNaturaBow;
+import com.progwml6.natura.tools.item.tools.*;
 import slimeknights.mantle.pulsar.pulse.Pulse;
 
 @Pulse(id = NaturaTools.PulseId, description = "All of the tools + armor added by natura")
@@ -100,7 +93,7 @@ public class NaturaTools extends NaturaPulse
 
         if (isEntitiesLoaded())
         {
-            ArmorMaterial impMaterial = EnumHelper.addArmorMaterial("IMP_HIDE", "imp_hide", 12, new int[]{2, 4, 5, 2}, 18, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0);
+            ArmorMaterial impMaterial = EnumHelper.addArmorMaterial("IMP_HIDE", "imp_hide", 12, new int[] {2, 4, 5, 2}, 18, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0);
 
             impHelmet = registerItem(registry, new ItemNaturaImpArmor(impMaterial, EntityEquipmentSlot.HEAD), "imp_armor_helmet");
             impChestplate = registerItem(registry, new ItemNaturaImpArmor(impMaterial, EntityEquipmentSlot.CHEST), "imp_armor_chestplate");
