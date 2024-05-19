@@ -1,7 +1,8 @@
 package com.progwml6.natura.world.worldgen.trees.overworld;
 
 import java.util.Random;
-
+import com.progwml6.natura.overworld.NaturaOverworld;
+import com.progwml6.natura.world.worldgen.trees.BaseTreeGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -9,9 +10,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockPos.MutableBlockPos;
 import net.minecraft.world.World;
-
-import com.progwml6.natura.overworld.NaturaOverworld;
-import com.progwml6.natura.world.worldgen.trees.BaseTreeGenerator;
 
 public class HopseedTreeGenerator extends BaseTreeGenerator
 {
@@ -49,7 +47,7 @@ public class HopseedTreeGenerator extends BaseTreeGenerator
 
         if (this.seekHeight)
         {
-            while (position.getY() > 1 && worldIn.isAirBlock(position) || worldIn.getBlockState(position).getBlock().isLeaves(worldIn.getBlockState(position), worldIn, position))
+            while (position.getY() > 1 && worldIn.isAirBlock(position))
             {
                 position = position.down();
             }
@@ -134,7 +132,7 @@ public class HopseedTreeGenerator extends BaseTreeGenerator
 
                         IBlockState newState = worldIn.getBlockState(blockpos);
 
-                        if (newState.getBlock() == Blocks.AIR || newState.getBlock().isLeaves(newState, worldIn, blockpos))
+                        if (newState.getBlock() == Blocks.AIR)
                         {
                             worldIn.setBlockState(blockpos, this.log, 0);
                         }
@@ -145,7 +143,7 @@ public class HopseedTreeGenerator extends BaseTreeGenerator
 
                             newState = worldIn.getBlockState(blockpos);
 
-                            if (newState.getBlock() == Blocks.AIR || newState.getBlock().isLeaves(newState, worldIn, blockpos))
+                            if (newState.getBlock() == Blocks.AIR)
                             {
                                 worldIn.setBlockState(blockpos, this.log, 0);
                             }
@@ -154,7 +152,7 @@ public class HopseedTreeGenerator extends BaseTreeGenerator
 
                             newState = worldIn.getBlockState(blockpos);
 
-                            if (newState.getBlock() == Blocks.AIR || newState.getBlock().isLeaves(newState, worldIn, blockpos))
+                            if (newState.getBlock() == Blocks.AIR)
                             {
                                 worldIn.setBlockState(blockpos, this.log, 0);
                             }
@@ -163,7 +161,7 @@ public class HopseedTreeGenerator extends BaseTreeGenerator
 
                             newState = worldIn.getBlockState(blockpos);
 
-                            if (newState.getBlock() == Blocks.AIR || newState.getBlock().isLeaves(newState, worldIn, blockpos))
+                            if (newState.getBlock() == Blocks.AIR)
                             {
                                 worldIn.setBlockState(blockpos, this.log, 0);
                             }
@@ -178,7 +176,7 @@ public class HopseedTreeGenerator extends BaseTreeGenerator
     {
         IBlockState state = worldIn.getBlockState(positionIn);
 
-        return state.getBlock().isAir(state, worldIn, positionIn) || state.getBlock().isLeaves(state, worldIn, positionIn) || state.getBlock().isWood(worldIn, positionIn);
+        return state.getBlock().isAir(state, worldIn, positionIn);
     }
 
     protected void growLeaves(World worldIn, Random random, BlockPos positionIn, int height)

@@ -1,17 +1,6 @@
 package com.progwml6.natura.world.worldgen;
 
 import java.util.Random;
-
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.chunk.IChunkProvider;
-import net.minecraft.world.gen.IChunkGenerator;
-import net.minecraftforge.common.BiomeDictionary;
-import net.minecraftforge.common.BiomeDictionary.Type;
-import net.minecraftforge.fml.common.IWorldGenerator;
-
 import com.progwml6.natura.common.config.Config;
 import com.progwml6.natura.overworld.NaturaOverworld;
 import com.progwml6.natura.overworld.block.leaves.BlockAppleLeaves;
@@ -21,7 +10,22 @@ import com.progwml6.natura.overworld.block.logs.BlockOverworldLog;
 import com.progwml6.natura.overworld.block.logs.BlockOverworldLog2;
 import com.progwml6.natura.overworld.block.logs.BlockRedwoodLog;
 import com.progwml6.natura.world.worldgen.saguaro.SaguaroGenerator;
-import com.progwml6.natura.world.worldgen.trees.overworld.*;
+import com.progwml6.natura.world.worldgen.trees.overworld.AppleTreeGenerator;
+import com.progwml6.natura.world.worldgen.trees.overworld.EucalyptusTreeGenerator;
+import com.progwml6.natura.world.worldgen.trees.overworld.HopseedTreeGenerator;
+import com.progwml6.natura.world.worldgen.trees.overworld.OverworldTreeGenerator;
+import com.progwml6.natura.world.worldgen.trees.overworld.RedwoodTreeGenerator;
+import com.progwml6.natura.world.worldgen.trees.overworld.SakuraTreeGenerator;
+import com.progwml6.natura.world.worldgen.trees.overworld.WillowTreeGenerator;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.IChunkGenerator;
+import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.common.BiomeDictionary.Type;
+import net.minecraftforge.fml.common.IWorldGenerator;
 
 public class OverworldTreesGenerator implements IWorldGenerator
 {
@@ -87,6 +91,7 @@ public class OverworldTreesGenerator implements IWorldGenerator
         world.getChunk(chunkX, chunkZ).markDirty();
     }
 
+    // TODO: Rework tree generation to use DecorateBiomeEvent.Decorate.EventType.TREE, might have to scrap retro-gen
     public void generateOverworld(Random random, int chunkX, int chunkZ, World world, boolean retroGen)
     {
         int xSpawn;
@@ -108,21 +113,18 @@ public class OverworldTreesGenerator implements IWorldGenerator
             {
                 if (Config.generateSakura && random.nextInt(Config.sakuraSpawnRarity) == 0)
                 {
-                    for (int iter = 0; iter < 3; iter++)
-                    {
-                        xSpawn = xPos + random.nextInt(16);
-                        ySpawn = random.nextInt(Config.sakuraSpawnRange) + Config.seaLevel;
-                        zSpawn = zPos + random.nextInt(16);
-                        position = new BlockPos(xSpawn, ySpawn, zSpawn);
+                    xSpawn = xPos + random.nextInt(16);
+                    ySpawn = Config.sakuraSpawnRange + Config.seaLevel;
+                    zSpawn = zPos + random.nextInt(16);
+                    position = new BlockPos(xSpawn, ySpawn, zSpawn);
 
-                        this.sakuraTreeGen.generateTree(random, world, position);
-                    }
+                    this.sakuraTreeGen.generateTree(random, world, position);
                 }
 
                 if (Config.generateEucalyptus && random.nextInt(Config.eucalyptusSpawnRarity) == 0)
                 {
                     xSpawn = xPos + random.nextInt(16);
-                    ySpawn = random.nextInt(Config.eucalyptusSpawnRange) + Config.seaLevel;
+                    ySpawn = Config.eucalyptusSpawnRange + Config.seaLevel;
                     zSpawn = zPos + random.nextInt(16);
                     position = new BlockPos(xSpawn, ySpawn, zSpawn);
 
@@ -132,7 +134,7 @@ public class OverworldTreesGenerator implements IWorldGenerator
                 if (Config.generateMaple && random.nextInt(Config.mapleRarity) == 0)
                 {
                     xSpawn = xPos + random.nextInt(16);
-                    ySpawn = Config.seaLevel + 48;
+                    ySpawn = Config.mapleSpawnRange + Config.seaLevel;
                     zSpawn = zPos + random.nextInt(16);
                     position = new BlockPos(xSpawn, ySpawn, zSpawn);
 
@@ -142,7 +144,7 @@ public class OverworldTreesGenerator implements IWorldGenerator
                 if (Config.generateSilverbell && random.nextInt(Config.silverbellRarity) == 0)
                 {
                     xSpawn = xPos + random.nextInt(16);
-                    ySpawn = Config.seaLevel + 48;
+                    ySpawn = Config.silverbellSpawnRange + Config.seaLevel;
                     zSpawn = zPos + random.nextInt(16);
                     position = new BlockPos(xSpawn, ySpawn, zSpawn);
 
@@ -152,7 +154,7 @@ public class OverworldTreesGenerator implements IWorldGenerator
                 if (Config.generateTiger && random.nextInt(Config.tigerRarity) == 0)
                 {
                     xSpawn = xPos + random.nextInt(16);
-                    ySpawn = Config.seaLevel + 48;
+                    ySpawn = Config.tigerSpawnRange + Config.seaLevel;
                     zSpawn = zPos + random.nextInt(16);
                     position = new BlockPos(xSpawn, ySpawn, zSpawn);
 
@@ -162,7 +164,7 @@ public class OverworldTreesGenerator implements IWorldGenerator
                 if (Config.generateApple && random.nextInt(Config.appleSpawnRarity) == 0)
                 {
                     xSpawn = xPos + random.nextInt(16);
-                    ySpawn = random.nextInt(Config.appleSpawnRange) + Config.seaLevel;
+                    ySpawn = Config.appleSpawnRange + Config.seaLevel;
                     zSpawn = zPos + random.nextInt(16);
                     position = new BlockPos(xSpawn, ySpawn, zSpawn);
 
@@ -175,7 +177,7 @@ public class OverworldTreesGenerator implements IWorldGenerator
                 if (!retroGen && Config.generateRedwood && random.nextInt(Config.redwoodSpawnRarity) == 0)
                 {
                     xSpawn = xPos + random.nextInt(16);
-                    ySpawn = Config.seaLevel + 16;
+                    ySpawn = Config.redwoodSpawnRange + Config.seaLevel;
                     zSpawn = zPos + random.nextInt(16);
                     position = new BlockPos(xSpawn, ySpawn, zSpawn);
 
@@ -185,7 +187,7 @@ public class OverworldTreesGenerator implements IWorldGenerator
                 if (Config.generateEucalyptus && random.nextInt(Config.eucalyptusSpawnRarity) == 0)
                 {
                     xSpawn = xPos + random.nextInt(16);
-                    ySpawn = random.nextInt(Config.eucalyptusSpawnRange) + Config.seaLevel;
+                    ySpawn = Config.eucalyptusSpawnRange + Config.seaLevel;
                     zSpawn = zPos + random.nextInt(16);
                     position = new BlockPos(xSpawn, ySpawn, zSpawn);
 
@@ -195,7 +197,7 @@ public class OverworldTreesGenerator implements IWorldGenerator
                 if (Config.generateApple && random.nextInt(Config.appleSpawnRarity) == 0)
                 {
                     xSpawn = xPos + random.nextInt(16);
-                    ySpawn = random.nextInt(Config.appleSpawnRange) + Config.seaLevel;
+                    ySpawn = Config.appleSpawnRange + Config.seaLevel;
                     zSpawn = zPos + random.nextInt(16);
                     position = new BlockPos(xSpawn, ySpawn, zSpawn);
 
@@ -208,7 +210,7 @@ public class OverworldTreesGenerator implements IWorldGenerator
                 if (Config.generateHopseed && random.nextInt(Config.hopseedSpawnRarity) == 0)
                 {
                     xSpawn = xPos + random.nextInt(16);
-                    ySpawn = random.nextInt(Config.hopseedSpawnRange) + Config.seaLevel;
+                    ySpawn = Config.hopseedSpawnRange + Config.seaLevel;
                     zSpawn = zPos + random.nextInt(16);
                     position = new BlockPos(xSpawn, ySpawn, zSpawn);
 
@@ -218,7 +220,7 @@ public class OverworldTreesGenerator implements IWorldGenerator
                 if (Config.generateEucalyptus && random.nextInt(Config.eucalyptusSpawnRarity) == 0)
                 {
                     xSpawn = xPos + random.nextInt(16);
-                    ySpawn = random.nextInt(Config.eucalyptusSpawnRange) + Config.seaLevel;
+                    ySpawn = Config.eucalyptusSpawnRange + Config.seaLevel;
                     zSpawn = zPos + random.nextInt(16);
                     position = new BlockPos(xSpawn, ySpawn, zSpawn);
 
@@ -230,21 +232,18 @@ public class OverworldTreesGenerator implements IWorldGenerator
             {
                 if (Config.generateSakura && random.nextInt(Config.sakuraSpawnRarity) == 0)
                 {
-                    for (int iter = 0; iter < 3; iter++)
-                    {
-                        xSpawn = xPos + random.nextInt(16);
-                        ySpawn = random.nextInt(Config.sakuraSpawnRange) + Config.seaLevel;
-                        zSpawn = zPos + random.nextInt(16);
-                        position = new BlockPos(xSpawn, ySpawn, zSpawn);
+                    xSpawn = xPos + random.nextInt(16);
+                    ySpawn = Config.sakuraSpawnRange + Config.seaLevel;
+                    zSpawn = zPos + random.nextInt(16);
+                    position = new BlockPos(xSpawn, ySpawn, zSpawn);
 
-                        this.sakuraTreeGen.generateTree(random, world, position);
-                    }
+                    this.sakuraTreeGen.generateTree(random, world, position);
                 }
 
                 if (Config.generateWillow && random.nextInt(Config.willowRarity) == 0)
                 {
                     xSpawn = xPos + random.nextInt(16);
-                    ySpawn = Config.seaLevel + 16;
+                    ySpawn = Config.willowSpawnRange + Config.seaLevel;
                     zSpawn = zPos + random.nextInt(16);
                     position = new BlockPos(xSpawn, ySpawn, zSpawn);
 
@@ -254,10 +253,23 @@ public class OverworldTreesGenerator implements IWorldGenerator
 
             if (BiomeDictionary.hasType(biome, Type.JUNGLE))
             {
+                if (Config.generateAmaranth)
+                {
+                    xSpawn = xPos + random.nextInt(16);
+                    ySpawn = Config.amaranthSpawnRange + Config.seaLevel;
+                    zSpawn = zPos + random.nextInt(16);
+                    position = new BlockPos(xSpawn, ySpawn, zSpawn);
+
+                    this.amaranthTreeGen.generateTree(random, world, position);
+                }
+            }
+
+            if (BiomeDictionary.hasType(biome, Type.SAVANNA))
+            {
                 if (Config.generateAmaranth && random.nextInt(Config.amaranthRarity) == 0)
                 {
                     xSpawn = xPos + random.nextInt(16);
-                    ySpawn = Config.seaLevel + 48;
+                    ySpawn = Config.amaranthSpawnRange + Config.seaLevel;
                     zSpawn = zPos + random.nextInt(16);
                     position = new BlockPos(xSpawn, ySpawn, zSpawn);
 
@@ -272,7 +284,7 @@ public class OverworldTreesGenerator implements IWorldGenerator
                     for (int i = 0; i < 3; i++)
                     {
                         xSpawn = xPos + random.nextInt(16);
-                        ySpawn = Config.seaLevel + 16;
+                        ySpawn = Config.amaranthSpawnRange + Config.seaLevel;
                         zSpawn = zPos + random.nextInt(16);
                         position = new BlockPos(xSpawn, ySpawn, zSpawn);
 
@@ -286,7 +298,7 @@ public class OverworldTreesGenerator implements IWorldGenerator
                 if (Config.generateSaguaro && random.nextInt(Config.saguaroSpawnRarity) == 0)
                 {
                     xSpawn = xPos + random.nextInt(16);
-                    ySpawn = Config.seaLevel + random.nextInt(16);
+                    ySpawn = Config.saguaroSpawnRange + Config.seaLevel;
                     zSpawn = zPos + random.nextInt(16);
                     position = new BlockPos(xSpawn, ySpawn, zSpawn);
 
@@ -308,5 +320,4 @@ public class OverworldTreesGenerator implements IWorldGenerator
 
         return true;
     }
-
 }

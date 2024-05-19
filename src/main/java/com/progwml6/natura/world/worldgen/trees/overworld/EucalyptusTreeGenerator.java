@@ -1,15 +1,13 @@
 package com.progwml6.natura.world.worldgen.trees.overworld;
 
 import java.util.Random;
-
+import com.progwml6.natura.overworld.NaturaOverworld;
+import com.progwml6.natura.world.worldgen.trees.BaseTreeGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-
-import com.progwml6.natura.overworld.NaturaOverworld;
-import com.progwml6.natura.world.worldgen.trees.BaseTreeGenerator;
 
 public class EucalyptusTreeGenerator extends BaseTreeGenerator
 {
@@ -77,7 +75,7 @@ public class EucalyptusTreeGenerator extends BaseTreeGenerator
                         {
                             IBlockState iblockstate = world.getBlockState(mutableBlockPos.setPos(l, j, i1));
 
-                            if (!iblockstate.getBlock().isAir(iblockstate, world, mutableBlockPos.setPos(l, j, i1)) && !iblockstate.getBlock().isLeaves(iblockstate, world, mutableBlockPos.setPos(l, j, i1)))
+                            if (!iblockstate.getBlock().isAir(iblockstate, world, mutableBlockPos.setPos(l, j, i1)))
                             {
                                 flag = false;
                             }
@@ -173,7 +171,7 @@ public class EucalyptusTreeGenerator extends BaseTreeGenerator
         {
             IBlockState state = world.getBlockState(pos);
             Block block = state.getBlock();
-            if (block.isAir(state, world, pos) || block.isReplaceable(world, pos) || block.isLeaves(state, world, pos))
+            if (block.isAir(state, world, pos))
             {
                 this.setBlockAndMetadata(world, pos, this.log);
             }
@@ -193,7 +191,7 @@ public class EucalyptusTreeGenerator extends BaseTreeGenerator
         }
     }
 
-    BlockPos findGround(World world, BlockPos pos)
+    protected BlockPos findGround(World world, BlockPos pos)
     {
         int returnHeight = 0;
         BlockPos posDown = pos.down();

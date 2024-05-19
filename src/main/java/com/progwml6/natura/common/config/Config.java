@@ -173,15 +173,26 @@ public final class Config
         redwoodSpawnRarity = configFile.get(WORLDGEN, "Redwood Tree Spawn Rarity", redwoodSpawnRarity).getInt(redwoodSpawnRarity);
 
         mapleRarity = configFile.get(WORLDGEN, "Maple Tree Spawn Rarity", mapleRarity).getInt(mapleRarity);
+        mapleSpawnRange = configFile.get(WORLDGEN, "Maple Tree Spawn Range", mapleSpawnRange).getInt(mapleSpawnRange);
+
         silverbellRarity = configFile.get(WORLDGEN, "Silverbell Tree Spawn Rarity", silverbellRarity).getInt(silverbellRarity);
+        silverbellSpawnRange = configFile.get(WORLDGEN, "Silverbell Tree Spawn Range", silverbellSpawnRange).getInt(silverbellSpawnRange);
+
         amaranthRarity = configFile.get(WORLDGEN, "Amaranth Tree Spawn Rarity", amaranthRarity).getInt(amaranthRarity);
+        amaranthSpawnRange = configFile.get(WORLDGEN, "Amaranth Tree Spawn Range", amaranthSpawnRange).getInt(amaranthSpawnRange);
+
         tigerRarity = configFile.get(WORLDGEN, "Tigerwood Tree Spawn Rarity", tigerRarity).getInt(tigerRarity);
+        tigerSpawnRange = configFile.get(WORLDGEN, "Tigerwood Tree Spawn Range", tigerSpawnRange).getInt(tigerSpawnRange);
 
         willowRarity = configFile.get(WORLDGEN, "Willow Tree Spawn Rarity", willowRarity).getInt(willowRarity);
+        willowSpawnRange = configFile.get(WORLDGEN, "Willow Tree Spawn Range", willowSpawnRange).getInt(willowSpawnRange);
+
         eucalyptusSpawnRarity = configFile.get(WORLDGEN, "Eucalyptus Tree Spawn Rarity", eucalyptusSpawnRarity).getInt(eucalyptusSpawnRarity);
         eucalyptusSpawnRange = configFile.get(WORLDGEN, "Eucalyptus Tree Spawn Range", eucalyptusSpawnRange).getInt(eucalyptusSpawnRange);
+
         hopseedSpawnRarity = configFile.get(WORLDGEN, "Hopseed Tree Spawn Rarity", hopseedSpawnRarity).getInt(hopseedSpawnRarity);
         hopseedSpawnRange = configFile.get(WORLDGEN, "Hopseed Tree Spawn Range", hopseedSpawnRange).getInt(hopseedSpawnRange);
+
         sakuraSpawnRarity = configFile.get(WORLDGEN, "Sakura Tree Spawn Rarity", sakuraSpawnRarity).getInt(sakuraSpawnRarity);
         sakuraSpawnRange = configFile.get(WORLDGEN, "Sakura Tree Spawn Range", sakuraSpawnRange).getInt(sakuraSpawnRange);
 
@@ -192,6 +203,7 @@ public final class Config
         // Trees End
 
         saguaroSpawnRarity = configFile.get(WORLDGEN, "Saguaro Cactus Spawn Rarity", saguaroSpawnRarity).getInt(saguaroSpawnRarity);
+        saguaroSpawnRange = configFile.get(WORLDGEN, "Saguaro Cactus Spawn Range", saguaroSpawnRange).getInt(saguaroSpawnRange);
 
         // Berries Start
         raspberrySpawnRarity = configFile.get(WORLDGEN, "Raspberry Spawn Rarity", raspberrySpawnRarity).getInt(raspberrySpawnRarity);
@@ -323,7 +335,7 @@ public final class Config
     public static boolean canRespawnInNether = true;
 
     // Trees Start
-    public static boolean generateRedwood = false;
+    public static boolean generateRedwood = true;
     public static boolean generateMaple = true;
     public static boolean generateSilverbell = true;
     public static boolean generateAmaranth = true;
@@ -340,19 +352,25 @@ public final class Config
     public static boolean generateGhostwood = true;
 
     public static int redwoodSpawnRarity = 150;
+    public static int redwoodSpawnRange = 16;
     public static int mapleRarity = 10;
-    public static int silverbellRarity = 70;
-    public static int amaranthRarity = 1;
-    public static int tigerRarity = 30;
+    public static int mapleSpawnRange = 48;
+    public static int silverbellRarity = 10;
+    public static int silverbellSpawnRange = 48;
+    public static int amaranthRarity = 10;
+    public static int amaranthSpawnRange = 48;
+    public static int tigerRarity = 10;
+    public static int tigerSpawnRange = 48;
     public static int willowRarity = 10;
+    public static int willowSpawnRange = 16;
     public static int eucalyptusSpawnRarity = 30;
     public static int eucalyptusSpawnRange = 32;
     public static int hopseedSpawnRarity = 10;
-    public static int hopseedSpawnRange = 20;
-    public static int sakuraSpawnRarity = 50;
+    public static int hopseedSpawnRange = 32;
+    public static int sakuraSpawnRarity = 30;
     public static int sakuraSpawnRange = 32;
-    public static int appleSpawnRarity = 40;
-    public static int appleSpawnRange = 32;
+    public static int appleSpawnRarity = 20;
+    public static int appleSpawnRange = 48;
 
     public static int bloodwoodSpawnRarity = 14;
     public static int darkwoodSpawnRarity = 10;
@@ -413,6 +431,7 @@ public final class Config
     public static boolean generateGlowshroomtree = true;
 
     public static int saguaroSpawnRarity = 5;
+    public static int saguaroSpawnRange = 16;
 
     public static int thornSpawnRarity = 40;
 

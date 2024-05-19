@@ -1,16 +1,14 @@
 package com.progwml6.natura.world.worldgen.trees.nether;
 
 import java.util.Random;
-
+import com.progwml6.natura.nether.NaturaNether;
+import com.progwml6.natura.world.worldgen.trees.BaseTreeGenerator;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockPos.MutableBlockPos;
 import net.minecraft.world.World;
-
-import com.progwml6.natura.nether.NaturaNether;
-import com.progwml6.natura.world.worldgen.trees.BaseTreeGenerator;
 
 public class FusewoodTreeGenerator extends BaseTreeGenerator
 {
@@ -126,7 +124,7 @@ public class FusewoodTreeGenerator extends BaseTreeGenerator
         }
     }
 
-    BlockPos findGround(World world, BlockPos pos)
+    protected BlockPos findGround(World world, BlockPos pos)
     {
         int returnHeight = 0;
 

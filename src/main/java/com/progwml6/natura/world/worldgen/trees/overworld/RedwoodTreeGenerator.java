@@ -2,8 +2,10 @@ package com.progwml6.natura.world.worldgen.trees.overworld;
 
 import java.util.List;
 import java.util.Random;
-
 import com.google.common.collect.Lists;
+import com.progwml6.natura.common.config.Config;
+import com.progwml6.natura.overworld.NaturaOverworld;
+import com.progwml6.natura.world.worldgen.trees.BaseTreeGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -13,10 +15,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldType;
-
-import com.progwml6.natura.common.config.Config;
-import com.progwml6.natura.overworld.NaturaOverworld;
-import com.progwml6.natura.world.worldgen.trees.BaseTreeGenerator;
 
 public class RedwoodTreeGenerator extends BaseTreeGenerator
 {
@@ -1945,6 +1943,56 @@ public class RedwoodTreeGenerator extends BaseTreeGenerator
         return material == Material.AIR || material == Material.LEAVES || blockType == Blocks.GRASS || blockType == Blocks.DIRT || blockType == Blocks.LOG || blockType == Blocks.LOG2 || blockType == Blocks.SAPLING || blockType == Blocks.VINE;
     }
 
+    protected BlockPos findGround(World world, BlockPos pos)
+    {
+        if (world.getWorldType() == WorldType.FLAT && this.isSapling)
+        {
+            boolean foundGround = false;
+
+            int height = Config.flatSeaLevel + 64;
+
+            do
+            {
+                height--;
+
+                BlockPos position = new BlockPos(pos.getX(), height, pos.getZ());
+                IBlockState underState = world.getBlockState(position);
+                Block underBlock = underState.getBlock();
+                boolean isSoil = underBlock.canSustainPlant(underState, world, position, EnumFacing.UP, NaturaOverworld.redwoodSapling);
+
+                if (isSoil || height < Config.flatSeaLevel)
+                {
+                    foundGround = true;
+                }
+            } while (!foundGround);
+
+            return new BlockPos(pos.getX(), height, pos.getZ());
+        }
+        else
+        {
+            boolean foundGround = false;
+
+            int height = Config.seaLevel + 64;
+
+            do
+            {
+                height--;
+
+                BlockPos position = new BlockPos(pos.getX(), height, pos.getZ());
+                IBlockState underState = world.getBlockState(position);
+                Block underBlock = underState.getBlock();
+                boolean isSoil = underBlock.canSustainPlant(underState, world, position, EnumFacing.UP, NaturaOverworld.redwoodSapling);
+
+                if (isSoil || height < Config.seaLevel)
+                {
+                    foundGround = true;
+                }
+            } while (!foundGround);
+
+            return new BlockPos(pos.getX(), height, pos.getZ());
+        }
+    }
+
     /**
      * Generates a list of leaf nodes for the tree, to be populated by generateLeaves.
      */
@@ -2002,7 +2050,7 @@ public class RedwoodTreeGenerator extends BaseTreeGenerator
         }
     }
 
-    void crosSection(BlockPos pos, float size, IBlockState state)
+    void crossSection(BlockPos pos, float size, IBlockState state)
     {
         int i = (int) (size + 0.618D);
 
@@ -2064,7 +2112,7 @@ public class RedwoodTreeGenerator extends BaseTreeGenerator
     {
         for (int i = 0; i < this.leafDistanceLimit; ++i)
         {
-            this.crosSection(pos.up(i), this.leafSize(i), this.leaves);
+            this.crossSection(pos.up(i), this.leafSize(i), this.leaves);
         }
     }
 
@@ -2144,56 +2192,6 @@ public class RedwoodTreeGenerator extends BaseTreeGenerator
             }
         }
         return -1;
-    }
-
-    BlockPos findGround(World world, BlockPos pos)
-    {
-        if (world.getWorldType() == WorldType.FLAT && this.isSapling)
-        {
-            boolean foundGround = false;
-
-            int height = Config.flatSeaLevel + 64;
-
-            do
-            {
-                height--;
-
-                BlockPos position = new BlockPos(pos.getX(), height, pos.getZ());
-                IBlockState underState = world.getBlockState(position);
-                Block underBlock = underState.getBlock();
-                boolean isSoil = underBlock.canSustainPlant(underState, world, position, EnumFacing.UP, NaturaOverworld.redwoodSapling);
-
-                if (isSoil || height < Config.flatSeaLevel)
-                {
-                    foundGround = true;
-                }
-            } while (!foundGround);
-
-            return new BlockPos(pos.getX(), height, pos.getZ());
-        }
-        else
-        {
-            boolean foundGround = false;
-
-            int height = Config.seaLevel + 64;
-
-            do
-            {
-                height--;
-
-                BlockPos position = new BlockPos(pos.getX(), height, pos.getZ());
-                IBlockState underState = world.getBlockState(position);
-                Block underBlock = underState.getBlock();
-                boolean isSoil = underBlock.canSustainPlant(underState, world, position, EnumFacing.UP, NaturaOverworld.redwoodSapling);
-
-                if (isSoil || height < Config.seaLevel)
-                {
-                    foundGround = true;
-                }
-            } while (!foundGround);
-
-            return new BlockPos(pos.getX(), height, pos.getZ());
-        }
     }
 
     /**

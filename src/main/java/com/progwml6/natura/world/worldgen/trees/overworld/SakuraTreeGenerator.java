@@ -2,8 +2,11 @@ package com.progwml6.natura.world.worldgen.trees.overworld;
 
 import java.util.List;
 import java.util.Random;
-
 import com.google.common.collect.Lists;
+import com.progwml6.natura.common.block.BlockEnumLog;
+import com.progwml6.natura.common.config.Config;
+import com.progwml6.natura.overworld.NaturaOverworld;
+import com.progwml6.natura.world.worldgen.trees.BaseTreeGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.EnumFacing;
@@ -11,11 +14,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldType;
-
-import com.progwml6.natura.common.block.BlockEnumLog;
-import com.progwml6.natura.common.config.Config;
-import com.progwml6.natura.overworld.NaturaOverworld;
-import com.progwml6.natura.world.worldgen.trees.BaseTreeGenerator;
 
 public class SakuraTreeGenerator extends BaseTreeGenerator
 {
@@ -50,8 +48,8 @@ public class SakuraTreeGenerator extends BaseTreeGenerator
 
     public boolean isReplaceable(World world, BlockPos pos)
     {
-        net.minecraft.block.state.IBlockState state = world.getBlockState(pos);
-        return state.getBlock().isAir(state, world, pos) || state.getBlock().isLeaves(state, world, pos);
+        IBlockState state = world.getBlockState(pos);
+        return state.getBlock().isAir(state, world, pos);
     }
 
     @Override
@@ -93,6 +91,54 @@ public class SakuraTreeGenerator extends BaseTreeGenerator
         if (block.isAir(state, world, pos) || block.canPlaceBlockAt(world, pos) || world.getBlockState(pos) == this.leaves)
         {
             world.setBlockState(pos, stateNew, 2);
+        }
+    }
+
+    protected BlockPos findGround(World world, BlockPos pos)
+    {
+        if (world.getWorldType() == WorldType.FLAT && this.isSapling)
+        {
+            boolean foundGround = false;
+
+            int height = Config.flatSeaLevel + 64;
+
+            do
+            {
+                height--;
+                BlockPos position = new BlockPos(pos.getX(), height, pos.getZ());
+                IBlockState underBlockState = world.getBlockState(position);
+                Block underBlock = underBlockState.getBlock();
+                boolean isSoil = underBlock.canSustainPlant(underBlockState, world, position, EnumFacing.UP, NaturaOverworld.overworldSapling);
+
+                if (isSoil || height < Config.flatSeaLevel)
+                {
+                    foundGround = true;
+                }
+            } while (!foundGround);
+
+            return new BlockPos(pos.getX(), height + 1, pos.getZ());
+        }
+        else
+        {
+            boolean foundGround = false;
+
+            int height = Config.seaLevel + 64;
+
+            do
+            {
+                height--;
+                BlockPos position = new BlockPos(pos.getX(), height, pos.getZ());
+                IBlockState underState = world.getBlockState(position);
+                Block underBlock = underState.getBlock();
+                boolean isSoil = underBlock.canSustainPlant(underState, world, position, EnumFacing.UP, NaturaOverworld.overworldSapling);
+
+                if (isSoil || height < Config.seaLevel)
+                {
+                    foundGround = true;
+                }
+            } while (!foundGround);
+
+            return new BlockPos(pos.getX(), height + 1, pos.getZ());
         }
     }
 
@@ -153,7 +199,7 @@ public class SakuraTreeGenerator extends BaseTreeGenerator
         }
     }
 
-    void crosSection(BlockPos pos, float p_181631_2_, IBlockState p_181631_3_)
+    void crossSection(BlockPos pos, float p_181631_2_, IBlockState p_181631_3_)
     {
         int i = (int) (p_181631_2_ + 0.618D);
 
@@ -215,7 +261,7 @@ public class SakuraTreeGenerator extends BaseTreeGenerator
     {
         for (int i = 0; i < this.leafDistanceLimit; ++i)
         {
-            this.crosSection(pos.up(i), this.leafSize(i), this.leaves);
+            this.crossSection(pos.up(i), this.leafSize(i), this.leaves);
         }
     }
 
@@ -315,54 +361,6 @@ public class SakuraTreeGenerator extends BaseTreeGenerator
 
         }
         return -1;
-    }
-
-    BlockPos findGround(World world, BlockPos pos)
-    {
-        if (world.getWorldType() == WorldType.FLAT && this.isSapling)
-        {
-            boolean foundGround = false;
-
-            int height = Config.flatSeaLevel + 64;
-
-            do
-            {
-                height--;
-                BlockPos position = new BlockPos(pos.getX(), height, pos.getZ());
-                IBlockState underBlockState = world.getBlockState(position);
-                Block underBlock = underBlockState.getBlock();
-                boolean isSoil = underBlock.canSustainPlant(underBlockState, world, position, EnumFacing.UP, NaturaOverworld.overworldSapling);
-
-                if (isSoil || height < Config.flatSeaLevel)
-                {
-                    foundGround = true;
-                }
-            } while (!foundGround);
-
-            return new BlockPos(pos.getX(), height + 1, pos.getZ());
-        }
-        else
-        {
-            boolean foundGround = false;
-
-            int height = Config.seaLevel + 64;
-
-            do
-            {
-                height--;
-                BlockPos position = new BlockPos(pos.getX(), height, pos.getZ());
-                IBlockState underState = world.getBlockState(position);
-                Block underBlock = underState.getBlock();
-                boolean isSoil = underBlock.canSustainPlant(underState, world, position, EnumFacing.UP, NaturaOverworld.overworldSapling);
-
-                if (isSoil || height < Config.seaLevel)
-                {
-                    foundGround = true;
-                }
-            } while (!foundGround);
-
-            return new BlockPos(pos.getX(), height + 1, pos.getZ());
-        }
     }
 
     /**

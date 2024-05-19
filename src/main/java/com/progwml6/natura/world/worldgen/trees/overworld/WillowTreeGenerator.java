@@ -1,7 +1,9 @@
 package com.progwml6.natura.world.worldgen.trees.overworld;
 
 import java.util.Random;
-
+import com.progwml6.natura.common.config.Config;
+import com.progwml6.natura.overworld.NaturaOverworld;
+import com.progwml6.natura.world.worldgen.trees.BaseTreeGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -10,10 +12,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldType;
-
-import com.progwml6.natura.common.config.Config;
-import com.progwml6.natura.overworld.NaturaOverworld;
-import com.progwml6.natura.world.worldgen.trees.BaseTreeGenerator;
 
 public class WillowTreeGenerator extends BaseTreeGenerator
 {
@@ -90,7 +88,7 @@ public class WillowTreeGenerator extends BaseTreeGenerator
                             IBlockState iblockstate = worldIn.getBlockState(mutableBlockPos.setPos(l, j, i1));
                             Block block = iblockstate.getBlock();
 
-                            if (!iblockstate.getBlock().isAir(iblockstate, worldIn, mutableBlockPos.setPos(l, j, i1)) && !iblockstate.getBlock().isLeaves(iblockstate, worldIn, mutableBlockPos.setPos(l, j, i1)))
+                            if (!iblockstate.getBlock().isAir(iblockstate, worldIn, mutableBlockPos.setPos(l, j, i1)))
                             {
                                 if (block != Blocks.WATER && block != Blocks.FLOWING_WATER)
                                 {
@@ -216,7 +214,7 @@ public class WillowTreeGenerator extends BaseTreeGenerator
         }
     }
 
-    BlockPos findGround(World world, BlockPos pos)
+    protected BlockPos findGround(World world, BlockPos pos)
     {
         int returnHeight = 0;
 

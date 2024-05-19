@@ -1,19 +1,11 @@
 package com.progwml6.natura.world.worldgen.trees.overworld;
 
 import java.util.Random;
-
-import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldType;
 
-import com.progwml6.natura.common.config.Config;
-import com.progwml6.natura.overworld.NaturaOverworld;
-import com.progwml6.natura.world.worldgen.trees.BaseTreeGenerator;
-
-public class AppleTreeGenerator extends BaseTreeGenerator
+public class AppleTreeGenerator extends OverworldTreeGenerator
 {
     public final int minTreeHeight;
 
@@ -35,6 +27,7 @@ public class AppleTreeGenerator extends BaseTreeGenerator
 
     public AppleTreeGenerator(int treeHeight, int treeRange, IBlockState log, IBlockState leaves, IBlockState flowering, IBlockState fruiting, IBlockState fruitingGolden, boolean seekHeight, boolean isSapling)
     {
+        super(treeHeight, treeRange, log, leaves, seekHeight, isSapling);
         this.minTreeHeight = treeHeight;
         this.treeHeightRange = treeRange;
         this.log = log;
@@ -52,40 +45,6 @@ public class AppleTreeGenerator extends BaseTreeGenerator
     }
 
     @Override
-    public void generateTree(Random rand, World worldIn, BlockPos position)
-    {
-        int heightRange = rand.nextInt(this.treeHeightRange) + this.minTreeHeight;
-
-        if (this.seekHeight)
-        {
-            position = this.findGround(worldIn, position);
-
-            if (position.getY() < 0)
-            {
-                return;
-            }
-        }
-
-        if (position.getY() >= 1 && position.getY() + heightRange + 1 <= 256)
-        {
-            IBlockState state = worldIn.getBlockState(position.down());
-            Block soil = state.getBlock();
-            boolean isSoil = soil.canSustainPlant(state, worldIn, position.down(), EnumFacing.UP, NaturaOverworld.appleSapling);
-
-            if (isSoil)
-            {
-                if (!this.checkIfCanGrow(position, heightRange, worldIn))
-                {
-                    return;
-                }
-
-                soil.onPlantGrow(state, worldIn, position.down(), position);
-                this.placeCanopy(worldIn, rand, position, heightRange);
-                this.placeTrunk(worldIn, position, heightRange);
-            }
-        }
-    }
-
     protected void placeCanopy(World world, Random random, BlockPos pos, int height)
     {
         for (int y = pos.getY() - 3 + height; y <= pos.getY() + height; ++y)
@@ -116,21 +75,6 @@ public class AppleTreeGenerator extends BaseTreeGenerator
         }
     }
 
-    protected void placeTrunk(World world, BlockPos pos, int height)
-    {
-        for (int localHeight = 0; localHeight < height; ++localHeight)
-        {
-            BlockPos blockpos = new BlockPos(pos.getX(), pos.getY() + localHeight, pos.getZ());
-            IBlockState state = world.getBlockState(blockpos);
-            Block block = state.getBlock();
-
-            if (block.isAir(state, world, blockpos) || block.isLeaves(state, world, blockpos) || block.isReplaceable(world, blockpos))
-            {
-                world.setBlockState(blockpos, this.log, 2);
-            }
-        }
-    }
-
     protected IBlockState getRandomizedLeaves(Random random)
     {
         int chance = random.nextInt(200);
@@ -151,101 +95,5 @@ public class AppleTreeGenerator extends BaseTreeGenerator
         {
             return this.leaves;
         }
-    }
-
-    BlockPos findGround(World world, BlockPos pos)
-    {
-        int returnHeight = 0;
-
-        int height = pos.getY();
-
-        if (world.getWorldType() == WorldType.FLAT && this.isSapling)
-        {
-            do
-            {
-                BlockPos position = new BlockPos(pos.getX(), height, pos.getZ());
-                IBlockState state = world.getBlockState(position);
-                Block block = state.getBlock();
-                boolean isSoil = block.canSustainPlant(state, world, position, EnumFacing.UP, NaturaOverworld.appleSapling);
-
-                if (isSoil && !world.getBlockState(position.up()).isFullBlock())
-                {
-                    returnHeight = height + 1;
-                    break;
-                }
-
-                height--;
-            } while (height > Config.flatSeaLevel);
-        }
-        else
-        {
-            do
-            {
-                BlockPos position = new BlockPos(pos.getX(), height, pos.getZ());
-                IBlockState state = world.getBlockState(position);
-                Block block = state.getBlock();
-                boolean isSoil = block.canSustainPlant(state, world, position, EnumFacing.UP, NaturaOverworld.appleSapling);
-
-                if (isSoil && !world.getBlockState(position.up()).isFullBlock())
-                {
-                    returnHeight = height + 1;
-                    break;
-                }
-
-                height--;
-            } while (height > Config.seaLevel);
-
-        }
-        return new BlockPos(pos.getX(), returnHeight, pos.getZ());
-    }
-
-    private boolean checkIfCanGrow(BlockPos position, int heightRange, World worldIn)
-    {
-        boolean canGrowTree = false;
-
-        BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos(position.getX(), position.getY(), position.getZ());
-
-        byte range;
-        int z;
-
-        for (int y = position.getY(); y <= position.getY() + 1 + heightRange; ++y)
-        {
-            range = 1;
-
-            if (y == position.getY())
-            {
-                range = 0;
-            }
-
-            if (y >= position.getY() + 1 + heightRange - 2)
-            {
-                range = 2;
-            }
-
-            for (int x = position.getX() - range; x <= position.getX() + range; ++x)
-            {
-                for (z = position.getZ() - range; z <= position.getZ() + range; ++z)
-                {
-                    if (y >= 0 && y < worldIn.getActualHeight())
-                    {
-                        pos.setPos(x, y, z);
-
-                        IBlockState state = worldIn.getBlockState(pos);
-                        Block block = state.getBlock();
-
-                        if (block != NaturaOverworld.appleSapling || !block.isLeaves(state, worldIn, pos))
-                        {
-                            canGrowTree = true;
-                        }
-                    }
-                    else
-                    {
-                        canGrowTree = true;
-                    }
-                }
-            }
-        }
-
-        return canGrowTree;
     }
 }

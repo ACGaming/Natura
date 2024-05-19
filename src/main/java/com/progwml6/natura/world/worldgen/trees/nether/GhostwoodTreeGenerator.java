@@ -2,8 +2,10 @@ package com.progwml6.natura.world.worldgen.trees.nether;
 
 import java.util.List;
 import java.util.Random;
-
 import com.google.common.collect.Lists;
+import com.progwml6.natura.common.block.BlockEnumLog;
+import com.progwml6.natura.nether.NaturaNether;
+import com.progwml6.natura.world.worldgen.trees.BaseTreeGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -11,10 +13,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-
-import com.progwml6.natura.common.block.BlockEnumLog;
-import com.progwml6.natura.nether.NaturaNether;
-import com.progwml6.natura.world.worldgen.trees.BaseTreeGenerator;
 
 public class GhostwoodTreeGenerator extends BaseTreeGenerator
 {
@@ -99,6 +97,27 @@ public class GhostwoodTreeGenerator extends BaseTreeGenerator
         {
             world.setBlockState(pos, stateNew, 2);
         }
+    }
+
+    protected BlockPos findGround(World world, BlockPos pos)
+    {
+        boolean foundGround = false;
+        int height = pos.getY();
+
+        BlockPos position = new BlockPos(pos.getX(), height, pos.getZ());
+
+        do
+        {
+            position = position.down();
+            Block underBlock = world.getBlockState(position).getBlock();
+
+            if (underBlock == Blocks.NETHERRACK || underBlock == Blocks.SOUL_SAND || underBlock == NaturaNether.netherTaintedSoil || position.getY() < 0)
+            {
+                foundGround = true;
+            }
+        } while (!foundGround);
+
+        return position.up();
     }
 
     /**
@@ -319,27 +338,6 @@ public class GhostwoodTreeGenerator extends BaseTreeGenerator
             }
         }
         return -1;
-    }
-
-    BlockPos findGround(World world, BlockPos pos)
-    {
-        boolean foundGround = false;
-        int height = pos.getY();
-
-        BlockPos position = new BlockPos(pos.getX(), height, pos.getZ());
-
-        do
-        {
-            position = position.down();
-            Block underBlock = world.getBlockState(position).getBlock();
-
-            if (underBlock == Blocks.NETHERRACK || underBlock == Blocks.SOUL_SAND || underBlock == NaturaNether.netherTaintedSoil || position.getY() < 0)
-            {
-                foundGround = true;
-            }
-        } while (!foundGround);
-
-        return position.up();
     }
 
     /**

@@ -1,17 +1,15 @@
 package com.progwml6.natura.world.worldgen.trees.overworld;
 
 import java.util.Random;
-
+import com.progwml6.natura.common.config.Config;
+import com.progwml6.natura.overworld.NaturaOverworld;
+import com.progwml6.natura.world.worldgen.trees.BaseTreeGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldType;
-
-import com.progwml6.natura.common.config.Config;
-import com.progwml6.natura.overworld.NaturaOverworld;
-import com.progwml6.natura.world.worldgen.trees.BaseTreeGenerator;
 
 public class OverworldTreeGenerator extends BaseTreeGenerator
 {
@@ -115,14 +113,14 @@ public class OverworldTreeGenerator extends BaseTreeGenerator
             IBlockState state = world.getBlockState(blockpos);
             Block block = state.getBlock();
 
-            if (block.isAir(state, world, blockpos) || block.isLeaves(state, world, blockpos) || block.isReplaceable(world, blockpos))
+            if (block.isAir(state, world, blockpos))
             {
                 world.setBlockState(blockpos, this.log, 2);
             }
         }
     }
 
-    BlockPos findGround(World world, BlockPos pos)
+    protected BlockPos findGround(World world, BlockPos pos)
     {
         int returnHeight = 0;
 
@@ -168,14 +166,10 @@ public class OverworldTreeGenerator extends BaseTreeGenerator
         return new BlockPos(pos.getX(), returnHeight, pos.getZ());
     }
 
-    private boolean checkIfCanGrow(BlockPos position, int heightRange, World worldIn)
+    protected boolean checkIfCanGrow(BlockPos position, int heightRange, World world)
     {
-        boolean canGrowTree = false;
-
-        BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos(position.getX(), position.getY(), position.getZ());
-
-        byte range;
-        int z;
+        boolean canGrowTree = true;
+        int range;
 
         for (int y = position.getY(); y <= position.getY() + 1 + heightRange; ++y)
         {
@@ -191,26 +185,13 @@ public class OverworldTreeGenerator extends BaseTreeGenerator
                 range = 2;
             }
 
-            for (int x = position.getX() - range; x <= position.getX() + range; ++x)
+            BlockPos.MutableBlockPos blockPos = new BlockPos.MutableBlockPos();
+
+            for (int x = position.getX() - range; x <= position.getX() + range && canGrowTree; ++x)
             {
-                for (z = position.getZ() - range; z <= position.getZ() + range; ++z)
+                for (int z = position.getZ() - range; z <= position.getZ() + range && canGrowTree; ++z)
                 {
-                    if (y >= 0 && y < worldIn.getActualHeight())
-                    {
-                        pos.setPos(x, y, z);
-
-                        IBlockState state = worldIn.getBlockState(pos);
-                        Block block = state.getBlock();
-
-                        if (block != NaturaOverworld.overworldSapling || !block.isLeaves(state, worldIn, pos))
-                        {
-                            canGrowTree = true;
-                        }
-                    }
-                    else
-                    {
-                        canGrowTree = true;
-                    }
+                    canGrowTree = world.isAirBlock(blockPos.setPos(x, y, z));
                 }
             }
         }
