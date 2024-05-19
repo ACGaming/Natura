@@ -214,10 +214,10 @@ public final class Config
         // Berries End
 
         // Cloud Start
-        cloudBlacklist = configFile.get(WORLDGEN, "dimension blacklist(clouds)", cloudBlacklist).getIntList();
-        darkCloudBlacklist = configFile.get(WORLDGEN, "dimension blacklist(dark clouds)", darkCloudBlacklist).getIntList();
-        ashBlacklist = configFile.get(WORLDGEN, "dimension blacklist(ash clouds)", ashBlacklist).getIntList();
-        sulfurCloudBlacklist = configFile.get(WORLDGEN, "dimension blacklist(sulfur clouds)", sulfurCloudBlacklist).getIntList();
+        cloudWhitelist = configFile.get(WORLDGEN, "dimension blacklist(clouds)", cloudWhitelist).getIntList();
+        darkCloudWhitelist = configFile.get(WORLDGEN, "dimension blacklist(dark clouds)", darkCloudWhitelist).getIntList();
+        ashWhitelist = configFile.get(WORLDGEN, "dimension blacklist(ash clouds)", ashWhitelist).getIntList();
+        sulfurCloudWhitelist = configFile.get(WORLDGEN, "dimension blacklist(sulfur clouds)", sulfurCloudWhitelist).getIntList();
 
         cloudSpawnRarity = configFile.get(WORLDGEN, "Cloud Spawn Rarity", cloudSpawnRarity).getInt(cloudSpawnRarity);
         cloudSpawnHeight = configFile.get(WORLDGEN, "Cloud Spawn Height", cloudSpawnHeight).getInt(cloudSpawnHeight);
@@ -268,10 +268,10 @@ public final class Config
     public static boolean generateAshClouds = true;
     public static boolean generateDarkClouds = true;
 
-    public static int[] cloudBlacklist = new int[] {};
-    public static int[] darkCloudBlacklist = new int[] {};
-    public static int[] ashBlacklist = new int[] {};
-    public static int[] sulfurCloudBlacklist = new int[] {};
+    public static int[] cloudWhitelist = new int[] {0};
+    public static int[] darkCloudWhitelist = new int[] {1};
+    public static int[] ashWhitelist = new int[] {-1};
+    public static int[] sulfurCloudWhitelist = new int[] {-1};
 
     public static boolean enableCloudBlocks = false;
     public static int cloudSpawnRarity = 10;

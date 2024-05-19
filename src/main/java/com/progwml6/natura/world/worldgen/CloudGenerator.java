@@ -106,7 +106,7 @@ public class CloudGenerator implements IWorldGenerator
 
         Biome biome = world.getChunk(chunkPos).getBiome(chunkPos, world.getBiomeProvider());
 
-        if (Config.generateOverworldClouds && biome.getRainfall() > 0.15f && random.nextInt(Config.cloudSpawnRarity) == 0 && world.provider.getDimension() != 1 && this.shouldGenerateInDimension(world.provider.getDimension(), Config.cloudBlacklist))
+        if (Config.generateOverworldClouds && biome.getRainfall() > 0.15f && random.nextInt(Config.cloudSpawnRarity) == 0 && this.shouldGenerateInDimension(world.provider.getDimension(), Config.cloudWhitelist))
         {
             xSpawn = xPos + random.nextInt(16);
             ySpawn = random.nextInt(Config.cloudSpawnRange) + Config.cloudSpawnHeight;
@@ -147,7 +147,7 @@ public class CloudGenerator implements IWorldGenerator
 
         if (world.provider.doesWaterVaporize())
         {
-            if (Config.generateAshClouds && random.nextInt(Config.ashSpawnRarity) == 0 && this.shouldGenerateInDimension(world.provider.getDimension(), Config.ashBlacklist))
+            if (Config.generateAshClouds && random.nextInt(Config.ashSpawnRarity) == 0 && this.shouldGenerateInDimension(world.provider.getDimension(), Config.ashWhitelist))
             {
                 xSpawn = xPos + random.nextInt(16);
                 ySpawn = random.nextInt(Config.ashSpawnRange) + Config.ashSpawnHeight;
@@ -178,7 +178,7 @@ public class CloudGenerator implements IWorldGenerator
                 }
             }
 
-            if (Config.generateSulfurClouds && random.nextInt(Config.sulfurSpawnRarity) == 0 && this.shouldGenerateInDimension(world.provider.getDimension(), Config.sulfurCloudBlacklist))
+            if (Config.generateSulfurClouds && random.nextInt(Config.sulfurSpawnRarity) == 0 && this.shouldGenerateInDimension(world.provider.getDimension(), Config.sulfurCloudWhitelist))
             {
                 xSpawn = xPos + random.nextInt(16);
                 ySpawn = random.nextInt(Config.sulfurSpawnRange) + Config.sulfurSpawnHeight;
@@ -226,7 +226,7 @@ public class CloudGenerator implements IWorldGenerator
 
         Biome biome = world.getChunk(chunkPos).getBiome(chunkPos, world.getBiomeProvider());
 
-        if (Config.generateDarkClouds && biome == Biomes.SKY && world.provider.getDimension() == 1 && random.nextInt(4) == 0 && this.shouldGenerateInDimension(world.provider.getDimension(), Config.darkCloudBlacklist))
+        if (Config.generateDarkClouds && biome == Biomes.SKY && random.nextInt(4) == 0 && this.shouldGenerateInDimension(world.provider.getDimension(), Config.darkCloudWhitelist))
         {
             xSpawn = xPos + random.nextInt(16);
             zSpawn = zPos + random.nextInt(16);
@@ -264,10 +264,10 @@ public class CloudGenerator implements IWorldGenerator
         {
             if (dimension == dimensionId)
             {
-                return false;
+                return true;
             }
         }
 
-        return true;
+        return false;
     }
 }
