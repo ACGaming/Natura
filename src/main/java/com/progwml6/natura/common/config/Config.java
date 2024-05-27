@@ -171,6 +171,7 @@ public final class Config
         flatSeaLevel = prop.getInt(flatSeaLevel);
 
         redwoodSpawnRarity = configFile.get(WORLDGEN, "Redwood Tree Spawn Rarity", redwoodSpawnRarity).getInt(redwoodSpawnRarity);
+        redwoodSpawnRange = configFile.get(WORLDGEN, "Redwood Tree Spawn Range", redwoodSpawnRange).getInt(redwoodSpawnRange);
 
         mapleRarity = configFile.get(WORLDGEN, "Maple Tree Spawn Rarity", mapleRarity).getInt(mapleRarity);
         mapleSpawnRange = configFile.get(WORLDGEN, "Maple Tree Spawn Range", mapleSpawnRange).getInt(mapleSpawnRange);
@@ -351,7 +352,7 @@ public final class Config
     public static boolean generateFusewood = true;
     public static boolean generateGhostwood = true;
 
-    public static int redwoodSpawnRarity = 150;
+    public static int redwoodSpawnRarity = 200;
     public static int redwoodSpawnRange = 16;
     public static int mapleRarity = 10;
     public static int mapleSpawnRange = 48;
