@@ -2,13 +2,14 @@ package com.progwml6.natura.library;
 
 import java.util.Locale;
 
+import com.progwml6.natura.Tags;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import net.minecraft.util.ResourceLocation;
 
 public class Util
 {
-    public static final String MODID = "natura";
+    public static final String MODID = Tags.MOD_ID;
 
     public static final String RESOURCE = MODID.toLowerCase(Locale.US);
 
