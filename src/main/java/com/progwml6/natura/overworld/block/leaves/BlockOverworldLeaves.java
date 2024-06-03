@@ -56,15 +56,11 @@ public class BlockOverworldLeaves extends BlockLeavesBase
     }
 
     // sapling item
+    @Nonnull
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
         return Item.getItemFromBlock(NaturaOverworld.overworldSapling);
-    }
-
-    @Override
-    protected void dropApple(World worldIn, BlockPos pos, IBlockState state, int chance)
-    {
     }
 
     // sapling meta
@@ -75,6 +71,7 @@ public class BlockOverworldLeaves extends BlockLeavesBase
     }
 
     // item dropped on silktouching
+    @Nonnull
     @Override
     protected ItemStack getSilkTouchDrop(@Nonnull IBlockState state)
     {
@@ -122,16 +119,11 @@ public class BlockOverworldLeaves extends BlockLeavesBase
         return meta;
     }
 
+    @Nonnull
     @Override
     public List<ItemStack> onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune)
     {
         IBlockState state = world.getBlockState(pos);
         return Lists.newArrayList(this.getSilkTouchDrop(state));
-    }
-
-    @Override
-    public boolean isLeaves(IBlockState state, IBlockAccess world, BlockPos pos)
-    {
-        return true;
     }
 }

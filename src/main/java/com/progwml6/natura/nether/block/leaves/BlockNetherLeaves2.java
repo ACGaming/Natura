@@ -30,7 +30,7 @@ import slimeknights.mantle.block.EnumBlock;
 
 public class BlockNetherLeaves2 extends BlockLeavesBase
 {
-    public static PropertyEnum<BlockNetherLeaves2.LeavesType> TYPE = PropertyEnum.create("type", BlockNetherLeaves2.LeavesType.class);
+    public static final PropertyEnum<BlockNetherLeaves2.LeavesType> TYPE = PropertyEnum.create("type", BlockNetherLeaves2.LeavesType.class);
 
     public BlockNetherLeaves2()
     {
@@ -57,6 +57,7 @@ public class BlockNetherLeaves2 extends BlockLeavesBase
     }
 
     // sapling item
+    @Nonnull
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
@@ -84,6 +85,7 @@ public class BlockNetherLeaves2 extends BlockLeavesBase
         }
     }
 
+    @Nonnull
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
@@ -91,6 +93,7 @@ public class BlockNetherLeaves2 extends BlockLeavesBase
     }
 
     // item dropped on silktouching
+    @Nonnull
     @Override
     protected ItemStack getSilkTouchDrop(@Nonnull IBlockState state)
     {
@@ -138,18 +141,13 @@ public class BlockNetherLeaves2 extends BlockLeavesBase
         return meta;
     }
 
+    @Nonnull
     @Override
     public List<ItemStack> onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune)
     {
         IBlockState state = world.getBlockState(pos);
 
         return Lists.newArrayList(this.getSilkTouchDrop(state));
-    }
-
-    @Override
-    public boolean isLeaves(IBlockState state, IBlockAccess world, BlockPos pos)
-    {
-        return true;
     }
 
     /**
@@ -177,6 +175,7 @@ public class BlockNetherLeaves2 extends BlockLeavesBase
             this.meta = this.ordinal();
         }
 
+        @Nonnull
         @Override
         public String getName()
         {

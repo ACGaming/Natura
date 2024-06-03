@@ -30,7 +30,7 @@ import slimeknights.mantle.block.EnumBlock;
 
 public class BlockNetherLeaves extends BlockLeavesBase
 {
-    public static PropertyEnum<BlockNetherLeaves.LeavesType> TYPE = PropertyEnum.create("type", BlockNetherLeaves.LeavesType.class);
+    public static final PropertyEnum<BlockNetherLeaves.LeavesType> TYPE = PropertyEnum.create("type", BlockNetherLeaves.LeavesType.class);
 
     public BlockNetherLeaves()
     {
@@ -63,6 +63,7 @@ public class BlockNetherLeaves extends BlockLeavesBase
     }
 
     // sapling item
+    @Nonnull
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
@@ -92,6 +93,7 @@ public class BlockNetherLeaves extends BlockLeavesBase
     }
 
     // item dropped on silktouching
+    @Nonnull
     @Override
     protected ItemStack getSilkTouchDrop(@Nonnull IBlockState state)
     {
@@ -139,18 +141,13 @@ public class BlockNetherLeaves extends BlockLeavesBase
         return meta;
     }
 
+    @Nonnull
     @Override
     public List<ItemStack> onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune)
     {
         IBlockState state = world.getBlockState(pos);
 
         return Lists.newArrayList(this.getSilkTouchDrop(state));
-    }
-
-    @Override
-    public boolean isLeaves(IBlockState state, IBlockAccess world, BlockPos pos)
-    {
-        return true;
     }
 
     @Override
@@ -187,6 +184,7 @@ public class BlockNetherLeaves extends BlockLeavesBase
             this.wailaLeavesMeta = wailaLeavesMeta;
         }
 
+        @Nonnull
         @Override
         public String getName()
         {

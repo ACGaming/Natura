@@ -29,7 +29,7 @@ import slimeknights.mantle.block.EnumBlock;
 
 public class BlockRedwoodLeaves extends BlockLeavesBase
 {
-    public final static PropertyEnum<RedwoodType> TYPE = PropertyEnum.create("type", RedwoodType.class);
+    public static final PropertyEnum<RedwoodType> TYPE = PropertyEnum.create("type", RedwoodType.class);
 
     public BlockRedwoodLeaves()
     {
@@ -43,9 +43,7 @@ public class BlockRedwoodLeaves extends BlockLeavesBase
     @Override
     public void updateTick(World worldIn, @Nonnull BlockPos pos, @Nonnull IBlockState state, Random rand)
     {
-        if (!worldIn.isRemote)
-        {
-            if (state.getValue(CHECK_DECAY).booleanValue() && state.getValue(DECAYABLE).booleanValue())
+        if (!worldIn.isRemote && state.getValue(CHECK_DECAY) && state.getValue(DECAYABLE))
             {
                 boolean nearbyTree = false;
                 byte range = 4;
@@ -61,7 +59,7 @@ public class BlockRedwoodLeaves extends BlockLeavesBase
                             IBlockState iblockstate = worldIn.getBlockState(mutableblockpos.setPos(posX, posY, posZ));
                             Block block = iblockstate.getBlock();
 
-                            if (block != null && block.canSustainLeaves(iblockstate, worldIn, pos.add(posX, posY, posZ)))
+                            if (block.canSustainLeaves(iblockstate, worldIn, pos.add(posX, posY, posZ)))
                             {
                                 nearbyTree = true;
                             }
@@ -74,7 +72,6 @@ public class BlockRedwoodLeaves extends BlockLeavesBase
                     this.destroy(worldIn, pos);
                 }
             }
-        }
     }
 
     private void destroy(World worldIn, BlockPos pos)
@@ -99,15 +96,11 @@ public class BlockRedwoodLeaves extends BlockLeavesBase
     }
 
     // sapling item
+    @Nonnull
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
         return Item.getItemFromBlock(NaturaOverworld.redwoodSapling);
-    }
-
-    @Override
-    protected void dropApple(World worldIn, BlockPos pos, IBlockState state, int chance)
-    {
     }
 
     // sapling meta
@@ -118,6 +111,7 @@ public class BlockRedwoodLeaves extends BlockLeavesBase
     }
 
     // item dropped on silktouching
+    @Nonnull
     @Override
     protected ItemStack getSilkTouchDrop(@Nonnull IBlockState state)
     {
@@ -165,17 +159,12 @@ public class BlockRedwoodLeaves extends BlockLeavesBase
         return meta;
     }
 
+    @Nonnull
     @Override
     public List<ItemStack> onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune)
     {
         IBlockState state = world.getBlockState(pos);
         return Lists.newArrayList(this.getSilkTouchDrop(state));
-    }
-
-    @Override
-    public boolean isLeaves(IBlockState state, IBlockAccess world, BlockPos pos)
-    {
-        return true;
     }
 
     public enum RedwoodType implements IStringSerializable, EnumBlock.IEnumMeta
@@ -189,6 +178,7 @@ public class BlockRedwoodLeaves extends BlockLeavesBase
             this.meta = this.ordinal();
         }
 
+        @Nonnull
         @Override
         public String getName()
         {
