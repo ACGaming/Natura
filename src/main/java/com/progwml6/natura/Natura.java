@@ -36,7 +36,7 @@ public class Natura
 
     public static final String modVersion = Tags.VERSION;
 
-    public static final String modName = "Natura";
+    public static final String modName = "Natura Legacy";
 
     public static final Logger log = LogManager.getLogger(modID);
 

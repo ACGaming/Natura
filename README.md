@@ -1,4 +1,4 @@
-[Natura](https://minecraft.curseforge.com/projects/natura)
+[Natura Legacy](https://minecraft.curseforge.com/projects/natura)
 ====================================
 
 Fork of Natura for 1.12.2.
