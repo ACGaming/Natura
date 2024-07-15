@@ -1,7 +1,6 @@
 package com.progwml6.natura.nether.block.rail;
 
-import com.progwml6.natura.library.NaturaRegistry;
-
+import com.progwml6.natura.Natura;
 import net.minecraft.block.BlockRail;
 import net.minecraft.block.SoundType;
 import net.minecraft.entity.item.EntityMinecart;
@@ -15,7 +14,7 @@ public class BlockBlazeRail extends BlockRail
         super();
         this.setHardness(0.7F);
         this.setSoundType(SoundType.METAL);
-        this.setCreativeTab(NaturaRegistry.tabWorld);
+        this.setCreativeTab(Natura.TAB);
     }
 
     @Override

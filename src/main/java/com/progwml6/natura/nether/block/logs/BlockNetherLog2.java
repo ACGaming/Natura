@@ -1,7 +1,6 @@
 package com.progwml6.natura.nether.block.logs;
 
-import com.progwml6.natura.library.NaturaRegistry;
-
+import com.progwml6.natura.Natura;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -31,7 +30,7 @@ public class BlockNetherLog2 extends Block
         this.setHardness(8.0F);
         this.setResistance(25.0F);
         this.setSoundType(SoundType.METAL);
-        this.setCreativeTab(NaturaRegistry.tabWorld);
+        this.setCreativeTab(Natura.TAB);
         this.setHarvestLevel("axe", 2);
         this.setDefaultState(this.blockState.getBaseState().withProperty(META, Integer.valueOf(0)));
     }

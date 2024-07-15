@@ -4,7 +4,7 @@ import java.util.Random;
 
 import javax.annotation.Nonnull;
 
-import com.progwml6.natura.library.NaturaRegistry;
+import com.progwml6.natura.Natura;
 import com.progwml6.natura.overworld.NaturaOverworld;
 
 import net.minecraft.block.Block;
@@ -47,7 +47,7 @@ public class BlockEnumBerryBush extends Block implements IPlantable, IGrowable
     {
         super(Material.LEAVES);
 
-        this.setCreativeTab(NaturaRegistry.tabWorld);
+        this.setCreativeTab(Natura.TAB);
         this.setTickRandomly(true);
         this.setHardness(0.3F);
         this.setSoundType(SoundType.PLANT);

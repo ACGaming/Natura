@@ -2,7 +2,7 @@ package com.progwml6.natura.tools.item.tools;
 
 import net.minecraft.item.ItemPickaxe;
 
-import com.progwml6.natura.library.NaturaRegistry;
+import com.progwml6.natura.Natura;
 
 public class ItemNaturaPickaxe extends ItemPickaxe
 {
@@ -10,6 +10,6 @@ public class ItemNaturaPickaxe extends ItemPickaxe
     {
         super(toolMaterialIn);
 
-        this.setCreativeTab(NaturaRegistry.tabGeneral);
+        this.setCreativeTab(Natura.TAB);
     }
 }

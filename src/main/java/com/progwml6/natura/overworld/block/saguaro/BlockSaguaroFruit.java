@@ -2,7 +2,7 @@ package com.progwml6.natura.overworld.block.saguaro;
 
 import java.util.Random;
 
-import com.progwml6.natura.library.NaturaRegistry;
+import com.progwml6.natura.Natura;
 import com.progwml6.natura.overworld.NaturaOverworld;
 
 import net.minecraft.block.Block;
@@ -41,7 +41,7 @@ public class BlockSaguaroFruit extends Block
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
         this.setSoundType(SoundType.CLOTH);
         this.setHardness(0.3f);
-        this.setCreativeTab(NaturaRegistry.tabWorld);
+        this.setCreativeTab(Natura.TAB);
     }
 
     /**

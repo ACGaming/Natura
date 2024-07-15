@@ -10,7 +10,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.IStringSerializable;
 
-import com.progwml6.natura.library.NaturaRegistry;
+import com.progwml6.natura.Natura;
 import com.progwml6.natura.overworld.NaturaOverworld;
 import com.progwml6.natura.overworld.block.planks.BlockOverworldPlanks;
 import slimeknights.mantle.block.EnumBlock;
@@ -28,7 +28,7 @@ public class BlockOverworldSlab2 extends EnumBlockSlab<BlockOverworldSlab2.Plank
 
         this.setHardness(2.0F);
         this.setSoundType(SoundType.WOOD);
-        this.setCreativeTab(NaturaRegistry.tabDecorative);
+        this.setCreativeTab(Natura.TAB);
     }
 
     @Override

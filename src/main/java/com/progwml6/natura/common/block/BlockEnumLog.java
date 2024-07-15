@@ -1,7 +1,6 @@
 package com.progwml6.natura.common.block;
 
-import com.progwml6.natura.library.NaturaRegistry;
-
+import com.progwml6.natura.Natura;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -29,7 +28,7 @@ public class BlockEnumLog<T extends Enum<T> & EnumBlock.IEnumMeta & IStringSeria
         this.setResistance(5F);
         this.setSoundType(SoundType.WOOD);
         Blocks.FIRE.setFireInfo(this, 5, 20);
-        this.setCreativeTab(NaturaRegistry.tabWorld);
+        this.setCreativeTab(Natura.TAB);
     }
 
     @Override

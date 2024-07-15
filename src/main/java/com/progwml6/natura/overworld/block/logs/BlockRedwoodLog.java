@@ -2,8 +2,7 @@ package com.progwml6.natura.overworld.block.logs;
 
 import java.util.Locale;
 
-import com.progwml6.natura.library.NaturaRegistry;
-
+import com.progwml6.natura.Natura;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
@@ -22,7 +21,7 @@ public class BlockRedwoodLog extends EnumBlock<BlockRedwoodLog.RedwoodType>
         super(Material.WOOD, TYPE, RedwoodType.class);
 
         this.setHardness(2.0f);
-        this.setCreativeTab(NaturaRegistry.tabWorld);
+        this.setCreativeTab(Natura.TAB);
         this.setSoundType(SoundType.WOOD);
         this.setHarvestLevel("axe", -1);
         Blocks.FIRE.setFireInfo(this, 5, 20);

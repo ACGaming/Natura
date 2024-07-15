@@ -2,8 +2,7 @@ package com.progwml6.natura.nether.block.vine;
 
 import java.util.Random;
 
-import com.progwml6.natura.library.NaturaRegistry;
-
+import com.progwml6.natura.Natura;
 import net.minecraft.block.BlockVine;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
@@ -19,7 +18,7 @@ public class BlockNetherThornVines extends BlockVine
     public BlockNetherThornVines()
     {
         super();
-        this.setCreativeTab(NaturaRegistry.tabWorld);
+        this.setCreativeTab(Natura.TAB);
         this.setHardness(1.0F);
         this.setLightLevel(0.825F);
         this.setSoundType(SoundType.PLANT);

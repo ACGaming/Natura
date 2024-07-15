@@ -1,6 +1,6 @@
 package com.progwml6.natura.overworld.block.slabs;
 
-import com.progwml6.natura.library.NaturaRegistry;
+import com.progwml6.natura.Natura;
 import com.progwml6.natura.overworld.NaturaOverworld;
 import com.progwml6.natura.overworld.block.grass.BlockColoredGrass;
 
@@ -17,7 +17,7 @@ public class BlockColoredGrassSlab extends EnumBlockSlab<BlockColoredGrass.Grass
 
         this.setHardness(0.6F);
         this.setSoundType(SoundType.PLANT);
-        this.setCreativeTab(NaturaRegistry.tabDecorative);
+        this.setCreativeTab(Natura.TAB);
     }
 
     @Override

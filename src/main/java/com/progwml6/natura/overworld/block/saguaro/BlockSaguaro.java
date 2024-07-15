@@ -5,7 +5,7 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import com.progwml6.natura.library.NaturaRegistry;
+import com.progwml6.natura.Natura;
 import com.progwml6.natura.overworld.NaturaOverworld;
 
 import net.minecraft.block.Block;
@@ -89,7 +89,7 @@ public class BlockSaguaro extends Block implements IPlantable
         this.setSoundType(SoundType.CLOTH);
         this.setHardness(0.3f);
         this.setTickRandomly(true);
-        this.setCreativeTab(NaturaRegistry.tabWorld);
+        this.setCreativeTab(Natura.TAB);
     }
 
     @Override

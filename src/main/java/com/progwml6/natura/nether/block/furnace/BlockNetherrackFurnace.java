@@ -6,7 +6,6 @@ import javax.annotation.Nullable;
 
 import com.progwml6.natura.Natura;
 import com.progwml6.natura.common.GuiIDs;
-import com.progwml6.natura.library.NaturaRegistry;
 import com.progwml6.natura.nether.NaturaNether;
 import com.progwml6.natura.nether.block.furnace.tile.TileEntityNetherrackFurnace;
 
@@ -55,7 +54,7 @@ public class BlockNetherrackFurnace extends BlockContainer
 
         if (!this.isBurning)
         {
-            this.setCreativeTab(NaturaRegistry.tabWorld);
+            this.setCreativeTab(Natura.TAB);
         }
     }
 

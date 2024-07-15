@@ -2,8 +2,7 @@ package com.progwml6.natura.common.block.base;
 
 import javax.annotation.Nullable;
 
-import com.progwml6.natura.library.NaturaRegistry;
-
+import com.progwml6.natura.Natura;
 import net.minecraft.block.BlockButton;
 import net.minecraft.block.SoundType;
 import net.minecraft.entity.player.EntityPlayer;
@@ -19,7 +18,7 @@ public class BlockButtonBase extends BlockButton
         super(true);
         this.setHardness(0.5F);
         this.setSoundType(SoundType.WOOD);
-        this.setCreativeTab(NaturaRegistry.tabDecorative);
+        this.setCreativeTab(Natura.TAB);
     }
 
     @Override

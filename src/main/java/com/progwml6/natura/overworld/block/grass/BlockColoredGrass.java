@@ -2,8 +2,7 @@ package com.progwml6.natura.overworld.block.grass;
 
 import java.util.Locale;
 
-import com.progwml6.natura.library.NaturaRegistry;
-
+import com.progwml6.natura.Natura;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
@@ -24,7 +23,7 @@ public class BlockColoredGrass extends EnumBlock<BlockColoredGrass.GrassType>
     {
         super(Material.GRASS, TYPE, GrassType.class);
 
-        this.setCreativeTab(NaturaRegistry.tabWorld);
+        this.setCreativeTab(Natura.TAB);
         this.setHardness(0.6F);
         this.setSoundType(SoundType.PLANT);
     }

@@ -2,6 +2,7 @@ package com.progwml6.natura.shared.block.clouds;
 
 import java.util.Locale;
 
+import com.progwml6.natura.Natura;
 import com.progwml6.natura.library.NaturaRegistry;
 import com.progwml6.natura.shared.NaturaCommons;
 
@@ -36,7 +37,7 @@ public class BlockCloud extends EnumBlock<BlockCloud.CloudType>
     public BlockCloud()
     {
         super(NaturaRegistry.cloud, TYPE, CloudType.class);
-        this.setCreativeTab(NaturaRegistry.tabWorld);
+        this.setCreativeTab(Natura.TAB);
         this.setHardness(0.3F);
         this.setSoundType(SoundType.CLOTH);
     }

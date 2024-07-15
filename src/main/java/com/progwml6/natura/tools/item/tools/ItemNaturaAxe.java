@@ -2,7 +2,7 @@ package com.progwml6.natura.tools.item.tools;
 
 import net.minecraft.item.ItemAxe;
 
-import com.progwml6.natura.library.NaturaRegistry;
+import com.progwml6.natura.Natura;
 
 public class ItemNaturaAxe extends ItemAxe
 {
@@ -10,6 +10,6 @@ public class ItemNaturaAxe extends ItemAxe
     {
         super(material, damage - 1.0F, speed - 4.0F);
 
-        this.setCreativeTab(NaturaRegistry.tabGeneral);
+        this.setCreativeTab(Natura.TAB);
     }
 }

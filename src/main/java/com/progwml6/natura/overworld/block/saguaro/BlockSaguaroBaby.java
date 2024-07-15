@@ -2,7 +2,7 @@ package com.progwml6.natura.overworld.block.saguaro;
 
 import java.util.Random;
 
-import com.progwml6.natura.library.NaturaRegistry;
+import com.progwml6.natura.Natura;
 import com.progwml6.natura.overworld.NaturaOverworld;
 import com.progwml6.natura.world.worldgen.saguaro.SaguaroGenerator;
 
@@ -44,7 +44,7 @@ public class BlockSaguaroBaby extends Block implements IPlantable
         this.setSoundType(SoundType.CLOTH);
         this.setHardness(0.3f);
         this.setTickRandomly(true);
-        this.setCreativeTab(NaturaRegistry.tabWorld);
+        this.setCreativeTab(Natura.TAB);
     }
 
     @Override

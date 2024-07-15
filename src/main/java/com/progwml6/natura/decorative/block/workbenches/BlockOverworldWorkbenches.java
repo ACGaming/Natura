@@ -2,7 +2,6 @@ package com.progwml6.natura.decorative.block.workbenches;
 
 import com.progwml6.natura.Natura;
 import com.progwml6.natura.common.GuiIDs;
-import com.progwml6.natura.library.NaturaRegistry;
 import com.progwml6.natura.overworld.block.planks.BlockOverworldPlanks;
 
 import net.minecraft.block.SoundType;
@@ -26,7 +25,7 @@ public class BlockOverworldWorkbenches extends EnumBlock<BlockOverworldPlanks.Pl
 
         this.setSoundType(SoundType.WOOD);
         this.setHardness(2.5F);
-        this.setCreativeTab(NaturaRegistry.tabDecorative);
+        this.setCreativeTab(Natura.TAB);
     }
 
     @Override

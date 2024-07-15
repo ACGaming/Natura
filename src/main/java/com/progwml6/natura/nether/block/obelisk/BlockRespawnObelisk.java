@@ -3,8 +3,7 @@ package com.progwml6.natura.nether.block.obelisk;
 import java.util.Locale;
 import java.util.Random;
 
-import com.progwml6.natura.library.NaturaRegistry;
-
+import com.progwml6.natura.Natura;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
@@ -34,7 +33,7 @@ public class BlockRespawnObelisk extends EnumBlock<BlockRespawnObelisk.ObeliskTy
     public BlockRespawnObelisk() {
         super(Material.WOOD, TYPE, ObeliskType.class);
 
-        this.setCreativeTab(NaturaRegistry.tabWorld);
+        this.setCreativeTab(Natura.TAB);
         this.setHardness(2.0f);
         this.setResistance(10000.0F);
         this.setSoundType(SoundType.GLASS);

@@ -5,7 +5,7 @@ import java.util.Random;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import com.progwml6.natura.library.NaturaRegistry;
+import com.progwml6.natura.Natura;
 import com.progwml6.natura.overworld.block.planks.BlockOverworldPlanks;
 
 import net.minecraft.block.SoundType;
@@ -31,7 +31,7 @@ public class BlockOverworldBookshelves extends EnumBlock<BlockOverworldPlanks.Pl
 
         this.setSoundType(SoundType.WOOD);
         this.setHardness(1.5F);
-        this.setCreativeTab(NaturaRegistry.tabDecorative);
+        this.setCreativeTab(Natura.TAB);
     }
 
     /**

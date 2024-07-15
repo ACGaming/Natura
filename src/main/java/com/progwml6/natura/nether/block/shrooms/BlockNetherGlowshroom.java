@@ -6,7 +6,6 @@ import java.util.Random;
 import javax.annotation.Nonnull;
 
 import com.progwml6.natura.Natura;
-import com.progwml6.natura.library.NaturaRegistry;
 import com.progwml6.natura.nether.NaturaNether;
 import com.progwml6.natura.world.worldgen.glowshroom.BaseGlowshroomGenerator;
 import com.progwml6.natura.world.worldgen.glowshroom.nether.BlueGlowshroomGenerator;
@@ -36,7 +35,7 @@ public class BlockNetherGlowshroom extends BlockMushroom
         super();
 
         this.setLightLevel(0.825F);
-        this.setCreativeTab(NaturaRegistry.tabWorld);
+        this.setCreativeTab(Natura.TAB);
         this.setSoundType(SoundType.PLANT);
     }
 

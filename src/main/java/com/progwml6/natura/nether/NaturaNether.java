@@ -3,13 +3,13 @@ package com.progwml6.natura.nether;
 import org.apache.logging.log4j.Logger;
 
 import com.google.common.eventbus.Subscribe;
+import com.progwml6.natura.Natura;
 import com.progwml6.natura.common.CommonProxy;
 import com.progwml6.natura.common.NaturaPulse;
 import com.progwml6.natura.common.block.BlockEnumBerryBush;
 import com.progwml6.natura.common.block.BlockNaturaDoor;
 import com.progwml6.natura.common.item.ItemBlockLeaves;
 import com.progwml6.natura.common.item.ItemNaturaDoor;
-import com.progwml6.natura.library.NaturaRegistry;
 import com.progwml6.natura.library.Util;
 import com.progwml6.natura.nether.block.BlockSmoothNetherrack;
 import com.progwml6.natura.nether.block.bush.BlockNetherBerryBush;
@@ -272,7 +272,7 @@ public class NaturaNether extends NaturaPulse
         // Items Start
         netherDoors = registerItem(registry, new ItemNaturaDoor(), "nether_doors");
 
-        netherDoors.setCreativeTab(NaturaRegistry.tabDecorative);
+        netherDoors.setCreativeTab(Natura.TAB);
 
         ghostwood_door = netherDoors.addMeta(0, "ghostwood_door", NaturaNether.ghostwoodDoor.getDefaultState());
         bloodwood_door = netherDoors.addMeta(1, "bloodwood_door", NaturaNether.bloodwoodDoor.getDefaultState());
@@ -284,11 +284,6 @@ public class NaturaNether extends NaturaPulse
         darkwoodDoor.setDoor(NaturaNether.darkwood_door);
         fusewoodDoor.setDoor(NaturaNether.fusewood_door);
         // Items End
-
-        if (!isOverworldLoaded())
-        {
-            NaturaRegistry.tabDecorative.setDisplayIcon(ghostwood_door);
-        }
     }
 
     @SubscribeEvent

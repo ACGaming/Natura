@@ -531,9 +531,7 @@ entity.natura.nitrocreeper.name=Адский крипер
 #     GUIs     #
 ################
 
-itemGroup.NaturaGeneral=Natura: Основные предметы
-itemGroup.NaturaWorld=Natura: Предметы мира
-itemGroup.NaturaDecorative=Natura: Декоративные предметы
+//itemGroup.natura.tab=Natura Legacy
 
 ###############
 #    HWYLA    #

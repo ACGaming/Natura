@@ -531,9 +531,7 @@ entity.natura.nitrocreeper.name=地獄苦力怕
 #     GUIs     #
 ################
 
-itemGroup.NaturaGeneral=自然的一般物品
-itemGroup.NaturaWorld=自然的世界生成
-itemGroup.NaturaDecorative=自然的裝飾品
+//itemGroup.natura.tab=Natura Legacy
 
 ###############
 #    HWYLA    #

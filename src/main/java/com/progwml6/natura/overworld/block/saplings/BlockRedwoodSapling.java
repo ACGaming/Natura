@@ -25,7 +25,6 @@ import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.event.terraingen.TerrainGen;
 
 import com.progwml6.natura.Natura;
-import com.progwml6.natura.library.NaturaRegistry;
 import com.progwml6.natura.overworld.NaturaOverworld;
 import com.progwml6.natura.overworld.block.leaves.BlockRedwoodLeaves;
 import com.progwml6.natura.overworld.block.logs.BlockRedwoodLog;
@@ -41,7 +40,7 @@ public class BlockRedwoodSapling extends BlockSapling
 
     public BlockRedwoodSapling()
     {
-        this.setCreativeTab(NaturaRegistry.tabWorld);
+        this.setCreativeTab(Natura.TAB);
         this.setDefaultState(this.blockState.getBaseState());
         this.setSoundType(SoundType.PLANT);
         this.setHardness(0.0F);

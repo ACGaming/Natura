@@ -25,7 +25,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 
 import com.progwml6.natura.Natura;
-import com.progwml6.natura.library.NaturaRegistry;
 import com.progwml6.natura.nether.NaturaNether;
 import com.progwml6.natura.nether.block.leaves.BlockNetherLeaves;
 import com.progwml6.natura.nether.block.leaves.BlockNetherLeaves2;
@@ -42,7 +41,7 @@ public class BlockNetherSapling extends BlockSapling
 
     public BlockNetherSapling()
     {
-        this.setCreativeTab(NaturaRegistry.tabWorld);
+        this.setCreativeTab(Natura.TAB);
         this.setDefaultState(this.blockState.getBaseState());
         this.setSoundType(SoundType.PLANT);
         this.setHardness(0.0F);

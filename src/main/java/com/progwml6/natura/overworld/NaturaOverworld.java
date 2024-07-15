@@ -15,13 +15,13 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 
+import com.progwml6.natura.Natura;
 import com.progwml6.natura.common.CommonProxy;
 import com.progwml6.natura.common.NaturaPulse;
 import com.progwml6.natura.common.block.BlockEnumBerryBush;
 import com.progwml6.natura.common.block.BlockNaturaDoor;
 import com.progwml6.natura.common.item.ItemBlockLeaves;
 import com.progwml6.natura.common.item.ItemNaturaDoor;
-import com.progwml6.natura.library.NaturaRegistry;
 import com.progwml6.natura.library.Util;
 import com.progwml6.natura.overworld.block.bush.BlockOverworldBerryBush;
 import com.progwml6.natura.overworld.block.crops.BlockNaturaBarley;
@@ -308,9 +308,9 @@ public class NaturaOverworld extends NaturaPulse
 
         saguaroFruitItem = registerItem(registry, new ItemSaguaroFruit(3, 0.3f, NaturaOverworld.saguaroBaby), "saguaro_fruit_item");
 
-        overworldSeeds.setCreativeTab(NaturaRegistry.tabGeneral);
-        overworldSeedBags.setCreativeTab(NaturaRegistry.tabGeneral);
-        overworldDoors.setCreativeTab(NaturaRegistry.tabDecorative);
+        overworldSeeds.setCreativeTab(Natura.TAB);
+        overworldSeedBags.setCreativeTab(Natura.TAB);
+        overworldDoors.setCreativeTab(Natura.TAB);
 
         barley_seeds = overworldSeeds.addMeta(0, "barley_seeds", NaturaOverworld.barleyCrop.getDefaultState().withProperty(BlockNaturaBarley.AGE, 0));
         cotton_seeds = overworldSeeds.addMeta(1, "cotton_seeds", NaturaOverworld.cottonCrop.getDefaultState().withProperty(BlockNaturaCotton.AGE, 0));
@@ -342,9 +342,6 @@ public class NaturaOverworld extends NaturaPulse
         willowDoor.setDoor(NaturaOverworld.willow_door);
         appleDoor.setDoor(NaturaOverworld.apple_door);
         // Items End
-
-        NaturaRegistry.tabWorld.setDisplayIcon(new ItemStack(coloredGrass));
-        NaturaRegistry.tabDecorative.setDisplayIcon(redwood_door);
     }
 
     @SubscribeEvent

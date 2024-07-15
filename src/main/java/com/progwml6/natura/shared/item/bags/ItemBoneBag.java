@@ -1,7 +1,6 @@
 package com.progwml6.natura.shared.item.bags;
 
-import com.progwml6.natura.library.NaturaRegistry;
-
+import com.progwml6.natura.Natura;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -23,7 +22,7 @@ public class ItemBoneBag extends Item
     public ItemBoneBag()
     {
         super();
-        this.setCreativeTab(NaturaRegistry.tabGeneral);
+        this.setCreativeTab(Natura.TAB);
     }
 
     /**

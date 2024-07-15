@@ -7,8 +7,8 @@ import java.util.Random;
 import javax.annotation.Nonnull;
 
 import com.google.common.collect.Lists;
+import com.progwml6.natura.Natura;
 import com.progwml6.natura.common.block.base.BlockLeavesBase;
-import com.progwml6.natura.library.NaturaRegistry;
 import com.progwml6.natura.nether.NaturaNether;
 
 import net.minecraft.block.properties.PropertyEnum;
@@ -34,7 +34,7 @@ public class BlockNetherLeaves extends BlockLeavesBase
 
     public BlockNetherLeaves()
     {
-        this.setCreativeTab(NaturaRegistry.tabWorld);
+        this.setCreativeTab(Natura.TAB);
 
         Blocks.FIRE.setFireInfo(this, 0, 0);
 

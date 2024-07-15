@@ -2,8 +2,7 @@ package com.progwml6.natura.nether.block.button;
 
 import javax.annotation.Nullable;
 
-import com.progwml6.natura.library.NaturaRegistry;
-
+import com.progwml6.natura.Natura;
 import net.minecraft.block.BlockButton;
 import net.minecraft.block.SoundType;
 import net.minecraft.entity.player.EntityPlayer;
@@ -19,7 +18,7 @@ public class BlockNetherButton extends BlockButton
         super(false);
         this.setHardness(0.5F);
         this.setSoundType(SoundType.WOOD);
-        this.setCreativeTab(NaturaRegistry.tabWorld);
+        this.setCreativeTab(Natura.TAB);
     }
 
     @Override

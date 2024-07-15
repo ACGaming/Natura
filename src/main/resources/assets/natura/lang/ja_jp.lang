@@ -532,9 +532,7 @@ entity.natura.nitrocreeper.name=ニトロクリーパー
 #     GUIs     #
 ################
 
-itemGroup.NaturaGeneral=Natura: 通常アイテム
-itemGroup.NaturaWorld=Natura: 自然生成
-itemGroup.NaturaDecorative=Natura: 装飾品
+//itemGroup.natura.tab=Natura Legacy
 
 ###############
 #    HWYLA    #

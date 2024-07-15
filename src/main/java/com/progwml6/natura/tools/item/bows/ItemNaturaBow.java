@@ -19,7 +19,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraftforge.event.ForgeEventFactory;
 
-import com.progwml6.natura.library.NaturaRegistry;
+import com.progwml6.natura.Natura;
 
 public class ItemNaturaBow extends ItemBow
 {
@@ -31,7 +31,7 @@ public class ItemNaturaBow extends ItemBow
 
     public ItemNaturaBow(int durability, float damageMult, float velocityMult, float drawTimeMult, float inaccuracy, Ingredient repairMaterial)
     {
-        this.setCreativeTab(NaturaRegistry.tabGeneral);
+        this.setCreativeTab(Natura.TAB);
         this.maxStackSize = 1;
         this.setMaxDamage(durability);
         this.damageMult = damageMult;

@@ -7,8 +7,8 @@ import java.util.Random;
 import javax.annotation.Nonnull;
 
 import com.google.common.collect.Lists;
+import com.progwml6.natura.Natura;
 import com.progwml6.natura.common.block.base.BlockLeavesBase;
-import com.progwml6.natura.library.NaturaRegistry;
 import com.progwml6.natura.nether.NaturaNether;
 import com.progwml6.natura.shared.NaturaCommons;
 
@@ -34,7 +34,7 @@ public class BlockNetherLeaves2 extends BlockLeavesBase
 
     public BlockNetherLeaves2()
     {
-        this.setCreativeTab(NaturaRegistry.tabWorld);
+        this.setCreativeTab(Natura.TAB);
 
         Blocks.FIRE.setFireInfo(this, 0, 0);
 

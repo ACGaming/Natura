@@ -6,7 +6,7 @@ import net.minecraft.item.ItemShears;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 
-import com.progwml6.natura.library.NaturaRegistry;
+import com.progwml6.natura.Natura;
 
 public class ItemNaturaShears extends ItemShears
 {
@@ -17,7 +17,7 @@ public class ItemNaturaShears extends ItemShears
         this.maxStackSize = 1;
         this.repairMaterial = repairMaterial;
         this.setMaxDamage(durability);
-        this.setCreativeTab(NaturaRegistry.tabGeneral);
+        this.setCreativeTab(Natura.TAB);
     }
 
     @Override

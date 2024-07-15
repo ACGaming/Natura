@@ -5,7 +5,7 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import com.progwml6.natura.library.NaturaRegistry;
+import com.progwml6.natura.Natura;
 import com.progwml6.natura.nether.NaturaNether;
 
 import net.minecraft.block.Block;
@@ -41,7 +41,7 @@ public class BlockNetherGlass extends EnumBlock<BlockNetherGlass.GlassType>
         this.setHardness(1.0F);
         this.setResistance(3000F);
         this.setSoundType(SoundType.GLASS);
-        this.setCreativeTab(NaturaRegistry.tabWorld);
+        this.setCreativeTab(Natura.TAB);
     }
 
     /**

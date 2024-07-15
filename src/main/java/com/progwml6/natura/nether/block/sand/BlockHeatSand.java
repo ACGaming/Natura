@@ -3,8 +3,7 @@ package com.progwml6.natura.nether.block.sand;
 import javax.annotation.Nullable;
 
 import com.google.common.base.Predicate;
-import com.progwml6.natura.library.NaturaRegistry;
-
+import com.progwml6.natura.Natura;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -30,7 +29,7 @@ public class BlockHeatSand extends BlockFalling {
         super(Material.SAND);
         this.setHardness(0.5F);
         this.setSoundType(SoundType.SAND);
-        this.setCreativeTab(NaturaRegistry.tabWorld);
+        this.setCreativeTab(Natura.TAB);
         this.setHarvestLevel("shovel", 0);
     }
 

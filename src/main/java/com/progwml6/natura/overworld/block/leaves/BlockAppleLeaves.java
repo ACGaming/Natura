@@ -21,8 +21,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import com.progwml6.natura.Natura;
 import com.progwml6.natura.common.block.base.BlockLeavesBase;
-import com.progwml6.natura.library.NaturaRegistry;
 import com.progwml6.natura.overworld.NaturaOverworld;
 import slimeknights.mantle.block.EnumBlock;
 
@@ -32,7 +32,7 @@ public class BlockAppleLeaves extends BlockLeavesBase
 
     public BlockAppleLeaves()
     {
-        this.setCreativeTab(NaturaRegistry.tabWorld);
+        this.setCreativeTab(Natura.TAB);
 
         Blocks.FIRE.setFireInfo(this, 5, 20);
 

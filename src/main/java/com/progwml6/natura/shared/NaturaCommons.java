@@ -3,9 +3,9 @@ package com.progwml6.natura.shared;
 import org.apache.logging.log4j.Logger;
 
 import com.google.common.eventbus.Subscribe;
+import com.progwml6.natura.Natura;
 import com.progwml6.natura.common.CommonProxy;
 import com.progwml6.natura.common.NaturaPulse;
-import com.progwml6.natura.library.NaturaRegistry;
 import com.progwml6.natura.library.Util;
 import com.progwml6.natura.shared.block.clouds.BlockCloud;
 import com.progwml6.natura.shared.item.bags.ItemBoneBag;
@@ -120,9 +120,9 @@ public class NaturaCommons extends NaturaPulse
         edibles = registerItem(registry, new ItemNaturaEdible(), "edibles");
         seed_bags = registerItem(registry, new ItemSeedBag(), "seed_bags");
 
-        materials.setCreativeTab(NaturaRegistry.tabGeneral);
-        edibles.setCreativeTab(NaturaRegistry.tabGeneral);
-        seed_bags.setCreativeTab(NaturaRegistry.tabGeneral);
+        materials.setCreativeTab(Natura.TAB);
+        edibles.setCreativeTab(Natura.TAB);
+        seed_bags.setCreativeTab(Natura.TAB);
 
         barley = materials.addMeta(0, "barley");
         barleyFlour = materials.addMeta(1, "barley_flour");
@@ -147,7 +147,7 @@ public class NaturaCommons extends NaturaPulse
             blueberry = edibles.addFood(3, 1, 0.4F, 16, "blueberry", false);
             blackberry = edibles.addFood(4, 1, 0.4F, 16, "blackberry", false);
             maloberry = edibles.addFood(5, 1, 0.4F, 16, "maloberry", false);
-            berryMedley = registerItem(registry, new ItemNaturaEdibleSoup(5, 1.4F, false), "berry_medley").setCreativeTab(NaturaRegistry.tabGeneral);
+            berryMedley = registerItem(registry, new ItemNaturaEdibleSoup(5, 1.4F, false), "berry_medley").setCreativeTab(Natura.TAB);
         }
 
         if (isNetherLoaded())
@@ -162,7 +162,7 @@ public class NaturaCommons extends NaturaPulse
 
         cactusJuice = edibles.addFood(11, 1, 0.1f, 12, "cactusjuice", false);
 
-        glowshroom_stew = registerItem(registry, new ItemNaturaEdibleSoup(6, 0.6F, false), "glowshroom_stew").setCreativeTab(NaturaRegistry.tabGeneral);
+        glowshroom_stew = registerItem(registry, new ItemNaturaEdibleSoup(6, 0.6F, false), "glowshroom_stew").setCreativeTab(Natura.TAB);
 
         wheat_seed_bag = seed_bags.addMeta(0, "wheat_seed_bag", Blocks.WHEAT.getDefaultState().withProperty(BlockCrops.AGE, Integer.valueOf(0)));
         carrots_seed_bag = seed_bags.addMeta(1, "carrots_seed_bag", Blocks.CARROTS.getDefaultState().withProperty(BlockCrops.AGE, Integer.valueOf(0)));
@@ -170,13 +170,6 @@ public class NaturaCommons extends NaturaPulse
         nether_wart_seed_bag = seed_bags.addMeta(3, "nether_wart_seed_bag", Blocks.NETHER_WART.getDefaultState().withProperty(BlockNetherWart.AGE, Integer.valueOf(0)));
 
         boneMealBag = registerItem(registry, new ItemBoneBag(), "bonemeal_bag");
-
-        NaturaRegistry.tabGeneral.setDisplayIcon(cotton);
-
-        if (!isOverworldLoaded())
-        {
-            NaturaRegistry.tabWorld.setDisplayIcon(new ItemStack(clouds));
-        }
     }
 
     @SubscribeEvent

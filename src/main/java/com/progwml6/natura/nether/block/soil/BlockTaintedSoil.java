@@ -3,8 +3,7 @@ package com.progwml6.natura.nether.block.soil;
 import java.util.Locale;
 
 import com.google.common.base.Predicate;
-import com.progwml6.natura.library.NaturaRegistry;
-
+import com.progwml6.natura.Natura;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
@@ -25,7 +24,7 @@ public class BlockTaintedSoil extends EnumBlock<BlockTaintedSoil.SoilType> {
     public BlockTaintedSoil() {
         super(Material.GROUND, TYPE, SoilType.class);
 
-        this.setCreativeTab(NaturaRegistry.tabWorld);
+        this.setCreativeTab(Natura.TAB);
         this.setHardness(0.5F);
         this.setSoundType(SoundType.GROUND);
         this.setHarvestLevel("shovel", 0);

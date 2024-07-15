@@ -6,8 +6,8 @@ import java.util.Random;
 import javax.annotation.Nonnull;
 
 import com.google.common.collect.Lists;
+import com.progwml6.natura.Natura;
 import com.progwml6.natura.common.block.base.BlockLeavesBase;
-import com.progwml6.natura.library.NaturaRegistry;
 import com.progwml6.natura.overworld.NaturaOverworld;
 import com.progwml6.natura.overworld.block.logs.BlockOverworldLog2;
 import com.progwml6.natura.overworld.block.logs.BlockOverworldLog2.LogType;
@@ -27,7 +27,7 @@ public class BlockOverworldLeaves2 extends BlockLeavesBase
 {
     public BlockOverworldLeaves2()
     {
-        this.setCreativeTab(NaturaRegistry.tabWorld);
+        this.setCreativeTab(Natura.TAB);
 
         Blocks.FIRE.setFireInfo(this, 30, 60);
 

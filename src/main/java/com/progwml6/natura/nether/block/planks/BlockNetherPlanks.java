@@ -2,8 +2,7 @@ package com.progwml6.natura.nether.block.planks;
 
 import java.util.Locale;
 
-import com.progwml6.natura.library.NaturaRegistry;
-
+import com.progwml6.natura.Natura;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
@@ -24,7 +23,7 @@ public class BlockNetherPlanks extends EnumBlock<BlockNetherPlanks.PlankType>
 
         Blocks.FIRE.setFireInfo(this, 5, 20);
 
-        this.setCreativeTab(NaturaRegistry.tabWorld);
+        this.setCreativeTab(Natura.TAB);
         this.setHardness(2.0F);
         this.setResistance(10.0F);
         this.setSoundType(SoundType.WOOD);

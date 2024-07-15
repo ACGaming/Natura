@@ -542,9 +542,7 @@ entity.natura.nitrocreeper.name=硝基爬行者
 #     GUIs     #
 ################
 
-itemGroup.NaturaGeneral=自然|一般物品
-itemGroup.NaturaWorld=自然|世界生成
-itemGroup.NaturaDecorative=自然|装饰性
+//itemGroup.natura.tab=Natura Legacy
 
 ###############
 #    HWYLA    #

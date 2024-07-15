@@ -2,7 +2,7 @@ package com.progwml6.natura.overworld.block.slabs;
 
 import java.util.Locale;
 
-import com.progwml6.natura.library.NaturaRegistry;
+import com.progwml6.natura.Natura;
 import com.progwml6.natura.overworld.NaturaOverworld;
 import com.progwml6.natura.overworld.block.planks.BlockOverworldPlanks;
 
@@ -27,7 +27,7 @@ public class BlockOverworldSlab extends EnumBlockSlab<BlockOverworldSlab.PlankTy
 
         this.setHardness(2.0F);
         this.setSoundType(SoundType.WOOD);
-        this.setCreativeTab(NaturaRegistry.tabDecorative);
+        this.setCreativeTab(Natura.TAB);
     }
 
     @Override

@@ -571,9 +571,7 @@ entity.nitrocreeper.name=Nitrocreeper
 #     GUIs     #
 ################
 
-itemGroup.NaturaGeneral=Natura allgemeine Items
-itemGroup.NaturaWorld=Naturas Welt-Items
-itemGroup.NaturaDecorative=Naturas dekorative Items
+//itemGroup.natura.tab=Natura Legacy
 
 msg.natura.respawn_obelisk.activate=Obelisk aktiviert. Spawnpunkt wurde gesetzt!
 msg.natura.respawn_obelisk.deactivate=Obelisk deaktiviert. Spawnpunkt wurde zurückgesetzt!

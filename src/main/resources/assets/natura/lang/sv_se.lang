@@ -542,9 +542,7 @@ entity.natura.nitrocreeper.name=Nitrocreeper
 #     GUIs     #
 ################
 
-itemGroup.NaturaGeneral=Naturas allmänna föremål
-itemGroup.NaturaWorld=Naturas världsföremål
-itemGroup.NaturaDecorative=Naturas dekorativa föremål
+//itemGroup.natura.tab=Natura Legacy
 
 ###############
 #    HWYLA    #

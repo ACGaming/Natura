@@ -22,7 +22,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 
 import com.progwml6.natura.Natura;
-import com.progwml6.natura.library.NaturaRegistry;
 import com.progwml6.natura.overworld.NaturaOverworld;
 import com.progwml6.natura.overworld.block.logs.BlockOverworldLog2;
 import com.progwml6.natura.world.worldgen.trees.BaseTreeGenerator;
@@ -38,7 +37,7 @@ public class BlockOverworldSapling2 extends BlockSapling
 
     public BlockOverworldSapling2()
     {
-        this.setCreativeTab(NaturaRegistry.tabWorld);
+        this.setCreativeTab(Natura.TAB);
         this.setDefaultState(this.blockState.getBaseState());
         this.setSoundType(SoundType.PLANT);
         this.setHardness(0.0F);

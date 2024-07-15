@@ -9,7 +9,7 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.IStringSerializable;
 
-import com.progwml6.natura.library.NaturaRegistry;
+import com.progwml6.natura.Natura;
 import slimeknights.mantle.block.EnumBlock;
 
 public class BlockOverworldPlanks extends EnumBlock<BlockOverworldPlanks.PlankType>
@@ -22,7 +22,7 @@ public class BlockOverworldPlanks extends EnumBlock<BlockOverworldPlanks.PlankTy
 
         Blocks.FIRE.setFireInfo(this, 5, 20);
 
-        this.setCreativeTab(NaturaRegistry.tabWorld);
+        this.setCreativeTab(Natura.TAB);
         this.setHardness(2.0f);
         this.setSoundType(SoundType.WOOD);
     }

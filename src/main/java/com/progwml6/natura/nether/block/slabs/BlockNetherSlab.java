@@ -2,7 +2,7 @@ package com.progwml6.natura.nether.block.slabs;
 
 import java.util.Locale;
 
-import com.progwml6.natura.library.NaturaRegistry;
+import com.progwml6.natura.Natura;
 import com.progwml6.natura.nether.NaturaNether;
 import com.progwml6.natura.nether.block.planks.BlockNetherPlanks;
 
@@ -28,7 +28,7 @@ public class BlockNetherSlab extends EnumBlockSlab<BlockNetherSlab.PlankType>
         this.setHardness(2.0F);
         this.setResistance(10.0F);
         this.setSoundType(SoundType.WOOD);
-        this.setCreativeTab(NaturaRegistry.tabDecorative);
+        this.setCreativeTab(Natura.TAB);
     }
 
     @Override

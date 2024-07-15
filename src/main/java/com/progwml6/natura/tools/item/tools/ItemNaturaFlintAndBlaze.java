@@ -14,7 +14,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import com.progwml6.natura.library.NaturaRegistry;
+import com.progwml6.natura.Natura;
 
 public class ItemNaturaFlintAndBlaze extends Item
 {
@@ -22,7 +22,7 @@ public class ItemNaturaFlintAndBlaze extends Item
     {
         this.maxStackSize = 1;
         this.setMaxDamage(64);
-        this.setCreativeTab(NaturaRegistry.tabGeneral);
+        this.setCreativeTab(Natura.TAB);
     }
 
     /**

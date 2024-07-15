@@ -5,6 +5,7 @@ import com.progwml6.natura.common.config.Config;
 import com.progwml6.natura.common.gui.GuiHandler;
 import com.progwml6.natura.decorative.NaturaDecorative;
 import com.progwml6.natura.entities.NaturaEntities;
+import com.progwml6.natura.library.NaturaCreativeTab;
 import com.progwml6.natura.library.Util;
 import com.progwml6.natura.library.datafixes.ItemIDFixer;
 import com.progwml6.natura.nether.NaturaNether;
@@ -14,6 +15,8 @@ import com.progwml6.natura.plugin.CraftingTweaks;
 import com.progwml6.natura.shared.NaturaCommons;
 import com.progwml6.natura.tools.NaturaTools;
 import com.progwml6.natura.world.NaturaWorld;
+
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.util.datafix.FixTypes;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ModFixs;
@@ -39,6 +42,8 @@ public class Natura
     public static final String modName = "Natura Legacy";
 
     public static final Logger log = LogManager.getLogger(modID);
+    
+    public static final CreativeTabs TAB = new NaturaCreativeTab(CreativeTabs.CREATIVE_TAB_ARRAY.length, modID + ".tab");
 
     /* Instance of this mod, used for grabbing prototype fields */
     @Instance(modID) public static Natura instance;
