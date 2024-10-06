@@ -116,28 +116,28 @@ public class NaturaTools extends NaturaPulse
             ghostwoodShovel = registerItem(registry, new ItemNaturaShovel(netherwoodToolMaterial), "ghostwood_shovel");
             ghostwoodAxe = registerItem(registry, new ItemNaturaAxe(netherwoodToolMaterial, 9.0F, 0.85F), "ghostwood_axe");
             ghostwoodHoe = registerItem(registry, new ItemNaturaHoe(netherwoodToolMaterial), "ghostwood_hoe");
-            ghostwoodBow = registerItem(registry, new ItemNaturaBow(584, 1.15F, 1.0F, 0.7F, 1.4F, Ingredient.fromStacks(new ItemStack(NaturaNether.netherPlanks, 1, 0))), "ghostwood_bow");
+            ghostwoodBow = registerItem(registry, new ItemNaturaBow(584, 1.2F, 1.0F, 0.7F, 1.4F, Ingredient.fromStacks(new ItemStack(NaturaNether.netherPlanks, 1, 0))), "ghostwood_bow");
 
             bloodwoodSword = registerItem(registry, new ItemNaturaSword(netherwoodToolMaterial), "bloodwood_sword");
             bloodwoodPickaxe = registerItem(registry, new ItemNaturaPickaxe(netherwoodToolMaterial), "bloodwood_pickaxe");
             bloodwoodShovel = registerItem(registry, new ItemNaturaShovel(netherwoodToolMaterial), "bloodwood_shovel");
             bloodwoodAxe = registerItem(registry, new ItemNaturaAxe(netherwoodToolMaterial, 9.0F, 0.85F), "bloodwood_axe");
             bloodwoodHoe = registerItem(registry, new ItemNaturaHoe(netherwoodToolMaterial), "bloodwood_hoe");
-            bloodwoodBow = registerItem(registry, new ItemNaturaBow(584, 1.15F, 1.0F, 0.7F, 1.4F, Ingredient.fromStacks(new ItemStack(NaturaNether.netherPlanks, 1, 1))), "bloodwood_bow");
+            bloodwoodBow = registerItem(registry, new ItemNaturaBow(584, 1.2F, 1.0F, 0.7F, 1.4F, Ingredient.fromStacks(new ItemStack(NaturaNether.netherPlanks, 1, 1))), "bloodwood_bow");
 
             darkwoodSword = registerItem(registry, new ItemNaturaSword(netherwoodToolMaterial), "darkwood_sword");
             darkwoodPickaxe = registerItem(registry, new ItemNaturaPickaxe(netherwoodToolMaterial), "darkwood_pickaxe");
             darkwoodShovel = registerItem(registry, new ItemNaturaShovel(netherwoodToolMaterial), "darkwood_shovel");
             darkwoodAxe = registerItem(registry, new ItemNaturaAxe(netherwoodToolMaterial, 9.0F, 0.85F), "darkwood_axe");
             darkwoodHoe = registerItem(registry, new ItemNaturaHoe(netherwoodToolMaterial), "darkwood_hoe");
-            darkwoodBow = registerItem(registry, new ItemNaturaBow(584, 1.15F, 1.0F, 0.7F, 1.4F, Ingredient.fromStacks(new ItemStack(NaturaNether.netherPlanks, 1, 2))), "darkwood_bow");
+            darkwoodBow = registerItem(registry, new ItemNaturaBow(584, 1.2F, 1.0F, 0.7F, 1.4F, Ingredient.fromStacks(new ItemStack(NaturaNether.netherPlanks, 1, 2))), "darkwood_bow");
 
             fusewoodSword = registerItem(registry, new ItemNaturaSword(netherwoodToolMaterial), "fusewood_sword");
             fusewoodPickaxe = registerItem(registry, new ItemNaturaPickaxe(netherwoodToolMaterial), "fusewood_pickaxe");
             fusewoodShovel = registerItem(registry, new ItemNaturaShovel(netherwoodToolMaterial), "fusewood_shovel");
             fusewoodAxe = registerItem(registry, new ItemNaturaAxe(netherwoodToolMaterial, 9.0F, 0.85F), "fusewood_axe");
             fusewoodHoe = registerItem(registry, new ItemNaturaHoe(netherwoodToolMaterial), "fusewood_hoe");
-            fusewoodBow = registerItem(registry, new ItemNaturaBow(584, 1.15F, 1.0F, 0.7F, 1.4F, Ingredient.fromStacks(new ItemStack(NaturaNether.netherPlanks, 1, 3))), "fusewood_bow");
+            fusewoodBow = registerItem(registry, new ItemNaturaBow(584, 1.2F, 1.0F, 0.7F, 1.4F, Ingredient.fromStacks(new ItemStack(NaturaNether.netherPlanks, 1, 3))), "fusewood_bow");
 
             netherquartzSword = registerItem(registry, new ItemNaturaSword(quartzToolMaterial), "netherquartz_sword");
             netherquartzPickaxe = registerItem(registry, new ItemNaturaPickaxe(quartzToolMaterial), "netherquartz_pickaxe");
