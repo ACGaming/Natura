@@ -11,6 +11,7 @@ import com.progwml6.natura.common.block.BlockNaturaDoor;
 import com.progwml6.natura.common.item.ItemBlockLeaves;
 import com.progwml6.natura.common.item.ItemNaturaDoor;
 import com.progwml6.natura.library.Util;
+import com.progwml6.natura.nether.block.BlockNetherrackBricks;
 import com.progwml6.natura.nether.block.BlockSmoothNetherrack;
 import com.progwml6.natura.nether.block.bush.BlockNetherBerryBush;
 import com.progwml6.natura.nether.block.button.BlockNetherButton;
@@ -80,6 +81,8 @@ public class NaturaNether extends NaturaPulse
 
     public static BlockNetherGlass netherGlass;
     public static BlockSmoothNetherrack smoothNetherrack;
+    public static BlockNetherrackBricks netherrackBricks;
+    public static BlockNetherrackBricks netherrackBricksCharred;
 
     public static Block netherStairsGhostwood;
     public static Block netherStairsBloodwood;
@@ -154,6 +157,8 @@ public class NaturaNether extends NaturaPulse
         netherGlass = registerBlock(registry, new BlockNetherGlass(), "nether_glass");
         
         smoothNetherrack = registerBlock(registry, new BlockSmoothNetherrack(), "smooth_netherrack");
+        netherrackBricks = registerBlock(registry, new BlockNetherrackBricks(), "netherrack_bricks");
+        netherrackBricksCharred = registerBlock(registry, new BlockNetherrackBricks(), "charred_netherrack_bricks");
 
         netherStairsGhostwood = registerBlockStairsFrom(registry, netherPlanks, BlockNetherPlanks.PlankType.GHOSTWOOD, "nether_stairs_ghostwood");
         netherStairsBloodwood = registerBlockStairsFrom(registry, netherPlanks, BlockNetherPlanks.PlankType.BLOODWOOD, "nether_stairs_bloodwood");
@@ -223,6 +228,8 @@ public class NaturaNether extends NaturaPulse
         netherGlass = registerEnumItemBlock(registry, netherGlass, "nether_glass");
         
         smoothNetherrack = registerItemBlock(registry, smoothNetherrack, "smooth_netherrack");
+        netherrackBricks = registerItemBlock(registry, netherrackBricks, "netherrack_bricks");
+        netherrackBricksCharred = registerItemBlock(registry, netherrackBricksCharred, "charred_netherrack_bricks");
 
         netherStairsGhostwood = registerItemBlock(registry, netherStairsGhostwood, "nether_stairs_ghostwood");
         netherStairsBloodwood = registerItemBlock(registry, netherStairsBloodwood, "nether_stairs_bloodwood");
@@ -310,7 +317,8 @@ public class NaturaNether extends NaturaPulse
     {
         FurnaceRecipes furnaceRecipes = FurnaceRecipes.instance();
 
-        furnaceRecipes.addSmeltingRecipe(new ItemStack(Blocks.SOUL_SAND, 1, 0), new ItemStack(netherGlass, 1, 0), 0.3f);
-        furnaceRecipes.addSmeltingRecipe(new ItemStack(netherHeatSand, 1, 0), new ItemStack(netherGlass, 1, 1), 0.3f);
+        furnaceRecipes.addSmeltingRecipe(new ItemStack(Blocks.SOUL_SAND, 1, 0), new ItemStack(netherGlass, 1, 0), 0.3F);
+        furnaceRecipes.addSmeltingRecipe(new ItemStack(netherHeatSand, 1, 0), new ItemStack(netherGlass, 1, 1), 0.3F);
+        furnaceRecipes.addSmeltingRecipe(new ItemStack(netherrackBricks, 1, 0), new ItemStack(netherrackBricksCharred, 1, 0), 0.1F);
     }
 }

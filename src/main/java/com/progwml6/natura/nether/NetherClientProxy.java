@@ -107,6 +107,8 @@ public class NetherClientProxy extends ClientProxy
         registerItemBlockMeta(NaturaNether.netherGlass);
         
         registerItemModel(NaturaNether.smoothNetherrack);
+        registerItemModel(NaturaNether.netherrackBricks);
+        registerItemModel(NaturaNether.netherrackBricksCharred);
 
         registerItemBlockMeta(NaturaNether.netherSlab);
 

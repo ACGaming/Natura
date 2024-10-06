@@ -1,0 +1,22 @@
+{
+  "conditions": [
+    {
+      "type": "natura:is_pulse_loaded",
+      "pulse_name": "NaturaNether"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AAA"
+  ],
+  "key": {
+    "A": {
+      "item": "natura:smooth_netherrack"
+    }
+  },
+  "result": {
+    "item": "natura:netherrack_bricks",
+    "data": 0,
+    "count": 3
+  }
+}

@@ -391,6 +391,8 @@ tile.natura.darkwood_trap_door.name=Darkwood Trapdoor
 tile.natura.darkwood_fence.name=Darkwood Fence
 tile.natura.darkwood_fence_gate.name=Darkwood Fence Gate
 
+tile.natura.charred_netherrack_bricks.name=Charred Netherrack Bricks
+tile.natura.netherrack_bricks.name=Netherrack Bricks
 tile.natura.smooth_netherrack.name=Smooth Netherrack
 
 tile.natura.nether_bookshelves.ghostwood.name=Ghostwood Bookshelf
