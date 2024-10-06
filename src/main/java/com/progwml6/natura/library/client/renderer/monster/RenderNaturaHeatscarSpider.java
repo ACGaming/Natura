@@ -13,11 +13,11 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class RenderNautraHeatscarSpider extends RenderLiving<EntityHeatscarSpider>
+public class RenderNaturaHeatscarSpider extends RenderLiving<EntityHeatscarSpider>
 {
     public static final ResourceLocation texture = Util.getResource("textures/entity/heatscar_spider.png");
 
-    public RenderNautraHeatscarSpider(RenderManager renderManagerIn)
+    public RenderNaturaHeatscarSpider(RenderManager renderManagerIn)
     {
         super(renderManagerIn, new ModelSpider(), 2.0F);
         this.addLayer(new LayerHeatscarSpiderEyes<EntityHeatscarSpider>(this));
