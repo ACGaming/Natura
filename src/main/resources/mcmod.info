@@ -2,11 +2,11 @@
   {
     "modid": "natura",
     "name": "Natura Legacy",
-    "description": "Heyo, Redwood trees! Chop them all day long!",
+    "description": "Heyo, Redwood trees! Chop them all day long! LTS for 1.12.2!",
     "version": "${version}",
     "mcversion": "${mcversion}",
-    "url": "http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/1294968-natura",
-    "authorList": ["mDiyo", "Slime Knights", "ACGaming", "IcarussOne"],
-    "credits": "Samtrion, tterrag"
+    "url": "https://github.com/Elite-Modding-Team/NaturaLegacy",
+    "authorList": ["ACGaming", "IcarussOne"],
+    "credits": "\n \u00A7eMain Developers:\n [*] ACGaming\n [*] IcarussOne\n \u00A7eFormer Authors & Contributors:\n [*] mDiyo\n [*] Slime Knights\n [*] Samtrion\n [*] tterrag\n \u00A76Special Thanks:\n [*] IcarussOne - New textures for nether tools and Darkwood Logs\n [*] ThePunCrafter - Several more consistent textures used from the Natura Repaints resource pack with permission\n [*] scokeev9 - Some textures used from the Nethercraft and Premium Wood mods since even before this fork was made"
   }
 ]
