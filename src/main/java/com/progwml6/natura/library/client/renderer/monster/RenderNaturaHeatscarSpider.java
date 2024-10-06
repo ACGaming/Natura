@@ -1,11 +1,10 @@
 package com.progwml6.natura.library.client.renderer.monster;
 
-import org.lwjgl.opengl.GL11;
-
 import com.progwml6.natura.entities.entity.monster.EntityHeatscarSpider;
 import com.progwml6.natura.library.Util;
 
 import net.minecraft.client.model.ModelSpider;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
@@ -37,6 +36,6 @@ public class RenderNaturaHeatscarSpider extends RenderLiving<EntityHeatscarSpide
     @Override
     protected void preRenderCallback(EntityHeatscarSpider entity, float partialTickTime)
     {
-        GL11.glScalef(2.0F, 2.0F, 2.0F);
+        GlStateManager.scale(2.0F, 2.0F, 2.0F);
     }
 }
