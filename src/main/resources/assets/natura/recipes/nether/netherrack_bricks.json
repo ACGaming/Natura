@@ -11,7 +11,8 @@
   ],
   "key": {
     "A": {
-      "item": "natura:smooth_netherrack"
+      "item": "natura:smooth_netherrack",
+      "data": 0
     }
   },
   "result": {
