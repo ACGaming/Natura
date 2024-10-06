@@ -150,6 +150,7 @@ public final class Config
         generateGlowshroomtree = configFile.get(ENABLE_DISABLE, "Generate Glowshroom Trees", generateGlowshroomtree).getBoolean(generateGlowshroomtree);
         dropCotton = configFile.get(ENABLE_DISABLE, "Drop cotton seeds from grass", dropCotton).getBoolean(dropCotton);
         dropBarley = configFile.get(ENABLE_DISABLE, "Drop barley seeds from grass", dropBarley).getBoolean(dropBarley);
+        enableStickVariants = configFile.get(ENABLE_DISABLE, "Enable stick variants", enableStickVariants).getBoolean(enableStickVariants);
         try
         {
             Class.forName("chococraft.common.ModChocoCraft");
@@ -443,6 +444,8 @@ public final class Config
     public static boolean enableWheatRecipe = true;
     public static boolean dropBarley = true;
     public static boolean dropCotton = true;
+
+    public static boolean enableStickVariants = false;
 
     public static int[] overworldWorldGenBlacklist = new int[] {};
     public static int[] netherWorldGenBlacklist = new int[] {};

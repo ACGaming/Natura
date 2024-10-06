@@ -28,7 +28,6 @@ public class ItemIDFixer implements IFixableData
         // Initialize the item mappings
         ITEM_NAME_MAPPINGS.put(new ResourceLocation(Natura.modID, "empty_bowls"), new ResourceLocation("minecraft", "bowl"));
         ITEM_NAME_MAPPINGS.put(new ResourceLocation(Natura.modID, "soups"), new ResourceLocation("minecraft", "mushroom_stew"));
-        ITEM_NAME_MAPPINGS.put(new ResourceLocation(Natura.modID, "sticks"), new ResourceLocation("minecraft", "stick"));
     }
 
     /**

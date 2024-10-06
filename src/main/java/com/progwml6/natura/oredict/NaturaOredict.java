@@ -58,6 +58,8 @@ public class NaturaOredict extends NaturaPulse {
 
         oredict(NaturaCommons.sulfurPowder, "dustSulphur");
         oredict(NaturaCommons.sulfurPowder, "dustSulfur");
+
+        oredict(NaturaCommons.sticks, "stickWood");
     }
 
     private static void registerOverworld() {

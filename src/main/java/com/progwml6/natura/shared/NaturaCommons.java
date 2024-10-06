@@ -1,18 +1,7 @@
 package com.progwml6.natura.shared;
 
-import org.apache.logging.log4j.Logger;
-
 import com.google.common.eventbus.Subscribe;
-import com.progwml6.natura.Natura;
-import com.progwml6.natura.common.CommonProxy;
-import com.progwml6.natura.common.NaturaPulse;
-import com.progwml6.natura.library.Util;
-import com.progwml6.natura.shared.block.clouds.BlockCloud;
-import com.progwml6.natura.shared.item.bags.ItemBoneBag;
-import com.progwml6.natura.shared.item.bags.ItemSeedBag;
-import com.progwml6.natura.shared.item.food.ItemNaturaEdible;
-import com.progwml6.natura.shared.item.food.ItemNaturaEdibleSoup;
-
+import org.apache.logging.log4j.Logger;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCrops;
 import net.minecraft.block.BlockNetherWart;
@@ -29,6 +18,17 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
+
+import com.progwml6.natura.Natura;
+import com.progwml6.natura.common.CommonProxy;
+import com.progwml6.natura.common.NaturaPulse;
+import com.progwml6.natura.common.config.Config;
+import com.progwml6.natura.library.Util;
+import com.progwml6.natura.shared.block.clouds.BlockCloud;
+import com.progwml6.natura.shared.item.bags.ItemBoneBag;
+import com.progwml6.natura.shared.item.bags.ItemSeedBag;
+import com.progwml6.natura.shared.item.food.ItemNaturaEdible;
+import com.progwml6.natura.shared.item.food.ItemNaturaEdibleSoup;
 import slimeknights.mantle.item.ItemMetaDynamic;
 import slimeknights.mantle.pulsar.pulse.Pulse;
 
@@ -54,6 +54,7 @@ public class NaturaCommons extends NaturaPulse
     public static ItemNaturaEdible edibles;
     public static ItemSeedBag seed_bags;
     public static ItemBoneBag boneMealBag;
+    public static ItemMetaDynamic sticks;
 
     // Material Itemstacks
     public static ItemStack barley;
@@ -96,7 +97,21 @@ public class NaturaCommons extends NaturaPulse
     public static ItemStack carrots_seed_bag;
     public static ItemStack potatoes_seed_bag;
     public static ItemStack nether_wart_seed_bag;
-    
+
+    //Wood Sticks
+    public static ItemStack maple_stick;
+    public static ItemStack silverbell_stick;
+    public static ItemStack amaranth_stick;
+    public static ItemStack tiger_stick;
+    public static ItemStack willow_stick;
+    public static ItemStack eucalyptus_stick;
+    public static ItemStack hopseed_stick;
+    public static ItemStack sakura_stick;
+    public static ItemStack redwood_stick;
+    public static ItemStack ghostwood_stick;
+    public static ItemStack darkwood_stick;
+    public static ItemStack fusewood_stick;
+    public static ItemStack bloodwood_stick;
     //@formatter:on
 
     @SubscribeEvent
@@ -131,6 +146,12 @@ public class NaturaCommons extends NaturaPulse
         sulfurPowder = materials.addMeta(4, "sulfur_powder");
         ghostwoodFletching = materials.addMeta(5, "ghostwood_fletching");
         blueDye = materials.addMeta(8, "blue_dye");
+
+        if (Config.enableStickVariants)
+        {
+            sticks = registerItem(registry, new ItemMetaDynamic(), "sticks");
+            sticks.setCreativeTab(Natura.TAB);
+        }
 
         if (isEntitiesLoaded())
         {
@@ -170,6 +191,27 @@ public class NaturaCommons extends NaturaPulse
         nether_wart_seed_bag = seed_bags.addMeta(3, "nether_wart_seed_bag", Blocks.NETHER_WART.getDefaultState().withProperty(BlockNetherWart.AGE, Integer.valueOf(0)));
 
         boneMealBag = registerItem(registry, new ItemBoneBag(), "bonemeal_bag");
+
+        if (isOverworldLoaded() && Config.enableStickVariants)
+        {
+            maple_stick = sticks.addMeta(0, "maple_stick");
+            silverbell_stick = sticks.addMeta(1, "silverbell_stick");
+            amaranth_stick = sticks.addMeta(2, "amaranth_stick");
+            tiger_stick = sticks.addMeta(3, "tiger_stick");
+            willow_stick = sticks.addMeta(4, "willow_stick");
+            eucalyptus_stick = sticks.addMeta(5, "eucalyptus_stick");
+            hopseed_stick = sticks.addMeta(6, "hopseed_stick");
+            sakura_stick = sticks.addMeta(7, "sakura_stick");
+            redwood_stick = sticks.addMeta(8, "redwood_stick");
+        }
+
+        if (isNetherLoaded() && Config.enableStickVariants)
+        {
+            ghostwood_stick = sticks.addMeta(9, "ghostwood_stick");
+            darkwood_stick = sticks.addMeta(10, "darkwood_stick");
+            fusewood_stick = sticks.addMeta(11, "fusewood_stick");
+            bloodwood_stick = sticks.addMeta(12, "bloodwood_stick");
+        }
     }
 
     @SubscribeEvent

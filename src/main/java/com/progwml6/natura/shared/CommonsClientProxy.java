@@ -1,15 +1,11 @@
 package com.progwml6.natura.shared;
 
+import com.progwml6.natura.common.ClientProxy;
+import com.progwml6.natura.common.config.Config;
+
 import static com.progwml6.natura.common.ModelRegisterUtil.registerItemBlockMeta;
 import static com.progwml6.natura.common.ModelRegisterUtil.registerItemModel;
-import static com.progwml6.natura.shared.NaturaCommons.berryMedley;
-import static com.progwml6.natura.shared.NaturaCommons.boneMealBag;
-import static com.progwml6.natura.shared.NaturaCommons.clouds;
-import static com.progwml6.natura.shared.NaturaCommons.edibles;
-import static com.progwml6.natura.shared.NaturaCommons.glowshroom_stew;
-import static com.progwml6.natura.shared.NaturaCommons.materials;
-import static com.progwml6.natura.shared.NaturaCommons.seed_bags;
-import com.progwml6.natura.common.ClientProxy;
+import static com.progwml6.natura.shared.NaturaCommons.*;
 
 public class CommonsClientProxy extends ClientProxy
 {
@@ -27,6 +23,11 @@ public class CommonsClientProxy extends ClientProxy
         materials.registerItemModels();
         edibles.registerItemModels();
         seed_bags.registerItemModels();
+
+        if (Config.enableStickVariants)
+        {
+            sticks.registerItemModels();
+        }
 
         registerItemModel(berryMedley);
         registerItemModel(boneMealBag);
