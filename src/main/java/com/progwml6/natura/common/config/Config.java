@@ -31,7 +31,7 @@ public final class Config
 
     public static void load(FMLPreInitializationEvent event)
     {
-        configFile = new Configuration(event.getSuggestedConfigurationFile(), "0.2", false);
+        configFile = new Configuration(event.getSuggestedConfigurationFile(), "0.3", false);
         configFile.load();
 
         syncConfig();
@@ -445,7 +445,7 @@ public final class Config
     public static boolean dropBarley = true;
     public static boolean dropCotton = true;
 
-    public static boolean enableStickVariants = false;
+    public static boolean enableStickVariants = true;
 
     public static int[] overworldWorldGenBlacklist = new int[] {};
     public static int[] netherWorldGenBlacklist = new int[] {};
