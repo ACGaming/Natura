@@ -108,6 +108,7 @@ public final class Config
         generateEucalyptus = configFile.get(ENABLE_DISABLE, "Generate Small Eucalyptus Trees", generateEucalyptus).getBoolean(generateEucalyptus);
         generateHopseed = configFile.get(ENABLE_DISABLE, "Generate Hopseed Trees", generateHopseed).getBoolean(generateHopseed);
         generateSakura = configFile.get(ENABLE_DISABLE, "Generate Sakura Trees", generateSakura).getBoolean(generateSakura);
+        generateApple = configFile.get(ENABLE_DISABLE, "Generate Apple Trees", generateApple).getBoolean(generateApple);
 
         generateSaguaro = configFile.get(ENABLE_DISABLE, "Generate Saguaro Cactus", generateSaguaro).getBoolean(generateSaguaro);
 
@@ -197,6 +198,9 @@ public final class Config
 
         sakuraSpawnRarity = configFile.get(WORLDGEN, "Sakura Tree Spawn Rarity", sakuraSpawnRarity).getInt(sakuraSpawnRarity);
         sakuraSpawnRange = configFile.get(WORLDGEN, "Sakura Tree Spawn Range", sakuraSpawnRange).getInt(sakuraSpawnRange);
+
+        appleSpawnRarity = configFile.get(WORLDGEN, "Apple Tree Spawn Rarity", appleSpawnRarity).getInt(appleSpawnRarity);
+        appleSpawnRange = configFile.get(WORLDGEN, "Apple Tree Spawn Range", appleSpawnRange).getInt(appleSpawnRange);
 
         bloodwoodSpawnRarity = configFile.get(WORLDGEN, "Bloodwood Tree Spawn Rarity", bloodwoodSpawnRarity).getInt(bloodwoodSpawnRarity);
         darkwoodSpawnRarity = configFile.get(WORLDGEN, "Darkwood Tree Spawn Rarity", darkwoodSpawnRarity).getInt(darkwoodSpawnRarity);
